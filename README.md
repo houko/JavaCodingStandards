@@ -1,3 +1,10 @@
+# 前言
+- 如果这份规范中有不合理的地方,欢迎提issue/提PR等各种形式进行完善。
+- 如果您有更好的代码风格未在本规范中列出,欢迎提issue/提PR等各种形式进行完善。
+- 本规范最后一部分`业务规范`仅根据本人所在公司情况制定,请酌情考虑使用。
+- 本project还在完善和验证中,希望和大家一起写出优雅而实用的代码。
+
+
 # 一.命名规范
 #### 1.【强制】 代码中的命名严禁使用拼音与英文混合的方式，更不允许直接使用中文的方式。
 说明：正确的英文拼写和语法可以让阅读者易于理解，避免歧义。注意，即使纯拼音命名方式也要避免采用。    
@@ -225,6 +232,20 @@ while (it.hasNext()) {
 
 #### 1. 【强制】写业务逻辑时,一定要把对应的需求链接贴在代码注释里,方便在和策划撕逼时方便决定谁该背锅。
 
+```
+    // 月卡增幅 2017/01/04 http://192.168.1.88:8010/index.php?m=story&f=view&storyID=7775
+    if ((instanceConfig.getInstanceType() & 1) == 1) { // 个人BOSS
+        itemNum += extraAdd;
+    }
+    if (itemConfig.getCarrymax() > 0) {
+        int count = BagApiNew.getItemCount(bag, itemId) + StorageApi.getItemCount(rid, itemId);
+        if (count + itemNum >= itemConfig.getCarrymax()) {// 超出最大囤积上限的时候获得一部分
+            LOGGER.error("{}|{}|玩家领取副本【{}】奖励【itemId:{},itemNum:{},oldNum:{}】时超出上限【{}】", rid, role.get("name"), instanceConfig.getMapid(), itemId, itemNum, count, itemConfig.getCarrymax());
+            itemNum = itemConfig.getCarrymax() - count;
+        }
+    }
+```
+
 ---
 #### 2. 【强制】不要和策划口头定需求，有修改或者新增在需求里体现出来。
 
@@ -233,3 +254,106 @@ while (it.hasNext()) {
 
 ---
 #### 4. 【强制】方法体一定要有注释并署名，方便找写该业务的人做BUG排查。
+
+
+```
+    /**
+     * 请求打开困惑殿堂面板
+     *
+     * @param rid rid
+     * author: 小莫
+     * date: 2017-05-04 10:08
+     */
+    public void reqOpenPanel(int rid) {
+    	// code
+    }
+```
+
+--- 
+#### 5. 【强制】方法体中决定不能出现数字，放在常量类中并加以注释。如果常量小于3个可以放在本类的顶部（参考常量定义-3）
+
+```
+package rpg.system.task.constant;
+
+public interface TaskType {
+
+    int JIFENGFUMO = 4;
+    int CAIJI = 5;
+    int XIANGYAOFUMO = 8;
+    int BIG_BOSS = 10; //精英任务
+    int QIYUXUNHUAN = 11;
+    int JINDU = 12;
+    int TIAOZHAN = 13;
+    int TREASURE_BOWL = 14;// 聚宝盆
+    int QIYUSUIJI = 23;
+    int CANGYUE_ISLAND = 100;
+}
+
+```
+
+--- 
+#### 6. 【强制】类型和Map的key要定义常量类存放于业务模块。
+
+正例：`uparm`模块 `constant`包中存放,以 `XxxConst`,`XxxField`命名。
+
+```
+├── uparm
+│   ├── UparmManager.java
+│   ├── bean
+│   │   ├── ComposeBean.java
+│   │   └── XilianBean.java
+│   ├── constant
+│   │   └── ArmFromConst.java
+│   ├── handler
+│   │   ├── ReqAddQhFailNumHandler.java
+│   │   ├── ReqDecomposeHandler.java
+│   │   ├── ReqDoHandler.java
+│   │   ├── ReqDoSzHandler.java
+│   │   ├── ReqDoThreeHandler.java
+│   │   ├── ReqDoTowHandler.java
+│   │   ├── ReqFuMoHandler.java
+│   │   ├── ReqFuMoqcHandler.java
+│   │   ├── ReqHuanSeHandler.java
+│   │   ├── ReqItemQianghuaHandler.java
+│   │   ├── ReqKaiqiHandler.java
+│   │   ├── ReqQhResetHandler.java
+│   │   ├── ReqQiangHuaHandler.java
+│   │   ├── ReqQiangHuaInitHandler.java
+│   │   ├── ReqSaveXilianHandler.java
+│   │   ├── ReqTupoHandler.java
+│   │   ├── ReqXilianHandler.java
+│   │   ├── ReqYiJianComposeHandler.java
+│   │   ├── ReqYiJianQiangHuaHandler.java
+│   │   ├── ReqZSHandler.java
+│   │   ├── ReqZSsbuzupcHandler.java
+│   │   ├── ReqZyfmHandler.java
+│   │   └── ReqZyqhHandler.java
+
+```
+
+
+`Field`内容例如:
+
+```
+public interface LimitTimeTaskField {
+    /**
+     * 任务接受状态
+     */
+    int TASK_ACCEPT_STATE = 1;
+
+    /**
+     * 任务完成状态
+     */
+    int TASK_COMPLETE_STATE = 2;
+
+    /**
+     * 限时任务消息
+     */
+    String LIMIT_TIME_TASK_INFO = "LIMIT_TIME_TASK_INFO";
+
+    /**
+     * 分组id
+     */
+    String LIMIT_TIME_TASK_GROUP_ID ="LIMIT_TIME_TASK_GROUP_ID";
+    }
+```
