@@ -270,7 +270,7 @@ while (it.hasNext()) {
 ```
 
 --- 
-#### 5. 【强制】方法体中决定不能出现数字，放在常量类中并加以注释。如果常量小于3个可以放在本类的顶部（参考常量定义-3）
+#### 5. 【强制】方法体中决定不能出现数字(0除外)，放在常量类中并加以注释。如果常量小于3个可以放在本类的顶部（参考常量定义-3）
 
 ```
 package rpg.system.task.constant;
@@ -357,5 +357,3 @@ public interface LimitTimeTaskField {
     String LIMIT_TIME_TASK_GROUP_ID ="LIMIT_TIME_TASK_GROUP_ID";
     }
 ```
-
-#### 7. 【强制】 一个方法体不要超过一屏,处理同一个逻辑抽成一个方法体，方便代码阅读和复用。
