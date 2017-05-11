@@ -349,3 +349,6 @@ public interface LimitTimeTaskField {
     String LIMIT_TIME_TASK_GROUP_ID ="LIMIT_TIME_TASK_GROUP_ID";
     }
 ```
+
+#### 6. 【强制】在写业务逻辑的时候尽可能的考虑到发包情况(不要轻信客户端传过来的数据),并对发包请求进行拦截,防止非正常玩家通过BUG刷道具。
+例：玩家领奖之后要给玩家存一个己领奖的flag,当再次请求的时候就不要重复发奖励了 。 
