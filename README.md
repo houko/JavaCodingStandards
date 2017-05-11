@@ -315,29 +315,10 @@ public interface TaskType {
 │   │   └── XilianBean.java
 │   ├── constant
 │   │   └── ArmFromConst.java
+│   │   └── ArmField.java
 │   ├── handler
 │   │   ├── ReqAddQhFailNumHandler.java
 │   │   ├── ReqDecomposeHandler.java
-│   │   ├── ReqDoHandler.java
-│   │   ├── ReqDoSzHandler.java
-│   │   ├── ReqDoThreeHandler.java
-│   │   ├── ReqDoTowHandler.java
-│   │   ├── ReqFuMoHandler.java
-│   │   ├── ReqFuMoqcHandler.java
-│   │   ├── ReqHuanSeHandler.java
-│   │   ├── ReqItemQianghuaHandler.java
-│   │   ├── ReqKaiqiHandler.java
-│   │   ├── ReqQhResetHandler.java
-│   │   ├── ReqQiangHuaHandler.java
-│   │   ├── ReqQiangHuaInitHandler.java
-│   │   ├── ReqSaveXilianHandler.java
-│   │   ├── ReqTupoHandler.java
-│   │   ├── ReqXilianHandler.java
-│   │   ├── ReqYiJianComposeHandler.java
-│   │   ├── ReqYiJianQiangHuaHandler.java
-│   │   ├── ReqZSHandler.java
-│   │   ├── ReqZSsbuzupcHandler.java
-│   │   ├── ReqZyfmHandler.java
 │   │   └── ReqZyqhHandler.java
 
 ```
