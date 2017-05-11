@@ -4,6 +4,17 @@
 - 本规范最后一部分`业务规范`仅根据本人所在公司情况制定（游戏开发）,请酌情考虑使用。
 - 本project还在完善和验证中,希望和大家一起写出优雅而实用的代码。
 
+# 常用开发工具下载
+1. IDE(IDEA/eclipse or other)
+2. mysql (5.6+)
+3. mysql client(navicat/mysql workbeach)
+4. xshell and xftp
+5. jdk1.7
+6. emeditor
+7. apache ant
+8. apache maven
+9. tortoise svn 64位
+
 
 # 一.命名规范
 #### 1.【强制】 代码中的命名严禁使用拼音与英文混合的方式，更不允许直接使用中文的方式。
