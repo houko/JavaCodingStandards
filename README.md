@@ -66,6 +66,11 @@
 ---
 #### 10. 【推荐】接口类中的方法和属性不要加任何修饰符号（public 也不要加），保持代码的简洁性，并加上有效的 Javadoc 注释
 
+#### 11. 源代码文件以文件内容中的最顶层的Java类命名，而且大小写敏感，文件扩展名为 .java，同时，文件的编码格式统一为UTF-8。
+
+#### 12. 类的命名遵循大驼峰命名法UpperCamelCase，而方法名和变量名的命名遵循小驼峰命名法lowerCamelCase
+常量名使用大写字母表示，单词之间以下划线分隔，例如static final int CONNECTION_TIMEOUT = 10000
+
 ---
 # 二.常量定义
 #### 1. 【强制】不允许出现任何魔法值（即未经定义的常量）直接出现在代码中。
@@ -77,6 +82,7 @@ cache.put(key, value);
 ```
 
 ---
+
 #### 2. 【强制】long 或者 Long 初始赋值时，必须使用大写的 L，不能是小写的 l，小写容易跟数字1 混淆，造成误解。
 说明：Long a = 2l; 写的是数字的 21，还是 Long 型的 2?
 
@@ -117,7 +123,6 @@ public Enum {
    }
 ```
 
-
 # 三. 格式规约
 
 #### 1. 【建议】缩进采用 4 个空格，禁止使用 tab 字符。
@@ -125,6 +130,24 @@ public Enum {
 
 ---
 #### 2. 【强制】单行字符数限制不超过 120 个，超出需要换行。
+
+#### 3. Javadoc
+标准的Javadoc常见的标记和含义如下：
+
+```
+/**
+ * Javadoc常见的标记
+ * 
+ * @param 方法参数的说明
+ * @return 对方法返回值的说明
+ * @throws 方法抛出异常的藐视
+ * @version 模块的版本号
+ * @author 模块的作者
+ * @see  参考方向
+ * @deprecated 标记是否过时
+ */
+```
+
 
 ---
 
@@ -352,3 +375,8 @@ public interface LimitTimeTaskField {
 
 #### 7. 【强制】在写业务逻辑的时候尽可能的考虑到发包情况(不要轻信客户端传过来的数据),并对发包请求进行拦截,防止非正常玩家通过BUG刷道具。
 例：玩家领奖之后要给玩家存一个己领奖的flag,当再次请求的时候就不要重复发奖励了 。 
+
+# 相关资料
+- [阿里巴巴Java开发手册v1.2.0-1.pdf](https://github.com/xiaomoinfo/JavaCodingStandards/blob/master/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4Java%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8Cv1.2.0-1.pdf)
+- [阿里巴巴java编程规范2017版.pdf](https://github.com/xiaomoinfo/JavaCodingStandards/blob/master/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4java%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%832017%E7%89%88.pdf)
+- [Android & Java 书写简洁规范的代码](https://juejin.im/post/5971d6436fb9a06bad65659a?utm_source=gold_browser_extension)
