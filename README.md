@@ -377,6 +377,6 @@ public interface LimitTimeTaskField {
 例：玩家领奖之后要给玩家存一个己领奖的flag,当再次请求的时候就不要重复发奖励了 。 
 
 # 相关资料
-- [阿里巴巴Java开发手册v1.2.0-1.pdf](https://github.com/xiaomoinfo/JavaCodingStandards/blob/master/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4Java%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8Cv1.2.0-1.pdf)
-- [阿里巴巴java编程规范2017版.pdf](https://github.com/xiaomoinfo/JavaCodingStandards/blob/master/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4java%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%832017%E7%89%88.pdf)
+- [阿里巴巴Java开发手册v1.2.0-1.pdf](https://github.com/houko/JavaCodingStandards/blob/master/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4Java%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8Cv1.2.0-1.pdf)
+- [阿里巴巴java编程规范2017版.pdf](https://github.com/houko/JavaCodingStandards/blob/master/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4java%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%832017%E7%89%88.pdf)
 - [Android & Java 书写简洁规范的代码](https://juejin.im/post/5971d6436fb9a06bad65659a?utm_source=gold_browser_extension)
