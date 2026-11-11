@@ -1,4 +1,7 @@
 # 前言
+
+[![X](https://img.shields.io/badge/X-%40suzukaze__haduki-000000?logo=x&logoColor=white)](https://x.com/suzukaze_haduki) [![GitHub Sponsors](https://img.shields.io/badge/GitHub%20Sponsors-ea4aaa?logo=githubsponsors&logoColor=white)](https://github.com/sponsors/houko)
+
 - 如果这份规范中有不合理的地方,欢迎提issue/提PR等各种形式进行完善。
 - 如果您有更好的代码风格未在本规范中列出,欢迎提issue/提PR等各种形式进行完善。
 - 本规范最后一部分`业务规范`仅根据本人所在公司情况制定（游戏开发）,请酌情考虑使用。
