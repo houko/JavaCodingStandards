@@ -1,0 +1,21 @@
+{
+	"$schema": "../schema/plugin.schema.json",
+	"slug": "filepicker",
+	"name": "File picker",
+	"mark": "Fp",
+	"official": true,
+	"surface": "go",
+	"import": "github.com/oneo-me/nsgo/ui/filepicker",
+	"tags": [
+		"files"
+	],
+	"docs": "https://pkg.go.dev/github.com/oneo-me/nsgo/ui/filepicker",
+	"summary": {
+		"en": "A modal file and folder picker, or a browser for copying paths, over a file system the app lists, possibly on another machine, with places, icon and list views and breadcrumbs.",
+		"zh-CN": "模态的文件与文件夹选择器，也可用作复制路径的浏览器，浏览应用提供的文件系统（可以在另一台机器上），带位置侧栏、图标和列表视图以及面包屑路径。",
+		"zh-TW": "強制回應的檔案與資料夾選擇器，也可當成複製路徑的瀏覽器，瀏覽應用程式提供的檔案系統（可以在另一台機器上），附位置側欄、圖示與清單檢視以及階層路徑。",
+		"ja": "モーダルなファイル・フォルダーピッカー、またはパスをコピーするブラウザー。アプリが一覧を渡すファイルシステム（別のマシン上でも可）を、場所のサイドバー、アイコンとリスト表示、パンくずで見せます。",
+		"ko": "모달 파일·폴더 선택기이자 경로를 복사하는 브라우저. 앱이 목록을 주는 파일 시스템(다른 컴퓨터에 있어도 됨)을 장소 사이드바, 아이콘과 목록 보기, 이동 경로로 보여 줍니다."
+	},
+	"added": "2026-11-10T13:59:13Z"
+}

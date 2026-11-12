@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "authoring-shipping",
+	"title": "Words, tests and publishing",
+	"file": "authoring/shipping",
+	"summary": {
+		"en": "Translate what a component says, test it as a user would, and offer it to Go and TSX apps.",
+		"zh-CN": "翻译组件说的话，像用户一样测试它，并提供给 Go 和 TSX 应用。",
+		"zh-TW": "翻譯元件顯示的文字，像使用者一樣測試它，並提供給 Go 與 TSX 應用程式。",
+		"ja": "コンポーネントの文言を翻訳し、ユーザーと同じようにテストし、Go と TSX のアプリに提供します。",
+		"ko": "컴포넌트의 문구를 번역하고, 사용자처럼 테스트하고, Go와 TSX 앱에 제공합니다."
+	}
+}

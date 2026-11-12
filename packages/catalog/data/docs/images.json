@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "images",
+	"title": "Images and icons",
+	"file": "images",
+	"summary": {
+		"en": "Show a picture from a URL, the app's resources or bytes, and draw Lucide icons and SVGs.",
+		"zh-CN": "显示来自 URL、应用资源或字节的图片，并绘制 Lucide 图标和 SVG。",
+		"zh-TW": "顯示來自 URL、應用程式資源或位元組的圖片，並繪製 Lucide 圖示與 SVG。",
+		"ja": "URL、アプリのリソース、バイト列から画像を表示し、Lucide のアイコンと SVG を描きます。",
+		"ko": "URL, 앱 리소스, 바이트에서 그림을 보여 주고, Lucide 아이콘과 SVG를 그립니다."
+	}
+}

@@ -1,0 +1,22 @@
+{
+	"$schema": "../schema/plugin.schema.json",
+	"slug": "dock",
+	"name": "Dock",
+	"mark": "Do",
+	"official": true,
+	"surface": "both",
+	"import": "github.com/oneo-me/nsgo/base/dock",
+	"tags": [
+		"layout",
+		"tabs"
+	],
+	"docs": "https://pkg.go.dev/github.com/oneo-me/nsgo/base/dock",
+	"summary": {
+		"en": "A dockable workspace: a center and left, right and bottom docks of splits and tab groups the user drags tabs between, resizes and zooms, shown compactly in narrow windows.",
+		"zh-CN": "可停靠的工作区：中央区域加左、右、底部停靠区，由分栏和标签组构成，用户可拖动标签、调整大小和放大；窄窗口下以紧凑方式呈现。",
+		"zh-TW": "可停駐的工作區：中央區域加左、右、底部停駐區，由分割和分頁群組構成，使用者可拖曳分頁、調整大小和放大；窄視窗中以精簡方式呈現。",
+		"ja": "ドッキングできるワークスペース。中央と左右・下のドックが分割とタブグループでできていて、タブのドラッグ、サイズ変更、ズームができます。狭いウィンドウではコンパクトに表示します。",
+		"ko": "도킹 가능한 작업 공간. 가운데와 왼쪽·오른쪽·아래 도크가 분할과 탭 그룹으로 이뤄지며, 탭을 끌어 옮기고 크기를 바꾸고 확대할 수 있습니다. 좁은 창에서는 간결하게 보여 줍니다."
+	},
+	"added": "2026-11-10T13:58:55Z"
+}

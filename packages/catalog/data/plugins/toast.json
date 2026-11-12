@@ -1,0 +1,21 @@
+{
+	"$schema": "../schema/plugin.schema.json",
+	"slug": "toast",
+	"name": "Toast",
+	"mark": "To",
+	"official": true,
+	"surface": "both",
+	"import": "github.com/oneo-me/nsgo/base/toast",
+	"tags": [
+		"notifications"
+	],
+	"docs": "https://pkg.go.dev/github.com/oneo-me/nsgo/base/toast",
+	"summary": {
+		"en": "Toasts after Sonner's model: a manager that keeps them and their lifecycle, a stack that lays them out, and each toast's root; the look is the app's.",
+		"zh-CN": "仿照 Sonner 的 toast 提示：管理器负责保存提示和它们的生命周期，堆栈负责布局，再加上每条提示的根组件；外观由应用决定。",
+		"zh-TW": "仿照 Sonner 的 toast 提示：管理器負責保存提示及其生命週期，堆疊負責版面配置，再加上每則提示的根元件；外觀由應用程式決定。",
+		"ja": "Sonner に倣ったトースト。トーストとそのライフサイクルを持つマネージャー、並べるスタック、各トーストのルートから成り、見た目はアプリが決めます。",
+		"ko": "Sonner를 본뜬 토스트. 토스트와 그 생명 주기를 관리하는 매니저, 배치하는 스택, 각 토스트의 루트로 이뤄지며 모양은 앱이 정합니다."
+	},
+	"added": "2026-11-10T13:58:58Z"
+}

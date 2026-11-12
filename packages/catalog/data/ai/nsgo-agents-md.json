@@ -1,0 +1,23 @@
+{
+	"$schema": "../schema/ai.schema.json",
+	"slug": "nsgo-agents-md",
+	"name": "NSGo AGENTS.md",
+	"author": "oneo-me",
+	"url": "https://github.com/oneo-me/nsgo/blob/main/AGENTS.md",
+	"repo": "oneo-me/nsgo",
+	"type": "rules",
+	"install": "git clone https://github.com/oneo-me/nsgo",
+	"tags": [
+		"agents-md",
+		"contributing",
+		"official"
+	],
+	"summary": {
+		"en": "The rules coding agents follow when working on NSGo itself: principles, how base and ui components are built, verification and docs. For contributors to the framework, not for writing apps.",
+		"zh-CN": "编程智能体在开发 NSGo 本身时遵守的规则：原则、base 与 ui 组件的写法、验证和文档。面向框架的贡献者，而不是用来写应用的。",
+		"zh-TW": "程式設計代理在開發 NSGo 本身時遵守的規則：原則、base 與 ui 元件的寫法、驗證與文件。對象是框架的貢獻者，不是拿來寫應用程式的。",
+		"ja": "NSGo 本体の開発でコーディングエージェントが従うルール。原則、base と ui のコンポーネントの作り方、検証、ドキュメントを定めます。フレームワークのコントリビューター向けで、アプリ開発向けではありません。",
+		"ko": "NSGo 자체를 개발할 때 코딩 에이전트가 따르는 규칙으로, 원칙, base와 ui 컴포넌트를 만드는 방법, 검증, 문서를 다룹니다. 앱 작성용이 아니라 프레임워크 기여자를 위한 것입니다."
+	},
+	"added": "2026-11-10T13:58:07Z"
+}

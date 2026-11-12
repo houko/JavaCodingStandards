@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "accessibility",
+	"title": "Accessibility",
+	"file": "accessibility",
+	"summary": {
+		"en": "Labels, roles, values, actions and focus for screen readers and keyboards.",
+		"zh-CN": "面向屏幕阅读器和键盘的标签、角色、值、操作和焦点。",
+		"zh-TW": "為螢幕閱讀器與鍵盤提供的標籤、角色、值、動作與焦點。",
+		"ja": "スクリーンリーダーとキーボードのためのラベル、ロール、値、アクション、フォーカス。",
+		"ko": "스크린 리더와 키보드를 위한 레이블, 역할, 값, 동작, 포커스."
+	}
+}

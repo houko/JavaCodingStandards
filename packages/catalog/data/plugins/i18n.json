@@ -1,0 +1,22 @@
+{
+	"$schema": "../schema/plugin.schema.json",
+	"slug": "i18n",
+	"name": "i18n",
+	"mark": "Tr",
+	"official": true,
+	"surface": "go",
+	"import": "github.com/oneo-me/nsgo/i18n",
+	"tags": [
+		"localization",
+		"icu"
+	],
+	"docs": "https://oneo-me.github.io/nsgo/docs/localization/",
+	"summary": {
+		"en": "Says an app's messages in the language it shows: the runtime of the Go functions nsgo writes from locales/*.yaml catalogs in ICU MessageFormat.",
+		"zh-CN": "用应用当前显示的语言说出它的文案：nsgo 根据 locales/*.yaml（ICU MessageFormat）生成的 Go 函数就运行在它之上。",
+		"zh-TW": "以應用程式目前顯示的語言呈現它的文案：nsgo 依 locales/*.yaml（ICU MessageFormat）產生的 Go 函式就執行在它之上。",
+		"ja": "アプリのメッセージを表示中の言語で出します。nsgo が locales/*.yaml（ICU MessageFormat）から生成する Go 関数のランタイムです。",
+		"ko": "앱의 메시지를 현재 표시 언어로 보여 줍니다. nsgo가 locales/*.yaml(ICU MessageFormat)에서 생성하는 Go 함수의 런타임입니다."
+	},
+	"added": "2026-11-10T13:58:19Z"
+}

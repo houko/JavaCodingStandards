@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "localization",
+	"title": "Localization",
+	"file": "localization",
+	"summary": {
+		"en": "Translate an app's messages and follow the language it shows.",
+		"zh-CN": "翻译应用的文案，并跟随应用显示的语言。",
+		"zh-TW": "翻譯應用程式的文案，並跟隨應用程式顯示的語言。",
+		"ja": "アプリのメッセージを翻訳し、表示する言語に合わせます。",
+		"ko": "앱의 메시지를 번역하고, 앱이 표시하는 언어를 따릅니다."
+	}
+}

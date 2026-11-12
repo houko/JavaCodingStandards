@@ -1,0 +1,24 @@
+{
+	"$schema": "../schema/ai.schema.json",
+	"slug": "nsgo-motion-lab",
+	"name": "nsgo-motion-lab",
+	"author": "HycJack",
+	"url": "https://github.com/HycJack/nsgo-motion-lab",
+	"repo": "HycJack/nsgo-motion-lab",
+	"type": "skill",
+	"install": "git clone https://github.com/HycJack/nsgo-motion-lab ~/.dsh/skills/nsgo",
+	"tags": [
+		"skill",
+		"animation",
+		"shaders"
+	],
+	"summary": {
+		"en": "An agent skill with the rules for writing NSGo apps (API facts, animation, 3D and pitfalls), plus Motion Lab, a Go app of 13 tabs and 234 motion cards that tries every rule out.",
+		"zh-CN": "一个写 NSGo 应用的智能体技能（API 事实、动画、3D 和踩过的坑），另附 Motion Lab：一个有 13 个页签、234 张动效卡片的 Go 应用，把每条规则都跑了一遍。",
+		"zh-TW": "一個撰寫 NSGo 應用程式的代理技能（API 事實、動畫、3D 與踩過的坑），另附 Motion Lab：一個有 13 個分頁、234 張動態效果卡片的 Go 應用程式，把每條規則都實際跑過一遍。",
+		"ja": "NSGo アプリを書くためのルール（API の事実、アニメーション、3D、落とし穴）をまとめたエージェントスキルと、13 タブ・234 枚のモーションカードですべてのルールを試す Go アプリ Motion Lab のセット。",
+		"ko": "NSGo 앱 작성 규칙(API 사실, 애니메이션, 3D, 함정)을 담은 에이전트 스킬과, 13개 탭·234장의 모션 카드로 모든 규칙을 직접 돌려 보는 Go 앱 Motion Lab."
+	},
+	"screenshot": "nsgo-motion-lab.webp",
+	"added": "2026-11-10T13:58:10Z"
+}

@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "contributing",
+	"title": "Development setup",
+	"file": "contributing",
+	"summary": {
+		"en": "Build NSGo from source, run the gallery and test a change.",
+		"zh-CN": "从源码构建 NSGo，运行 gallery 并测试改动。",
+		"zh-TW": "從原始碼建置 NSGo，執行 gallery 並測試變更。",
+		"ja": "NSGo をソースからビルドし、ギャラリーを動かし、変更をテストします。",
+		"ko": "소스에서 NSGo를 빌드하고, 갤러리를 실행하고, 변경을 테스트합니다."
+	}
+}

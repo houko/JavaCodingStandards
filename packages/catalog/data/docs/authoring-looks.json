@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "authoring-looks",
+	"title": "Looks and themes",
+	"file": "authoring/looks",
+	"summary": {
+		"en": "Take colors from the theme in effect, and give a component variants and sizes.",
+		"zh-CN": "从当前主题取颜色，并给组件提供变体和尺寸。",
+		"zh-TW": "從目前的主題取用顏色，並為元件提供變體與尺寸。",
+		"ja": "有効なテーマから色を取り、コンポーネントにバリアントとサイズを持たせます。",
+		"ko": "적용 중인 테마에서 색을 가져오고, 컴포넌트에 변형과 크기를 줍니다."
+	}
+}

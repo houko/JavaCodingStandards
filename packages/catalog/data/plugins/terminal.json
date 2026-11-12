@@ -1,0 +1,22 @@
+{
+	"$schema": "../schema/plugin.schema.json",
+	"slug": "terminal",
+	"name": "Terminal",
+	"mark": "Tm",
+	"official": true,
+	"surface": "both",
+	"import": "github.com/oneo-me/nsgo/base/terminal",
+	"tags": [
+		"terminal",
+		"ghostty"
+	],
+	"docs": "https://pkg.go.dev/github.com/oneo-me/nsgo/base/terminal",
+	"summary": {
+		"en": "A terminal view on Ghostty's libghostty-vt, loaded at run time with no cgo. It runs programs on macOS, Linux and Windows, and remote sessions there and on iOS.",
+		"zh-CN": "基于 Ghostty 的 libghostty-vt 的终端视图，运行时加载，无需 cgo。可在 macOS、Linux 和 Windows 上运行程序，远程会话还支持 iOS。",
+		"zh-TW": "基於 Ghostty 的 libghostty-vt 的終端機視圖，執行時載入，不需要 cgo。可在 macOS、Linux 與 Windows 上執行程式，遠端連線另外支援 iOS。",
+		"ja": "Ghostty の libghostty-vt を使うターミナルビュー。実行時に読み込み、cgo は不要です。macOS、Linux、Windows でプログラムを動かし、リモートセッションは iOS でも使えます。",
+		"ko": "Ghostty의 libghostty-vt를 쓰는 터미널 뷰로, 실행 시 불러오며 cgo가 필요 없습니다. macOS, Linux, Windows에서 프로그램을 실행하고, 원격 세션은 iOS에서도 됩니다."
+	},
+	"added": "2026-11-10T13:58:46Z"
+}

@@ -1,0 +1,9 @@
+{
+	"extends": "../../tsconfig.base.json",
+	"compilerOptions": {
+		"types": ["vite/client"],
+		"allowImportingTsExtensions": true
+	},
+	"include": ["src", "og", "scripts", "vite.config.ts"],
+	"exclude": ["node_modules", "dist", ".wrangler"]
+}

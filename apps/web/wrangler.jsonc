@@ -1,0 +1,36 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "awesome-nsgo",
+	"account_id": "e2b27aea5f599efdbe0a7016a2580d05",
+	"compatibility_date": "2026-06-20",
+	"compatibility_flags": ["nodejs_compat"],
+	// The Worker entry (src/server.ts): TanStack Start's handler, which server-renders every route, behind the redirects from its other domains and of trailing slashes. The client bundle and public/ are served as static assets.
+	"main": "src/server.ts",
+	// The zone awesomensgo.dev must be on the Cloudflare account that deploys (account_id); each custom domain creates its DNS record and certificate.
+	"routes": [
+		{ "pattern": "awesomensgo.dev", "custom_domain": true },
+		// No site of its own: src/server.ts moves every request on it to the same path on awesomensgo.dev.
+		{ "pattern": "www.awesomensgo.dev", "custom_domain": true }
+	],
+	"observability": { "enabled": true },
+	// Keep Preview URLs on (wrangler disables them when this is missing) so each pull request gets its own preview link.
+	"preview_urls": true,
+	// Anonymous submissions (/api/submit): at most 3 a minute from one IP; the form's screenshot check (/api/shot), at most 20. namespace_id only has to be unique within the Cloudflare account. The GitHub App and Turnstile keys are secrets (GITHUB_APP_ID, GITHUB_APP_PRIVATE_KEY, TURNSTILE_SITE_KEY, TURNSTILE_SECRET_KEY); without them the form keeps to GitHub links. WEBMCP_ORIGIN_TRIAL, optional, is Chrome's WebMCP origin-trial token (env.d.ts), a secret too so that a deploy does not wipe it.
+	"ratelimits": [
+		{ "name": "SUBMIT_LIMIT", "namespace_id": "4270", "simple": { "limit": 3, "period": 60 } },
+		{ "name": "LIKE_LIMIT", "namespace_id": "4272", "simple": { "limit": 30, "period": 60 } },
+		{ "name": "SHOT_LIMIT", "namespace_id": "4274", "simple": { "limit": 20, "period": 60 } },
+		{ "name": "VIEW_LIMIT", "namespace_id": "4276", "simple": { "limit": 120, "period": 60 } }
+	],
+	// Likes: one row per entry and visitor (migrations/), at most 30 likes or unlikes a minute from one visitor. The salt that hashes a visitor's IP is the LIKE_SALT secret.
+	"d1_databases": [{ "binding": "DB", "database_name": "awesome-nsgo", "database_id": "f666540a-5364-411f-b2df-245988ac2e45", "migrations_dir": "migrations" }],
+	// Workers Builds deploys each pull request as a Preview with `wrangler preview`, which needs this block. Bindings are not inherited from the top level, so the rate limiters are declared again, with their own counters. Previews have none of the bot's secrets, so their submit form keeps to the GitHub links, and no database, so likes are off there rather than writing to production's.
+	"previews": {
+		"ratelimits": [
+			{ "name": "SUBMIT_LIMIT", "namespace_id": "4271", "simple": { "limit": 3, "period": 60 } },
+			{ "name": "LIKE_LIMIT", "namespace_id": "4273", "simple": { "limit": 30, "period": 60 } },
+			{ "name": "SHOT_LIMIT", "namespace_id": "4275", "simple": { "limit": 20, "period": 60 } },
+			{ "name": "VIEW_LIMIT", "namespace_id": "4277", "simple": { "limit": 120, "period": 60 } }
+		]
+	}
+}

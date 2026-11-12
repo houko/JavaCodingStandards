@@ -1,0 +1,20 @@
+{
+	"$schema": "../schema/ui.schema.json",
+	"slug": "nsgo-kubai-icons",
+	"name": "NSGo Kubai Icons",
+	"author": "oneo-me",
+	"tag": "icons",
+	"surface": "go",
+	"summary": {
+		"en": "2,871 Kubai Icons for Go apps on NSGo: layered, tinted with your accent and moving on hover, compiled ahead of time so no JavaScript runs.",
+		"zh-CN": "面向 NSGo Go 应用的 2,871 个 Kubai 图标：分层绘制，随强调色着色，悬停时有动效，提前编译，运行时不跑 JavaScript。",
+		"zh-TW": "供 NSGo Go 應用程式使用的 2,871 個 Kubai 圖示：分層繪製、依強調色上色、滑鼠移入時會動，預先編譯，執行時不跑 JavaScript。",
+		"ja": "NSGo の Go アプリ向けの Kubai Icons 2,871 個。レイヤー構成でアクセントカラーに染まり、ホバーで動きます。事前コンパイルされ、実行時に JavaScript は動きません。",
+		"ko": "NSGo의 Go 앱을 위한 Kubai Icons 2,871개. 레이어로 그려 강조색으로 물들고 호버하면 움직이며, 미리 컴파일되어 실행 중에 JavaScript가 돌지 않습니다."
+	},
+	"repo": "oneo-me/nsgo-icons-kubai",
+	"url": "https://github.com/oneo-me/nsgo-icons-kubai",
+	"homepage": "https://oneo-me.github.io/nsgo-icons-kubai/",
+	"screenshot": "nsgo-kubai-icons.webp",
+	"added": "2026-11-10T13:57:55Z"
+}

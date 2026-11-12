@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "layout",
+	"title": "Layout",
+	"file": "layout",
+	"summary": {
+		"en": "Flexbox, grid, sizes and positioning, with the safe area and the keyboard in the layout.",
+		"zh-CN": "Flexbox、grid、尺寸与定位，以及安全区域和键盘如何参与布局。",
+		"zh-TW": "Flexbox、grid、尺寸與定位，以及安全區域和鍵盤如何參與版面配置。",
+		"ja": "Flexbox、グリッド、サイズと配置。セーフエリアとキーボードもレイアウトに含めます。",
+		"ko": "Flexbox, 그리드, 크기와 위치 지정, 그리고 레이아웃에 들어가는 안전 영역과 키보드."
+	}
+}

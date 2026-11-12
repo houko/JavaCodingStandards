@@ -1,0 +1,31 @@
+{
+	"name": "@awesome-nsgo/enrich",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"description": "Completes an entry the submission bot added: the app's icon and screenshot from its repository, and its copy in every site language",
+	"exports": {
+		"./source": "./src/source.ts"
+	},
+	"scripts": {
+		"backfill-images": "node src/backfill-images.ts",
+		"enrich": "node src/main.ts",
+		"discover": "node src/discover.ts",
+		"verify": "node src/verify.ts",
+		"prune": "node src/prune.ts",
+		"score": "node src/score.ts",
+		"typecheck": "tsc --noEmit",
+		"test": "vitest run"
+	},
+	"dependencies": {
+		"@anthropic-ai/sdk": "^1.4.0",
+		"spdx-license-list": "^6.12.0",
+		"yaml": "^2.9.1",
+		"zod": "^4.6.7"
+	},
+	"devDependencies": {
+		"@types/node": "^24.19.2",
+		"typescript": "^7.0.2",
+		"vitest": "^4.1.10"
+	}
+}

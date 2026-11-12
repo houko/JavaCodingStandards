@@ -1,0 +1,35 @@
+name: Delete posts on X
+
+# Deletes posts the announce workflow made on X, as when an entry is unlisted and its post should go with it (packages/announce/src/unpost.ts). Run it by hand with the posts' x.com links or ids. It uses the same secrets as announce.yml: X_API_KEY, X_API_SECRET, X_ACCESS_TOKEN and X_ACCESS_SECRET.
+
+on:
+  workflow_dispatch:
+    inputs:
+      posts:
+        description: Posts to delete, space-separated, as x.com links or ids
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  delete:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile --filter @awesome-nsgo/announce
+      - name: Delete the posts
+        env:
+          POSTS: ${{ inputs.posts }}
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_SECRET: ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
+        # POSTS is split into its words on purpose: each is one post.
+        run: pnpm --filter @awesome-nsgo/announce unpost $POSTS

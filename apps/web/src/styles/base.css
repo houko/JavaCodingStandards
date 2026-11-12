@@ -1,0 +1,235 @@
+/* Rules on bare elements (the page, links, buttons, form controls, focus rings, the selection), the look's shared variables (shadows, gradients, the lane mask, the per-language CJK face) and the page layout. Components style themselves with utilities; these are the defaults they start from. The look is light by default and dark by the system setting; nothing here depends on script. */
+
+/* Shadows and gradients are plain variables rather than theme tokens, as Tailwind inlines theme shadows and a dark override of a token would never reach them. Components read them as `[box-shadow:var(--sh-2)]` or `[background:var(--gradient-btn)]`. */
+:root {
+	color-scheme: light dark;
+	--site-max: 1200px;
+	--font-cjk: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', 'Noto Sans CJK SC';
+
+	--gradient-brand: linear-gradient(135deg, #4da3ff, #007aff);
+	--gradient-btn: linear-gradient(135deg, #1a73e8, #0058c4);
+	--glow: rgb(0 122 255 / 0.12);
+
+	/* The backdrop's colour fields, streaks and halos (styles/backdrop.css), stronger in dark mode, where they light a near-black page. */
+	--aurora-1: rgb(77 163 255 / 0.26);
+	--aurora-2: rgb(139 108 255 / 0.2);
+	--aurora-3: rgb(34 211 238 / 0.14);
+	--streak: rgb(0 122 255 / 0.55);
+	--streak-head: rgb(77 163 255 / 0.95);
+	--halo: rgb(0 122 255 / 0.18);
+	--sheen: rgb(0 122 255 / 0.08);
+	--band-lane: rgb(0 122 255 / 0.07);
+	--spot: rgb(0 122 255 / 0.07);
+
+	--sh-1: 0 1px 2px rgb(16 24 40 / 0.05);
+	--sh-2: 0 1px 2px rgb(16 24 40 / 0.04), 0 12px 32px -12px rgb(16 24 40 / 0.14);
+	--sh-3: 0 2px 6px rgb(16 24 40 / 0.05), 0 40px 80px -32px rgb(16 24 40 / 0.28);
+	--sh-btn: 0 6px 16px -6px rgb(0 98 204 / 0.55);
+	--sh-btn-hover: 0 10px 22px -8px rgb(0 98 204 / 0.65);
+
+	/* The two-lane mark, a long lane over a short one, both skewed by -10°: the eyebrow's mark and the inline `.lanes`, drawn as a mask so it takes any fill. */
+	--lanes-mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 12'%3E%3Cg transform='translate(2.2 0) skewX(-10)'%3E%3Crect y='0.5' width='13' height='4.5' rx='2.25'/%3E%3Crect y='7' width='8.5' height='4.5' rx='2.25' opacity='.55'/%3E%3C/g%3E%3C/svg%3E");
+}
+@media (prefers-color-scheme: dark) {
+	:root {
+		--glow: rgb(61 155 255 / 0.16);
+		--aurora-1: rgb(61 155 255 / 0.3);
+		--aurora-2: rgb(139 108 255 / 0.24);
+		--aurora-3: rgb(34 211 238 / 0.16);
+		--streak: rgb(61 155 255 / 0.6);
+		--streak-head: rgb(190 225 255 / 0.95);
+		--halo: rgb(61 155 255 / 0.22);
+		--sheen: rgb(61 155 255 / 0.12);
+		--band-lane: rgb(61 155 255 / 0.1);
+		--spot: rgb(61 155 255 / 0.12);
+
+		/* A zero shadow rather than `none`, so it still combines in a comma list with a ring. */
+		--sh-1: 0 0 #0000;
+		--sh-2: 0 12px 32px -12px rgb(0 0 0 / 0.6);
+		--sh-3: 0 0 0 1px rgb(255 255 255 / 0.04), 0 40px 80px -32px rgb(0 0 0 / 0.8);
+		--sh-btn: 0 6px 16px -6px rgb(0 0 0 / 0.6);
+		--sh-btn-hover: 0 10px 22px -8px rgb(0 0 0 / 0.7);
+	}
+}
+@media (min-width: 1700px) {
+	:root {
+		--site-max: 1440px;
+	}
+}
+
+/* CJK text uses the platform's native face for the page's language, so a Japanese page never falls back to Chinese glyph shapes and nothing is downloaded. */
+html:lang(zh-TW) {
+	--font-cjk: 'PingFang TC', 'Microsoft JhengHei', 'Noto Sans TC', 'Noto Sans CJK TC';
+}
+html:lang(ja) {
+	--font-cjk: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic UI', 'Meiryo', 'Noto Sans JP', 'Noto Sans CJK JP';
+}
+html:lang(ko) {
+	--font-cjk: 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', 'Noto Sans CJK KR';
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	html {
+		scroll-behavior: smooth;
+	}
+}
+body {
+	margin: 0;
+	background: var(--color-bg);
+	color: var(--color-fg);
+	font: 16px/1.6 var(--font-sans);
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+a {
+	color: var(--color-blue-ink);
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.2em;
+	text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
+}
+a:hover {
+	color: var(--color-blue-ink);
+	text-decoration-color: currentColor;
+}
+button {
+	font: inherit;
+	cursor: pointer;
+}
+::selection {
+	background: color-mix(in srgb, var(--color-blue) 22%, transparent);
+	color: inherit;
+}
+button:focus-visible,
+a:focus-visible,
+[role='tab']:focus-visible,
+select:focus-visible,
+summary:focus-visible {
+	outline: 2px solid var(--color-blue);
+	outline-offset: 2px;
+}
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+	outline: 2px solid var(--color-blue);
+	outline-offset: 1px;
+	border-color: var(--color-blue);
+}
+code,
+kbd,
+pre {
+	font-family: var(--font-mono);
+	font-variant-ligatures: none;
+}
+
+/* Headings balance their lines and paragraphs avoid a lone last word; CJK breaks lines by the strict rules, and Korean keeps words whole in headings. */
+h1,
+h2,
+h3 {
+	text-wrap: balance;
+}
+p {
+	text-wrap: pretty;
+}
+:lang(ja),
+:lang(zh-CN),
+:lang(zh-TW) {
+	line-break: strict;
+}
+:lang(ko) :is(h1, h2, h3) {
+	word-break: keep-all;
+}
+
+/* Every language uses the system stack; the CJK faces come in through --font-cjk inside it. */
+.site {
+	font-family: var(--font-sans);
+}
+
+/* Page layout shared by every route of the original look: the page container, its heading and lead paragraph, and the eyebrow above headings. They stay named classes because every page repeats them; a page adds its own gap and extras with utilities beside the class (`page enter gap-10`). */
+
+/* Every page's container. It stays at 1200px for laptop-sized viewports and grows to 1440px only on genuinely wide screens; the gutter stays 24px from sm up and 20px on phones, the same as the header, the footer and the dialogs, so all left edges line up. On a phone the space above and below the page shrinks so the first card is not pushed under the fold. */
+.page {
+	max-width: var(--site-max);
+	margin: 0 auto;
+	padding: 64px 24px 96px;
+	display: flex;
+	flex-direction: column;
+	@variant max-sm {
+		padding: 36px 20px 64px;
+	}
+}
+.site-shell {
+	max-width: var(--site-max);
+}
+.page-h1 {
+	margin: 0;
+	font-size: clamp(32px, 4.4vw, 50px);
+	font-weight: 800;
+	letter-spacing: -0.04em;
+	line-height: 1.08;
+}
+.page-p {
+	margin: 0;
+	max-width: 680px;
+	font-size: 17px;
+	line-height: 1.7;
+	color: var(--color-fg-2);
+	@variant max-sm {
+		font-size: 16px;
+		line-height: 1.65;
+	}
+}
+/* CJK headings keep near-normal tracking and a taller line; CJK leads are measured in characters. */
+:is(:lang(zh-CN), :lang(zh-TW), :lang(ja), :lang(ko)) .page-h1 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+}
+:is(:lang(zh-CN), :lang(zh-TW), :lang(ja), :lang(ko)) .page-p {
+	max-width: 36em;
+	line-height: 1.8;
+}
+
+/* The eyebrow above a heading: sentence-case blue text after the two-lane mark. The `dev` tone marks a section that is still waiting for entries. */
+.kicker {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 14px;
+	font-weight: 600;
+	color: var(--color-blue-ink);
+}
+.kicker::before {
+	content: '';
+	width: 16px;
+	height: 12px;
+	flex: none;
+	background: var(--gradient-brand);
+	-webkit-mask: var(--lanes-mark) center / contain no-repeat;
+	mask: var(--lanes-mark) center / contain no-repeat;
+}
+.kicker[data-tone='dev'] {
+	color: var(--color-dev);
+}
+.kicker[data-tone='dev']::before {
+	background: currentColor;
+}
+
+/* The home headline's second phrase, underlined by a lane rather than filled with the blue gradient nsgo.dev puts on its own headline: a band in the text's lower edge whose ends lean like the skewed pill (the hard stops of a 100deg gradient slant 10deg from upright), drawn behind the glyphs and repeated on every line the phrase wraps to. Forced colours drop it, as the text alone carries the words. */
+.lane-under {
+	--lane-a: color-mix(in srgb, #4da3ff 55%, transparent);
+	--lane-b: color-mix(in srgb, #8b6cff 45%, transparent);
+	--lane-c: color-mix(in srgb, #22d3ee 50%, transparent);
+	background: linear-gradient(100deg, transparent 0.12em, var(--lane-a) 0.12em, var(--lane-b) 60%, var(--lane-c) calc(100% - 0.12em), transparent calc(100% - 0.12em)) left bottom 0.1em / 100% 0.2em no-repeat;
+	animation: lane-draw 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) 0.55s both;
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
+}
+@keyframes lane-draw {
+	from {
+		background-size: 0% 0.2em;
+	}
+}
+@media (forced-colors: active) {
+	.lane-under {
+		background: none;
+	}
+}

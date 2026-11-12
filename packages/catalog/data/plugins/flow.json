@@ -1,0 +1,22 @@
+{
+	"$schema": "../schema/plugin.schema.json",
+	"slug": "flow",
+	"name": "Flow",
+	"mark": "Fl",
+	"official": true,
+	"surface": "both",
+	"import": "github.com/oneo-me/nsgo/base/flow",
+	"tags": [
+		"diagram",
+		"auto-layout"
+	],
+	"docs": "https://pkg.go.dev/github.com/oneo-me/nsgo/base/flow",
+	"summary": {
+		"en": "Draws a directed diagram, such as a workflow or a dependency graph, and lays it out automatically in ranks with orthogonal edges; ui/flow is its styled form.",
+		"zh-CN": "绘制有向图，例如工作流或依赖图，并自动分层布局、用直角折线连接；ui/flow 是它的带样式版本。",
+		"zh-TW": "繪製有向圖，例如工作流程或相依關係圖，並自動分層排版、以直角折線連接；ui/flow 是它的樣式化版本。",
+		"ja": "ワークフローや依存関係のような有向グラフを描き、段に分けて直角の線で自動レイアウトします。ui/flow はスタイル付きの版です。",
+		"ko": "워크플로나 의존성 그래프 같은 방향 그래프를 그리고, 단계별로 나눠 직각 선으로 자동 배치합니다. ui/flow는 스타일을 입힌 버전입니다."
+	},
+	"added": "2026-11-10T13:59:01Z"
+}

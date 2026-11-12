@@ -1,0 +1,81 @@
+name: Submission issue
+
+# An issue sent through the issue link of the site's form holds the entry the form wrote. This job checks it as the form checks a pasted entry and has the site's bot open the same pull request the form opens (apps/web/scripts/issue-submission.ts, with the Worker's own code), so the Complete submission workflow completes it; it then comments the pull request on the issue and closes it. An issue that cannot go in as it stands gets a comment saying what to fix, and editing the issue checks it again; the bot keeps one comment per issue and edits it. Other issues are left alone. Run it by hand with an issue's number to try again.
+#
+# Secrets: SUBMIT_APP_PRIVATE_KEY (the site's GitHub App's key, as for the Worker). Variables: SUBMIT_APP_CLIENT_ID (the app's client ID). The issue is read, commented on and closed with the workflow's own token, so the app needs no access to issues.
+
+on:
+  issues:
+    types: [opened, edited]
+  workflow_dispatch:
+    inputs:
+      issue:
+        description: Number of the issue
+        required: true
+
+concurrency:
+  group: submission-issue-${{ github.event.issue.number || inputs.issue }}
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  submit:
+    # Only open issues with the path line the form writes, so other issues cost no install; the script decides the rest.
+    if: github.repository == 'yldm-tech/awesome-nsgo' && (github.event_name == 'workflow_dispatch' || (github.event.issue.state == 'open' && contains(github.event.issue.body, '`packages/catalog/data/')))
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      ISSUE: ${{ github.event.issue.number || inputs.issue }}
+    steps:
+      # The issue's text never reaches a shell: only its number does, through the environment, and the script reads the issue from the API.
+      - name: Read the issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          [[ "$ISSUE" =~ ^[0-9]+$ ]] || { echo "::error::not an issue number"; exit 1; }
+          gh api "repos/$GITHUB_REPOSITORY/issues/$ISSUE" > "$RUNNER_TEMP/issue.json"
+
+      - id: app
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.SUBMIT_APP_CLIENT_ID }}
+          private-key: ${{ secrets.SUBMIT_APP_PRIVATE_KEY }}
+          # Only what opening the pull request takes (refs, the entry's file and the pull request; contents also reads the project's public repository for a screenshot), not everything the app may hold, as the token goes to a script that loads the whole dependency tree.
+          permission-contents: write
+          permission-pull-requests: write
+
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+
+      - id: submit
+        name: Open the pull request
+        env:
+          GITHUB_TOKEN: ${{ steps.app.outputs.token }}
+          ISSUE_FILE: ${{ runner.temp }}/issue.json
+          COMMENT_FILE: ${{ runner.temp }}/comment.md
+        run: node apps/web/scripts/issue-submission.ts
+
+      # One comment per issue, found by the marker it starts with (COMMENT_MARKER in apps/web/src/server/issue.ts) and edited on every later run: from what to fix to the pull request.
+      - name: Comment on the issue
+        if: steps.submit.outputs.result == 'opened' || steps.submit.outputs.result == 'problem'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          COMMENT_FILE: ${{ runner.temp }}/comment.md
+          RESULT: ${{ steps.submit.outputs.result }}
+        # bash with pipefail, so a failed listing of the comments fails the step instead of posting a second comment.
+        shell: bash
+        run: |
+          id=$(gh api --paginate "repos/$GITHUB_REPOSITORY/issues/$ISSUE/comments" --jq '.[] | select(.user.login == "github-actions[bot]" and (.body | startswith("<!-- submission-issue -->"))) | .id' | tail -n 1)
+          if [[ -n "$id" ]]; then
+            jq -n --rawfile body "$COMMENT_FILE" '{body: $body}' | gh api -X PATCH "repos/$GITHUB_REPOSITORY/issues/comments/$id" --input - > /dev/null
+          else
+            gh issue comment "$ISSUE" --repo "$GITHUB_REPOSITORY" --body-file "$COMMENT_FILE"
+          fi
+          if [[ "$RESULT" == opened ]]; then gh issue close "$ISSUE" --repo "$GITHUB_REPOSITORY" --reason completed; fi

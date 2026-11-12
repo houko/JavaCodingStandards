@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "ui-slider",
+	"title": "Slider",
+	"file": "ui/slider",
+	"summary": {
+		"en": "One value, or a range, along a track with the keyboard and the pointer.",
+		"zh-CN": "沿轨道选择一个值或一个范围，支持键盘和指针。",
+		"zh-TW": "沿軌道選擇一個值或一個範圍，支援鍵盤與指標。",
+		"ja": "トラック上で値または範囲を選びます。キーボードとポインターに対応。",
+		"ko": "트랙을 따라 값 하나나 범위를 고릅니다. 키보드와 포인터를 지원합니다."
+	}
+}

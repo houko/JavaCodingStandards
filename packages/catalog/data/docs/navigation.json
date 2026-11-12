@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "navigation",
+	"title": "Navigation",
+	"file": "navigation",
+	"summary": {
+		"en": "Native navigation stacks, system headers, modals, menus and tab bars.",
+		"zh-CN": "原生导航栈、系统标题栏、模态、菜单和标签栏。",
+		"zh-TW": "原生導覽堆疊、系統標題列、強制回應視窗、選單與分頁列。",
+		"ja": "ネイティブのナビゲーションスタック、システムのヘッダー、モーダル、メニュー、タブバー。",
+		"ko": "네이티브 내비게이션 스택, 시스템 헤더, 모달, 메뉴, 탭 바."
+	}
+}

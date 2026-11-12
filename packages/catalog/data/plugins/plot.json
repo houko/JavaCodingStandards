@@ -1,0 +1,21 @@
+{
+	"$schema": "../schema/plugin.schema.json",
+	"slug": "plot",
+	"name": "Plot",
+	"mark": "Pl",
+	"official": true,
+	"surface": "both",
+	"import": "github.com/oneo-me/nsgo/base/plot",
+	"tags": [
+		"charts"
+	],
+	"docs": "https://pkg.go.dev/github.com/oneo-me/nsgo/base/plot",
+	"summary": {
+		"en": "Charts drawn natively from rows of data: lines, areas, bars, pies, radial charts, Sankey diagrams and treemaps, with axes, labels and motion.",
+		"zh-CN": "根据数据行原生绘制图表：折线、面积、柱状、饼图、径向图、桑基图和矩形树图，带坐标轴、标签和动效。",
+		"zh-TW": "依資料列原生繪製圖表：折線、面積、長條、圓餅、放射狀圖、桑基圖和矩形樹狀圖，附座標軸、標籤與動態效果。",
+		"ja": "データの行からネイティブに描くチャート。折れ線、面、棒、円、放射状、サンキー図、ツリーマップに、軸、ラベル、モーションが付きます。",
+		"ko": "데이터 행에서 네이티브로 그리는 차트: 선, 영역, 막대, 파이, 방사형, 생키 다이어그램, 트리맵에 축, 레이블, 모션까지."
+	},
+	"added": "2026-11-10T13:58:40Z"
+}

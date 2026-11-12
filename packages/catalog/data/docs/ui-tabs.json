@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "ui-tabs",
+	"title": "Tabs",
+	"file": "ui/tabs",
+	"summary": {
+		"en": "A tab list, a segmented control and the system tab bar.",
+		"zh-CN": "标签列表、分段控件和系统标签栏。",
+		"zh-TW": "分頁清單、分段控制項與系統分頁列。",
+		"ja": "タブリスト、セグメンテッドコントロール、システムのタブバー。",
+		"ko": "탭 목록, 세그먼트 컨트롤, 시스템 탭 바."
+	}
+}

@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "ui-checkbox",
+	"title": "Checkbox",
+	"file": "ui/checkbox",
+	"summary": {
+		"en": "A check box, checked, unchecked or indeterminate.",
+		"zh-CN": "选中、未选中或不确定的复选控件。",
+		"zh-TW": "勾選、未勾選或不確定狀態的核取方塊。",
+		"ja": "オン、オフ、不定の 3 状態を持つチェックボックス。",
+		"ko": "선택, 선택 안 됨, 미정 상태의 체크박스."
+	}
+}

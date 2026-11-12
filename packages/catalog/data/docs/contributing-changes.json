@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "contributing-changes",
+	"title": "Making a change",
+	"file": "contributing/changes",
+	"summary": {
+		"en": "What a pull request to NSGo needs, from the same change on every backend to tests, docs and a changelog line.",
+		"zh-CN": "向 NSGo 提交 pull request 需要什么：每个后端的同样改动、测试、文档和一行更新日志。",
+		"zh-TW": "向 NSGo 提交 pull request 需要什麼：每個後端的相同變更、測試、文件與一行更新紀錄。",
+		"ja": "NSGo へのプルリクエストに必要なもの。すべてのバックエンドでの同じ変更から、テスト、ドキュメント、変更履歴の 1 行まで。",
+		"ko": "NSGo에 풀 리퀘스트를 보낼 때 필요한 것: 모든 백엔드에 같은 변경, 테스트, 문서, 변경 기록 한 줄."
+	}
+}

@@ -1,0 +1,22 @@
+{
+	"$schema": "../schema/plugin.schema.json",
+	"slug": "datatable",
+	"name": "Data table",
+	"mark": "Dt",
+	"official": true,
+	"surface": "both",
+	"import": "github.com/oneo-me/nsgo/base/datatable",
+	"tags": [
+		"table",
+		"virtualized"
+	],
+	"docs": "https://oneo-me.github.io/nsgo/docs/lists/#tables",
+	"summary": {
+		"en": "A spreadsheet-like table of a million rows: virtualized rows and columns, a sticky header, sorting, selection, and columns that resize and move.",
+		"zh-CN": "类似电子表格的表格，可容纳百万行：行和列都虚拟化，表头固定，支持排序、选择，列可调整宽度和拖动换位。",
+		"zh-TW": "類似試算表的表格，可容納百萬列：列與欄都虛擬化，表頭固定，支援排序、選取，欄位可調整寬度和拖曳換位。",
+		"ja": "100 万行を扱えるスプレッドシート風のテーブル。行と列の仮想化、固定ヘッダー、並べ替え、選択、列の幅変更と移動に対応します。",
+		"ko": "백만 행을 다루는 스프레드시트형 표. 행과 열 가상화, 고정 헤더, 정렬, 선택, 열 너비 조절과 이동을 지원합니다."
+	},
+	"added": "2026-11-10T13:58:37Z"
+}

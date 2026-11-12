@@ -1,0 +1,137 @@
+name: Complete submission
+
+# A pull request the submission bot opens holds only what the site's form asks for. This job fills in the rest with packages/enrich (an app's icon from its repository; the screenshot of an app, a UI library, a state management library, a template or an AI tool, from the form's link in the pull request or else from the repository; a library's homepage from the repository's settings; the copy in every site language; and, picked by the model, the fields the form leaves at a default: an app's group and platforms (its platforms from its nsgo.yaml's build targets when it names them), a UI library's tag and surface, a template's or plugin's surface, the tags of state management and plugins), runs the catalog checks, pushes the result to the same branch as the bot so CI runs on it, and comments what it did. It runs once, when the bot opens the pull request; run it by hand with the pull request's number to try again. Once the checks pass, it requests a review from REVIEWER (the repository variable, houko by default).
+#
+# Secrets: SUBMIT_APP_PRIVATE_KEY (the site's GitHub App's key, as for the Worker), LLM_API_KEY and optionally LLM_BASE_URL for an Anthropic Messages API endpoint. Variables: SUBMIT_APP_CLIENT_ID (the app's client ID, shown on its settings page), and LLM_MODEL, default claude-opus-5-5.
+
+on:
+  pull_request:
+    types: [opened]
+  workflow_dispatch:
+    inputs:
+      pr:
+        description: Number of the bot's pull request
+        required: true
+
+concurrency:
+  group: complete-submission-${{ github.event.pull_request.number || inputs.pr }}
+
+permissions:
+  contents: read
+
+jobs:
+  complete:
+    # A pull request an app's account (the site's GitHub App, whatever it is called) opened from a submit/ branch of this repository, by the same test as isBots in apps/web/src/server/pull.ts.
+    if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.user.type == 'Bot' && startsWith(github.event.pull_request.head.ref, 'submit/') && github.event.pull_request.head.repo.full_name == github.repository)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      PR: ${{ github.event.pull_request.number || inputs.pr }}
+    steps:
+      - id: app
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.SUBMIT_APP_CLIENT_ID }}
+          private-key: ${{ secrets.SUBMIT_APP_PRIVATE_KEY }}
+
+      # Only the bot's own branches in this repository, also when run by hand.
+      - id: pr
+        env:
+          GH_TOKEN: ${{ steps.app.outputs.token }}
+        run: |
+          read -r head repo base < <(gh api "repos/$GITHUB_REPOSITORY/pulls/$PR" --jq '[.head.ref, .head.repo.full_name, .base.ref] | @tsv')
+          if [[ "$head" != submit/* || "$repo" != "$GITHUB_REPOSITORY" ]]; then
+            echo "::error::#$PR is not a submission branch in this repository"
+            exit 1
+          fi
+          echo "head=$head" >> "$GITHUB_OUTPUT"
+          echo "base=$base" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.pr.outputs.head }}
+          token: ${{ steps.app.outputs.token }}
+          fetch-depth: 0
+
+      - name: Install ImageMagick with WebP
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends imagemagick webp fonts-dejavu-core
+          convert -list format | grep -qi '^ *WEBP' || { echo "::error::ImageMagick has no WebP support"; exit 1; }
+
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+
+      - name: Complete the entry
+        env:
+          BASE_REF: origin/${{ steps.pr.outputs.base }}
+          REPORT_FILE: ${{ runner.temp }}/report.md
+          GITHUB_TOKEN: ${{ steps.app.outputs.token }}
+          LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          LLM_MODEL: ${{ vars.LLM_MODEL }}
+        run: pnpm --filter @awesome-nsgo/enrich enrich
+
+      - id: check
+        name: Check the catalog
+        continue-on-error: true
+        run: pnpm --filter @awesome-nsgo/catalog test
+
+      - id: push
+        name: Push as the bot
+        if: steps.check.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ steps.app.outputs.token }}
+          BOT: ${{ steps.app.outputs.app-slug }}[bot]
+          HEAD_REF: ${{ steps.pr.outputs.head }}
+        run: |
+          git add -A packages/catalog/data apps/web/public
+          # The screenshot the bot staged from the form's upload, which the workflow turned into the site's WebP and removed; the folder is only there when one was uploaded.
+          if [[ -n "$(git ls-files submissions)" ]]; then git add -A submissions; fi
+          if git diff --cached --quiet; then
+            echo "pushed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "$BOT"
+          git config user.email "$(gh api "users/$BOT" --jq .id)+$BOT@users.noreply.github.com"
+          git commit -q -m "feat(catalog): complete the submitted entry" -m "Icon, screenshot and copy in every site language from the project's repository."
+          git push origin "HEAD:$HEAD_REF"
+          echo "pushed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Comment
+        if: always() && steps.pr.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ steps.app.outputs.token }}
+          REPORT_FILE: ${{ runner.temp }}/report.md
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          CHECK: ${{ steps.check.outcome }}
+          PUSHED: ${{ steps.push.outputs.pushed }}
+        run: |
+          body="$RUNNER_TEMP/comment.md"
+          {
+            echo "## Completed by the submission workflow"
+            echo
+            if [[ -s "$REPORT_FILE" ]]; then cat "$REPORT_FILE"; else echo "The workflow stopped before it could complete the entry."; fi
+            echo
+            if [[ "$CHECK" != success ]]; then
+              echo "The catalog checks did not pass on the completed entry, so nothing was pushed. See the [run]($RUN_URL)."
+            elif [[ "$PUSHED" == true ]]; then
+              echo "Pushed to this branch; CI runs on it again. ([run]($RUN_URL))"
+            else
+              echo "Nothing to change. ([run]($RUN_URL))"
+            fi
+          } > "$body"
+          gh pr comment "$PR" --repo "$GITHUB_REPOSITORY" --body-file "$body"
+
+      # The bot has completed and checked the entry; a person decides. A review that cannot be requested leaves the pull request as it is.
+      - name: Request a review
+        if: steps.check.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ steps.app.outputs.token }}
+          REVIEWER: ${{ vars.REVIEWER || 'houko' }}
+        run: |
+          gh api -X POST "repos/$GITHUB_REPOSITORY/pulls/$PR/requested_reviewers" -f "reviewers[]=$REVIEWER" > /dev/null || echo "::warning::could not request a review from $REVIEWER"

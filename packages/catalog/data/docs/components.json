@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "components",
+	"title": "Components and state",
+	"file": "components",
+	"summary": {
+		"en": "Elements, components, signals and styles.",
+		"zh-CN": "元素、组件、signal 与样式。",
+		"zh-TW": "元素、元件、signal 與樣式。",
+		"ja": "要素、コンポーネント、signal、スタイル。",
+		"ko": "요소, 컴포넌트, signal, 스타일."
+	}
+}

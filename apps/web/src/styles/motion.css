@@ -1,0 +1,133 @@
+/* Keyframes and the classes that run them. .enter (a page or dialog arriving), .rise (the home hero's parts, staggered by animation-delay utilities), .drop (a menu opening) and .fade are used across the look; .rv is the reveal on scroll that lib/motion.ts turns on by setting data-in, with a delay .d1-.d5 picked by the card's position (`d${k % 6}`; d0, the first, has none). .pulse is the live dot on the metrics page. Every move is short and small: a few pixels of travel, under two thirds of a second. With reduced motion, the block at the end turns them off. */
+.enter {
+	animation: up 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+@keyframes up {
+	from {
+		opacity: 0;
+		transform: translateY(8px);
+	}
+}
+.rise {
+	animation: rise 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+@keyframes rise {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+}
+.drop {
+	animation: drop 0.14s ease-out both;
+}
+@keyframes drop {
+	from {
+		opacity: 0;
+		transform: translateY(-4px);
+	}
+}
+.rv {
+	opacity: 0;
+	transform: translateY(12px);
+	transition: opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.rv[data-in] {
+	opacity: 1;
+	transform: none;
+}
+.d1 {
+	transition-delay: 0.04s;
+}
+.d2 {
+	transition-delay: 0.08s;
+}
+.d3 {
+	transition-delay: 0.12s;
+}
+.d4 {
+	transition-delay: 0.16s;
+}
+.d5 {
+	transition-delay: 0.2s;
+}
+.pulse {
+	animation: pulse 1.8s ease-in-out infinite;
+}
+@keyframes pulse {
+	50% {
+		opacity: 0.25;
+	}
+}
+.fade {
+	animation: fade 0.3s ease both;
+}
+@keyframes fade {
+	from {
+		opacity: 0;
+	}
+}
+
+@keyframes metrics-line-draw {
+	from { stroke-dasharray: 1; stroke-dashoffset: 1; }
+	to { stroke-dasharray: 1; stroke-dashoffset: 0; }
+}
+
+@keyframes metrics-area-in {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+
+@keyframes metrics-point-pop {
+	from { opacity: 0; transform: scale(0.45); transform-origin: center; }
+	to { opacity: 1; transform: scale(1); transform-origin: center; }
+}
+
+@keyframes metrics-flow {
+	to { stroke-dashoffset: -36; }
+}
+
+@keyframes metrics-globe-pulse {
+	0%, 100% { opacity: 0.45; transform: scale(0.8); transform-origin: center; }
+	50% { opacity: 1; transform: scale(1.15); transform-origin: center; }
+}
+
+/* With reduced motion: no animation (the backdrop's colour fields, streaks and lanes, the hero's ring, chips and underline, the rail's sheen), the reveal shown at once, and no lift, nudge or zoom on hover. Last of the stylesheets, so it wins over the rules it turns off in backdrop.css and primitives.css. */
+@media (prefers-reduced-motion: reduce) {
+	.enter,
+	.rise,
+	.drop,
+	.fade,
+	.pulse,
+	.backdrop-lane,
+	.aurora,
+	.float-chip,
+	.lane-under,
+	.glow-frame::before,
+	.rail-track::before {
+		animation: none;
+	}
+	.streak,
+	.rail-track::before,
+	.btn-c::after {
+		display: none;
+	}
+	.group:hover .ichip,
+	.tile:hover .ichip,
+	.tile:hover .tile-mark {
+		transform: none;
+	}
+	.rv {
+		opacity: 1;
+		transform: none;
+		transition: none;
+	}
+	.win:hover,
+	.tile:hover,
+	.btn-c:hover,
+	.btn-g:hover,
+	.group:hover .arrow,
+	.tile:hover .arrow,
+	.group:hover .card-screen > img {
+		transform: none !important;
+	}
+}

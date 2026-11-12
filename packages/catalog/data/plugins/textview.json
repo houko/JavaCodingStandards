@@ -1,0 +1,22 @@
+{
+	"$schema": "../schema/plugin.schema.json",
+	"slug": "textview",
+	"name": "Text view",
+	"mark": "Tv",
+	"official": true,
+	"surface": "both",
+	"import": "github.com/oneo-me/nsgo/base/textview",
+	"tags": [
+		"markdown",
+		"html"
+	],
+	"docs": "https://oneo-me.github.io/nsgo/docs/text/#documents",
+	"summary": {
+		"en": "Shows Markdown or HTML documents and AI replies with native text: headings, lists, tables, code, footnotes, alerts, images, formulas and links.",
+		"zh-CN": "用原生文本显示 Markdown 或 HTML 文档以及 AI 回复：标题、列表、表格、代码、脚注、提示块、图片、公式和链接。",
+		"zh-TW": "以原生文字顯示 Markdown 或 HTML 文件與 AI 回覆：標題、清單、表格、程式碼、註腳、提示區塊、圖片、公式和連結。",
+		"ja": "Markdown や HTML の文書、AI の返答をネイティブのテキストで表示します。見出し、リスト、表、コード、脚注、アラート、画像、数式、リンクに対応。",
+		"ko": "Markdown이나 HTML 문서와 AI 답변을 네이티브 텍스트로 보여 줍니다. 제목, 목록, 표, 코드, 각주, 알림, 이미지, 수식, 링크를 지원합니다."
+	},
+	"added": "2026-11-10T13:58:52Z"
+}

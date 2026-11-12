@@ -1,0 +1,30 @@
+{
+	"$schema": "../schema/app.schema.json",
+	"slug": "tts-manager",
+	"name": "TTS Manager",
+	"author": "freewu",
+	"kind": "go",
+	"platforms": ["mac", "win", "linux"],
+	"category": "MultimediaApplication",
+	"group": "ai",
+	"url": "https://github.com/freewu/tts-demo",
+	"repo": "freewu/tts-demo",
+	"summary": {
+		"en": "Local text-to-speech model manager with an NSGo desktop shell: download, enable and switch TTS models.",
+		"zh-CN": "本地 TTS 模型管理器，带 NSGo 原生桌面壳，可下载、启用和切换语音合成模型。",
+		"zh-TW": "本機 TTS 模型管理器，附 NSGo 原生桌面外殼，可下載、啟用和切換語音合成模型。",
+		"ja": "ローカルの音声合成（TTS）モデル管理ツール。NSGo 製デスクトップ版で、モデルのダウンロード、有効化、切り替えができます。",
+		"ko": "로컬 TTS 모델 관리 도구. NSGo 데스크톱 셸에서 음성 합성 모델을 내려받고, 켜고, 전환합니다."
+	},
+	"description": {
+		"en": "Lists TTS models such as Kokoro-82M, ChatTTS, Qwen3-TTS and XTTS-v2, each card with one action to download, enable or disable it. It installs their Python dependencies in a venv of its own and runs each model in a worker process, so a crash never takes down the app. One Go server backs a React web UI and a native desktop shell written with NSGo; the interface is in Chinese.",
+		"zh-CN": "列出 Kokoro-82M、ChatTTS、Qwen3-TTS、XTTS-v2 等 TTS 模型，每张卡片只有一个动作：下载、启用或禁用。模型的 Python 依赖装在应用自带的 venv 里，每个模型跑在独立的 worker 进程中，模型崩溃不会带崩应用。同一个 Go 服务端同时支撑 React 网页界面和用 NSGo 编写的原生桌面壳，界面为中文。",
+		"zh-TW": "列出 Kokoro-82M、ChatTTS、Qwen3-TTS、XTTS-v2 等 TTS 模型，每張卡片只有一個動作：下載、啟用或停用。模型的 Python 相依套件裝在應用程式自帶的 venv 裡，每個模型在獨立的 worker 行程中執行，模型當掉也不會拖垮應用程式。同一個 Go 伺服器同時支援 React 網頁介面與以 NSGo 撰寫的原生桌面外殼，介面為簡體中文。",
+		"ja": "Kokoro-82M、ChatTTS、Qwen3-TTS、XTTS-v2 などの TTS モデルを一覧にし、各カードにはダウンロード・有効化・無効化のいずれか 1 つの操作だけがあります。Python の依存関係は専用の venv に入れ、モデルごとに別のワーカープロセスで動かすので、モデルが落ちてもアプリは止まりません。1 つの Go サーバーが React の Web UI と、NSGo で書いたネイティブのデスクトップ版の両方を支えます。UI は中国語です。",
+		"ko": "Kokoro-82M, ChatTTS, Qwen3-TTS, XTTS-v2 같은 TTS 모델을 나열하며, 각 카드에는 내려받기·켜기·끄기 중 하나의 동작만 있습니다. Python 의존성은 앱 전용 venv에 설치하고 모델마다 별도 워커 프로세스에서 실행하므로, 모델이 멈춰도 앱은 죽지 않습니다. 하나의 Go 서버가 React 웹 UI와 NSGo로 작성한 네이티브 데스크톱 셸을 함께 지원하며, 인터페이스는 중국어입니다."
+	},
+	"icon": {
+		"file": "tts-manager.webp"
+	},
+	"added": "2026-11-10T13:57:49Z"
+}

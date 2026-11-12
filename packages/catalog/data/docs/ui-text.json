@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "ui-text",
+	"title": "Text (component)",
+	"file": "ui/text",
+	"summary": {
+		"en": "Paragraphs, spans, links, fonts and documents.",
+		"zh-CN": "段落、span、链接、字体和文档。",
+		"zh-TW": "段落、span、連結、字型與文件。",
+		"ja": "段落、スパン、リンク、フォント、文書。",
+		"ko": "문단, 스팬, 링크, 글꼴, 문서."
+	}
+}

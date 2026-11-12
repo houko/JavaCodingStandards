@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "services",
+	"title": "Platform services",
+	"file": "services",
+	"summary": {
+		"en": "Alerts, the clipboard, files, photos, sharing, storage, speech, networking and the app's lifecycle.",
+		"zh-CN": "警告框、剪贴板、文件、照片、分享、存储、语音、网络和应用生命周期。",
+		"zh-TW": "警示框、剪貼簿、檔案、照片、分享、儲存、語音、網路與應用程式生命週期。",
+		"ja": "アラート、クリップボード、ファイル、写真、共有、ストレージ、音声、ネットワーク、アプリのライフサイクル。",
+		"ko": "알림 창, 클립보드, 파일, 사진, 공유, 저장소, 음성, 네트워크, 앱 생명 주기."
+	}
+}

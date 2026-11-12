@@ -1,0 +1,22 @@
+{
+	"$schema": "../schema/plugin.schema.json",
+	"slug": "diff",
+	"name": "Diff view",
+	"mark": "Df",
+	"official": true,
+	"surface": "both",
+	"import": "github.com/oneo-me/nsgo/base/diff",
+	"tags": [
+		"diff",
+		"code"
+	],
+	"docs": "https://pkg.go.dev/github.com/oneo-me/nsgo/base/diff",
+	"summary": {
+		"en": "Shows the changes between two texts or the files of a patch, side by side or unified, with word-level marks and the editor's highlighting; ui/diff adds ui's colors.",
+		"zh-CN": "显示两段文本或补丁中各文件的差异，可并排或合并显示，标出行内改动的词语，并使用代码编辑器的高亮；ui/diff 加上 ui 的配色。",
+		"zh-TW": "顯示兩段文字或修補檔中各檔案的差異，可並排或合併顯示，標出行內變動的字詞，並使用程式碼編輯器的醒目提示；ui/diff 套上 ui 的配色。",
+		"ja": "2 つのテキストやパッチ内のファイルの差分を、横並びまたは統合形式で表示します。行内の単語単位の変更を示し、エディターのハイライトで色付けします。ui/diff は ui の配色を加えます。",
+		"ko": "두 텍스트나 패치 속 파일의 차이를 나란히 또는 통합 형식으로 보여 주며, 줄 안의 단어 단위 변경을 표시하고 편집기의 구문 강조를 씁니다. ui/diff는 ui의 색을 더합니다."
+	},
+	"added": "2026-11-10T13:59:04Z"
+}

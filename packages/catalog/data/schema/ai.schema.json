@@ -1,0 +1,86 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "ai.schema.json",
+	"title": "An AI tool for building NSGo apps, such as an agent skill or an MCP server, one file per tool named after its slug",
+	"type": "object",
+	"additionalProperties": false,
+	"required": [
+		"slug",
+		"name",
+		"author",
+		"summary",
+		"repo",
+		"url",
+		"type",
+		"install",
+		"tags",
+		"added"
+	],
+	"properties": {
+		"$schema": {
+			"type": "string"
+		},
+		"slug": {
+			"$ref": "common.schema.json#/$defs/slug"
+		},
+		"name": {
+			"type": "string",
+			"minLength": 1
+		},
+		"author": {
+			"type": "string",
+			"minLength": 1
+		},
+		"summary": {
+			"$ref": "common.schema.json#/$defs/text"
+		},
+		"repo": {
+			"$ref": "common.schema.json#/$defs/repo"
+		},
+		"url": {
+			"$ref": "common.schema.json#/$defs/url",
+			"description": "Where the tool is: its repository, or its folder in a repository that holds several, such as one skill of a collection."
+		},
+		"homepage": {
+			"$ref": "common.schema.json#/$defs/url"
+		},
+		"type": {
+			"enum": [
+				"skill",
+				"mcp",
+				"rules",
+				"other"
+			],
+			"description": "What it is: skill for an agent skill (SKILL.md), mcp for an MCP server or library, rules for instructions for coding agents (AGENTS.md, Cursor rules), other for anything else."
+		},
+		"install": {
+			"type": "string",
+			"minLength": 1,
+			"description": "The command that installs it, e.g. npx skills add owner/name or go get …"
+		},
+		"tags": {
+			"type": "array",
+			"minItems": 1,
+			"items": {
+				"type": "string"
+			}
+		},
+		"screenshot": {
+			"$ref": "common.schema.json#/$defs/screenshot"
+		},
+		"provisional": {
+			"type": "array",
+			"minItems": 1,
+			"uniqueItems": true,
+			"items": {
+				"enum": [
+					"screenshot"
+				]
+			},
+			"description": "The images that stand in until the project gives its own: GitHub's card of the repository or a card drawn of it for a screenshot. The completing script sets it; the announcement's issue asks the project for them; whoever replaces one drops it from the list."
+		},
+		"added": {
+			"$ref": "common.schema.json#/$defs/added"
+		}
+	}
+}

@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "ui",
+	"title": "Component reference",
+	"file": "ui",
+	"summary": {
+		"en": "The most-used components, their variants, states and accessibility.",
+		"zh-CN": "最常用的组件，以及它们的变体、状态和无障碍。",
+		"zh-TW": "最常用的元件，以及它們的變體、狀態與無障礙設計。",
+		"ja": "よく使うコンポーネントと、そのバリアント、状態、アクセシビリティ。",
+		"ko": "가장 많이 쓰는 컴포넌트와 그 변형, 상태, 접근성."
+	}
+}

@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "ui-scroll",
+	"title": "Scroll",
+	"file": "ui/scroll",
+	"summary": {
+		"en": "The platform's scroll view, with paging, snapping, zoom and refresh.",
+		"zh-CN": "平台的滚动视图，支持分页、吸附、缩放和下拉刷新。",
+		"zh-TW": "平台的捲動視圖，支援分頁、吸附、縮放與下拉重新整理。",
+		"ja": "プラットフォームのスクロールビュー。ページング、スナップ、ズーム、引っぱって更新に対応。",
+		"ko": "플랫폼의 스크롤 뷰. 페이징, 스냅, 확대·축소, 당겨서 새로고침을 지원합니다."
+	}
+}

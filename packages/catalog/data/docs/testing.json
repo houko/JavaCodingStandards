@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "testing",
+	"title": "Testing",
+	"file": "testing",
+	"summary": {
+		"en": "Test an app the way a user uses it, headless or in a native window.",
+		"zh-CN": "像用户一样测试应用，可以无窗口运行，也可以在原生窗口中运行。",
+		"zh-TW": "像使用者一樣測試應用程式，可以無視窗執行，也可以在原生視窗中執行。",
+		"ja": "ユーザーが使うようにアプリをテストします。ヘッドレスでも、ネイティブのウィンドウでも。",
+		"ko": "사용자가 쓰는 방식으로 앱을 테스트합니다. 헤드리스로도, 네이티브 창에서도."
+	}
+}

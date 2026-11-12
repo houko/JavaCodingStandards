@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "building",
+	"title": "Building and shipping",
+	"file": "building",
+	"summary": {
+		"en": "Package an app for every platform, make installers, sign and notarize it, publish it on GitHub and embed it in other apps.",
+		"zh-CN": "为每个平台打包应用、生成安装程序、签名与公证，发布到 GitHub，并把它嵌入其他应用。",
+		"zh-TW": "為每個平台打包應用程式、產生安裝程式、簽署與公證，發布到 GitHub，並把它嵌入其他應用程式。",
+		"ja": "すべてのプラットフォーム向けにパッケージ化し、インストーラーを作り、署名と公証をして GitHub で公開し、ほかのアプリに埋め込みます。",
+		"ko": "모든 플랫폼용으로 패키징하고, 설치 프로그램을 만들고, 서명과 공증을 거쳐 GitHub에 배포하며, 다른 앱에 넣습니다."
+	}
+}

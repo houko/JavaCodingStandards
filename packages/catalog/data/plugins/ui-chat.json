@@ -1,0 +1,22 @@
+{
+	"$schema": "../schema/plugin.schema.json",
+	"slug": "ui-chat",
+	"name": "Chat",
+	"mark": "Ch",
+	"official": true,
+	"surface": "both",
+	"import": "github.com/oneo-me/nsgo/ui/chat",
+	"tags": [
+		"ai",
+		"chat"
+	],
+	"docs": "https://pkg.go.dev/github.com/oneo-me/nsgo/ui/chat",
+	"summary": {
+		"en": "Onevra's AI conversation UI: turns, the activities of each step such as reading a file or running a command, and a composer. TSX apps get it as nsgo/ui/chat.",
+		"zh-CN": "Onevra 风格的 AI 对话界面：对话轮次、每一步的活动（例如读取文件、运行命令）以及输入框。TSX 应用通过 nsgo/ui/chat 使用。",
+		"zh-TW": "Onevra 風格的 AI 對話介面：對話回合、每一步的活動（例如讀取檔案、執行命令）以及輸入框。TSX 應用程式透過 nsgo/ui/chat 使用。",
+		"ja": "Onevra の AI 会話 UI。ターン、ファイルの読み込みやコマンドの実行といった各ステップのアクティビティ、入力欄を備えます。TSX アプリからは nsgo/ui/chat として使えます。",
+		"ko": "Onevra의 AI 대화 UI: 대화 턴, 파일 읽기나 명령 실행 같은 각 단계의 활동, 입력창. TSX 앱에서는 nsgo/ui/chat으로 씁니다."
+	},
+	"added": "2026-11-10T13:59:10Z"
+}

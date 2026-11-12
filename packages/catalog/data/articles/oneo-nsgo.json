@@ -1,0 +1,8 @@
+{
+	"$schema": "../schema/article.schema.json",
+	"slug": "oneo-nsgo",
+	"title": "NSGo",
+	"site": "oneo.me",
+	"url": "https://oneo.me/en/nsgo",
+	"added": "2026-11-10T13:59:16Z"
+}

@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "ui-button",
+	"title": "Button",
+	"file": "ui/button",
+	"summary": {
+		"en": "A push button, its variants and sizes, and the icon button.",
+		"zh-CN": "普通按钮、变体与尺寸，以及图标按钮。",
+		"zh-TW": "一般按鈕、變體與尺寸，以及圖示按鈕。",
+		"ja": "プッシュボタンとそのバリアント、サイズ、アイコンボタン。",
+		"ko": "푸시 버튼과 변형, 크기, 아이콘 버튼."
+	}
+}

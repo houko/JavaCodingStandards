@@ -1,0 +1,31 @@
+{
+	"$schema": "../schema/app.schema.json",
+	"slug": "nsgo-gallery",
+	"name": "Gallery",
+	"author": "oneo-me",
+	"kind": "go",
+	"platforms": ["mac", "ios", "web"],
+	"category": "DeveloperApplication",
+	"group": "dev",
+	"url": "https://oneo-me.github.io/nsgo/gallery/loader.html",
+	"repo": "oneo-me/nsgo",
+	"summary": {
+		"en": "NSGo's official gallery: every component of base and ui in one app, with a live web demo.",
+		"zh-CN": "NSGo 官方组件画廊：base 与 ui 的全部组件集于一个应用，并提供在线 Web 演示。",
+		"zh-TW": "NSGo 官方元件展示：base 與 ui 的所有元件集中在一個應用程式，並提供線上 Web 示範。",
+		"ja": "NSGo 公式のギャラリー。base と ui の全コンポーネントを 1 つのアプリに収め、Web 版のライブデモもあります。",
+		"ko": "NSGo 공식 갤러리. base와 ui의 모든 컴포넌트를 한 앱에 담았고, 웹 라이브 데모도 있습니다."
+	},
+	"description": {
+		"en": "NSGo's official gallery, by ONEO: every component of base and ui in one app, with every part of each to try and every platform drawing it the way that platform draws it. Demo apps such as Stocks, AI Chat and Photos sit beside the components, and its web build is the live demo on NSGo's site.",
+		"zh-CN": "ONEO 制作的 NSGo 官方画廊：把 base 与 ui 的每个组件放进一个应用，每个组件的各个部分都能上手试，每个平台都按自己的方式绘制。组件旁还有股票、AI 对话、相册等示例应用，它的 Web 版本就是 NSGo 官网上的在线演示。",
+		"zh-TW": "ONEO 製作的 NSGo 官方展示應用：把 base 與 ui 的每個元件放進一個應用程式，每個元件的各個部分都能動手試，每個平台都以自己的方式繪製。元件旁還有股票、AI 對話、相簿等範例應用程式，它的 Web 版本就是 NSGo 官網上的線上示範。",
+		"ja": "ONEO による NSGo 公式ギャラリー。base と ui のすべてのコンポーネントを 1 つのアプリにまとめ、各部分を実際に試せます。描画は各プラットフォームがそれぞれのやり方で行います。株価、AI チャット、写真といったデモアプリも並び、Web 版は NSGo サイトのライブデモになっています。",
+		"ko": "ONEO가 만든 NSGo 공식 갤러리입니다. base와 ui의 모든 컴포넌트를 한 앱에 모아 각 부분을 직접 써 볼 수 있고, 각 플랫폼이 자기 방식대로 그립니다. 주식, AI 채팅, 사진 같은 데모 앱도 함께 있으며, 웹 빌드는 NSGo 사이트의 라이브 데모입니다."
+	},
+	"screenshot": "nsgo-gallery.webp",
+	"icon": {
+		"file": "nsgo-gallery.webp"
+	},
+	"added": "2026-11-10T13:57:31Z"
+}

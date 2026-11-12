@@ -1,0 +1,36 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "article.schema.json",
+	"title": "An article about NSGo, one file per article named after its slug",
+	"type": "object",
+	"additionalProperties": false,
+	"required": [
+		"slug",
+		"title",
+		"site",
+		"url",
+		"added"
+	],
+	"properties": {
+		"$schema": {
+			"type": "string"
+		},
+		"slug": {
+			"$ref": "common.schema.json#/$defs/slug"
+		},
+		"title": {
+			"type": "string",
+			"minLength": 1
+		},
+		"site": {
+			"type": "string",
+			"minLength": 1
+		},
+		"url": {
+			"$ref": "common.schema.json#/$defs/url"
+		},
+		"added": {
+			"$ref": "common.schema.json#/$defs/added"
+		}
+	}
+}

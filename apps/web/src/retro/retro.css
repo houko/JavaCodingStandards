@@ -1,0 +1,330 @@
+/* Desktop theme. Loaded only when the theme cookie picks it; the original look keeps styles.css. Tailwind scans only this folder, so the original components' class names never reach this stylesheet. */
+/* The desktop metaphor (menu bar, folder icons, windows) is the only period touch; the windows themselves are drawn like a current desktop: system type, rounded corners, hairline borders and soft shadows. */
+@import 'tailwindcss' source(none);
+.platform-tag { display: inline-block; border: 1px solid var(--color-line); border-radius: 4px; padding: 1px 4px; font-size: 10px; line-height: 14px; color: var(--color-muted); }
+@source './';
+
+@theme {
+	--color-ink: #10233a;
+	--color-desk: #6f8f9a;
+	--color-desk-lo: #5f7f8a;
+	--color-face: #f4f5f7;
+	--color-face-lo: #e8ebef;
+	--color-hi: #ffffff;
+	--color-lo: #b4bcc6;
+	--color-line: rgb(16 35 58 / 0.14);
+	--color-paper: #ffffff;
+	--color-pur: #5b4bd8;
+	--color-pur-hi: #7465ef;
+	--color-yel: #ffd23f;
+	--color-yel-hi: #ffe07a;
+	--color-note: #fff6c7;
+	--color-note-bar: #fde68a;
+	--color-red: #e24b3b;
+	--color-muted: #556070;
+	--color-faint: #687384;
+	--color-sky: #7fd6f0;
+	--color-slate: #8f9bab;
+
+	--font-ui: system-ui, -apple-system, 'PingFang SC', 'Hiragino Sans', 'Apple SD Gothic Neo', 'Noto Sans CJK SC', sans-serif;
+	--font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+	/* A window's shadow: a wide soft one for depth and a tight one for the edge. */
+	--shadow-win: 0 18px 40px -12px rgb(16 35 58 / 0.35), 0 2px 6px rgb(16 35 58 / 0.12);
+	--shadow-pop: 0 12px 28px -8px rgb(16 35 58 / 0.3), 0 1px 3px rgb(16 35 58 / 0.12);
+
+	/* The desktop layout (absolutely placed windows) needs this width; below it the windows stack. */
+	--breakpoint-desk: 1100px;
+
+	--animate-blink: blink 1.06s steps(1) infinite;
+	@keyframes blink {
+		50% {
+			opacity: 0;
+		}
+	}
+}
+
+@layer base {
+	/* The tallest a filling window may be on the desktop: the screen less the menu bar, the footer, and the gaps above and below the window. */
+	:root {
+		--win-max: calc(100dvh - 122px);
+	}
+	html {
+		background: var(--color-desk);
+	}
+	body {
+		min-height: 100vh;
+		overflow-x: hidden;
+		font: 13px/21px var(--font-ui);
+		color: var(--color-ink);
+		background: linear-gradient(160deg, #7f9ea9 0%, var(--color-desk) 45%, var(--color-desk-lo) 100%) fixed;
+		-webkit-font-smoothing: antialiased;
+	}
+	::selection {
+		background: rgb(91 75 216 / 0.22);
+	}
+	:focus-visible {
+		outline: 2px solid var(--color-pur);
+		outline-offset: 2px;
+	}
+	@media (prefers-reduced-motion: reduce) {
+		*,
+		*::before,
+		*::after {
+			animation: none !important;
+			transition: none !important;
+		}
+	}
+}
+
+/* A drop-down's chevron, 8 px from its right edge. */
+@utility chevron {
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23556070' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: right 8px center;
+	background-size: 10px 10px;
+}
+/* Bitmap images keep hard pixel edges when scaled. */
+@utility pixelated {
+	image-rendering: pixelated;
+}
+
+/* Scores (components/Score.tsx). The component lives outside this folder, so Tailwind never sees its class names; its parts are drawn here instead, as the original look draws them in styles.css. The badge is a filled pill coloured by five cool-toned bands; never yellow or red, which read as a warning. */
+@layer components {
+	.score-chip {
+		display: inline-flex;
+		flex: none;
+		align-items: center;
+		padding: 1px 7px;
+		border: 1px solid rgb(16 35 58 / 0.25);
+		border-radius: 9999px;
+		background: var(--color-face-lo);
+		color: var(--color-ink);
+		font-family: var(--font-mono);
+		font-size: 12px;
+		font-weight: 700;
+		line-height: 16px;
+		font-variant-numeric: tabular-nums;
+		box-shadow: 0 1px 1px rgb(16 35 58 / 0.12);
+	}
+	.score-chip[data-tier='top'] {
+		background: #8fdba6;
+		color: var(--color-ink);
+	}
+	.score-chip[data-tier='hi'] {
+		background: var(--color-sky);
+		color: var(--color-ink);
+	}
+	.score-chip[data-tier='mid'] {
+		background: var(--color-pur-hi);
+		color: var(--color-hi);
+	}
+	.score-chip[data-tier='lo'] {
+		background: var(--color-face);
+		color: var(--color-ink);
+	}
+	.score-chip[data-tier='low'] {
+		background: var(--color-face-lo);
+		color: var(--color-ink);
+	}
+	/* Beside the name the band's colour says what it is; the word would only crowd the name out. */
+	.score-chip-k {
+		display: none;
+	}
+	.score-btn {
+		display: inline-flex;
+		cursor: pointer;
+		align-items: center;
+		padding: 0;
+		border: 0;
+		border-radius: 9999px;
+		background: none;
+	}
+	.score-btn:hover .score-chip {
+		filter: brightness(1.08);
+	}
+	.score-btn:focus-visible {
+		outline: 2px solid var(--color-pur);
+		outline-offset: 2px;
+	}
+	.score-btn .score-chip {
+		padding: 2px 9px;
+		font-size: 13px;
+	}
+	.score-total[data-tier='top'] {
+		color: #1f7a45;
+	}
+	.score-total[data-tier='hi'] {
+		color: #287eaa;
+	}
+	.score-total[data-tier='mid'] {
+		color: var(--color-pur);
+	}
+	/* Preflight takes every margin away, the browser's auto margins that centre a popover included. */
+	.score-pop {
+		box-sizing: border-box;
+		margin: auto;
+		width: min(420px, calc(100vw - 28px));
+		max-height: calc(100dvh - 28px);
+		padding: 16px;
+		border: 1px solid var(--color-line);
+		border-radius: 12px;
+		background: var(--color-paper);
+		color: var(--color-ink);
+		box-shadow: var(--shadow-win);
+	}
+	.score-pop::backdrop {
+		background: rgb(16 35 58 / 0.35);
+	}
+	.score-x {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		width: 24px;
+		height: 24px;
+		cursor: pointer;
+		border: 0;
+		border-radius: 6px;
+		background: none;
+		color: var(--color-muted);
+		font-size: 18px;
+		line-height: 1;
+	}
+	.score-x:hover {
+		background: rgb(16 35 58 / 0.06);
+		color: var(--color-ink);
+	}
+	.score-pop .score-h {
+		padding-right: 30px;
+	}
+	.score-bd {
+		display: grid;
+		gap: 10px;
+		border-top: 1px solid var(--color-line);
+		padding-top: 10px;
+	}
+	.score-pop .score-bd {
+		border-top: 0;
+		padding-top: 0;
+	}
+	.score-bd:lang(ko) {
+		word-break: keep-all;
+	}
+	.score-h {
+		margin: 0;
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 12px;
+		font-size: 13px;
+		font-weight: 400;
+		color: var(--color-muted);
+	}
+	.score-total {
+		font-size: 20px;
+		line-height: 28px;
+		font-weight: 600;
+		color: var(--color-ink);
+		font-variant-numeric: tabular-nums;
+	}
+	.score-rows {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		display: grid;
+		gap: 8px;
+	}
+	.score-row {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto;
+		align-items: baseline;
+		gap: 3px 10px;
+	}
+	.score-lbl {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 6px;
+	}
+	.score-neu {
+		padding: 0 6px;
+		border: 1px dashed var(--color-slate);
+		border-radius: 9999px;
+		color: var(--color-faint);
+		font-size: 11px;
+		line-height: 16px;
+	}
+	.score-of {
+		color: var(--color-muted);
+		font-family: var(--font-mono);
+		font-size: 12px;
+		font-variant-numeric: tabular-nums;
+	}
+	.score-meter {
+		grid-column: 1 / -1;
+		display: block;
+		width: 100%;
+		height: 8px;
+		-webkit-appearance: none;
+		appearance: none;
+		border: 1px solid var(--color-line);
+		border-radius: 9999px;
+		background: var(--color-face);
+	}
+	.score-meter::-webkit-meter-bar {
+		height: 6px;
+		border: 0;
+		border-radius: 9999px;
+		background: var(--color-face);
+	}
+	.score-meter::-webkit-meter-optimum-value {
+		border-radius: 9999px;
+		background: var(--color-pur);
+	}
+	.score-meter::-moz-meter-bar {
+		border-radius: 9999px;
+		background: var(--color-pur);
+	}
+	/* A signal counted at the neutral value was not measured, so its bar is greyed. */
+	.score-row-neu .score-meter::-webkit-meter-optimum-value {
+		background: var(--color-slate);
+	}
+	.score-row-neu .score-meter::-moz-meter-bar {
+		background: var(--color-slate);
+	}
+	.score-detail {
+		grid-column: 1 / -1;
+		color: var(--color-muted);
+		font-size: 12px;
+		line-height: 18px;
+	}
+	.score-arch,
+	.score-about,
+	.score-asof,
+	.score-links {
+		margin: 0;
+		font-size: 12px;
+		line-height: 18px;
+	}
+	.score-arch {
+		font-weight: 600;
+	}
+	.score-about,
+	.score-asof {
+		color: var(--color-muted);
+	}
+	.score-links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 4px 14px;
+	}
+	.score-links a {
+		color: inherit;
+		text-decoration: underline;
+		text-decoration-color: rgb(16 35 58 / 0.3);
+		text-underline-offset: 3px;
+	}
+	.score-links a:hover {
+		text-decoration-color: var(--color-ink);
+	}
+}

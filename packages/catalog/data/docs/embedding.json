@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "embedding",
+	"title": "Embedding",
+	"file": "embedding",
+	"summary": {
+		"en": "Put an NSGo app inside an iOS, Android, desktop or web app of your own.",
+		"zh-CN": "把 NSGo 应用放进你自己的 iOS、Android、桌面或网页应用。",
+		"zh-TW": "把 NSGo 應用程式放進你自己的 iOS、Android、桌面或網頁應用程式。",
+		"ja": "NSGo アプリを、自分の iOS、Android、デスクトップ、Web アプリの中に組み込みます。",
+		"ko": "NSGo 앱을 직접 만든 iOS, Android, 데스크톱, 웹 앱 안에 넣습니다."
+	}
+}

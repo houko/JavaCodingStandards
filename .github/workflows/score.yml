@@ -1,0 +1,99 @@
+name: Update scores
+
+# Once a day this records in packages/catalog/data/scores.json the raw signals of every entry's score (its repository's stars, its weeks with commits, its license, its latest release, the days it released or tagged on in the rolling 12-week window through the current UTC day, and its likes on the site) with packages/enrich (score.ts), and pushes the change to main as the site's GitHub App, so that CI and the deployment run on it; the site computes the scores from the file when it is built (packages/catalog/src/score.ts). Every scheduled run measures every entry again, so changes to GitHub data and likes can reach the site each day; the counted activity weeks still use this week's Monday (UTC) as their snapshot. A manual run can also request a full measurement or a dry run. A run that fails writes nothing, and the next day's run makes up for it.
+#
+# The catalog's tests check the new file before it is committed. The run's summary lists every measured entry's score and its parts, anomalies (likes or stars that jumped, an archived repository, a score that moved by 15 or more) and data to fix.
+#
+# Secrets: SUBMIT_APP_PRIVATE_KEY, as for the Complete submission workflow. Variables: SUBMIT_APP_CLIENT_ID.
+
+on:
+  schedule:
+    - cron: '41 3 * * *'
+  workflow_dispatch:
+    inputs:
+      full:
+        description: Measure every entry again, even when today's snapshot is recorded
+        type: boolean
+        default: false
+      dry_run:
+        description: Only report what it measured, without committing
+        type: boolean
+        default: false
+
+concurrency:
+  group: update-scores
+
+permissions:
+  contents: read
+
+jobs:
+  score:
+    if: github.repository == 'yldm-tech/awesome-nsgo'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - id: app
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.SUBMIT_APP_CLIENT_ID }}
+          private-key: ${{ secrets.SUBMIT_APP_PRIVATE_KEY }}
+
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ steps.app.outputs.token }}
+          # The whole history, so that the push can rebase onto a main that moved during the run.
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+
+      - name: Commit as the bot
+        env:
+          GH_TOKEN: ${{ steps.app.outputs.token }}
+          BOT: ${{ steps.app.outputs.app-slug }}[bot]
+        run: |
+          git config user.name "$BOT"
+          git config user.email "$(gh api "users/$BOT" --jq .id)+$BOT@users.noreply.github.com"
+
+      - name: Measure the signals
+        env:
+          GITHUB_TOKEN: ${{ steps.app.outputs.token }}
+          LIKES_URL: https://awesomensgo.dev/api/likes
+          # Scheduled runs keep every entry fresh; manual runs opt into a full pass with full=true.
+          FULL: ${{ github.event_name == 'schedule' && 'true' || inputs.full && 'true' || 'false' }}
+          DRY_RUN: ${{ inputs.dry_run && 'true' || 'false' }}
+          REPORT_FILE: ${{ runner.temp }}/score-report.md
+          COMMIT_FILE: ${{ runner.temp }}/score-commit.txt
+        run: pnpm --filter @awesome-nsgo/enrich score
+
+      - name: Check the catalog
+        run: pnpm --filter @awesome-nsgo/catalog test
+
+      - name: Commit and push
+        if: ${{ !inputs.dry_run }}
+        run: |
+          git add packages/catalog/data/scores.json
+          if git diff --cached --quiet; then echo 'No signal changed'; exit 0; fi
+          git commit -q -F "$RUNNER_TEMP/score-commit.txt"
+          # Only this workflow writes scores.json, so a rebase onto a main that moved meanwhile does not conflict.
+          # A main that moves during the run (several pull requests merged a few seconds apart) refuses the push: rebase onto it, check the rebased tree again, as an entry may have been removed or moved, and push, up to five times, waiting longer each time.
+          for try in 1 2 3 4 5; do
+            if git push origin HEAD:main; then exit 0; fi
+            [[ $try == 5 ]] && break
+            sleep $((try * 10))
+            git pull -q --rebase origin main
+            pnpm --filter @awesome-nsgo/catalog test
+          done
+          echo "::error::main kept moving; scores.json was not pushed"
+          exit 1
+
+      - name: Summary
+        if: always()
+        run: |
+          report="$RUNNER_TEMP/score-report.md"
+          if [[ -s "$report" ]]; then cat "$report" >> "$GITHUB_STEP_SUMMARY"; fi

@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.wrangler/
+.vite/
+.tanstack/
+.dev.vars*
+.DS_Store
+# Local browser-automation snapshots and screenshots, never part of the site
+.playwright-cli/
+.playwright-mcp/
+/output/

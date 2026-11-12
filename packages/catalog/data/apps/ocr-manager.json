@@ -1,0 +1,30 @@
+{
+	"$schema": "../schema/app.schema.json",
+	"slug": "ocr-manager",
+	"name": "OCR Manager",
+	"author": "freewu",
+	"kind": "go",
+	"platforms": ["mac", "win", "linux"],
+	"category": "UtilitiesApplication",
+	"group": "ai",
+	"url": "https://github.com/freewu/ocr-manager",
+	"repo": "freewu/ocr-manager",
+	"summary": {
+		"en": "Multi-engine OCR manager that turns images and PDFs into text, Markdown and blocks, with an NSGo desktop shell.",
+		"zh-CN": "多引擎 OCR 管理工具，把图片和 PDF 转成文本、Markdown 和分块结果，带 NSGo 原生桌面壳。",
+		"zh-TW": "多引擎 OCR 管理工具，把圖片和 PDF 轉成文字、Markdown 與分塊結果，附 NSGo 原生桌面外殼。",
+		"ja": "画像や PDF をテキスト、Markdown、ブロックに変換する複数エンジン対応の OCR 管理ツール。NSGo 製デスクトップ版付き。",
+		"ko": "이미지와 PDF를 텍스트, Markdown, 블록으로 바꾸는 다중 엔진 OCR 관리 도구. NSGo 데스크톱 셸 포함."
+	},
+	"description": {
+		"en": "Runs RapidOCR, Tesseract, PaddleOCR, vision-language models such as dots.ocr and DeepSeek-OCR, and the MinerU and Surya command lines on images and PDFs, giving text, Markdown and blocks with boxes and confidence. It downloads model weights, manages its own Python venv, keeps every result's files and exports them to Excel. One Go backend serves a React web UI and a native desktop shell written with NSGo; the interface is in Chinese.",
+		"zh-CN": "在图片和 PDF 上运行 RapidOCR、Tesseract、PaddleOCR，dots.ocr、DeepSeek-OCR 等视觉语言模型，以及 MinerU、Surya 的命令行，输出文本、Markdown 和带框与置信度的分块。它负责下载模型权重、管理自带的 Python venv，保留每次识别的产物并可导出 Excel。同一个 Go 后端同时服务 React 网页界面和用 NSGo 编写的原生桌面壳，界面为中文。",
+		"zh-TW": "在圖片和 PDF 上執行 RapidOCR、Tesseract、PaddleOCR，dots.ocr、DeepSeek-OCR 等視覺語言模型，以及 MinerU、Surya 的命令列，輸出文字、Markdown 與帶有框線和信心值的分塊。它負責下載模型權重、管理自帶的 Python venv，保留每次辨識的產出並可匯出 Excel。同一個 Go 後端同時服務 React 網頁介面與以 NSGo 撰寫的原生桌面外殼，介面為簡體中文。",
+		"ja": "画像や PDF に対して RapidOCR、Tesseract、PaddleOCR、dots.ocr や DeepSeek-OCR などの視覚言語モデル、MinerU と Surya のコマンドラインを実行し、テキスト、Markdown、枠と信頼度付きのブロックを出力します。モデルの重みのダウンロード、専用 Python venv の管理、認識結果の保存、Excel への書き出しにも対応。1 つの Go バックエンドが React の Web UI と、NSGo で書いたネイティブのデスクトップ版の両方を支えます。UI は中国語です。",
+		"ko": "이미지와 PDF에 RapidOCR, Tesseract, PaddleOCR, dots.ocr·DeepSeek-OCR 같은 비전 언어 모델, MinerU와 Surya 명령줄을 실행해 텍스트, Markdown, 상자와 신뢰도가 붙은 블록을 출력합니다. 모델 가중치를 내려받고, 자체 Python venv를 관리하며, 인식 결과를 보관하고 Excel로 내보냅니다. 하나의 Go 백엔드가 React 웹 UI와 NSGo로 작성한 네이티브 데스크톱 셸을 함께 지원하며, 인터페이스는 중국어입니다."
+	},
+	"icon": {
+		"file": "ocr-manager.webp"
+	},
+	"added": "2026-11-10T13:57:46Z"
+}

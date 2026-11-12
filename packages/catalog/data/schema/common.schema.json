@@ -1,0 +1,67 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "common.schema.json",
+	"title": "Shared definitions",
+	"$defs": {
+		"text": {
+			"type": "object",
+			"description": "Text in the site languages. English is required; a missing language falls back to English.",
+			"required": [
+				"en"
+			],
+			"additionalProperties": false,
+			"properties": {
+				"en": {
+					"type": "string",
+					"minLength": 1,
+					"description": "English"
+				},
+				"zh-CN": {
+					"type": "string",
+					"minLength": 1,
+					"description": "简体中文"
+				},
+				"zh-TW": {
+					"type": "string",
+					"minLength": 1,
+					"description": "繁體中文"
+				},
+				"ja": {
+					"type": "string",
+					"minLength": 1,
+					"description": "日本語"
+				},
+				"ko": {
+					"type": "string",
+					"minLength": 1,
+					"description": "한국어"
+				}
+			}
+		},
+		"url": {
+			"type": "string",
+			"pattern": "^https://",
+			"description": "An https link."
+		},
+		"slug": {
+			"type": "string",
+			"pattern": "^[a-z0-9-]+$",
+			"description": "Lowercase letters, digits and hyphens; the entry's file is named after it."
+		},
+		"screenshot": {
+			"type": "string",
+			"pattern": "^[a-z0-9-]+\\.(webp|svg)$",
+			"description": "A file in apps/web/public/shots/, about 1200px wide."
+		},
+		"repo": {
+			"type": "string",
+			"pattern": "^[^/\\s]+/[^/\\s]+$",
+			"description": "GitHub owner/name."
+		},
+		"added": {
+			"type": "string",
+			"pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$",
+			"description": "When the entry joined the site, in UTC (e.g. 2026-11-04T12:00:00Z). Its page lists entries in this order."
+		}
+	}
+}

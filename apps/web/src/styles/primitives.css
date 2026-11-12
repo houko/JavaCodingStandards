@@ -1,0 +1,517 @@
+/* The look's primitives, kept as named classes: the card surface and its hover lift, the buttons, the segmented tabs, the list row, the code panel, the app tile and the small tags, the device glyphs, the lane marks, the listing filters' select, the screenshot well and the globe's palette. Each section says why its rules are classes. Their order matters where two meet on one element: a button's size and outline come after its feedback class, and the official icon's corner after the tile sizes and before the 96px tile's. */
+
+/* The card: a rounded surface on a hairline with a soft shadow, a flex column so its footer row sits at the bottom. Many components draw it (EntryCard, AppCard, the app page's aside), and pages adjust it by class. */
+.card {
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 auto;
+	overflow: hidden;
+	text-align: left;
+	color: var(--color-fg);
+	background: var(--color-panel);
+	border: 1px solid var(--color-line-2);
+	border-radius: var(--radius-card);
+	box-shadow: var(--sh-1);
+}
+
+/* Hover and press feedback shared across pages, as named classes because many pages use them: the lift of a card (.win) or a category or article tile (.tile), the arrow that nudges on hover, the primary and secondary buttons (.btn-c, .btn-g; pair them with a size from the button sizes below), and the list row highlight (.row). Each class sets only its transition and hover state, so an element's utilities draw the rest; a utility that sets a property a hover rule here changes (background, border colour, colour, transform) needs the hover restated as a hover: utility. */
+.win,
+.tile {
+	transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+.win:hover,
+.tile:hover {
+	transform: translateY(-2px);
+	border-color: var(--color-line-3);
+	box-shadow: var(--sh-2);
+}
+.tile,
+.tile:hover {
+	color: var(--color-fg);
+	text-decoration: none;
+}
+.arrow {
+	display: inline-block;
+	transition: transform 0.15s, color 0.15s;
+}
+.tile:hover .arrow,
+.group:hover .arrow {
+	transform: translateX(2px);
+	color: var(--color-blue-ink);
+}
+.btn-c {
+	background: var(--gradient-btn);
+	color: #fff;
+	border: 0;
+	font-weight: 600;
+	box-shadow: var(--sh-btn);
+	border-radius: 999px;
+	text-decoration: none;
+	transition: transform 0.15s, box-shadow 0.15s;
+}
+/* No brightening on hover: it lifted the gradient's light end until the white label fell under 4.5:1; the lift and the deeper shadow say enough. */
+.btn-c:hover {
+	color: #fff;
+	transform: translateY(-1px);
+	box-shadow: var(--sh-btn-hover);
+}
+.btn-c:active {
+	transform: none;
+}
+.btn-g {
+	border-radius: 999px;
+	text-decoration: none;
+	transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.btn-g:hover:not(:disabled) {
+	background: var(--color-soft);
+	border-color: var(--color-line-3);
+	color: var(--color-fg);
+}
+.row {
+	transition: background 0.12s;
+}
+.row:hover {
+	background: var(--color-soft);
+}
+
+/* A tab of a segmented control (the home page's install tabs, the metrics range): the selected tab carries the editor tab's skewed blue underline besides its raised fill, as in dark mode the fill and its hairline ring are barely apart from the track, and forced colours drop both; there the tab gets an outline in the system highlight. */
+.seg-tab {
+	position: relative;
+}
+.seg-tab[aria-selected='true']::after {
+	content: '';
+	position: absolute;
+	left: 10px;
+	right: 10px;
+	bottom: 3px;
+	height: 2px;
+	border-radius: 999px;
+	background: var(--color-blue);
+	transform: skewX(-10deg);
+}
+@media (forced-colors: active) {
+	.seg-tab[aria-selected='true'] {
+		outline: 2px solid Highlight;
+		outline-offset: -2px;
+	}
+	.seg-tab[aria-selected='true']::after {
+		forced-color-adjust: none;
+		background: Highlight;
+	}
+}
+
+/* Button sizes and outlines, combined with .btn-c or .btn-g from the feedback above: .btn-44 (the standard 44px pill) and .btn-outline, shared by several pages. */
+.btn-44 {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.35em;
+	min-height: 44px;
+	padding: 0 20px;
+	border-radius: 999px;
+	font-size: 14.5px;
+	font-weight: 600;
+	box-sizing: border-box;
+	white-space: nowrap;
+}
+.btn-outline {
+	border: 1px solid var(--color-line-3);
+	background: var(--color-panel);
+	color: var(--color-fg);
+}
+
+/* The code panel: an editor frame (.editor) with a tab strip (.editor-bar) whose current file tab (.editor-tab) carries a skewed blue underline, over a code body (.code). Classes because the state page, the plugins page and the install snippets share them. */
+.code {
+	padding: 18px 20px;
+	font-family: var(--font-mono);
+	font-size: 13.5px;
+	line-height: 1.8;
+	color: var(--color-fg);
+	white-space: pre;
+	overflow-x: auto;
+	text-align: left;
+	tab-size: 2;
+	font-variant-ligatures: none;
+	background: var(--color-editor);
+}
+.editor {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	border: 1px solid var(--color-line-2);
+	border-radius: var(--radius-frame);
+	background: var(--color-editor);
+}
+.editor-bar {
+	display: flex;
+	align-items: flex-end;
+	gap: 4px;
+	height: 40px;
+	padding: 0 12px;
+	border-bottom: 1px solid var(--color-line-2);
+	background: var(--color-editor-bar);
+}
+.editor-tab {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	height: 32px;
+	margin-bottom: -1px;
+	padding: 0 12px;
+	border: 1px solid var(--color-line-2);
+	border-bottom: 0;
+	border-radius: 8px 8px 0 0;
+	background: var(--color-editor);
+	font-family: var(--font-mono);
+	font-size: 12.5px;
+	color: var(--color-fg-2);
+}
+.editor-tab:is([data-current], [aria-selected='true'])::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 8px;
+	right: 8px;
+	height: 2px;
+	border-radius: 999px;
+	background: var(--color-blue);
+	transform: skewX(-10deg);
+}
+
+/* The app tile (MonoTile in components/bits.tsx: .mono-tile with a size .mono-44/52/56/96 and a colour .tone-0/1/2, or the app's icon as .app-icon, after the sizes below), the language tag (.kind-tag with .kind-go, .kind-tsx or .kind-both, for an app's kind or a library's surface) and the platform tag. Named classes because the home page, the listings and the app page all draw them, and pages adjust them by class (the showcase's [&_.kind-tag] utilities, the app page's [&_.mono-tile] utilities). Every tile has the same 22.5% corner as an official icon. */
+.mono-tile {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex: none;
+	font-family: var(--font-sans);
+	font-weight: 700;
+	border-radius: 22.5%;
+}
+.mono-44 {
+	width: 44px;
+	height: 44px;
+	font-size: 19px;
+}
+.mono-52 {
+	width: 52px;
+	height: 52px;
+	font-size: 22px;
+}
+.mono-56 {
+	width: 56px;
+	height: 56px;
+	font-size: 24px;
+}
+.tone-0 {
+	background: var(--gradient-brand);
+	color: #fff;
+}
+.tone-1 {
+	background: var(--color-blue-soft);
+	color: var(--color-blue-ink);
+}
+.tone-2 {
+	background: var(--color-soft);
+	color: var(--color-fg);
+	box-shadow: inset 0 0 0 1px var(--color-line-2);
+}
+.kind-tag {
+	display: inline-flex;
+	align-items: center;
+	align-self: flex-start;
+	height: 22px;
+	padding: 0 9px;
+	border: 0;
+	border-radius: 999px;
+	font: 600 12px/1 var(--font-sans);
+}
+.kind-go,
+.kind-both {
+	background: var(--color-blue-soft);
+	color: var(--color-blue-ink);
+}
+.kind-tsx {
+	background: var(--color-soft);
+	color: var(--color-fg-2);
+	box-shadow: inset 0 0 0 1px var(--color-line-2);
+}
+.platform-tag {
+	display: inline-flex;
+	align-items: center;
+	align-self: flex-start;
+	gap: 4px;
+	height: 22px;
+	padding: 0 8px 0 6px;
+	border: 1px solid var(--color-line-2);
+	border-radius: 999px;
+	font: 500 11.5px/1 var(--font-sans);
+	color: var(--color-fg-2);
+}
+
+/* Device glyphs, the site's own line drawings: a phone (iOS, Android), a desktop window with its controls on the left (macOS) or the right (Windows, Linux), a globe (web) and a capsule (mini programs). Each is a mask filled with currentColor, drawn before a platform tag's label (`.platform-tag[data-p]`) or alone (`<span className='pglyph' data-p={p} />`, sized with `[--pg-size:20px]`). */
+.pglyph[data-p='ios'],
+.platform-tag[data-p='ios'],
+.pglyph[data-p='android'],
+.platform-tag[data-p='android'] {
+	--pg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='7' y='2.5' width='10' height='19' rx='2.5'/%3E%3Cpath d='M11 18.5h2'/%3E%3C/svg%3E");
+}
+.pglyph[data-p='mac'],
+.platform-tag[data-p='mac'] {
+	--pg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4.5' width='18' height='15' rx='2.5'/%3E%3Cpath d='M3 9h18'/%3E%3Ccircle cx='6' cy='6.8' r='.6'/%3E%3C/svg%3E");
+}
+.pglyph[data-p='win'],
+.platform-tag[data-p='win'],
+.pglyph[data-p='linux'],
+.platform-tag[data-p='linux'] {
+	--pg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4.5' width='18' height='15' rx='2.5'/%3E%3Cpath d='M3 9h18'/%3E%3Ccircle cx='18' cy='6.8' r='.6'/%3E%3C/svg%3E");
+}
+.pglyph[data-p='web'],
+.platform-tag[data-p='web'] {
+	--pg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z'/%3E%3C/svg%3E");
+}
+.pglyph[data-p='miniprogram'],
+.platform-tag[data-p='miniprogram'] {
+	--pg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2.5' y='8' width='19' height='8' rx='4'/%3E%3Ccircle cx='8' cy='12' r='1'/%3E%3Cpath d='M12 9.5v5'/%3E%3Ccircle cx='16' cy='12' r='1'/%3E%3C/svg%3E");
+}
+.pglyph,
+.platform-tag[data-p]::before {
+	content: '';
+	display: inline-block;
+	width: var(--pg-size, 12px);
+	height: var(--pg-size, 12px);
+	flex: none;
+	background: currentColor;
+	-webkit-mask: var(--pg) center / contain no-repeat;
+	mask: var(--pg) center / contain no-repeat;
+}
+
+/* The lane, the site's signature: a skewed pill, alone (.lane), as the two-lane mark (.lanes, the same mask as the eyebrow's), as a bullet (.sk-bullet) or as a number badge (.sk-num, whose inner span is skewed back so the digit stands upright). */
+.lane {
+	display: inline-block;
+	flex: none;
+	width: 14px;
+	height: 5px;
+	border-radius: 3px;
+	background: var(--gradient-brand);
+	transform: skewX(-10deg);
+}
+.lanes {
+	display: inline-block;
+	flex: none;
+	width: 16px;
+	height: 12px;
+	background: var(--gradient-brand);
+	-webkit-mask: var(--lanes-mark) center / contain no-repeat;
+	mask: var(--lanes-mark) center / contain no-repeat;
+}
+.sk-bullet {
+	display: inline-block;
+	width: 6px;
+	height: 6px;
+	flex: none;
+	border-radius: 2px;
+	background: var(--color-blue);
+	transform: skewX(-10deg);
+}
+.sk-num {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex: none;
+	width: 28px;
+	height: 28px;
+	border-radius: 8px;
+	background: var(--color-blue-soft);
+	color: var(--color-blue-ink);
+	font-size: 13px;
+	font-weight: 700;
+	transform: skewX(-10deg);
+}
+.sk-num > span {
+	transform: skewX(10deg);
+}
+
+/* A shell prompt before a command (`$ `), left out of a selection so copying the line copies only the command. */
+.cmd-p {
+	color: var(--color-blue-ink);
+	user-select: none;
+}
+
+/* The 22px dot field, the same as the backdrop's, for placeholders and empty states. */
+.dots {
+	background-image: radial-gradient(var(--color-dot) 1px, transparent 1.3px);
+	background-size: 22px 22px;
+}
+
+/* The screenshot well inside AppCard: inset from the card's edge, 16:10, the image anchored to its top and zooming slightly on the card's hover. */
+.card-screen {
+	position: relative;
+	display: block;
+	margin: 8px 8px 0;
+	aspect-ratio: 16 / 10;
+	overflow: hidden;
+	border: 1px solid var(--color-line);
+	border-radius: 12px;
+	background: var(--color-soft);
+}
+.card-screen > img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: top;
+	transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.group:hover .card-screen > img {
+	transform: scale(1.02);
+}
+
+/* The listing filters' select (components/FilterBar.tsx) takes the page's font rather than the browser's control font (its size is a utility, which comes after this), and draws its own chevron in the meta text colour of each scheme: the browser's own arrow sits wherever the widest option leaves it, against the text or the next label; ours keeps 12 px from the edge and 10 px from the text. */
+.sort-select {
+	font: inherit;
+	background-color: var(--color-panel);
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b707a' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: right 12px center;
+	background-size: 12px 12px;
+}
+@media (prefers-color-scheme: dark) {
+	.sort-select {
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238e939d' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+	}
+}
+
+/* Official app icons (MonoTile, and the small icons on the home page's lists and the app page's more-by list beside their utilities): the files already carry a 22.5% corner, so the box matches it, with a hairline ring so a white icon still has an edge on a white card. */
+.app-icon {
+	display: block;
+	object-fit: cover;
+	border-radius: 22.5%;
+	box-shadow: 0 0 0 1px var(--color-line-2);
+}
+
+/* The app page's 96px tile (routes/apps/$slug.tsx). A class, not utilities, because MonoTile in components/bits.tsx builds it as `mono-${size}` beside .mono-tile; it comes after .app-icon so its shadow wins over .app-icon's ring. The page shrinks it on phones from the tile's parent. */
+.mono-96 {
+	width: 96px;
+	height: 96px;
+	font-size: 40px;
+	box-shadow: var(--sh-2);
+}
+
+/* The metrics globe's palette (components/MetricsGlobe.tsx reads these in its SVG), scoped to its frame, with a dark set by the system setting. */
+.globe {
+	--globe-bg: #f4f8fd;
+	--globe-0: #ffffff;
+	--globe-1: #e6f0fe;
+	--globe-2: #d2e3fb;
+	--globe-ink: #007aff;
+	--globe-hi: #0062cc;
+	--globe-label: #5b606a;
+	--globe-tip: #ffffff;
+	--globe-tip-line: #e1e3e8;
+}
+@media (prefers-color-scheme: dark) {
+	.globe {
+		--globe-bg: #0d1219;
+		--globe-0: #1a2b40;
+		--globe-1: #11203a;
+		--globe-2: #0a1627;
+		--globe-ink: #3d9bff;
+		--globe-hi: #cfe6ff;
+		--globe-label: #a6abb4;
+		--globe-tip: #1b1e24;
+		--globe-tip-line: #272a31;
+	}
+}
+
+/* Pointer light on cards and tiles (.spot): a soft glow under the content and a blue edge, both centred on the pointer, whose position the page's one pointermove listener writes to --mx and --my (components/Background.tsx). Without a pointer they never show. The glow sits at z-index -1 inside the card's own stacking context, over its background and under its content. */
+.spot {
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+}
+.spot::before,
+.spot::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+	pointer-events: none;
+}
+.spot::before {
+	z-index: -1;
+	background: radial-gradient(280px circle at var(--mx, 50%) var(--my, 0%), var(--spot), transparent 70%);
+}
+.spot::after {
+	z-index: 1;
+	padding: 1px;
+	background: radial-gradient(220px circle at var(--mx, 50%) var(--my, 0%), var(--color-blue), transparent 72%);
+	-webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+	-webkit-mask-composite: xor;
+	mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
+.spot:hover::before,
+.spot:hover::after,
+.group:hover .spot::before,
+.group:hover .spot::after {
+	opacity: 1;
+}
+
+/* An icon chip (a category tile's, a platform cell's) that fills with the brand gradient and leans on its tile's hover. */
+.ichip {
+	transition: background 0.25s ease, color 0.25s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+}
+.group:hover .ichip,
+.tile:hover .ichip {
+	background: var(--gradient-brand);
+	color: #fff;
+	transform: rotate(-8deg) scale(1.06);
+	box-shadow: 0 8px 18px -8px rgb(0 98 204 / 0.6);
+}
+
+/* A large two-lane mark that slides into a tile's lower right corner on hover, behind the arrow, like lanes leaving the card; at rest it is hidden, so the tiles stay clean. */
+.tile-mark {
+	position: absolute;
+	right: -26px;
+	bottom: -16px;
+	z-index: -1;
+	width: 120px;
+	height: 90px;
+	background: var(--gradient-brand);
+	-webkit-mask: var(--lanes-mark) center / contain no-repeat;
+	mask: var(--lanes-mark) center / contain no-repeat;
+	opacity: 0;
+	transform: translateX(28px);
+	transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.35s;
+	pointer-events: none;
+}
+.tile:hover .tile-mark {
+	opacity: 0.16;
+	transform: none;
+}
+
+/* The primary button's sheen: a band of light that crosses it once as the pointer arrives. */
+.btn-c {
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+}
+.btn-c::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 45%;
+	background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.32), transparent);
+	transform: translateX(-130%) skewX(-20deg);
+	pointer-events: none;
+}
+.btn-c:hover::after {
+	transform: translateX(330%) skewX(-20deg);
+	transition: transform 0.75s cubic-bezier(0.2, 0.8, 0.2, 1);
+}

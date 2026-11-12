@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "ui-list",
+	"title": "List",
+	"file": "ui/list",
+	"summary": {
+		"en": "Rows of any number, built only in view, with selection and activation.",
+		"zh-CN": "任意数量的行，只构建显示中的部分，支持选择与激活。",
+		"zh-TW": "任意數量的列，只建立畫面中的部分，支援選取與啟用。",
+		"ja": "何行でも扱え、表示中の行だけを作るリスト。選択とアクティベートに対応。",
+		"ko": "몇 행이든 다루며 보이는 행만 만드는 목록. 선택과 활성화를 지원합니다."
+	}
+}

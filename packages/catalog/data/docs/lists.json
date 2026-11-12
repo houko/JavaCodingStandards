@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "lists",
+	"title": "Lists and scrolling",
+	"file": "lists",
+	"summary": {
+		"en": "Scroll views with native gestures, and lists that recycle rows for any number of items.",
+		"zh-CN": "带原生手势的滚动视图，以及为任意数量条目回收行的列表。",
+		"zh-TW": "具備原生手勢的捲動視圖，以及為任意數量項目重複利用列的清單。",
+		"ja": "ネイティブのジェスチャーで動くスクロールビューと、何件でも行を再利用するリスト。",
+		"ko": "네이티브 제스처로 움직이는 스크롤 뷰와, 항목 수에 상관없이 행을 재사용하는 목록."
+	}
+}

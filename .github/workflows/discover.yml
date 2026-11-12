@@ -1,0 +1,113 @@
+name: Discover projects
+
+# Once a day this looks on GitHub for projects built with NSGo (a go.mod that requires github.com/oneo-me/nsgo) that the site does not list yet, found through code search for such go.mod files and, for repositories code search has not indexed, through nsgo.yaml files, READMEs and names that mention NSGo, pkg.go.dev's importers, and the links of other curated lists of NSGo projects (AWESOME_LISTS in packages/enrich/src/find.ts, empty while there are none), asks the model whether each belongs on the site and as what (an app, UI components, state management, a template, an AI tool or a plugin), and opens a pull request for each one that does with packages/enrich (discover.ts). Each pull request is completed as a submission is (icon, screenshot, category and copy in every site language), has passed the catalog checks, and comes from the site's GitHub App so CI runs on it. Close one to keep the project off the site: a repository is not proposed again once a pull request of its branch (discover/<owner>/<name>) exists.
+#
+# It opens at most MAX_PRS pull requests a run, asks the model about at most MAX_TRIAGE repositories, looks for the go.mod of at most MAX_CHECK repositories found without one, and opens none while MAX_OPEN of its own are open. The repositories the model skipped are kept in the Actions cache and looked at again after 90 days (14 for one whose entry failed the checks, or at once in a run with retry_failed); a push or pull request that GitHub refused is not remembered, so the next run tries again. Losing the cache only means asking again. A repository made in the last week with commits on one day and no release or tag is not judged yet: it is looked at again a week later, whatever it shows then (tooNewToJudge in packages/enrich/src/find.ts); stars play no part. Each pull request it opens requests a review from REVIEWER (the repository variable, houko by default).
+#
+# Secrets: SUBMIT_APP_PRIVATE_KEY, LLM_API_KEY and optionally LLM_BASE_URL, as for the Complete submission workflow; the app's token also does the code search, which needs no permission. Variables: SUBMIT_APP_CLIENT_ID, and LLM_MODEL, default claude-opus-5-5.
+
+on:
+  schedule:
+    - cron: '23 2 * * *'
+  workflow_dispatch:
+    inputs:
+      max_prs:
+        description: Pull requests to open at most
+        default: '10'
+      max_triage:
+        description: Repositories to ask the model about at most
+        default: '30'
+      retry_failed:
+        description: Ask again about the repositories whose entry failed before, without waiting 14 days
+        type: boolean
+        default: false
+      dry_run:
+        description: Only report what it would propose
+        type: boolean
+        default: false
+
+concurrency:
+  group: discover-projects
+
+permissions:
+  contents: read
+
+jobs:
+  discover:
+    if: github.repository == 'yldm-tech/awesome-nsgo'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - id: app
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.SUBMIT_APP_CLIENT_ID }}
+          private-key: ${{ secrets.SUBMIT_APP_PRIVATE_KEY }}
+
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ steps.app.outputs.token }}
+          fetch-depth: 0
+
+      - name: Install ImageMagick with WebP
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends imagemagick webp fonts-dejavu-core
+          convert -list format | grep -qi '^ *WEBP' || { echo "::error::ImageMagick has no WebP support"; exit 1; }
+
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+
+      - name: Restore the repositories looked at before
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ runner.temp }}/discover-seen.json
+          key: discover-seen-${{ github.run_id }}
+          restore-keys: discover-seen-
+
+      - name: Commit as the bot
+        env:
+          GH_TOKEN: ${{ steps.app.outputs.token }}
+          BOT: ${{ steps.app.outputs.app-slug }}[bot]
+        run: |
+          git config user.name "$BOT"
+          git config user.email "$(gh api "users/$BOT" --jq .id)+$BOT@users.noreply.github.com"
+
+      - name: Find projects and open pull requests
+        env:
+          GITHUB_TOKEN: ${{ steps.app.outputs.token }}
+          LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          LLM_MODEL: ${{ vars.LLM_MODEL }}
+          SEEN_FILE: ${{ runner.temp }}/discover-seen.json
+          REPORT_FILE: ${{ runner.temp }}/discover-report.md
+          MAX_PRS: ${{ inputs.max_prs || '10' }}
+          MAX_TRIAGE: ${{ inputs.max_triage || '30' }}
+          MAX_OPEN: '20'
+          MAX_CHECK: '150'
+          DRY_RUN: ${{ inputs.dry_run && 'true' || 'false' }}
+          RETRY_FAILED: ${{ inputs.retry_failed && 'true' || 'false' }}
+          # Who reviews what the bot proposes: the bot triages, a person decides.
+          REVIEWER: ${{ vars.REVIEWER || 'houko' }}
+        run: pnpm --filter @awesome-nsgo/enrich discover
+
+      - id: summary
+        name: Summary
+        if: always()
+        run: |
+          report="$RUNNER_TEMP/discover-report.md"
+          if [[ -s "$report" ]]; then cat "$report" >> "$GITHUB_STEP_SUMMARY"; fi
+          if [[ -s "$RUNNER_TEMP/discover-seen.json" ]]; then echo "seen=true" >> "$GITHUB_OUTPUT"; fi
+
+      # hashFiles cannot see runner.temp, which is outside the workspace, so the step above says whether there is anything to save.
+      - name: Remember the repositories looked at
+        if: always() && steps.summary.outputs.seen == 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ runner.temp }}/discover-seen.json
+          key: discover-seen-${{ github.run_id }}

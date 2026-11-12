@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "ui-switch",
+	"title": "Switch",
+	"file": "ui/switch",
+	"summary": {
+		"en": "A setting that is on or off, in three sizes.",
+		"zh-CN": "打开或关闭的设置，有三种尺寸。",
+		"zh-TW": "開啟或關閉的設定，有三種尺寸。",
+		"ja": "オンかオフかの設定。3 つのサイズがあります。",
+		"ko": "켜거나 끄는 설정. 세 가지 크기가 있습니다."
+	}
+}

@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "debugging",
+	"title": "Running and debugging",
+	"file": "debugging",
+	"summary": {
+		"en": "Run an app on any target with hot reload, and see its errors, updates, speed and other languages.",
+		"zh-CN": "在任意目标上运行应用并热重载，查看它的错误、更新、性能和其他语言下的样子。",
+		"zh-TW": "在任何目標上執行應用程式並熱重載，查看它的錯誤、更新、效能，以及在其他語言下的樣子。",
+		"ja": "どのターゲットでもホットリロードでアプリを動かし、エラー、更新、速度、ほかの言語での表示を確かめます。",
+		"ko": "어떤 타깃에서든 핫 리로드로 앱을 실행하고, 오류, 업데이트, 속도, 다른 언어에서의 모습을 확인합니다."
+	}
+}

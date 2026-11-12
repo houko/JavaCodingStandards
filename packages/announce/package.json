@@ -1,0 +1,21 @@
+{
+	"name": "@awesome-nsgo/announce",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"description": "Posts an entry newly listed on the site to X, and tells the project in an issue on its repository",
+	"scripts": {
+		"announce": "node src/main.ts",
+		"unpost": "node src/unpost.ts",
+		"typecheck": "tsc --noEmit",
+		"test": "vitest run"
+	},
+	"dependencies": {
+		"twitter-api-v2": "^1.31.0"
+	},
+	"devDependencies": {
+		"@types/node": "^24.19.2",
+		"typescript": "^7.0.2",
+		"vitest": "^4.1.10"
+	}
+}

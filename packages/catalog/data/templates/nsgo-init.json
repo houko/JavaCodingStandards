@@ -1,0 +1,25 @@
+{
+	"$schema": "../schema/template.schema.json",
+	"slug": "nsgo-init",
+	"name": "nsgo init",
+	"author": "oneo-me",
+	"summary": {
+		"en": "NSGo's own starters: a Go counter app with nsgo.yaml and an nsgotest test, or with -template tsx an App.tsx app, or with -template mixed a TSX entry using Go it registers.",
+		"zh-CN": "NSGo 自带的起步模板：默认是附 nsgo.yaml 和 nsgotest 测试的 Go 计数器应用；-template tsx 生成 App.tsx 应用；-template mixed 生成调用自身 Go 注册内容的 TSX 入口。",
+		"zh-TW": "NSGo 內建的起步範本：預設是附 nsgo.yaml 和 nsgotest 測試的 Go 計數器應用程式；-template tsx 產生 App.tsx 應用程式；-template mixed 產生呼叫自身 Go 註冊內容的 TSX 入口。",
+		"ja": "NSGo 付属のスターター。既定は nsgo.yaml と nsgotest のテスト付きの Go カウンターアプリ、-template tsx なら App.tsx のアプリ、-template mixed なら自前の Go を呼ぶ TSX エントリーを作ります。",
+		"ko": "NSGo에 들어 있는 스타터. 기본은 nsgo.yaml과 nsgotest 테스트가 딸린 Go 카운터 앱이고, -template tsx는 App.tsx 앱을, -template mixed는 직접 등록한 Go를 쓰는 TSX 진입점을 만듭니다."
+	},
+	"repo": "oneo-me/nsgo",
+	"url": "https://oneo-me.github.io/nsgo/docs/getting-started/#create-an-app",
+	"homepage": "https://github.com/oneo-me/nsgo/tree/main/cmd/nsgo",
+	"surface": "both",
+	"use": "go run github.com/oneo-me/nsgo/cmd/nsgo@latest init -module example.com/my-app my-app",
+	"tags": [
+		"official",
+		"go",
+		"tsx",
+		"nsgotest"
+	],
+	"added": "2026-11-10T13:57:58Z"
+}

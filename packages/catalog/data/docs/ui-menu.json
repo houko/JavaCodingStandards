@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "ui-menu",
+	"title": "Menu",
+	"file": "ui/menu",
+	"summary": {
+		"en": "A menu from a trigger, a context menu and their items.",
+		"zh-CN": "从触发器打开的菜单、上下文菜单及其条目。",
+		"zh-TW": "從觸發元件開啟的選單、內容選單及其項目。",
+		"ja": "トリガーから開くメニュー、コンテキストメニューとその項目。",
+		"ko": "트리거에서 여는 메뉴, 컨텍스트 메뉴와 그 항목."
+	}
+}

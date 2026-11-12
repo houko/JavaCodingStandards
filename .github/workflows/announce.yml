@@ -1,0 +1,89 @@
+name: Tell the project it was listed
+
+# Every app, plugin, UI library, state management solution, template or AI tool a push to main adds (a new file in packages/catalog/data/apps, plugins, ui, state, templates or ai; a renamed one is not new) is announced to its project with packages/announce: the job opens an issue on the project's own GitHub repository saying it was listed, with its page on the site, the README badge's Markdown to link back, and where its score will show with what would raise it, from its license and releases on GitHub (packages/announce/src/issue.ts). Posting to X is turned off: this workflow passes packages/announce none of the X keys, so it never posts, even when the repository has X secrets. Each entry is a job of its own, one at a time, and each job waits for the site to list the entry first, since Workers Builds deploys main on its own. A repository is told once, and not at all when its issues are off, it is archived, or it belongs to this site's owner or to NSGo's author (oneo-me), whose projects are NSGo's own. Run it by hand to tell projects of entries again, to see their issues without opening them, or with issue_only for entries announced before the workflow opened any.
+#
+# Secrets: NOTIFY_GITHUB_TOKEN, a classic personal access token with the public_repo scope of the account the issues come from: neither this workflow's token nor a GitHub App's can open an issue on a repository they are not installed on. Without it the issues are only printed.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - packages/catalog/data/apps/*.json
+      - packages/catalog/data/plugins/*.json
+      - packages/catalog/data/ui/*.json
+      - packages/catalog/data/state/*.json
+      - packages/catalog/data/templates/*.json
+      - packages/catalog/data/ai/*.json
+  workflow_dispatch:
+    inputs:
+      entries:
+        description: Entries to announce, space-separated, as paths under packages/catalog/data (e.g. ui/nsgo-kubai-icons.json apps/flow-editor.json); with issue_only, a path may end in =<its post on X> for the issue to link to
+        required: true
+      dry_run:
+        description: Only print the issues
+        type: boolean
+        default: true
+      issue_only:
+        description: Open only the issues, without posting, for entries announced before issues were opened
+        type: boolean
+        default: false
+
+# No concurrency group: GitHub keeps one pending run per group and cancels the one before, so of three merges in a row the middle one's entries would never be posted. Runs of different pushes post side by side; a run's own entries still go one at a time.
+
+permissions:
+  contents: read
+
+jobs:
+  find:
+    runs-on: ubuntu-latest
+    outputs:
+      entries: ${{ steps.find.outputs.entries }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - id: find
+        env:
+          BEFORE: ${{ github.event.before }}
+          INPUT: ${{ inputs.entries }}
+        run: |
+          if [[ "$GITHUB_EVENT_NAME" == workflow_dispatch ]]; then
+            list=$(tr -s ' \t' '\n' <<< "$INPUT")
+          else
+            list=$(git diff --name-only --diff-filter=A -M "$BEFORE" "$GITHUB_SHA" -- 'packages/catalog/data/apps/*.json' 'packages/catalog/data/plugins/*.json' 'packages/catalog/data/ui/*.json' 'packages/catalog/data/state/*.json' 'packages/catalog/data/templates/*.json' 'packages/catalog/data/ai/*.json' | sed 's#^packages/catalog/data/##')
+          fi
+          entries=$(jq -Rnc '[inputs | select(length > 0)]' <<< "$list")
+          echo "Entries: $entries"
+          # A push that adds more than a handful is a reorganization of the data, like the one that gave every entry a file of its own, not a batch of new listings.
+          if [[ "$GITHUB_EVENT_NAME" == push && $(jq length <<< "$entries") -gt 5 ]]; then
+            echo "::error::This push adds $(jq length <<< "$entries") entries, more than 5, so none is posted. Run the workflow by hand with the ones that are new."
+            exit 1
+          fi
+          echo "entries=$entries" >> "$GITHUB_OUTPUT"
+
+  post:
+    needs: find
+    if: needs.find.outputs.entries != '[]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      max-parallel: 1
+      fail-fast: false
+      matrix:
+        entry: ${{ fromJSON(needs.find.outputs.entries) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile --filter @awesome-nsgo/announce
+      - name: Tell ${{ matrix.entry }}'s project
+        env:
+          ENTRY: ${{ matrix.entry }}
+          DRY_RUN: ${{ inputs.dry_run }}
+          ISSUE_ONLY: ${{ inputs.issue_only }}
+          GITHUB_TOKEN: ${{ github.token }}
+          NOTIFY_GITHUB_TOKEN: ${{ secrets.NOTIFY_GITHUB_TOKEN }}
+        run: pnpm --filter @awesome-nsgo/announce announce "$ENTRY"

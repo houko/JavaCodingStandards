@@ -1,0 +1,22 @@
+{
+	"$schema": "../schema/plugin.schema.json",
+	"slug": "editor",
+	"name": "Code editor",
+	"mark": "Ed",
+	"official": true,
+	"surface": "both",
+	"import": "github.com/oneo-me/nsgo/base/editor",
+	"tags": [
+		"code",
+		"highlighting"
+	],
+	"docs": "https://pkg.go.dev/github.com/oneo-me/nsgo/base/editor",
+	"summary": {
+		"en": "A code editor: syntax highlighting, line numbers, several carets, folding, soft wrap, find and replace, diagnostics, completion and go to definition.",
+		"zh-CN": "代码编辑器：语法高亮、行号、多光标、折叠、软换行、查找替换、诊断信息、补全和跳转到定义。",
+		"zh-TW": "程式碼編輯器：語法醒目提示、行號、多游標、折疊、自動換行、尋找與取代、診斷、自動完成和跳至定義。",
+		"ja": "コードエディター。シンタックスハイライト、行番号、複数キャレット、折りたたみ、ソフトラップ、検索と置換、診断、補完、定義へ移動に対応します。",
+		"ko": "코드 편집기: 구문 강조, 줄 번호, 다중 캐럿, 접기, 자동 줄 바꿈, 찾기와 바꾸기, 진단, 자동 완성, 정의로 이동."
+	},
+	"added": "2026-11-10T13:58:43Z"
+}

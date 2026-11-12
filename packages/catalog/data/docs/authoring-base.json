@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "authoring-base",
+	"title": "Unstyled components",
+	"file": "authoring/base",
+	"summary": {
+		"en": "NSGo's own controls without a look, to style part by part or to build a styled library on.",
+		"zh-CN": "NSGo 自己的无外观控件，可以逐个部件设置样式，或在其上构建带样式的组件库。",
+		"zh-TW": "NSGo 自己的無外觀控制項，可以逐一為部件設定樣式，或在其上打造樣式化元件庫。",
+		"ja": "見た目を持たない NSGo 自身のコントロール。部品ごとにスタイルを付けたり、スタイル付きライブラリの土台にしたりできます。",
+		"ko": "모양이 없는 NSGo 자체 컨트롤. 부분마다 스타일을 입히거나 스타일 라이브러리의 바탕으로 씁니다."
+	}
+}

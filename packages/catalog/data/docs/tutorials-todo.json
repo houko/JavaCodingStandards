@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "tutorials-todo",
+	"title": "Example: A todo app",
+	"file": "tutorials/todo",
+	"summary": {
+		"en": "Build a small todo app step by step, with signals, a list and a test.",
+		"zh-CN": "用 signal、列表和测试，一步一步构建一个小型待办应用。",
+		"zh-TW": "用 signal、清單和測試，一步一步打造一個小型待辦應用程式。",
+		"ja": "signal、リスト、テストを使い、小さな ToDo アプリを一歩ずつ作ります。",
+		"ko": "signal, 목록, 테스트로 작은 할 일 앱을 한 단계씩 만듭니다."
+	}
+}

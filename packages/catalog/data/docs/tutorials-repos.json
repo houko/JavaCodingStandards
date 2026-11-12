@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "tutorials-repos",
+	"title": "Example: Popular GitHub repositories",
+	"file": "tutorials/repos",
+	"summary": {
+		"en": "List the most-starred Go repositories from GitHub's API, loading on a goroutine with a spinner, errors and a retry.",
+		"zh-CN": "从 GitHub API 列出 star 最多的 Go 仓库，在 goroutine 中加载，并显示加载指示、错误和重试。",
+		"zh-TW": "從 GitHub API 列出 star 最多的 Go 儲存庫，在 goroutine 中載入，並顯示載入指示、錯誤與重試。",
+		"ja": "GitHub の API からスターの多い Go リポジトリを一覧にします。goroutine で読み込み、スピナー、エラー、再試行も扱います。",
+		"ko": "GitHub API에서 별이 가장 많은 Go 저장소를 나열합니다. 고루틴에서 불러오며 스피너, 오류, 재시도를 다룹니다."
+	}
+}

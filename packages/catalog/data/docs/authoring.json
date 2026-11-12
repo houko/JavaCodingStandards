@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "authoring",
+	"title": "Writing components",
+	"file": "authoring",
+	"summary": {
+		"en": "Make components other people put in their apps, as NSGo's own base and ui are made.",
+		"zh-CN": "编写给别人放进应用里的组件，方式与 NSGo 自己的 base 和 ui 相同。",
+		"zh-TW": "撰寫讓別人放進應用程式裡的元件，做法與 NSGo 自己的 base 和 ui 相同。",
+		"ja": "ほかの人がアプリに入れるコンポーネントを、NSGo 自身の base や ui と同じやり方で作ります。",
+		"ko": "다른 사람이 앱에 넣을 컴포넌트를 NSGo의 base와 ui를 만드는 방식 그대로 만듭니다."
+	}
+}

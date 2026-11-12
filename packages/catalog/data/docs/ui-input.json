@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "ui-input",
+	"title": "Input",
+	"file": "ui/input",
+	"summary": {
+		"en": "The platform's text field, controlled or not, with focus and the software keyboard.",
+		"zh-CN": "平台的文本框，受控或非受控，带焦点和软件键盘。",
+		"zh-TW": "平台的文字欄位，受控或非受控，含焦點與軟體鍵盤。",
+		"ja": "プラットフォームのテキストフィールド。制御・非制御のどちらでも使え、フォーカスとソフトウェアキーボードを扱います。",
+		"ko": "플랫폼의 텍스트 필드. 제어·비제어 모두 가능하며 포커스와 소프트웨어 키보드를 다룹니다."
+	}
+}

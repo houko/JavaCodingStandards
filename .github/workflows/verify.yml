@@ -1,0 +1,84 @@
+name: Verify listed projects
+
+# Once a week this looks up the GitHub repository of every entry that names one (apps, UI libraries, state management, templates, AI tools and community plugins) and opens a pull request for each entry whose repository says it has changed, with packages/enrich (verify.ts). Only what the repository states is changed: an entry whose repository is gone (deleted, made private or disabled) is removed with its images, unless the site's code names its slug, as the home page's featured apps do; one GitHub renamed or transferred gets its new owner/name; a UI library or state management library without a homepage gets the one its repository's settings now give; and a stand-in image (the entry's provisional list) is replaced once the project has its own. An archived repository, and one in which no go.mod requires NSGo any more, are only listed in the run's summary, as whether such an entry stays is a judgment; prune.yml proposes taking such entries off, in a pull request a maintainer merges.
+#
+# Each entry has one pull request at a time, on the branch verify/<dir>/<slug>, from the site's GitHub App so CI runs on it; each has passed the catalog checks. Merge one to apply it; close one to keep the entry as it is, and the same change is not proposed again. It opens at most MAX_PRS pull requests a run, and none while MAX_OPEN of its own are open.
+#
+# Secrets: SUBMIT_APP_PRIVATE_KEY, as for the Discover projects workflow. Variables: SUBMIT_APP_CLIENT_ID. No model is asked.
+
+on:
+  schedule:
+    - cron: '41 3 * * 1'
+  workflow_dispatch:
+    inputs:
+      max_prs:
+        description: Pull requests to open at most
+        default: '10'
+      only:
+        description: Entries to check, space-separated <dir>/<slug> (e.g. apps/handbean ui/uix); all when empty
+        default: ''
+      dry_run:
+        description: Only report what it would change
+        type: boolean
+        default: false
+
+concurrency:
+  group: verify-listed
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    if: github.repository == 'yldm-tech/awesome-nsgo'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - id: app
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.SUBMIT_APP_CLIENT_ID }}
+          private-key: ${{ secrets.SUBMIT_APP_PRIVATE_KEY }}
+
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ steps.app.outputs.token }}
+          fetch-depth: 0
+
+      - name: Install ImageMagick with WebP
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends imagemagick webp fonts-dejavu-core
+          convert -list format | grep -qi '^ *WEBP' || { echo "::error::ImageMagick has no WebP support"; exit 1; }
+
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+
+      - name: Commit as the bot
+        env:
+          GH_TOKEN: ${{ steps.app.outputs.token }}
+          BOT: ${{ steps.app.outputs.app-slug }}[bot]
+        run: |
+          git config user.name "$BOT"
+          git config user.email "$(gh api "users/$BOT" --jq .id)+$BOT@users.noreply.github.com"
+
+      - name: Check the listed entries and open pull requests
+        env:
+          GITHUB_TOKEN: ${{ steps.app.outputs.token }}
+          REPORT_FILE: ${{ runner.temp }}/verify-report.md
+          MAX_PRS: ${{ inputs.max_prs || '10' }}
+          MAX_OPEN: '20'
+          ONLY: ${{ inputs.only }}
+          DRY_RUN: ${{ inputs.dry_run && 'true' || 'false' }}
+        run: pnpm --filter @awesome-nsgo/enrich verify
+
+      - name: Summary
+        if: always()
+        run: |
+          report="$RUNNER_TEMP/verify-report.md"
+          if [[ -s "$report" ]]; then cat "$report" >> "$GITHUB_STEP_SUMMARY"; fi

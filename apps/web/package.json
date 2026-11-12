@@ -1,0 +1,42 @@
+{
+	"name": "@awesome-nsgo/web",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"description": "Awesome NSGo site, server-rendered by TanStack Start on Cloudflare Workers",
+	"scripts": {
+		"dev": "vite dev --configLoader runner",
+		"build": "vite build --configLoader runner",
+		"preview": "vite preview --configLoader runner",
+		"typecheck": "tsc --noEmit",
+		"deploy": "pnpm run build && wrangler d1 migrations apply awesome-nsgo --remote && wrangler deploy",
+		"cf-typegen": "wrangler types"
+	},
+	"dependencies": {
+		"@awesome-nsgo/catalog": "workspace:*",
+		"@awesome-nsgo/enrich": "workspace:*",
+		"@octokit/auth-app": "^8.3.1",
+		"@octokit/core": "^7.0.8",
+		"@tanstack/react-router": "^1.170.46",
+		"@tanstack/react-start": "^1.169.4",
+		"image-size": "^2.0.4",
+		"react": "^19.3.1",
+		"react-dom": "^19.3.1"
+	},
+	"devDependencies": {
+		"@cloudflare/vite-plugin": "^1.65.0",
+		"@tailwindcss/vite": "^4.3.3",
+		"@types/react": "^19.3.0",
+		"@types/react-dom": "^19.3.0",
+		"@vitejs/plugin-react": "^6.1.2",
+		"satori": "^0.19.3",
+		"sharp": "^0.34.5",
+		"tailwindcss": "^4.3.3",
+		"typescript": "^7.0.2",
+		"vite": "^8.3.5",
+		"wrangler": "^4.155.0"
+	},
+	"engines": {
+		"node": ">=24.0.0"
+	}
+}

@@ -1,0 +1,22 @@
+{
+	"$schema": "../schema/plugin.schema.json",
+	"slug": "mobile",
+	"name": "Mobile",
+	"mark": "Mb",
+	"official": true,
+	"surface": "both",
+	"import": "github.com/oneo-me/nsgo/mobile",
+	"tags": [
+		"tab-bar",
+		"keyboard"
+	],
+	"docs": "https://oneo-me.github.io/nsgo/docs/navigation/#tabs",
+	"summary": {
+		"en": "What only iOS and Android have: the system's tab bar and a bar above the software keyboard. Elsewhere its components take no room.",
+		"zh-CN": "只有 iOS 和 Android 才有的能力：系统标签栏，以及软键盘上方的工具栏。在其他平台上，这些组件不占空间。",
+		"zh-TW": "只有 iOS 與 Android 才有的能力：系統分頁列，以及軟體鍵盤上方的工具列。在其他平台上，這些元件不占空間。",
+		"ja": "iOS と Android だけにあるもの：システムのタブバーと、ソフトウェアキーボードの上のバー。ほかのプラットフォームでは場所を取りません。",
+		"ko": "iOS와 Android에만 있는 기능: 시스템 탭 바와 소프트웨어 키보드 위의 바. 다른 플랫폼에서는 자리를 차지하지 않습니다."
+	},
+	"added": "2026-11-10T13:58:16Z"
+}

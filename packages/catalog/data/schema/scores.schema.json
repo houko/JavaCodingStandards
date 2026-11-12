@@ -1,0 +1,152 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "scores.schema.json",
+	"title": "The raw signals each entry's score is computed from (packages/catalog/src/score.ts). Only the scheduled Update scores workflow writes this file.",
+	"type": "object",
+	"additionalProperties": false,
+	"required": [
+		"$schema",
+		"asOf",
+		"entries"
+	],
+	"properties": {
+		"$schema": {
+			"const": "./schema/scores.schema.json"
+		},
+		"asOf": {
+			"description": "The UTC day the signals were taken on; null until the workflow first runs.",
+			"oneOf": [
+				{
+					"$ref": "#/$defs/day"
+				},
+				{
+					"type": "null"
+				}
+			]
+		},
+		"entries": {
+			"type": "object",
+			"description": "Each entry's signals by its key, the same as its like key.",
+			"propertyNames": {
+				"pattern": "^(app|ui|state|plugin):\\S+$"
+			},
+			"additionalProperties": {
+				"$ref": "#/$defs/signals"
+			}
+		}
+	},
+	"$defs": {
+		"day": {
+			"type": "string",
+			"pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+			"description": "A day, YYYY-MM-DD."
+		},
+		"count": {
+			"type": "integer",
+			"minimum": 0
+		},
+		"signals": {
+			"type": "object",
+			"description": "What was measured of one entry. A field that is left out was not measured, except released (never released) and archived (not archived).",
+			"additionalProperties": false,
+			"required": [
+				"likes"
+			],
+			"properties": {
+				"repo": {
+					"$ref": "common.schema.json#/$defs/repo",
+					"description": "The repository measured; left out for a closed-source entry, which has only its likes."
+				},
+				"path": {
+					"type": "string",
+					"minLength": 1,
+					"description": "The folder of the repository the entry lives in (an official package inside oneo-me/nsgo): its activity is the folder's, and its stars are not recorded."
+				},
+				"stars": {
+					"$ref": "#/$defs/count"
+				},
+				"weeks": {
+					"type": "integer",
+					"minimum": 0,
+					"maximum": 12,
+					"description": "Of the last 12 full weeks before asOf, how many the entry could have had commits in."
+				},
+				"activeWeeks": {
+					"type": "integer",
+					"minimum": 0,
+					"maximum": 12,
+					"description": "How many of those weeks had commits; at most weeks."
+				},
+				"license": {
+					"type": [
+						"string",
+						"null"
+					],
+					"minLength": 1,
+					"description": "The SPDX id GitHub detects, NOASSERTION for a license it cannot name, or null for a public repository without one."
+				},
+				"osi": {
+					"type": "boolean",
+					"description": "Whether the license is one the Open Source Initiative approves."
+				},
+				"released": {
+					"$ref": "#/$defs/day",
+					"description": "The day of the latest release or tag."
+				},
+				"releaseDays": {
+					"type": "integer",
+					"minimum": 0,
+					"maximum": 84,
+					"description": "On how many days in the rolling 12-week window through asOf the repository published a release or had a tag."
+				},
+				"archived": {
+					"const": true
+				},
+				"likes": {
+					"$ref": "#/$defs/count"
+				}
+			},
+			"dependentRequired": {
+				"path": [
+					"repo"
+				],
+				"stars": [
+					"repo"
+				],
+				"weeks": [
+					"repo",
+					"activeWeeks"
+				],
+				"activeWeeks": [
+					"repo",
+					"weeks"
+				],
+				"license": [
+					"repo"
+				],
+				"osi": [
+					"repo",
+					"license"
+				],
+				"released": [
+					"repo"
+				],
+				"releaseDays": [
+					"repo"
+				],
+				"archived": [
+					"repo"
+				]
+			},
+			"dependentSchemas": {
+				"path": {
+					"not": {
+						"required": [
+							"stars"
+						]
+					}
+				}
+			}
+		}
+	}
+}

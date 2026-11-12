@@ -1,0 +1,23 @@
+{
+	"$schema": "../schema/plugin.schema.json",
+	"slug": "desktop",
+	"name": "Desktop",
+	"mark": "Dk",
+	"official": true,
+	"surface": "both",
+	"import": "github.com/oneo-me/nsgo/desktop",
+	"tags": [
+		"windows",
+		"menus",
+		"tray"
+	],
+	"docs": "https://oneo-me.github.io/nsgo/docs/components/#desktop-apps",
+	"summary": {
+		"en": "What only desktops have: windows and panels, the title bar, menus, tray icons and global shortcuts. It builds everywhere and does nothing on phones; the title bar and menus act on macOS, Windows and Linux, while the windows and panels an app opens itself, tray icons and global shortcuts work on macOS for now.",
+		"zh-CN": "只有桌面才有的能力：窗口与面板、标题栏、菜单、托盘图标和全局快捷键。各平台都能编译，在手机上调用不起作用；标题栏和菜单在 macOS、Windows、Linux 上都有效，而应用自己打开的窗口与面板、托盘图标和全局快捷键目前只支持 macOS。",
+		"zh-TW": "只有桌面才有的能力：視窗與面板、標題列、選單、系統匣圖示和全域快速鍵。各平台都能編譯，在手機上呼叫不會有作用；標題列和選單在 macOS、Windows、Linux 上都有效，而應用程式自行開啟的視窗與面板、系統匣圖示和全域快速鍵目前只支援 macOS。",
+		"ja": "デスクトップだけにあるもの：ウィンドウとパネル、タイトルバー、メニュー、トレイアイコン、グローバルショートカット。どこでもビルドでき、スマートフォンでは何もしません。タイトルバーとメニューは macOS・Windows・Linux で働きますが、アプリが自分で開くウィンドウやパネル、トレイアイコン、グローバルショートカットは今のところ macOS のみです。",
+		"ko": "데스크톱에만 있는 기능: 창과 패널, 제목 표시줄, 메뉴, 트레이 아이콘, 전역 단축키. 모든 플랫폼에서 빌드되며 휴대폰에서는 아무 일도 하지 않습니다. 제목 표시줄과 메뉴는 macOS, Windows, Linux에서 동작하지만, 앱이 직접 여는 창과 패널, 트레이 아이콘, 전역 단축키는 현재 macOS에서만 동작합니다."
+	},
+	"added": "2026-11-10T13:58:13Z"
+}

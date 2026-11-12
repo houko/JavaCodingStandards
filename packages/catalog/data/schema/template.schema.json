@@ -1,0 +1,84 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "template.schema.json",
+	"title": "A template that NSGo apps start from, one file per template named after its slug",
+	"type": "object",
+	"additionalProperties": false,
+	"required": [
+		"slug",
+		"name",
+		"author",
+		"summary",
+		"repo",
+		"url",
+		"surface",
+		"use",
+		"tags",
+		"added"
+	],
+	"properties": {
+		"$schema": {
+			"type": "string"
+		},
+		"slug": {
+			"$ref": "common.schema.json#/$defs/slug"
+		},
+		"name": {
+			"type": "string",
+			"minLength": 1
+		},
+		"author": {
+			"type": "string",
+			"minLength": 1
+		},
+		"summary": {
+			"$ref": "common.schema.json#/$defs/text"
+		},
+		"repo": {
+			"$ref": "common.schema.json#/$defs/repo"
+		},
+		"url": {
+			"$ref": "common.schema.json#/$defs/url"
+		},
+		"homepage": {
+			"$ref": "common.schema.json#/$defs/url"
+		},
+		"surface": {
+			"enum": [
+				"go",
+				"tsx",
+				"both"
+			],
+			"description": "The language the apps it starts are written in: Go, TSX, or both (a TSX app with Go of its own)."
+		},
+		"use": {
+			"type": "string",
+			"minLength": 1,
+			"description": "The command that starts a project from it, e.g. gh repo create my-app --template owner/name --clone"
+		},
+		"tags": {
+			"type": "array",
+			"minItems": 1,
+			"items": {
+				"type": "string"
+			}
+		},
+		"screenshot": {
+			"$ref": "common.schema.json#/$defs/screenshot"
+		},
+		"provisional": {
+			"type": "array",
+			"minItems": 1,
+			"uniqueItems": true,
+			"items": {
+				"enum": [
+					"screenshot"
+				]
+			},
+			"description": "The images that stand in until the project gives its own: GitHub's card of the repository or a card drawn of it for a screenshot. The completing script sets it; the announcement's issue asks the project for them; whoever replaces one drops it from the list."
+		},
+		"added": {
+			"$ref": "common.schema.json#/$defs/added"
+		}
+	}
+}

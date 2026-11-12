@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "comparison",
+	"title": "Compared with other frameworks",
+	"file": "comparison",
+	"summary": {
+		"en": "Where NSGo fits beside NSH, MyGo and other UI frameworks, and what it gives up.",
+		"zh-CN": "NSGo 与 NSH、MyGo 及其他 UI 框架相比处在什么位置，又放弃了什么。",
+		"zh-TW": "NSGo 與 NSH、MyGo 及其他 UI 框架相比處在什麼位置，又捨棄了什麼。",
+		"ja": "NSH や MyGo などほかの UI フレームワークと比べた NSGo の立ち位置と、あきらめているもの。",
+		"ko": "NSH, MyGo 등 다른 UI 프레임워크와 비교한 NSGo의 위치와 포기한 것."
+	}
+}

@@ -1,0 +1,28 @@
+{
+	"$schema": "../schema/app.schema.json",
+	"slug": "nsgo-gallery-tsx",
+	"name": "Gallery TSX",
+	"author": "oneo-me",
+	"kind": "tsx",
+	"platforms": ["mac", "ios", "web"],
+	"category": "DeveloperApplication",
+	"group": "dev",
+	"url": "https://github.com/oneo-me/nsgo/tree/main/examples/gallery-tsx",
+	"repo": "oneo-me/nsgo",
+	"summary": {
+		"en": "NSGo's gallery written in TSX with Tailwind classes, compiled ahead of time with no Node.",
+		"zh-CN": "用 TSX 和 Tailwind 类名重写的 NSGo 组件画廊，提前编译，工具链里不需要 Node。",
+		"zh-TW": "以 TSX 和 Tailwind 類別重寫的 NSGo 元件展示，預先編譯，工具鏈中不需要 Node。",
+		"ja": "TSX と Tailwind クラスで書いた NSGo のギャラリー。事前コンパイルで、Node は不要です。",
+		"ko": "TSX와 Tailwind 클래스로 작성한 NSGo 갤러리. 미리 컴파일되며 Node가 필요 없습니다."
+	},
+	"description": {
+		"en": "The same gallery written in TSX with Tailwind classes, on nsgo/ui, nsgo/ui/chat and nsgo/base, compiled ahead with no Node in the toolchain. tsx/ui gives TSX the ui package's components, so they look as they do in a Go app; demo apps such as Stocks sit beside them.",
+		"zh-CN": "同一个画廊，改用 TSX 和 Tailwind 类名编写，基于 nsgo/ui、nsgo/ui/chat 和 nsgo/base，提前编译，工具链里没有 Node。tsx/ui 把 ui 包的组件提供给 TSX，所以它们的样子和在 Go 应用里一样；旁边还有股票等示例应用。",
+		"zh-TW": "同一個展示應用，改用 TSX 和 Tailwind 類別撰寫，建構在 nsgo/ui、nsgo/ui/chat 與 nsgo/base 上，預先編譯，工具鏈中沒有 Node。tsx/ui 把 ui 套件的元件提供給 TSX，因此外觀與在 Go 應用程式中相同；旁邊還有股票等範例應用程式。",
+		"ja": "同じギャラリーを TSX と Tailwind クラスで書いたもので、nsgo/ui、nsgo/ui/chat、nsgo/base の上に作られ、Node を使わずに事前コンパイルされます。tsx/ui が ui パッケージのコンポーネントを TSX に提供するので、見た目は Go アプリと同じです。株価などのデモアプリも並びます。",
+		"ko": "같은 갤러리를 TSX와 Tailwind 클래스로 작성한 것으로, nsgo/ui, nsgo/ui/chat, nsgo/base 위에 만들어졌고 툴체인에 Node 없이 미리 컴파일됩니다. tsx/ui가 ui 패키지의 컴포넌트를 TSX에 제공하므로 Go 앱에서와 같은 모습으로 보이며, 주식 같은 데모 앱도 함께 있습니다."
+	},
+	"screenshot": "nsgo-gallery-tsx.webp",
+	"added": "2026-11-10T13:57:34Z"
+}

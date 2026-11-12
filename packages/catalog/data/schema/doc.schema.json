@@ -1,0 +1,33 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "doc.schema.json",
+	"title": "One of the official NSGo guides, one file per guide named after its slug",
+	"type": "object",
+	"additionalProperties": false,
+	"required": [
+		"slug",
+		"title",
+		"file",
+		"summary"
+	],
+	"properties": {
+		"$schema": {
+			"type": "string"
+		},
+		"slug": {
+			"$ref": "common.schema.json#/$defs/slug"
+		},
+		"title": {
+			"type": "string",
+			"minLength": 1
+		},
+		"file": {
+			"type": "string",
+			"pattern": "^([a-z0-9-]+(/[a-z0-9-]+)*)?$",
+			"description": "The page's path under the NSGo docs, https://oneo-me.github.io/nsgo/docs/, with no leading or trailing slash, such as getting-started, tutorials/todo or ui/button; the introduction, the docs' own index, is the empty string."
+		},
+		"summary": {
+			"$ref": "common.schema.json#/$defs/text"
+		}
+	}
+}

@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "styles",
+	"title": "Styles and themes",
+	"file": "styles",
+	"summary": {
+		"en": "Typed styles, Tailwind classes, state styles, and light and dark themes.",
+		"zh-CN": "类型化样式、Tailwind 类名、状态样式，以及浅色和深色主题。",
+		"zh-TW": "型別化樣式、Tailwind 類別、狀態樣式，以及淺色與深色主題。",
+		"ja": "型付きのスタイル、Tailwind クラス、状態ごとのスタイル、ライトとダークのテーマ。",
+		"ko": "타입이 있는 스타일, Tailwind 클래스, 상태 스타일, 라이트·다크 테마."
+	}
+}

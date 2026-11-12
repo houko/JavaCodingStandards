@@ -1,0 +1,22 @@
+{
+	"$schema": "../schema/plugin.schema.json",
+	"slug": "nsgotest",
+	"name": "nsgotest",
+	"mark": "Te",
+	"official": true,
+	"surface": "go",
+	"import": "github.com/oneo-me/nsgo/nsgotest",
+	"tags": [
+		"testing",
+		"headless"
+	],
+	"docs": "https://oneo-me.github.io/nsgo/docs/testing/",
+	"summary": {
+		"en": "Runs NSGo apps in Go tests as httptest runs handlers: headless by default, or on a platform with native input under nsgo test -target, with Playwright-style selectors.",
+		"zh-CN": "像 httptest 运行 handler 那样在 Go 测试中运行 NSGo 应用：默认无窗口，也可以用 nsgo test -target 在真实平台上配合原生输入运行，选择器写法类似 Playwright。",
+		"zh-TW": "像 httptest 執行 handler 那樣在 Go 測試中執行 NSGo 應用程式：預設無視窗，也能用 nsgo test -target 在實際平台上搭配原生輸入執行，選擇器寫法類似 Playwright。",
+		"ja": "httptest がハンドラーを動かすように、Go のテストで NSGo アプリを動かします。既定はヘッドレスで、nsgo test -target ならプラットフォーム上でネイティブ入力を使います。セレクターは Playwright 風です。",
+		"ko": "httptest가 핸들러를 돌리듯 Go 테스트에서 NSGo 앱을 실행합니다. 기본은 헤드리스이고, nsgo test -target으로 실제 플랫폼에서 네이티브 입력으로도 돌리며, 셀렉터는 Playwright 방식입니다."
+	},
+	"added": "2026-11-10T13:58:31Z"
+}

@@ -1,0 +1,331 @@
+/* The backdrop behind the top of every page (components/Background.tsx): three soft colour fields (blue, violet, cyan) drifting slowly, a field of dots on a 22px grid that fades out downwards, and a few lanes streaking across like NSGo's speed lines. It sits in the page's flow (absolute, not fixed), so scrolling repaints nothing, and every move is a transform or an opacity, which the compositor runs without layout or paint. The two lanes drifting over the home hero belong to routes/index.tsx, placed in the space above its Newest card. With reduced motion everything stands still and the streaks are hidden (styles/motion.css). */
+.backdrop-aurora {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+}
+.aurora {
+	position: absolute;
+	border-radius: 50%;
+	will-change: transform;
+}
+.aurora.a1 {
+	left: -14%;
+	top: -360px;
+	width: 70%;
+	height: 820px;
+	background: radial-gradient(closest-side, var(--aurora-1), transparent);
+	animation: aurora-a 22s ease-in-out infinite alternate;
+}
+.aurora.a2 {
+	right: -10%;
+	top: -300px;
+	width: 56%;
+	height: 700px;
+	background: radial-gradient(closest-side, var(--aurora-2), transparent);
+	animation: aurora-b 26s ease-in-out infinite alternate;
+}
+.aurora.a3 {
+	left: 30%;
+	top: 80px;
+	width: 46%;
+	height: 520px;
+	background: radial-gradient(closest-side, var(--aurora-3), transparent);
+	animation: aurora-c 19s ease-in-out infinite alternate;
+}
+@keyframes aurora-a {
+	to {
+		transform: translate(8%, 60px) scale(1.12);
+	}
+}
+@keyframes aurora-b {
+	to {
+		transform: translate(-12%, 90px) scale(0.92);
+	}
+}
+@keyframes aurora-c {
+	to {
+		transform: translate(-18%, -70px) scale(1.18);
+	}
+}
+
+.backdrop-dots {
+	position: absolute;
+	inset: 0;
+	background-image: radial-gradient(var(--color-dot) 1px, transparent 1.3px);
+	background-size: 22px 22px;
+	background-position: 11px 11px;
+	-webkit-mask-image: radial-gradient(120% 90% at 50% 0%, #000 20%, rgb(0 0 0 / 0.5) 55%, transparent 90%);
+	mask-image: radial-gradient(120% 90% at 50% 0%, #000 20%, rgb(0 0 0 / 0.5) 55%, transparent 90%);
+}
+
+/* The streaks: lanes that cross the top of the page from left to right, each with its own row, length, pace and start, then rest off-screen for the rest of their cycle, so at most one or two are in view at a time. */
+.streak {
+	position: absolute;
+	left: 0;
+	height: 3px;
+	border-radius: 2px;
+	background: linear-gradient(90deg, transparent, var(--streak) 70%, var(--streak-head));
+	opacity: 0;
+	transform: translateX(-30vw) skewX(-10deg);
+	animation: streak var(--dur, 9s) cubic-bezier(0.45, 0, 0.25, 1) var(--delay, 0s) infinite;
+	will-change: transform, opacity;
+}
+.streak.s1 {
+	top: 96px;
+	width: 220px;
+	--dur: 9s;
+	--delay: 0.6s;
+}
+.streak.s2 {
+	top: 212px;
+	width: 140px;
+	height: 2px;
+	--dur: 11s;
+	--delay: 3.4s;
+}
+.streak.s3 {
+	top: 340px;
+	width: 280px;
+	height: 4px;
+	--dur: 13s;
+	--delay: 6.2s;
+}
+.streak.s4 {
+	top: 470px;
+	width: 120px;
+	height: 2px;
+	--dur: 10s;
+	--delay: 8s;
+}
+@keyframes streak {
+	0% {
+		opacity: 0;
+		transform: translateX(-30vw) skewX(-10deg);
+	}
+	6% {
+		opacity: 1;
+	}
+	38% {
+		opacity: 0;
+		transform: translateX(110vw) skewX(-10deg);
+	}
+	100% {
+		opacity: 0;
+		transform: translateX(110vw) skewX(-10deg);
+	}
+}
+@media (max-width: 639px) {
+	.streak.s3,
+	.streak.s4 {
+		display: none;
+	}
+}
+
+.backdrop-lane {
+	position: absolute;
+	height: 5px;
+	border-radius: 3px;
+	background: linear-gradient(90deg, transparent, var(--color-blue));
+	opacity: 0.5;
+	transform: skewX(-10deg);
+	animation: lane 9s ease-in-out infinite alternate;
+}
+.backdrop-lane.l1 {
+	top: -52px;
+	right: 56px;
+	width: 154px;
+}
+.backdrop-lane.l2 {
+	top: -28px;
+	right: 232px;
+	width: 88px;
+	animation-delay: -4.5s;
+	opacity: 0.35;
+}
+@keyframes lane {
+	from {
+		translate: -44px 0;
+	}
+	to {
+		translate: 44px 0;
+	}
+}
+@media (max-width: 999px) {
+	.backdrop-lane {
+		display: none;
+	}
+}
+
+/* The home hero's Newest card: a halo behind it and a ring of light running round its edge. The ring is a conic gradient turned by a registered angle and masked down to a 1px border, so only its colour moves; browsers that cannot animate the angle show it still. */
+@property --spin {
+	syntax: '<angle>';
+	inherits: false;
+	initial-value: 0deg;
+}
+.glow-frame {
+	position: relative;
+	isolation: isolate;
+	border-radius: var(--radius-card);
+}
+.glow-frame::before {
+	content: '';
+	position: absolute;
+	inset: -1px;
+	z-index: 1;
+	padding: 1.5px;
+	border-radius: calc(var(--radius-card) + 1px);
+	background: conic-gradient(from var(--spin), transparent 0deg, transparent 200deg, #4da3ff 260deg, #8b6cff 300deg, #22d3ee 330deg, transparent 360deg);
+	-webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+	-webkit-mask-composite: xor;
+	mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+	pointer-events: none;
+	animation: ring-spin 6s linear infinite;
+}
+.glow-frame::after {
+	content: '';
+	position: absolute;
+	inset: 8% -6% -10%;
+	z-index: -1;
+	border-radius: 40%;
+	background: radial-gradient(closest-side, var(--halo), transparent);
+	pointer-events: none;
+}
+@keyframes ring-spin {
+	to {
+		--spin: 360deg;
+	}
+}
+
+/* Platform chips floating round the Newest card, on its top and bottom edges only, over the header's empty middle and the list's bottom padding, so they never sit over a row's text. Hidden below 1000px, where the card spans the column. */
+.float-chip {
+	position: absolute;
+	z-index: 2;
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	height: 30px;
+	padding: 0 11px 0 9px;
+	border: 1px solid var(--color-line-2);
+	border-radius: 999px;
+	background: color-mix(in srgb, var(--color-panel) 82%, transparent);
+	-webkit-backdrop-filter: blur(10px);
+	backdrop-filter: blur(10px);
+	box-shadow: var(--sh-2);
+	color: var(--color-fg-2);
+	font-size: 12.5px;
+	font-weight: 600;
+	white-space: nowrap;
+	pointer-events: none;
+	animation: chip-float 6s ease-in-out infinite;
+}
+.float-chip > .pglyph {
+	--pg-size: 14px;
+	color: var(--color-blue);
+}
+.float-chip.c1 {
+	top: -15px;
+	left: -28px;
+}
+.float-chip.c2 {
+	bottom: -24px;
+	left: 24px;
+	animation-delay: -2s;
+}
+.float-chip.c3 {
+	top: -15px;
+	right: 118px;
+	animation-delay: -4s;
+}
+.float-chip.c4 {
+	right: 36px;
+	bottom: -24px;
+	animation-delay: -1s;
+	animation-duration: 7s;
+}
+@keyframes chip-float {
+	50% {
+		transform: translateY(-7px);
+	}
+}
+@media (max-width: 999px) {
+	.float-chip {
+		display: none;
+	}
+}
+
+/* The platform rail's track: a band of light that crosses it now and then. */
+.rail-track {
+	position: relative;
+	isolation: isolate;
+}
+.rail-track::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	z-index: -1;
+	width: 40%;
+	background: linear-gradient(90deg, transparent, var(--sheen), transparent);
+	transform: translateX(-100%) skewX(-10deg);
+	animation: rail-sweep 7s ease-in-out 1.2s infinite;
+	pointer-events: none;
+}
+@keyframes rail-sweep {
+	0% {
+		transform: translateX(-100%) skewX(-10deg);
+	}
+	45%,
+	100% {
+		transform: translateX(260%) skewX(-10deg);
+	}
+}
+
+/* The featured band's decoration: a dot field fading in from the right and two broad skewed lanes in the space above the heading row, and a blue line of light along its top edge. */
+.band-deco {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+	pointer-events: none;
+}
+.band-deco::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background-image: radial-gradient(var(--color-line-3) 1px, transparent 1.3px);
+	background-size: 22px 22px;
+	-webkit-mask-image: radial-gradient(60% 80% at 100% 0%, #000, transparent);
+	mask-image: radial-gradient(60% 80% at 100% 0%, #000, transparent);
+	opacity: 0.7;
+}
+.band-deco > .band-lane {
+	position: absolute;
+	height: 64px;
+	border-radius: 32px;
+	background: linear-gradient(90deg, transparent, var(--band-lane));
+	transform: skewX(-10deg);
+}
+.band-lane.b1 {
+	top: 10px;
+	right: -4%;
+	width: 38%;
+	height: 44px;
+}
+.band-lane.b2 {
+	top: 30px;
+	right: 30%;
+	width: 18%;
+	height: 26px;
+	opacity: 0.6;
+}
+.edge-light {
+	position: absolute;
+	top: -1px;
+	left: 0;
+	right: 0;
+	height: 1px;
+	background: linear-gradient(90deg, transparent, var(--color-blue) 30%, #8b6cff 55%, #22d3ee 75%, transparent);
+	opacity: 0.55;
+	pointer-events: none;
+}

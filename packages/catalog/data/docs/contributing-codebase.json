@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "contributing-codebase",
+	"title": "The codebase",
+	"file": "contributing/codebase",
+	"summary": {
+		"en": "Where each part of NSGo lives, and the documents that explain why.",
+		"zh-CN": "NSGo 的各部分在哪里，以及解释原因的文档。",
+		"zh-TW": "NSGo 的各個部分在哪裡，以及說明原因的文件。",
+		"ja": "NSGo の各部分がどこにあるかと、その理由を説明する文書。",
+		"ko": "NSGo의 각 부분이 어디에 있는지, 그리고 그 이유를 설명하는 문서."
+	}
+}

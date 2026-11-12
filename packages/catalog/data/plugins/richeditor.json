@@ -1,0 +1,22 @@
+{
+	"$schema": "../schema/plugin.schema.json",
+	"slug": "richeditor",
+	"name": "Rich text editor",
+	"mark": "Re",
+	"official": true,
+	"surface": "both",
+	"import": "github.com/oneo-me/nsgo/base/richeditor",
+	"tags": [
+		"rich-text",
+		"prosemirror"
+	],
+	"docs": "https://pkg.go.dev/github.com/oneo-me/nsgo/base/richeditor",
+	"summary": {
+		"en": "A rich text editor after ProseMirror's architecture, with Tiptap-style extensions; ui/richeditor gives it ui's colors.",
+		"zh-CN": "按 ProseMirror 架构实现的富文本编辑器，扩展层沿用 Tiptap 的方式；ui/richeditor 为它加上 ui 的配色。",
+		"zh-TW": "依 ProseMirror 架構實作的富文字編輯器，擴充層沿用 Tiptap 的方式；ui/richeditor 為它套上 ui 的配色。",
+		"ja": "ProseMirror のアーキテクチャに倣ったリッチテキストエディター。拡張は Tiptap 流で、ui/richeditor が ui の配色を付けます。",
+		"ko": "ProseMirror 구조를 따른 리치 텍스트 편집기로, 확장은 Tiptap 방식입니다. ui/richeditor가 ui의 색을 입힙니다."
+	},
+	"added": "2026-11-10T13:58:49Z"
+}

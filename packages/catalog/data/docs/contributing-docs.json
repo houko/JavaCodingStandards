@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "contributing-docs",
+	"title": "Docs and the website",
+	"file": "contributing/docs",
+	"summary": {
+		"en": "Write a page of these docs, translate it, and run the website.",
+		"zh-CN": "编写和翻译一页文档，并运行网站。",
+		"zh-TW": "撰寫並翻譯一頁文件，並執行網站。",
+		"ja": "このドキュメントのページを書いて翻訳し、Web サイトを動かします。",
+		"ko": "이 문서의 페이지를 쓰고 번역하며, 웹사이트를 실행합니다."
+	}
+}

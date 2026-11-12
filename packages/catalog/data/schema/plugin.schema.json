@@ -1,0 +1,73 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "plugin.schema.json",
+	"title": "An NSGo package or plugin, one file per package named after its slug",
+	"type": "object",
+	"additionalProperties": false,
+	"required": [
+		"slug",
+		"name",
+		"mark",
+		"official",
+		"surface",
+		"tags",
+		"docs",
+		"summary",
+		"added"
+	],
+	"properties": {
+		"$schema": {
+			"type": "string"
+		},
+		"slug": {
+			"$ref": "common.schema.json#/$defs/slug"
+		},
+		"name": {
+			"type": "string",
+			"minLength": 1
+		},
+		"mark": {
+			"type": "string",
+			"minLength": 1,
+			"maxLength": 2,
+			"description": "One or two letters for the card."
+		},
+		"official": {
+			"type": "boolean",
+			"description": "true for a package inside NSGo's own module, github.com/oneo-me/nsgo, whose import then starts with github.com/oneo-me/nsgo/; community packages are false."
+		},
+		"surface": {
+			"enum": [
+				"go",
+				"tsx",
+				"both"
+			],
+			"description": "The kind of app it serves: Go apps, TSX apps, or both."
+		},
+		"import": {
+			"type": "string",
+			"pattern": "^[a-z0-9.-]+(/[A-Za-z0-9._~-]+)+$",
+			"description": "The Go package the app imports, such as github.com/oneo-me/nsgo/base/datatable."
+		},
+		"npm": {
+			"type": "string",
+			"pattern": "^(@[a-z0-9-]+/)?[a-z0-9][a-z0-9._-]*$",
+			"description": "An npm package the plugin comes with. NSGo compiles TSX with no Node, so its own packages have none."
+		},
+		"tags": {
+			"type": "array",
+			"items": {
+				"type": "string"
+			}
+		},
+		"docs": {
+			"$ref": "common.schema.json#/$defs/url"
+		},
+		"summary": {
+			"$ref": "common.schema.json#/$defs/text"
+		},
+		"added": {
+			"$ref": "common.schema.json#/$defs/added"
+		}
+	}
+}

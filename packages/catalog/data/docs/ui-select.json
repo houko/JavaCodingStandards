@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "ui-select",
+	"title": "Select",
+	"file": "ui/select",
+	"summary": {
+		"en": "One value from a list, as a popup on desktops and a sheet on touch screens.",
+		"zh-CN": "从列表中选一个值，桌面端是弹出列表，触摸屏上是 sheet。",
+		"zh-TW": "從清單中選一個值，桌面上是彈出清單，觸控螢幕上是 sheet。",
+		"ja": "リストから値を 1 つ選びます。デスクトップではポップアップ、タッチスクリーンではシートになります。",
+		"ko": "목록에서 값 하나를 고릅니다. 데스크톱에서는 팝업, 터치스크린에서는 시트로 나타납니다."
+	}
+}

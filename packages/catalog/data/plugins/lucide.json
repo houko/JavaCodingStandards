@@ -1,0 +1,22 @@
+{
+	"$schema": "../schema/plugin.schema.json",
+	"slug": "lucide",
+	"name": "Lucide icons",
+	"mark": "Lu",
+	"official": true,
+	"surface": "both",
+	"import": "github.com/oneo-me/nsgo/icons/lucide",
+	"tags": [
+		"icons",
+		"svg"
+	],
+	"docs": "https://oneo-me.github.io/nsgo/docs/images/#icons",
+	"summary": {
+		"en": "Lucide icons, one accessor per icon, drawn by core.Icon in the text color they inherit. TSX apps name the ones they use for nsgo/ui.",
+		"zh-CN": "Lucide 图标，每个图标一个访问函数，由 core.Icon 以继承的文字颜色绘制。TSX 应用登记用到的图标后即可在 nsgo/ui 中使用。",
+		"zh-TW": "Lucide 圖示，每個圖示一個存取函式，由 core.Icon 以繼承的文字顏色繪製。TSX 應用程式登記用到的圖示後即可在 nsgo/ui 中使用。",
+		"ja": "Lucide のアイコン。アイコンごとにアクセサーがあり、core.Icon が継承した文字色で描きます。TSX アプリは使うアイコンを登録すると nsgo/ui で使えます。",
+		"ko": "Lucide 아이콘. 아이콘마다 접근 함수가 있고, core.Icon이 상속한 글자 색으로 그립니다. TSX 앱은 쓰는 아이콘을 등록하면 nsgo/ui에서 쓸 수 있습니다."
+	},
+	"added": "2026-11-10T13:58:22Z"
+}

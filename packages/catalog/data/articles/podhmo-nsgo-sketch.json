@@ -1,0 +1,8 @@
+{
+	"$schema": "../schema/article.schema.json",
+	"slug": "podhmo-nsgo-sketch",
+	"title": "nsgo の調査と agent-history の試作",
+	"site": "github.com",
+	"url": "https://github.com/podhmo/mygo-sandbox/blob/main/docs/sketch/ja/nsgo.md",
+	"added": "2026-11-10T13:59:19Z"
+}

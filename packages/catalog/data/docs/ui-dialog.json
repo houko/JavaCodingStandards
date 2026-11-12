@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "ui-dialog",
+	"title": "Dialog",
+	"file": "ui/dialog",
+	"summary": {
+		"en": "A modal surface, a sheet and an alert.",
+		"zh-CN": "模态表面、sheet 和警告框。",
+		"zh-TW": "強制回應的表面、sheet 與警示框。",
+		"ja": "モーダルな面、シート、アラート。",
+		"ko": "모달 화면, 시트, 알림 창."
+	}
+}

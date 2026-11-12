@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "tsx",
+	"title": "TSX apps",
+	"file": "tsx",
+	"summary": {
+		"en": "Write an app in TSX with Tailwind classes, compiled ahead with no Node.",
+		"zh-CN": "用 TSX 和 Tailwind 类名编写应用，提前编译，不需要 Node。",
+		"zh-TW": "以 TSX 與 Tailwind 類別撰寫應用程式，預先編譯，不需要 Node。",
+		"ja": "TSX と Tailwind クラスでアプリを書きます。事前コンパイルで Node は不要です。",
+		"ko": "TSX와 Tailwind 클래스로 앱을 작성합니다. 미리 컴파일되며 Node가 필요 없습니다."
+	}
+}

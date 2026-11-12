@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "tutorials-notes",
+	"title": "Example: A notes app",
+	"file": "tutorials/notes",
+	"summary": {
+		"en": "Build a notes app with a navigation stack, a multiline editor and notes kept on the device.",
+		"zh-CN": "用导航栈、多行编辑器和保存在设备上的笔记，构建一个笔记应用。",
+		"zh-TW": "用導覽堆疊、多行編輯器和儲存在裝置上的筆記，打造一個筆記應用程式。",
+		"ja": "ナビゲーションスタック、複数行エディター、端末に保存するメモで、メモアプリを作ります。",
+		"ko": "내비게이션 스택, 여러 줄 편집기, 기기에 저장하는 메모로 메모 앱을 만듭니다."
+	}
+}

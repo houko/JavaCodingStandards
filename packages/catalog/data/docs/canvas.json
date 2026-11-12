@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "canvas",
+	"title": "Canvas and shaders",
+	"file": "canvas",
+	"summary": {
+		"en": "Draw 2D graphics on the engine, and fill a view with a GPU fragment shader.",
+		"zh-CN": "在引擎上绘制 2D 图形，并用 GPU 片元着色器填满一个视图。",
+		"zh-TW": "在引擎上繪製 2D 圖形，並以 GPU 片段著色器填滿一個視圖。",
+		"ja": "エンジン上で 2D グラフィックスを描き、GPU のフラグメントシェーダーでビューを塗ります。",
+		"ko": "엔진에서 2D 그래픽을 그리고, GPU 프래그먼트 셰이더로 뷰를 채웁니다."
+	}
+}

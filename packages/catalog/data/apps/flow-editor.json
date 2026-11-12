@@ -1,0 +1,31 @@
+{
+	"$schema": "../schema/app.schema.json",
+	"slug": "flow-editor",
+	"name": "Flow Editor",
+	"author": "oneo-me",
+	"kind": "go",
+	"platforms": ["mac", "win", "linux"],
+	"category": "DesignApplication",
+	"group": "dev",
+	"url": "https://github.com/oneo-me/nsgo-flow",
+	"repo": "oneo-me/nsgo-flow",
+	"summary": {
+		"en": "Design an app's screens and flow charts by talking with an AI assistant that draws them as you agree.",
+		"zh-CN": "和 AI 助手对话来设计应用的界面与流程图，助手会按你们商定的结果画出来。",
+		"zh-TW": "與 AI 助理對話來設計應用程式的畫面與流程圖，助理會依你們談定的內容畫出來。",
+		"ja": "AI アシスタントと話しながらアプリの画面とフローチャートを設計し、合意した内容をその場で描いてもらえます。",
+		"ko": "AI 어시스턴트와 대화하며 앱의 화면과 흐름도를 설계하면, 합의한 대로 그려 줍니다."
+	},
+	"description": {
+		"en": "A desktop app and flow designer: describe an app or a process, and an AI assistant lays out its screens with real NSGo controls you can try and adds, links and rearranges flow chart nodes, each change undoing as one step. Attach a project folder and it reads the code to chart how it works. It works with any OpenAI-compatible provider that supports tool calls, local servers included, and saves designs as plain-text .flow files. In English and Simplified Chinese.",
+		"zh-CN": "一款桌面应用兼流程设计器：描述一个应用或一段流程，AI 助手就用真实的 NSGo 控件排出可以试用的界面，并添加、连接、重排流程图节点，每次修改都能一步撤销。挂上项目文件夹，它会读代码画出项目的运作方式。支持任何能调用工具的 OpenAI 兼容服务（包括本地服务），设计保存为纯文本的 .flow 文件。界面提供英文和简体中文。",
+		"zh-TW": "一款桌面應用程式兼流程設計工具：描述一個應用程式或一段流程，AI 助理就用真正的 NSGo 控制項排出可以試用的畫面，並新增、連接、重新排列流程圖節點，每次修改都能一步復原。附上專案資料夾，它會讀取程式碼畫出專案的運作方式。支援任何能呼叫工具的 OpenAI 相容服務（包括本機伺服器），設計儲存為純文字的 .flow 檔。介面提供英文與簡體中文。",
+		"ja": "デスクトップアプリ兼フローデザイナー。アプリや手順を説明すると、AI アシスタントが実際の NSGo コントロールで試せる画面を組み、フローチャートのノードを追加・接続・並べ替えます。変更は 1 回ずつ取り消せます。プロジェクトのフォルダーを添付すれば、コードを読んでその仕組みを図にします。ツール呼び出しに対応した OpenAI 互換のプロバイダーならローカルサーバーも含めて使え、設計はプレーンテキストの .flow ファイルに保存されます。英語と簡体字中国語に対応。",
+		"ko": "데스크톱 앱이자 흐름 설계 도구입니다. 앱이나 절차를 설명하면 AI 어시스턴트가 실제 NSGo 컨트롤로 써 볼 수 있는 화면을 배치하고, 흐름도 노드를 추가·연결·재배치하며, 변경은 한 단계씩 되돌릴 수 있습니다. 프로젝트 폴더를 첨부하면 코드를 읽고 동작 방식을 도식화합니다. 도구 호출을 지원하는 OpenAI 호환 공급자라면 로컬 서버까지 모두 쓸 수 있고, 설계는 일반 텍스트 .flow 파일로 저장됩니다. 영어와 중국어 간체를 지원합니다."
+	},
+	"screenshot": "flow-editor.webp",
+	"icon": {
+		"file": "flow-editor.webp"
+	},
+	"added": "2026-11-10T13:57:40Z"
+}

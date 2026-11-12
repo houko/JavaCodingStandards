@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "getting-started",
+	"title": "Setup",
+	"file": "getting-started",
+	"summary": {
+		"en": "Install what NSGo needs, create an app and run it on every target.",
+		"zh-CN": "安装 NSGo 所需的环境，创建一个应用并在各个目标上运行。",
+		"zh-TW": "安裝 NSGo 所需的環境，建立一個應用程式並在各個目標上執行。",
+		"ja": "NSGo に必要なものを入れ、アプリを作り、すべてのターゲットで動かします。",
+		"ko": "NSGo에 필요한 것을 설치하고, 앱을 만들어 모든 타깃에서 실행합니다."
+	}
+}

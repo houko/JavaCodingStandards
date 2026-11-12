@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "authoring-parts",
+	"title": "Parts and states",
+	"file": "authoring/parts",
+	"summary": {
+		"en": "Hold no state the app owns, style every part, and tell assistive technology what the component is.",
+		"zh-CN": "不持有应用拥有的状态，开放每个部件的样式，并告诉辅助技术组件是什么。",
+		"zh-TW": "不持有應用程式擁有的狀態，開放每個部件的樣式，並告訴輔助科技這個元件是什麼。",
+		"ja": "アプリが持つ状態を抱え込まず、すべての部品にスタイルを付けられるようにし、支援技術にコンポーネントが何かを伝えます。",
+		"ko": "앱이 소유한 상태를 갖지 않고, 모든 부분에 스타일을 열어 두며, 보조 기술에 컴포넌트가 무엇인지 알립니다."
+	}
+}

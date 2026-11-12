@@ -1,0 +1,27 @@
+{
+	"$schema": "../schema/app.schema.json",
+	"slug": "exodrive",
+	"name": "Exodrive",
+	"author": "Jungley8",
+	"kind": "go",
+	"platforms": ["mac"],
+	"category": "DeveloperApplication",
+	"group": "dev",
+	"url": "https://github.com/Jungley8/exodrive",
+	"repo": "Jungley8/exodrive",
+	"summary": {
+		"en": "Moves developer caches to an external volume, verifying every copy and keeping a ledger to move them back.",
+		"zh-CN": "把开发工具的缓存搬到外接磁盘，逐一校验副本，并用台账记录以便随时搬回。",
+		"zh-TW": "把開發工具的快取搬到外接磁碟，逐一驗證副本，並以帳本記錄以便隨時搬回。",
+		"ja": "開発ツールのキャッシュを外部ボリュームへ移し、コピーを検証し、元に戻せるよう台帳に記録します。",
+		"ko": "개발 도구 캐시를 외장 볼륨으로 옮기고, 복사본을 검증하며, 되돌릴 수 있도록 기록을 남깁니다."
+	},
+	"description": {
+		"en": "Moves the caches of npm, pnpm, yarn, Cargo, Go, Bun, uv, pip and Docker (OrbStack, Docker Desktop, Colima) from the internal disk to an external volume. It checks each copy before deleting the local data and records every move in a ledger, so any cache can be rolled back. It ships a command line tool and a native macOS window drawn with NSGo; the command line also runs on Linux. Pre-release (0.x).",
+		"zh-CN": "把 npm、pnpm、yarn、Cargo、Go、Bun、uv、pip 以及 Docker（OrbStack、Docker Desktop、Colima）的缓存从内置磁盘搬到外接磁盘。删除本地数据前会先校验副本，每次搬迁都记入台账，任何缓存都能回滚。提供命令行工具和一个用 NSGo 绘制的原生 macOS 窗口，命令行也能在 Linux 上运行。目前为预发布版本（0.x）。",
+		"zh-TW": "把 npm、pnpm、yarn、Cargo、Go、Bun、uv、pip 以及 Docker（OrbStack、Docker Desktop、Colima）的快取從內建磁碟搬到外接磁碟。刪除本機資料前會先驗證副本，每次搬移都記入帳本，任何快取都能還原。提供命令列工具和一個以 NSGo 繪製的原生 macOS 視窗，命令列也能在 Linux 上執行。目前為預先發行版本（0.x）。",
+		"ja": "npm、pnpm、yarn、Cargo、Go、Bun、uv、pip、Docker（OrbStack、Docker Desktop、Colima）のキャッシュを内蔵ディスクから外部ボリュームへ移します。ローカルのデータを消す前にコピーを検証し、移動をすべて台帳に記録するので、どのキャッシュもロールバックできます。コマンドラインツールと、NSGo で描いたネイティブの macOS ウィンドウを備え、コマンドラインは Linux でも動きます。プレリリース版（0.x）です。",
+		"ko": "npm, pnpm, yarn, Cargo, Go, Bun, uv, pip, Docker(OrbStack, Docker Desktop, Colima)의 캐시를 내장 디스크에서 외장 볼륨으로 옮깁니다. 로컬 데이터를 지우기 전에 복사본을 검증하고 모든 이동을 장부에 기록하므로 어떤 캐시든 롤백할 수 있습니다. 명령줄 도구와 NSGo로 그린 네이티브 macOS 창을 제공하며, 명령줄은 Linux에서도 실행됩니다. 프리릴리스(0.x) 버전입니다."
+	},
+	"added": "2026-11-10T13:57:43Z"
+}

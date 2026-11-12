@@ -1,0 +1,28 @@
+{
+	"$schema": "../schema/app.schema.json",
+	"slug": "nsgo-orbit",
+	"name": "Orbit",
+	"author": "oneo-me",
+	"kind": "go",
+	"platforms": ["mac", "ios", "web"],
+	"category": "DeveloperApplication",
+	"group": "dev",
+	"url": "https://github.com/oneo-me/nsgo/tree/main/examples/orbit",
+	"repo": "oneo-me/nsgo",
+	"summary": {
+		"en": "Six live native views on a 3D ring, with WGSL shaders, springs and a floor you drag.",
+		"zh-CN": "六个可交互的原生视图立在 3D 圆环上，配合 WGSL 着色器、弹簧动画和可拖动的地面。",
+		"zh-TW": "六個可互動的原生視圖立在 3D 圓環上，搭配 WGSL 著色器、彈簧動畫與可拖曳的地面。",
+		"ja": "3D のリングに並ぶ 6 つのネイティブビュー。WGSL シェーダー、スプリング、ドラッグできる床。",
+		"ko": "3D 링 위에 선 여섯 개의 네이티브 뷰. WGSL 셰이더, 스프링, 드래그할 수 있는 바닥."
+	},
+	"description": {
+		"en": "An official NSGo example: six cards turn on a 3D floor, with WGSL shaders, type, spring physics and a pointer that pulls the floor with it. Each card is an instrument made of NSGo's own parts, and one angle drives every motion on the platform's frame clock.",
+		"zh-CN": "NSGo 官方示例：六张卡片在 3D 地面上旋转，用到 WGSL 着色器、排版、弹簧物理，指针还能拖着地面一起转。每张卡片都是用 NSGo 自带部件做成的小仪器，所有动效由同一个角度驱动，运行在平台的帧时钟上。",
+		"zh-TW": "NSGo 官方範例：六張卡片在 3D 地面上旋轉，用到 WGSL 著色器、排版、彈簧物理，指標還能拖著地面一起轉。每張卡片都是用 NSGo 內建元件做成的小儀器，所有動態效果由同一個角度驅動，執行在平台的影格時鐘上。",
+		"ja": "NSGo の公式サンプル。6 枚のカードが 3D の床の上で回り、WGSL シェーダー、文字組み、スプリングの物理演算、床を引っぱるポインターを見せます。各カードは NSGo 自身の部品で作った計器で、すべての動きを 1 つの角度がプラットフォームのフレームクロック上で動かします。",
+		"ko": "NSGo 공식 예제입니다. 여섯 장의 카드가 3D 바닥 위에서 돌며 WGSL 셰이더, 타이포그래피, 스프링 물리, 바닥을 끌어당기는 포인터를 보여 줍니다. 각 카드는 NSGo 자체 부품으로 만든 계기이며, 하나의 각도가 플랫폼의 프레임 클록 위에서 모든 움직임을 이끕니다."
+	},
+	"screenshot": "nsgo-orbit.webp",
+	"added": "2026-11-10T13:57:37Z"
+}

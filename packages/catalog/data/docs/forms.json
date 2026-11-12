@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "forms",
+	"title": "Forms",
+	"file": "forms",
+	"summary": {
+		"en": "Text fields, focus, the software keyboard, switches, pickers and validation.",
+		"zh-CN": "文本框、焦点、软件键盘、开关、选择器和校验。",
+		"zh-TW": "文字欄位、焦點、軟體鍵盤、開關、選擇器與驗證。",
+		"ja": "テキストフィールド、フォーカス、ソフトウェアキーボード、スイッチ、ピッカー、検証。",
+		"ko": "텍스트 필드, 포커스, 소프트웨어 키보드, 스위치, 선택기, 유효성 검사."
+	}
+}

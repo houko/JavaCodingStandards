@@ -1,0 +1,69 @@
+name: Prune listed projects
+
+# Once a week this proposes, in one pull request, to take off the site the entries that no longer meet its bar, with packages/enrich (prune.ts): an entry whose score on the site is below 20 once it has been listed for 30 days (an entry the score workflow has not measured yet is never proposed by its score), an entry whose repository, or the folder of it the entry is measured by, has had no commit for more than 180 days, whatever its score, and an entry whose repository is archived or, unless it is an AI tool, which helps build NSGo apps without a go.mod of its own, in which no go.mod requires NSGo any more. It looks at apps, UI libraries, state management, templates, AI tools and the community plugins that name a repository, never the official plugins, which are packages of NSGo itself. An entry whose repository is gone is left to verify.yml, which removes it; one the site's code names, such as a featured app, is only listed in the run's summary.
+#
+# The pull request removes each entry's file, icon and screenshot, on the branch prune/<day>, from the site's GitHub App so CI runs on it, after the catalog checks passed on the result. Merge it to take the entries off; to keep one, restore its files on the branch before merging, and to keep them all, close it. A kept entry is never proposed again: each pull request lists its entries in a marker, and a later run reads the earlier ones, so nothing else is stored. While one is open, a run proposes nothing. It runs on Mondays two hours after the daily score run, whose Monday run measures every entry, so the week's scores are in.
+#
+# Secrets: SUBMIT_APP_PRIVATE_KEY, as for the Verify listed projects workflow. Variables: SUBMIT_APP_CLIENT_ID. No model is asked.
+
+on:
+  schedule:
+    - cron: '41 5 * * 1'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Only report what it would propose
+        type: boolean
+        default: false
+
+concurrency:
+  group: prune-listed
+
+permissions:
+  contents: read
+
+jobs:
+  prune:
+    if: github.repository == 'yldm-tech/awesome-nsgo'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - id: app
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.SUBMIT_APP_CLIENT_ID }}
+          private-key: ${{ secrets.SUBMIT_APP_PRIVATE_KEY }}
+
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ steps.app.outputs.token }}
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+
+      - name: Commit as the bot
+        env:
+          GH_TOKEN: ${{ steps.app.outputs.token }}
+          BOT: ${{ steps.app.outputs.app-slug }}[bot]
+        run: |
+          git config user.name "$BOT"
+          git config user.email "$(gh api "users/$BOT" --jq .id)+$BOT@users.noreply.github.com"
+
+      - name: Judge the listed entries and open the pull request
+        env:
+          GITHUB_TOKEN: ${{ steps.app.outputs.token }}
+          REPORT_FILE: ${{ runner.temp }}/prune-report.md
+          DRY_RUN: ${{ inputs.dry_run && 'true' || 'false' }}
+        run: pnpm --filter @awesome-nsgo/enrich prune
+
+      - name: Summary
+        if: always()
+        run: |
+          report="$RUNNER_TEMP/prune-report.md"
+          if [[ -s "$report" ]]; then cat "$report" >> "$GITHUB_STEP_SUMMARY"; fi

@@ -1,0 +1,13 @@
+{
+	"$schema": "../schema/doc.schema.json",
+	"slug": "text",
+	"title": "Text",
+	"file": "text",
+	"summary": {
+		"en": "Show text with spans, fonts, decorations, selection and documents.",
+		"zh-CN": "用 span、字体、装饰、选择和文档展示文本。",
+		"zh-TW": "以 span、字型、裝飾、選取與文件呈現文字。",
+		"ja": "スパン、フォント、装飾、選択、文書でテキストを表示します。",
+		"ko": "스팬, 글꼴, 꾸밈, 선택, 문서로 텍스트를 보여 줍니다."
+	}
+}

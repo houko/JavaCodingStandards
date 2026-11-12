@@ -1,0 +1,22 @@
+{
+	"$schema": "../schema/plugin.schema.json",
+	"slug": "widget",
+	"name": "Widgets",
+	"mark": "Wg",
+	"official": true,
+	"surface": "go",
+	"import": "github.com/oneo-me/nsgo/widget",
+	"tags": [
+		"widgetkit",
+		"home-screen"
+	],
+	"docs": "https://oneo-me.github.io/nsgo/docs/building/#widgets",
+	"summary": {
+		"en": "Shows the app's content in WidgetKit widgets on iPhone and iPad Home and Lock Screens and on the Mac desktop and Notification Center, declared in nsgo.yaml.",
+		"zh-CN": "通过 WidgetKit 把应用内容放进小组件：iPhone 与 iPad 的主屏幕和锁定屏幕，以及 Mac 的桌面和通知中心，在 nsgo.yaml 中声明。",
+		"zh-TW": "透過 WidgetKit 把應用程式內容放進小工具：iPhone 與 iPad 的主畫面和鎖定畫面，以及 Mac 的桌面和通知中心，在 nsgo.yaml 中宣告。",
+		"ja": "WidgetKit のウィジェットにアプリの内容を表示します。iPhone と iPad のホーム画面・ロック画面、Mac のデスクトップと通知センターに対応し、nsgo.yaml で宣言します。",
+		"ko": "WidgetKit 위젯에 앱 내용을 보여 줍니다. iPhone·iPad의 홈 화면과 잠금 화면, Mac의 데스크톱과 알림 센터에 표시하며 nsgo.yaml에서 선언합니다."
+	},
+	"added": "2026-11-10T13:58:28Z"
+}

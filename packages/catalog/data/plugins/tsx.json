@@ -1,0 +1,23 @@
+{
+	"$schema": "../schema/plugin.schema.json",
+	"slug": "tsx",
+	"name": "TSX",
+	"mark": "Tx",
+	"official": true,
+	"surface": "tsx",
+	"import": "github.com/oneo-me/nsgo/tsx",
+	"tags": [
+		"tsx",
+		"tailwind",
+		"no-node"
+	],
+	"docs": "https://oneo-me.github.io/nsgo/docs/tsx/",
+	"summary": {
+		"en": "Runs apps written in TSX with Tailwind classes, on goja or the browser engine on the web, compiled ahead with esbuild and no Node; it also signs and verifies .nsgopkg packages of TSX an app downloads.",
+		"zh-CN": "运行用 TSX 和 Tailwind 类名编写的应用，运行在 goja 上，Web 上则用浏览器引擎；借助 esbuild 提前编译，不需要 Node。还能为应用下载的 TSX 签名并校验 .nsgopkg 包。",
+		"zh-TW": "執行以 TSX 與 Tailwind 類別撰寫的應用程式，在 goja 上執行，Web 上則使用瀏覽器引擎；透過 esbuild 預先編譯，不需要 Node。也能為應用程式下載的 TSX 簽署並驗證 .nsgopkg 套件。",
+		"ja": "TSX と Tailwind クラスで書いたアプリを goja 上で、Web ではブラウザーのエンジンで動かします。esbuild で事前コンパイルするので Node は不要です。アプリがダウンロードする TSX 用に、.nsgopkg パッケージの署名と検証もできます。",
+		"ko": "TSX와 Tailwind 클래스로 작성한 앱을 goja에서, 웹에서는 브라우저 엔진에서 실행합니다. esbuild로 미리 컴파일하므로 Node가 필요 없고, 앱이 내려받는 TSX를 위해 .nsgopkg 패키지에 서명하고 검증합니다."
+	},
+	"added": "2026-11-10T13:58:34Z"
+}
