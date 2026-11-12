@@ -1,0 +1,27 @@
+{
+	"$schema": "../schema/game.schema.json",
+	"slug": "vippi",
+	"name": "Vippi",
+	"creator": "Shrit1401",
+	"genre": "Shooter",
+	"link": {
+		"type": "play",
+		"url": "https://vippi.vercel.app/"
+	},
+	"post": "2120060593763926314",
+	"likes": 1,
+	"model": "Claude Fable 5.2",
+	"cover": "vippi.webp",
+	"summary": {
+		"en": "A fast, arcade-style first-person shooter.",
+		"zh-CN": "快节奏街机风格第一人称射击。",
+		"zh-TW": "快節奏街機風格第一人稱射擊。",
+		"ja": "テンポの速いアーケード風FPS。",
+		"ko": "빠른 아케이드 스타일 1인칭 슈터.",
+		"es": "Un shooter en primera persona rápido y de estilo arcade.",
+		"fr": "Un FPS rapide au style arcade.",
+		"de": "Ein schneller Ego-Shooter im Arcade-Stil.",
+		"pt-BR": "Um FPS rápido no estilo arcade.",
+		"ru": "Быстрый шутер от первого лица в аркадном стиле."
+	}
+}

@@ -1,0 +1,27 @@
+{
+	"$schema": "../schema/game.schema.json",
+	"slug": "worm-rider",
+	"name": "Worm Rider",
+	"creator": "AmirMushich",
+	"genre": "Action",
+	"link": {
+		"type": "source",
+		"url": "https://github.com/amirmushichge/worm-rider"
+	},
+	"post": "2119937977426338283",
+	"likes": 249,
+	"model": "Claude Fable 5.2",
+	"cover": "worm-rider.webp",
+	"summary": {
+		"en": "An open-source 220 KB game built in Claude Code.",
+		"zh-CN": "用 Claude Code 构建的 220 KB 开源游戏。",
+		"zh-TW": "用 Claude Code 打造的 220 KB 開源遊戲。",
+		"ja": "Claude Codeで作った220KBのオープンソースゲーム。",
+		"ko": "Claude Code로 만든 220KB 오픈 소스 게임.",
+		"es": "Un juego de código abierto de 220 KB hecho con Claude Code.",
+		"fr": "Un jeu open source de 220 Ko créé avec Claude Code.",
+		"de": "Ein 220 KB großes Open-Source-Spiel, gebaut mit Claude Code.",
+		"pt-BR": "Um jogo open source de 220 KB feito com Claude Code.",
+		"ru": "Игра с открытым кодом на 220 КБ, сделанная в Claude Code."
+	}
+}

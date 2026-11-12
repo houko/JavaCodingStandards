@@ -1,0 +1,27 @@
+{
+	"$schema": "../schema/game.schema.json",
+	"slug": "bayhaven",
+	"name": "Bayhaven",
+	"creator": "FablestarGames",
+	"genre": "Story & sim",
+	"link": {
+		"type": "play",
+		"url": "https://fablestar.games/play/"
+	},
+	"post": "2120641504951603394",
+	"likes": 6,
+	"model": "Claude Fable 5.2",
+	"cover": "bayhaven.webp",
+	"summary": {
+		"en": "An early skeleton build, playable in the browser.",
+		"zh-CN": "早期骨架版本，可在浏览器中游玩。",
+		"zh-TW": "早期骨架版本，可在瀏覽器中遊玩。",
+		"ja": "初期のスケルトン版。ブラウザでプレイ可能。",
+		"ko": "초기 스켈레톤 빌드, 브라우저에서 플레이 가능.",
+		"es": "Una primera versión esqueleto, jugable en el navegador.",
+		"fr": "Une première version squelette, jouable dans le navigateur.",
+		"de": "Ein früher Skelett-Build, im Browser spielbar.",
+		"pt-BR": "Uma versão esqueleto inicial, jogável no navegador.",
+		"ru": "Ранняя черновая сборка, играбельна в браузере."
+	}
+}

@@ -1,0 +1,27 @@
+{
+	"$schema": "../schema/game.schema.json",
+	"slug": "the-vast-horizon",
+	"name": "The Vast Horizon",
+	"creator": "OdinLovis",
+	"genre": "Exploration",
+	"link": {
+		"type": "play",
+		"url": "https://the-vast-horizon.vercel.app"
+	},
+	"post": "2120198469755503091",
+	"likes": 26,
+	"model": "Claude Fable 5.2",
+	"cover": "the-vast-horizon.webp",
+	"summary": {
+		"en": "Multiplayer surfing on one shared lake. Type a word and it changes the world.",
+		"zh-CN": "多人共享一片湖冲浪。输入一个词，世界就随之改变。",
+		"zh-TW": "多人共享一片湖衝浪。輸入一個詞，世界就隨之改變。",
+		"ja": "ひとつの湖をみんなでサーフィン。言葉を入力すると世界が変わる。",
+		"ko": "하나의 호수에서 함께 서핑. 단어를 입력하면 세계가 바뀐다.",
+		"es": "Surf multijugador en un mismo lago. Escribe una palabra y el mundo cambia.",
+		"fr": "Du surf multijoueur sur un même lac. Tapez un mot et le monde change.",
+		"de": "Multiplayer-Surfen auf einem gemeinsamen See. Tippe ein Wort und die Welt verändert sich.",
+		"pt-BR": "Surfe multijogador num mesmo lago. Digite uma palavra e o mundo muda.",
+		"ru": "Мультиплеерный сёрфинг на одном общем озере. Введите слово — и мир изменится."
+	}
+}

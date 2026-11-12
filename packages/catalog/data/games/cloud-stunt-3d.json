@@ -1,0 +1,27 @@
+{
+	"$schema": "../schema/game.schema.json",
+	"slug": "cloud-stunt-3d",
+	"name": "Cloud Stunt 3D",
+	"creator": "jev_chat",
+	"genre": "Racing",
+	"link": {
+		"type": "play",
+		"url": "https://finderchangchang.github.io/cloud-stunt-3d/"
+	},
+	"post": "2120015641151426838",
+	"likes": 329,
+	"model": "Claude Fable 5.2",
+	"cover": "cloud-stunt-3d.webp",
+	"summary": {
+		"en": "A stunt game generated in 30 minutes.",
+		"zh-CN": "30 分钟生成的特技游戏。",
+		"zh-TW": "30 分鐘生成的特技遊戲。",
+		"ja": "30分で生成されたスタントゲーム。",
+		"ko": "30분 만에 생성된 스턴트 게임.",
+		"es": "Un juego de acrobacias generado en 30 minutos.",
+		"fr": "Un jeu de cascades généré en 30 minutes.",
+		"de": "Ein Stuntspiel, in 30 Minuten generiert.",
+		"pt-BR": "Um jogo de manobras gerado em 30 minutos.",
+		"ru": "Трюковая игра, сгенерированная за 30 минут."
+	}
+}

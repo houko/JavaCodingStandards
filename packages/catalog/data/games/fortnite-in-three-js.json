@@ -1,0 +1,27 @@
+{
+	"$schema": "../schema/game.schema.json",
+	"slug": "fortnite-in-three-js",
+	"name": "Fortnite in Three.js",
+	"creator": "aabyzov",
+	"genre": "Action",
+	"link": {
+		"type": "play",
+		"url": "https://anton-abyzov.github.io/fortnite-3js/"
+	},
+	"post": "2120702690845933702",
+	"likes": 2,
+	"model": "Claude Fable 5.2",
+	"cover": "fortnite-in-three-js.webp",
+	"summary": {
+		"en": "A battle-royale clone in Three.js.",
+		"zh-CN": "用 Three.js 复刻的大逃杀。",
+		"zh-TW": "用 Three.js 復刻的大逃殺。",
+		"ja": "Three.jsで作ったバトロワのクローン。",
+		"ko": "Three.js로 만든 배틀로열 클론.",
+		"es": "Un clon de battle royale en Three.js.",
+		"fr": "Un clone de battle royale en Three.js.",
+		"de": "Ein Battle-Royale-Klon in Three.js.",
+		"pt-BR": "Um clone de battle royale em Three.js.",
+		"ru": "Клон королевской битвы на Three.js."
+	}
+}

@@ -1,0 +1,27 @@
+{
+	"$schema": "../schema/game.schema.json",
+	"slug": "stray-cat",
+	"name": "Stray Cat",
+	"creator": "aimikoda",
+	"genre": "Story & sim",
+	"link": {
+		"type": "play",
+		"url": "https://claude.ai/artifact/4nPXUKJjQWNsZEHVNmXXCt"
+	},
+	"post": "2120120133712593118",
+	"likes": 42,
+	"model": "Claude Fable 5.2",
+	"cover": "stray-cat.webp",
+	"summary": {
+		"en": "Rescue kittens, scare dogs, face the old tomcat. Sound synthesised in code.",
+		"zh-CN": "救小猫、吓跑狗、直面老公猫。音效由代码合成。",
+		"zh-TW": "救小貓、嚇跑狗、直面老公貓。音效由程式碼合成。",
+		"ja": "子猫を救い、犬を脅かし、老いたボス猫に挑む。音はコードで合成。",
+		"ko": "새끼 고양이를 구하고, 개를 쫓고, 늙은 수고양이와 맞선다. 사운드는 코드로 합성.",
+		"es": "Rescata gatitos, asusta perros y enfréntate al viejo gato. Sonido sintetizado en código.",
+		"fr": "Sauvez des chatons, effrayez les chiens, affrontez le vieux matou. Sons synthétisés en code.",
+		"de": "Rette Kätzchen, erschrecke Hunde, stell dich dem alten Kater. Sound im Code synthetisiert.",
+		"pt-BR": "Resgate gatinhos, assuste cachorros e enfrente o velho gato. Som sintetizado em código.",
+		"ru": "Спасайте котят, пугайте собак, сразитесь со старым котом. Звук синтезирован кодом."
+	}
+}

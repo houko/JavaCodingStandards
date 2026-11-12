@@ -1,0 +1,27 @@
+{
+	"$schema": "../schema/game.schema.json",
+	"slug": "patchwork-quilt",
+	"name": "Patchwork Quilt",
+	"creator": "BlendiByl",
+	"genre": "Puzzle & toys",
+	"link": {
+		"type": "play",
+		"url": "https://patch.gg/blendi/patchwork-quilt"
+	},
+	"post": "2120746541636047347",
+	"likes": 319,
+	"model": "Claude Fable 5.2",
+	"cover": "patchwork-quilt.webp",
+	"summary": {
+		"en": "A quilted, stop-motion style toy world.",
+		"zh-CN": "拼布定格动画风格的玩具世界。",
+		"zh-TW": "拼布定格動畫風格的玩具世界。",
+		"ja": "パッチワークのコマ撮り風おもちゃの世界。",
+		"ko": "퀼트 스톱모션 스타일의 장난감 세계.",
+		"es": "Un mundo de juguete con estilo de stop-motion y retazos.",
+		"fr": "Un monde-jouet façon patchwork et stop-motion.",
+		"de": "Eine Spielzeugwelt im Patchwork-Stop-Motion-Stil.",
+		"pt-BR": "Um mundo de brinquedo em estilo stop-motion de retalhos.",
+		"ru": "Игрушечный мир в стиле лоскутной стоп-моушн анимации."
+	}
+}

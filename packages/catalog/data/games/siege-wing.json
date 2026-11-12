@@ -1,0 +1,27 @@
+{
+	"$schema": "../schema/game.schema.json",
+	"slug": "siege-wing",
+	"name": "Siege Wing",
+	"creator": "builderjaydub",
+	"genre": "Shooter",
+	"link": {
+		"type": "play",
+		"url": "https://bannerfall.itch.io/siege-wing"
+	},
+	"post": "2120223731520040966",
+	"likes": 534,
+	"model": "Claude Fable 5.2",
+	"cover": "siege-wing.webp",
+	"summary": {
+		"en": "Fly a helicopter into a medieval war. Cannons, rockets and missiles against ballistas and castles.",
+		"zh-CN": "驾驶直升机闯入中世纪战场，用加农炮、火箭和导弹对抗弩炮与城堡。",
+		"zh-TW": "駕駛直升機闖入中世紀戰場，用加農砲、火箭和飛彈對抗弩砲與城堡。",
+		"ja": "ヘリで中世の戦場へ。大砲・ロケット・ミサイルでバリスタと城に挑む。",
+		"ko": "헬기를 타고 중세 전장으로. 대포·로켓·미사일로 발리스타와 성에 맞선다.",
+		"es": "Pilota un helicóptero en una guerra medieval. Cañones, cohetes y misiles contra balistas y castillos.",
+		"fr": "Pilotez un hélicoptère dans une guerre médiévale. Canons, roquettes et missiles contre balistes et châteaux.",
+		"de": "Flieg einen Helikopter in einen mittelalterlichen Krieg. Kanonen, Raketen und Lenkwaffen gegen Ballisten und Burgen.",
+		"pt-BR": "Pilote um helicóptero numa guerra medieval. Canhões, foguetes e mísseis contra balistas e castelos.",
+		"ru": "Ведите вертолёт в средневековую войну. Пушки, ракеты и снаряды против баллист и замков."
+	}
+}

@@ -1,0 +1,584 @@
+/* The design's motion and interaction rules, under the reference's avg-* names: keyframes, hover choreography, the marquees, the scroll-driven reveals, and the type fixes for scripts the display face does not cover. Unlayered on purpose, so these rules win over Tailwind's utilities. */
+
+/* ---- keyframes ---- */
+@keyframes avg-left {
+	from {
+		transform: translate3d(0, 0, 0);
+	}
+	to {
+		transform: translate3d(-50%, 0, 0);
+	}
+}
+@keyframes avg-right {
+	from {
+		transform: translate3d(-50%, 0, 0);
+	}
+	to {
+		transform: translate3d(0, 0, 0);
+	}
+}
+@keyframes avg-blink {
+	0%,
+	49% {
+		opacity: 1;
+	}
+	50%,
+	100% {
+		opacity: 0;
+	}
+}
+@keyframes avg-breathe {
+	0%,
+	100% {
+		opacity: 0.55;
+	}
+	50% {
+		opacity: 0.9;
+	}
+}
+@keyframes avg-rise {
+	from {
+		opacity: 0;
+		translate: 0 28px;
+	}
+	to {
+		opacity: 1;
+		translate: 0 0;
+	}
+}
+/* Two identical animations: switching a card from one name to the other restarts it, which is how the grid re-animates on every filter change. */
+@keyframes avg-pop-a {
+	from {
+		opacity: 0;
+		translate: 0 18px;
+		scale: 0.97;
+	}
+	to {
+		opacity: 1;
+		translate: 0 0;
+		scale: 1;
+	}
+}
+@keyframes avg-pop-b {
+	from {
+		opacity: 0;
+		translate: 0 18px;
+		scale: 0.97;
+	}
+	to {
+		opacity: 1;
+		translate: 0 0;
+		scale: 1;
+	}
+}
+@keyframes avg-kenburns {
+	from {
+		transform: scale(1.02);
+	}
+	to {
+		transform: scale(1.14) translate(-2%, -1%);
+	}
+}
+@keyframes avg-ticker {
+	from {
+		transform: translate3d(0, 0, 0);
+	}
+	to {
+		transform: translate3d(-50%, 0, 0);
+	}
+}
+@keyframes avg-beat {
+	0%,
+	100% {
+		transform: scale(1);
+	}
+	30% {
+		transform: scale(1.3);
+	}
+	60% {
+		transform: scale(0.92);
+	}
+}
+@keyframes avg-sheen {
+	0%,
+	60% {
+		transform: translateX(-160%) skewX(-20deg);
+	}
+	100% {
+		transform: translateX(360%) skewX(-20deg);
+	}
+}
+@keyframes avg-dots {
+	to {
+		background-position: 180px 90px;
+	}
+}
+@keyframes avg-fade {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+@keyframes avg-dlg {
+	from {
+		opacity: 0;
+		translate: 0 24px;
+		scale: 0.97;
+	}
+	to {
+		opacity: 1;
+		translate: 0 0;
+		scale: 1;
+	}
+}
+@keyframes avg-grow {
+	from {
+		scale: 0 1;
+	}
+	to {
+		scale: 1 1;
+	}
+}
+@keyframes avg-totop {
+	from {
+		opacity: 0;
+		translate: 0 16px;
+		visibility: hidden;
+	}
+	to {
+		opacity: 1;
+		translate: 0 0;
+		visibility: visible;
+	}
+}
+
+/* ---- hero ---- */
+.avg-track {
+	display: flex;
+	gap: 16px;
+	width: max-content;
+	will-change: transform;
+}
+.avg-left {
+	animation: avg-left linear infinite;
+}
+.avg-right {
+	animation: avg-right linear infinite;
+}
+.avg-caret {
+	animation: avg-blink 1.1s steps(1) infinite;
+}
+.avg-glow {
+	animation: avg-breathe 8s ease-in-out infinite;
+}
+.avg-in {
+	opacity: 0;
+	animation: avg-rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+.avg-d1 {
+	animation-delay: 0.05s;
+}
+.avg-d2 {
+	animation-delay: 0.16s;
+}
+.avg-d3 {
+	animation-delay: 0.3s;
+}
+.avg-d4 {
+	animation-delay: 0.44s;
+}
+.avg-d5 {
+	animation-delay: 0.58s;
+}
+/* The wall of covers fades out to the left behind the text; on a phone the text covers the whole width, so the wall is dimmed evenly. In between, the percentages would let the wall show through under the end of the paragraph's lines (it is 640px wide, from the gutter), so the dark part is held to 700px before it fades. */
+.avg-shade {
+	background: linear-gradient(90deg, var(--color-bg) 0%, var(--color-bg) 30%, color-mix(in srgb, var(--color-bg) 78%, transparent) 52%, color-mix(in srgb, var(--color-bg) 28%, transparent) 78%, color-mix(in srgb, var(--color-bg) 12%, transparent) 100%);
+}
+@media (max-width: 1140px) {
+	.avg-shade {
+		background: linear-gradient(90deg, var(--color-bg) 0, color-mix(in srgb, var(--color-bg) 86%, transparent) 700px, color-mix(in srgb, var(--color-bg) 30%, transparent) 100%);
+	}
+}
+@media (max-width: 760px) {
+	.avg-shade {
+		background: color-mix(in srgb, var(--color-bg) 84%, transparent);
+	}
+}
+/* The pause button of the hero stops what scrolls across the page: the wall of covers and the ticker. */
+[data-motion-paused] :is(.avg-track, .avg-ticker) {
+	animation-play-state: paused;
+}
+
+/* ---- sections ---- */
+section[id] {
+	scroll-margin-top: 88px;
+}
+@supports (animation-timeline: view()) {
+	.avg-reveal {
+		animation: avg-rise linear both;
+		animation-timeline: view();
+		animation-range: entry 0% cover 20%;
+	}
+}
+
+/* ---- cards and rows ---- */
+.avg-pop-a {
+	animation: avg-pop-a 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.avg-pop-b {
+	animation: avg-pop-b 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.avg-card {
+	transition:
+		transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
+		border-color 0.35s,
+		box-shadow 0.35s;
+}
+.avg-card:hover {
+	transform: translateY(-6px);
+	border-color: var(--color-lime);
+	box-shadow: 0 22px 44px -20px color-mix(in srgb, var(--color-lime) 40%, transparent);
+}
+.avg-card img {
+	transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.avg-card:hover img {
+	transform: scale(1.08);
+}
+.avg-heart {
+	transform-origin: center;
+}
+.avg-card:hover .avg-heart,
+.avg-row:hover .avg-heart {
+	animation: avg-beat 0.8s ease;
+}
+.avg-row {
+	transition:
+		padding-left 0.3s,
+		background-color 0.3s;
+}
+.avg-row:hover {
+	padding-left: 12px;
+	background-color: color-mix(in srgb, var(--color-fg) 3%, transparent);
+}
+.avg-row img {
+	transition: transform 0.45s;
+}
+.avg-row:hover img {
+	transform: scale(1.07);
+}
+.avg-rel {
+	transition:
+		transform 0.3s,
+		border-color 0.3s;
+}
+.avg-rel:hover {
+	transform: translateY(-3px);
+	border-color: var(--color-lime);
+}
+.avg-rel img {
+	transition: transform 0.5s;
+}
+.avg-rel:hover img {
+	transform: scale(1.06);
+}
+.avg-crit {
+	transition:
+		transform 0.3s,
+		border-color 0.3s;
+}
+.avg-crit:hover {
+	transform: translateY(-4px);
+	border-color: var(--color-line-2);
+}
+.avg-kb {
+	animation: avg-kenburns 20s ease-in-out infinite alternate;
+}
+
+/* ---- buttons, links, chips, fields ---- */
+.avg-btn {
+	transition:
+		transform 0.2s,
+		background-color 0.2s,
+		color 0.2s,
+		border-color 0.2s,
+		box-shadow 0.2s;
+}
+.avg-btn:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 10px 24px -12px rgb(0 0 0 / 0.6);
+}
+.avg-btn:active {
+	transform: translateY(0) scale(0.97);
+}
+.avg-arrow {
+	transition: transform 0.25s;
+}
+.avg-btn:hover .avg-arrow {
+	transform: translate(3px, -3px);
+}
+.avg-btn:hover .avg-arrow-d {
+	transform: translateY(3px);
+}
+.avg-shine {
+	position: relative;
+	overflow: hidden;
+}
+.avg-shine::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 40%;
+	pointer-events: none;
+	background: linear-gradient(90deg, rgb(255 255 255 / 0), rgb(255 255 255 / 0.5), rgb(255 255 255 / 0));
+	transform: translateX(-160%) skewX(-20deg);
+	animation: avg-sheen 4s ease-in-out infinite;
+}
+.avg-link {
+	background-image: linear-gradient(currentColor, currentColor);
+	background-size: 0% 1.5px;
+	background-repeat: no-repeat;
+	background-position: 0 100%;
+	transition:
+		background-size 0.3s,
+		color 0.2s;
+}
+.avg-link:hover {
+	background-size: 100% 1.5px;
+}
+.avg-logo-mark {
+	transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.avg-logo:hover .avg-logo-mark {
+	transform: rotate(-12deg) scale(1.1);
+}
+.avg-chip {
+	transition:
+		background-color 0.2s,
+		color 0.2s,
+		border-color 0.2s,
+		transform 0.2s;
+}
+.avg-chip:hover {
+	transform: translateY(-2px);
+	border-color: var(--color-fg);
+}
+.avg-chip:active {
+	transform: scale(0.96);
+}
+.avg-tog {
+	transition:
+		background-color 0.25s,
+		color 0.25s;
+}
+.avg-field {
+	transition:
+		border-color 0.2s,
+		box-shadow 0.2s;
+}
+.avg-field:focus {
+	outline: none;
+	border-color: var(--color-lime);
+	box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-lime) 25%, transparent);
+}
+/* The phone's language control is a globe with the select laid invisibly over it, so the ring is drawn on the wrapper. */
+@media (width < 40rem) {
+	.avg-lang:focus-within {
+		box-shadow:
+			inset 0 0 0 1px var(--color-lime),
+			0 0 0 3px color-mix(in srgb, var(--color-lime) 25%, transparent);
+	}
+}
+:is(a, button, summary, [tabindex]):focus-visible {
+	outline: 2px solid var(--color-lime);
+	outline-offset: 3px;
+}
+/* The submit block is lime itself, so the ring there is dark. */
+.avg-cta :is(a, button):focus-visible {
+	outline-color: var(--color-bg);
+}
+/* A card's cover button and the sort toggles fill a box that clips what is drawn outside it, so their ring is drawn inside; on the pressed toggle, which is light, it is dark. The cover is positioned over its button and would hide the button's own outline, so there the ring belongs to a pseudo-element laid over the cover. */
+.avg-tog:focus-visible,
+.avg-card > button:focus-visible::after {
+	outline-offset: -3px;
+}
+.avg-tog[aria-pressed='true']:focus-visible {
+	outline-color: var(--color-bg);
+}
+.avg-card > button:focus-visible {
+	outline: none;
+}
+.avg-card > button:focus-visible::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	outline: 2px solid var(--color-lime);
+	pointer-events: none;
+}
+/* A forced-colours palette replaces the backgrounds that mark a pressed chip or toggle and drops the field's glow, so both are restated in system colours. */
+@media (forced-colors: active) {
+	[aria-pressed='true'] {
+		forced-color-adjust: none;
+		border-color: Highlight;
+		background: Highlight;
+		color: HighlightText;
+	}
+	.avg-field:focus {
+		outline: 2px solid Highlight;
+		outline-offset: 2px;
+	}
+}
+
+/* ---- ticker ---- */
+.avg-ticker {
+	display: flex;
+	width: max-content;
+	animation: avg-ticker 70s linear infinite;
+}
+.avg-ticker-wrap:hover .avg-ticker {
+	animation-play-state: paused;
+}
+/* Every other word is outlined. The stroke is drawn first and twice as wide, then the fill, in the strip's own colour, covers its inner half: a plain transparent fill would show the overlapping contours inside each glyph of the variable font. */
+.avg-outline {
+	color: var(--color-band);
+	-webkit-text-stroke: 2px var(--color-muted);
+	paint-order: stroke fill;
+}
+/* A forced-colours palette drops the stroke's colour and keeps the transparent fill, which would leave every other word invisible. */
+@media (forced-colors: active) {
+	.avg-outline {
+		color: CanvasText;
+		-webkit-text-stroke: 0;
+	}
+}
+
+/* ---- submit block, bars, FAQ ---- */
+.avg-cta {
+	background-image: radial-gradient(color-mix(in srgb, var(--color-bg) 13%, transparent) 1.2px, transparent 1.5px);
+	background-size: 18px 18px;
+	animation: avg-dots 14s linear infinite;
+}
+.avg-bar {
+	transform-origin: left center;
+	animation: avg-grow 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+@supports (animation-timeline: view()) {
+	.avg-bar {
+		animation-timeline: view();
+		animation-range: entry 10% cover 35%;
+	}
+}
+.avg-faq summary {
+	list-style: none;
+	transition: color 0.2s;
+}
+.avg-faq summary::-webkit-details-marker {
+	display: none;
+}
+.avg-faq summary:hover {
+	color: var(--color-lime);
+}
+.avg-plus {
+	transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.avg-faq[open] .avg-plus {
+	transform: rotate(45deg);
+}
+.avg-faq p {
+	animation: avg-rise 0.4s ease both;
+}
+
+/* ---- dialog ---- */
+.avg-backdrop {
+	animation: avg-fade 0.25s ease both;
+}
+.avg-dlg {
+	animation: avg-dlg 0.42s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* ---- back to top ---- */
+/* Hidden until the page has scrolled. Where scroll-driven animations exist the scroll position itself fades it in; elsewhere, and for visitors who asked for less motion, BackToTop sets data-show from a scroll listener. */
+.avg-totop {
+	opacity: 0;
+	visibility: hidden;
+	translate: 0 16px;
+	transition:
+		opacity 0.25s,
+		translate 0.25s,
+		visibility 0.25s,
+		transform 0.2s;
+}
+.avg-totop[data-show='true'] {
+	opacity: 1;
+	visibility: visible;
+	translate: 0 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+	@supports (animation-timeline: scroll()) {
+		.avg-totop {
+			animation: avg-totop linear both;
+			animation-timeline: scroll(root);
+			animation-range: 0 700px;
+		}
+	}
+}
+
+/* ---- scripts the display face does not cover ---- */
+/* Chinese, Japanese and Korean headings are set in the system face: the display face's negative tracking would make the full-width glyphs collide, and its tight leading would clip them. */
+:is(h1, h2, h3, summary):is(:lang(zh), :lang(ja), :lang(ko)) {
+	letter-spacing: 0;
+}
+:is(h1, h2):is(:lang(zh), :lang(ja), :lang(ko)) {
+	line-height: 1.25;
+}
+/* The hero line is measured in ch, the width of a digit; a full-width glyph is two, so the size comes down a step and Korean's measure is given in em. */
+.avg-h1:is(:lang(zh), :lang(ja), :lang(ko)) {
+	font-size: clamp(38px, 6.4vw, 88px);
+	line-height: 1.14;
+}
+.avg-h1:lang(ko) {
+	max-width: 9em;
+}
+/* Chinese and Japanese have no spaces to break at, so a measure cuts the line inside a word. The line is instead set as its two halves (Hero splits it at the comma), one per line, the caret staying with the second. The Japanese halves are longer, ten glyphs at most, and are sized to fit a phone. */
+.avg-h1:is(:lang(zh), :lang(ja)) {
+	max-width: none;
+}
+.avg-h1:is(:lang(zh), :lang(ja)) > span {
+	display: block;
+}
+.avg-h1:lang(ja) {
+	font-size: clamp(28px, 7.6vw, 88px);
+}
+/* Cyrillic falls back to Inter, which is wider than the display face. */
+.avg-h1:lang(ru) {
+	max-width: 13ch;
+	font-size: clamp(40px, 7vw, 96px);
+	letter-spacing: -0.03em;
+	line-height: 1;
+}
+:lang(ko) {
+	word-break: keep-all;
+}
+:lang(ja) {
+	line-break: strict;
+}
+
+/* ---- reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation: none !important;
+		transition: none !important;
+		scroll-behavior: auto !important;
+	}
+	.avg-in,
+	.avg-reveal {
+		opacity: 1 !important;
+		translate: none !important;
+	}
+}

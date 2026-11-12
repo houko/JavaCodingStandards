@@ -1,0 +1,26 @@
+{
+	"$schema": "../schema/game.schema.json",
+	"slug": "souls-like-boss-fight",
+	"name": "Souls-like boss fight",
+	"creator": "kevin_t_ngo",
+	"genre": "Action",
+	"link": {
+		"type": "watch"
+	},
+	"post": "2120238844754923874",
+	"likes": 1721,
+	"model": "Claude Fable 5.2",
+	"cover": "souls-like-boss-fight.webp",
+	"summary": {
+		"en": "A dark-fantasy boss fight, playable in the browser.",
+		"zh-CN": "黑暗奇幻 Boss 战，可在浏览器中游玩。",
+		"zh-TW": "黑暗奇幻 Boss 戰，可在瀏覽器中遊玩。",
+		"ja": "ブラウザで遊べるダークファンタジーのボス戦。",
+		"ko": "브라우저에서 즐기는 다크 판타지 보스전.",
+		"es": "Un combate contra un jefe de fantasía oscura, jugable en el navegador.",
+		"fr": "Un combat de boss dark fantasy, jouable dans le navigateur.",
+		"de": "Ein Dark-Fantasy-Bosskampf, im Browser spielbar.",
+		"pt-BR": "Uma luta de chefe de fantasia sombria, jogável no navegador.",
+		"ru": "Битва с боссом в стиле тёмного фэнтези, играбельна в браузере."
+	}
+}

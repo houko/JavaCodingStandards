@@ -1,0 +1,27 @@
+{
+	"$schema": "../schema/game.schema.json",
+	"slug": "four-fighter-brawler",
+	"name": "Four-fighter brawler",
+	"creator": "promodenstudio",
+	"genre": "Action",
+	"link": {
+		"type": "play",
+		"url": "https://claude.ai/artifact/1QGGhB68jMCjjjeeKtKNUo"
+	},
+	"post": "2120085977079107788",
+	"likes": 4,
+	"model": "Claude Fable 5.2",
+	"cover": "four-fighter-brawler.webp",
+	"summary": {
+		"en": "A four-character fighting game with 39 voice and sound clips.",
+		"zh-CN": "四角色格斗游戏，含 39 段语音与音效。",
+		"zh-TW": "四角色格鬥遊戲，含 39 段語音與音效。",
+		"ja": "39のボイスと効果音を備えた4キャラ格闘ゲーム。",
+		"ko": "음성·효과음 39개를 담은 4인 캐릭터 격투 게임.",
+		"es": "Un juego de lucha de cuatro personajes con 39 clips de voz y sonido.",
+		"fr": "Un jeu de combat à quatre personnages avec 39 voix et effets sonores.",
+		"de": "Ein Kampfspiel mit vier Figuren und 39 Sprach- und Soundclips.",
+		"pt-BR": "Um jogo de luta com quatro personagens e 39 clipes de voz e som.",
+		"ru": "Файтинг на четырёх персонажей с 39 голосовыми и звуковыми клипами."
+	}
+}

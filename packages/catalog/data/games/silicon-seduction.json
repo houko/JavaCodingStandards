@@ -1,0 +1,27 @@
+{
+	"$schema": "../schema/game.schema.json",
+	"slug": "silicon-seduction",
+	"name": "Silicon Seduction",
+	"creator": "ZryMiller",
+	"genre": "Story & sim",
+	"link": {
+		"type": "play",
+		"url": "https://silicon-seduction.vercel.app/"
+	},
+	"post": "2119918766691954691",
+	"likes": 13,
+	"model": "Claude Fable 5.2",
+	"cover": "silicon-seduction.webp",
+	"summary": {
+		"en": "Escape without getting seduced.",
+		"zh-CN": "逃出去，别被诱惑。",
+		"zh-TW": "逃出去，別被誘惑。",
+		"ja": "誘惑されずに脱出せよ。",
+		"ko": "유혹당하지 말고 탈출하라.",
+		"es": "Escapa sin dejarte seducir.",
+		"fr": "Échappez-vous sans vous laisser séduire.",
+		"de": "Entkomme, ohne dich verführen zu lassen.",
+		"pt-BR": "Fuja sem se deixar seduzir.",
+		"ru": "Сбегите и не поддайтесь соблазну."
+	}
+}

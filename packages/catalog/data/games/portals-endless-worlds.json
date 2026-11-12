@@ -1,0 +1,27 @@
+{
+	"$schema": "../schema/game.schema.json",
+	"slug": "portals-endless-worlds",
+	"name": "Portals: Endless Worlds",
+	"creator": "emollick",
+	"genre": "Exploration",
+	"link": {
+		"type": "play",
+		"url": "https://portals-endless-worlds.netlify.app/"
+	},
+	"post": "2119918307457577163",
+	"likes": 1913,
+	"model": "Claude Fable 5.2",
+	"cover": "portals-endless-worlds.webp",
+	"summary": {
+		"en": "450+ code-only 3D worlds linked by portals, built by 25,000 agents.",
+		"zh-CN": "450+ 个纯代码 3D 世界由传送门相连，由 25,000 个智能体建造。",
+		"zh-TW": "450+ 個純程式碼 3D 世界由傳送門相連，由 25,000 個代理建造。",
+		"ja": "ポータルでつながる450以上のコードだけの3D世界。25,000のエージェントが構築。",
+		"ko": "포털로 이어진 450개 이상의 코드 전용 3D 세계. 25,000개 에이전트가 제작.",
+		"es": "Más de 450 mundos 3D hechos solo con código, unidos por portales y creados por 25.000 agentes.",
+		"fr": "Plus de 450 mondes 3D en pur code, reliés par des portails et bâtis par 25 000 agents.",
+		"de": "Über 450 reine Code-3D-Welten, verbunden durch Portale, gebaut von 25.000 Agenten.",
+		"pt-BR": "Mais de 450 mundos 3D só em código, ligados por portais e criados por 25.000 agentes.",
+		"ru": "Более 450 3D-миров из чистого кода, связанных порталами и созданных 25 000 агентов."
+	}
+}

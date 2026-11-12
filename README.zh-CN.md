@@ -1,123 +1,165 @@
-# Awesome NSGo
-
-[![Website](https://img.shields.io/badge/website-awesomensgo.dev-007aff)](https://awesomensgo.dev)
-[![CI](https://github.com/yldm-tech/awesome-nsgo/actions/workflows/ci.yml/badge.svg)](https://github.com/yldm-tech/awesome-nsgo/actions/workflows/ci.yml)
-[![License](https://img.shields.io/github/license/yldm-tech/awesome-nsgo)](LICENSE)
-
-把围绕 [NSGo](https://github.com/oneo-me/nsgo) 的应用、包、组件和文档收集在一个站点里：**[awesomensgo.dev](https://awesomensgo.dev)**。NSGo 是 [ONEO](https://github.com/oneo-me) 开发的、以 Go 为后端的跨平台原生 UI 引擎：应用逻辑、响应式图和布局都在 Go 中运行，应用用 Go 或 TSX 写一次即可。它在 iOS 及其 App Clip（轻 App）、tvOS、watchOS、Android、macOS、Windows、Linux 和 Web 上用各平台自己的原生视图绘制，Go 应用还能运行在微信、QQ、支付宝和抖音小程序里。NSGo 还处在早期，尚未发布正式版本，也没有稳定的 API。
-
-Awesome NSGo 是 yldm-tech 维护的非官方社区目录，不是 NSGo 的官方网站；官网是 [oneo-me.github.io/nsgo](https://oneo-me.github.io/nsgo/)。
+# Vibe Arcade
 
 [English](README.md) · 简体中文 · [繁體中文](README.zh-TW.md) · [日本語](README.ja.md) · [한국어](README.ko.md)
 
-[![Awesome NSGo](.github/assets/banner.png)](https://awesomensgo.dev)
+![Vibe Arcade](.github/assets/banner.png)
 
-## 站点内容
+Vibe Arcade 是一份人工整理的游戏索引，收录大家主要靠向 AI 模型下提示做出来、并发布在 X 上的游戏。每个条目记录制作游戏的模型、作者、原帖及其点赞数，以及游玩链接。这个仓库存放游戏数据和展示它们的网站；游戏本身仍属于各自的作者，托管在他们自己的地址上。
 
-- **作品**：用 NSGo 做的应用，可按名称、最新或最热排序，并按分类、语言（Go 或 TSX）和平台（macOS、Windows、Linux、iOS、Android、Web 或小程序）筛选。每款都有自己的页面，包含完整介绍、截图（项目提供时）、用 Go 还是 TSX 编写、支持的平台、分类、收录时间，以及同一作者的其他作品。
-- **插件**：NSGo 的官方包（都在 `github.com/oneo-me/nsgo` 这个模块里，包括桌面窗口与托盘、移动端标签栏、国际化、Lucide 图标、图表、数据表格、编辑器、终端视图、小组件、测试等）以及社区包，各自标明适用于 Go、TSX 还是两者，另有 `nsgo` 命令行工具。
-- **UI 组件**：为 NSGo 应用做的组件库、主题与图标。
-- **状态管理**：NSGo 自带的 signal、memo 和 context，以及为 NSGo 应用做的状态管理库。
-- **模板**：开发 NSGo 应用的起点，首先是 `nsgo init` 自带的 `go`、`tsx` 和 `mixed` 三个模板。
-- **AI 工具**：帮助 AI 编程助手开发 NSGo 应用的 agent skill、MCP 服务与规则。
-- **文档**：NSGo 官方文档、社区文章和官方资源（官网、组件参考、在线演示、示例和 NSH）。
-- 用 <kbd>⌘K</kbd> / <kbd>Ctrl+K</kbd> **搜索**全部内容；想收录某个项目时，提交表单会替你写好条目。
+## 收录标准
 
-站点支持简体中文、繁体中文、英语、日语和韩语。每个页面在每种语言下都有独立地址（`?lang=en`），由服务端渲染，并带有 hreflang 链接和 sitemap。筛选、排序和标签页也都记在地址里（`/showcase?cat=dev&sort=newest`），分享出去的链接打开的就是同一个视图。
+满足以下三条的游戏会被收录：
 
-## 技术实现
+- **主要由 AI 制作。** 代码、美术或音效由 AI 模型生成，并且作者说明了用的是哪个模型。
+- **浏览器即玩。** 点一下就能玩，无需安装，也没有注册墙。只有源码仓库或视频的游戏也可以收录，会单独标注。
+- **发布在 X 上。** 每个条目都链接到作者的原帖，点赞数也取自这条帖子。
 
-pnpm monorepo，由 [TanStack Start](https://tanstack.com/start) 运行在 [Cloudflare Workers](https://workers.cloudflare.com) 上：
+不限模型，不限引擎。点赞数是条目上次更新时的快照，不是实时数字。
 
-| 路径 | 内容 |
-|---|---|
-| `apps/web` | 站点：React 19、TanStack Start（服务端渲染），以及带 `@cloudflare/vite-plugin` 的 Vite。`wrangler.jsonc` 把它部署到 `awesomensgo.dev`。 |
-| `packages/catalog` | 数据：`data/*.json`（应用、UI 组件、状态方案、模板、AI 工具、插件、文章、指南）及其 JSON Schema，五种语言的界面文案，搜索与提交表单的条目。测试会校验每个条目。 |
-| `packages/enrich` | 补全提交 bot 开的 PR：从项目仓库取应用图标，截图优先用表单里上传的图片或填的链接、否则从仓库取，并用 Claude 写五种语言的文案。由 `.github/workflows/enrich-submission.yml` 运行。`.github/workflows/verify.yml` 每周还会核验所有已收录项目的仓库，仓库有变化的条目各开一个 PR：仓库被删除、转为私有或被停用时下架条目，被改名或转移时更新条目，补上缺少的 homepage，项目有了自己的图片后替换临时图；仓库被归档或不再用 NSGo 构建（`go.mod` 不再依赖 `github.com/oneo-me/nsgo`）时只在运行摘要里列出。`.github/workflows/prune.yml` 每周还会开一个汇总 PR，提议下架达不到收录标准的条目：收录满 30 天后评分低于 20、超过 180 天没有提交、仓库已归档或不再用 NSGo 构建；维护者合并才生效，保留过的条目不会再被提议。 |
+## 提交游戏
 
-应用图标来自 [yldm-tech/ai-logo](https://github.com/yldm-tech/ai-logo)，由它的 CDN 提供；它未收录的少数应用使用 `apps/web/public/icons/` 里的官方图标。
+- 填写 [Submit a game](https://github.com/yldm-tech/awesome-vibe-games/issues/new?template=submit-game.yml) issue 表单。表单需要游戏名、作者的 X 账号、帖子、链接、类型、模型和一句英文简介。提交者不必是作者本人。
+- 或者把游戏连同可玩的链接发到 X 上，并 @ [@suzukaze_haduki](https://x.com/suzukaze_haduki)。
 
-每个应用页都有一张分享卡片：1200×630 的 PNG，包含应用的图标、名称、作者和截图，链接预览会显示它。`vite build` 把卡片生成到 `/og/`（代码在 `apps/web/og`），所以 bot 新加的应用在部署时就有自己的卡片。生成卡片需要联网：构建时会下载 ai-logo 图标，名称里有非拉丁文字时还会从 Google Fonts 取字形。
+每条提交都由策展人核对，封面取自帖子，条目的十种语言文本也由策展人撰写。也欢迎直接提 pull request 添加游戏文件；简介必须带齐十种语言，因为缺任何一种，目录都会拒绝这个条目。
 
-## 本地开发
+## 游戏文件格式
+
+每款游戏是一个 JSON 文件，位于 `packages/catalog/data/games/<slug>.json`，由 [`game.schema.json`](packages/catalog/data/schema/game.schema.json) 和目录的测试校验。下面是 [`saltline.json`](packages/catalog/data/games/saltline.json)，它用到了除 `creatorUrl` 之外的全部字段（`creatorUrl` 的用法见 [`lanternfall.json`](packages/catalog/data/games/lanternfall.json)）：
+
+```json
+{
+  "$schema": "../schema/game.schema.json",
+  "slug": "saltline",
+  "name": "Saltline",
+  "creator": "felixrieseberg",
+  "genre": "Shooter",
+  "link": {
+    "type": "play",
+    "url": "https://claude.ai/artifact/BGY1SztrAYcJQHSsnHHGmp"
+  },
+  "post": "2119925633564463609",
+  "likes": 14391,
+  "model": "Claude Fable 5.2",
+  "cover": "saltline.webp",
+  "summary": {
+    "en": "One-shot FPS. Models, sounds and textures all generated in code, no human feedback.",
+    "zh-CN": "一次性提示生成的 FPS。模型、音效、纹理全部用代码生成，无人工反馈。",
+    "zh-TW": "一次性提示生成的 FPS。模型、音效、材質全部用程式碼生成，無人工回饋。",
+    "ja": "ワンショットで作られたFPS。モデル・音・テクスチャはすべてコード生成、人の手直しなし。",
+    "ko": "원샷 프롬프트로 만든 FPS. 모델, 사운드, 텍스처 모두 코드로 생성, 사람 피드백 없음.",
+    "es": "FPS hecho con prompts de una sola vez. Modelos, sonidos y texturas generados en código, sin feedback humano.",
+    "fr": "Un FPS fait en prompts uniques. Modèles, sons et textures générés en code, sans retour humain.",
+    "de": "Ein One-Shot-Shooter. Modelle, Sounds und Texturen komplett im Code erzeugt, ohne menschliches Feedback.",
+    "pt-BR": "Um FPS feito com prompts únicos. Modelos, sons e texturas gerados em código, sem feedback humano.",
+    "ru": "FPS из одноразовых промптов. Модели, звуки и текстуры сгенерированы кодом, без участия человека."
+  },
+  "pitch": {
+    "en": "A first-person shooter built from one-shot prompts with no human feedback. Models, sounds and textures are all generated in code.",
+    "zh-CN": "一款由一次性提示、无人工反馈做出的第一人称射击游戏。模型、音效和纹理全部由代码生成。",
+    "zh-TW": "一款由一次性提示、無人工回饋做出的第一人稱射擊遊戲。模型、音效和材質全部由程式碼生成。",
+    "ja": "人のフィードバックなし、ワンショットのプロンプトで作られたFPS。モデル・サウンド・テクスチャはすべてコードで生成。",
+    "ko": "사람의 피드백 없이 원샷 프롬프트로 만든 1인칭 슈터. 모델, 사운드, 텍스처 모두 코드로 생성했습니다.",
+    "es": "Un shooter en primera persona creado con prompts únicos, sin feedback humano. Modelos, sonidos y texturas generados en código.",
+    "fr": "Un FPS construit à partir de prompts uniques, sans retour humain. Modèles, sons et textures sont tous générés en code.",
+    "de": "Ein Ego-Shooter aus One-Shot-Prompts, ohne menschliches Feedback. Modelle, Sounds und Texturen sind komplett im Code erzeugt.",
+    "pt-BR": "Um FPS criado com prompts únicos, sem feedback humano. Modelos, sons e texturas foram todos gerados em código.",
+    "ru": "Шутер от первого лица, созданный одноразовыми промптами без участия человека. Модели, звуки и текстуры сгенерированы кодом."
+  },
+  "featured": {
+    "apiCost": "~$550",
+    "buildTime": "8h",
+    "outputTokens": 2700000
+  }
+}
+```
+
+| 字段 | 必填 | 含义 |
+| --- | --- | --- |
+| `$schema` | 是 | 固定为 `../schema/game.schema.json`。 |
+| `slug` | 是 | 去掉 `.json` 的文件名，也是游戏在网站上的地址：名称转小写，每一段 `a-z`、`0-9` 以外的连续字符换成一个连字符，首尾不留连字符。`Portals: Endless Worlds` 对应 `portals-endless-worlds`。 |
+| `name` | 是 | 游戏名，按作者的写法。 |
+| `creator` | 是 | 作者的 X 账号，不带 `@`。 |
+| `creatorUrl` | 否 | 作者主页不是其 X 主页时填写。不填则链接到 `https://x.com/<creator>`。 |
+| `genre` | 是 | `Shooter`、`Racing`、`Action`、`Exploration`、`Sandbox`、`Story & sim`、`Puzzle & toys` 之一。 |
+| `link.type` | 是 | `play` 表示能在浏览器里运行的游戏，`source` 表示源码仓库，`watch` 表示只能在视频里看到的游戏。 |
+| `link.url` | `play` 和 `source` 必填 | 游玩地址或源码地址。`watch` 条目可以不填，此时链接到帖子。 |
+| `post` | 是 | 作者在 X 上的帖子 id，即帖子地址末尾的那串数字，写成字符串，因为它超出了 JSON 数字能表示的范围。游戏显示的日期从这个 id 算出。 |
+| `likes` | 是 | 条目上次更新时帖子的点赞数，整数。 |
+| `model` | 是 | 制作游戏所用的 AI 模型，按作者的叫法。 |
+| `cover` | 是 | 封面文件名 `<slug>.webp`：一张 960x600 的图片，放在 `apps/web/public/covers/`。 |
+| `summary` | 是 | 卡片上的一句话简介，十种语言齐全。 |
+| `pitch` | 否 | 游戏被推荐时显示的较长介绍，十种语言齐全。 |
+| `featured` | 否 | 作者公布的 `apiCost`、`buildTime` 和 `outputTokens`。带这个字段的游戏就是首页的推荐游戏，所以有且只有一款游戏带它。 |
+
+## 语言
+
+网站和每款游戏的简介都有十种语言：English（`en`，默认）、简体中文（`zh-CN`）、繁體中文（`zh-TW`）、日本語（`ja`）、한국어（`ko`）、Español（`es`）、Français（`fr`）、Deutsch（`de`）、Português（`pt-BR`）和 Русский（`ru`）。英文使用不带参数的地址，其他语言使用 `?lang=<code>`。界面文案在 `packages/catalog/locales/<code>.json`，每种语言一个文件，键相同。
+
+## 仓库结构
+
+一个 pnpm monorepo，包含两个包：
+
+```text
+apps/web/                  @vibe-arcade/web：网站，TanStack Start（React 19），在 Cloudflare Workers 上渲染
+  src/                     路由、组件和样式
+  public/covers/           游戏封面，<slug>.webp
+  public/fonts/            自托管的网页字体
+  og/                      在构建时绘制分享图的 Vite 插件
+  scripts/                 fetch-covers.ts、site-icons.ts、banner.ts
+  wrangler.jsonc           Cloudflare Workers 配置
+packages/catalog/          @vibe-arcade/catalog：数据以及由它派生的一切
+  data/games/              每款游戏一个 JSON 文件
+  data/schema/             game.schema.json
+  data/meta.json           数据最后变更的日期，即站点上的“最近更新”
+  locales/                 界面文案，每种语言一个文件
+  src/                     加载与校验、筛选、语言、站点常量
+.github/
+  ISSUE_TEMPLATE/          Submit a game 表单
+  workflows/ci.yml         在每个 pull request 和 main 上做类型检查、测试和构建
+  workflows/links.yml      每周检查所有游戏链接
+```
+
+每周的[链接检查](.github/workflows/links.yml)会请求每款游戏的游玩或源码链接，并维护一个标题为“Dead game links”的 issue，列出不再响应的链接。它从不修改数据。
+
+## 开发
 
 需要 Node.js 24 或更高版本，以及 pnpm。
 
 ```sh
-pnpm install
-pnpm dev          # 本地站点，由 Workers 运行时渲染
-pnpm test         # catalog 测试
-pnpm typecheck
-pnpm build
-pnpm preview      # 在 Workers 运行时中运行生产构建
+pnpm install     # 安装依赖
+pnpm dev         # 在本地运行网站
+pnpm test        # 运行两个包的测试
+pnpm typecheck   # 对两个包做类型检查
+pnpm build       # 构建网站，包括分享图
 ```
 
-`pnpm deploy` 会用 Wrangler 构建并部署，需要一个包含 `apps/web/wrangler.jsonc` 中域名 zone 的 Cloudflare 账户。
+`apps/web` 里有三个脚本，它们写出的文件需要提交：
 
-表单的直接提交通过安装在本仓库上的 GitHub App 完成，前面有 Cloudflare Turnstile 人机验证和按 IP 的限流。给这个 App 开 *Contents* 和 *Pull requests* 的读写权限，把它的私钥转成 PKCS#8（`openssl pkcs8 -topk8 -nocrypt -in key.pem -out key-pkcs8.pem`），然后在 `apps/web` 下用 `wrangler secret put` 设置四个 secret：`GITHUB_APP_ID`、`GITHUB_APP_PRIVATE_KEY`（PKCS#8 文件）、`TURNSTILE_SITE_KEY` 和 `TURNSTILE_SECRET_KEY`。四个都设好之前，表单只提供 GitHub 链接。本地测试时，把 Turnstile 的[测试密钥](https://developers.cloudflare.com/turnstile/troubleshooting/testing/)写进 `apps/web/.dev.vars`。
-
-稳定版 Chrome 只有通过 origin trial，才会为本站访客开启 WebMCP，提交表单的工具也随之可用。在 [developer.chrome.com/origintrials](https://developer.chrome.com/origintrials/) 为正式站点的 origin（`https://awesomensgo.dev`）注册 WebMCP 试用，然后在 `apps/web` 下用 `wrangler secret put WEBMCP_ORIGIN_TRIAL` 设置拿到的 token：此后每个页面都会在 `<meta http-equiv="origin-trial">` 标签里带上它，不设置就不带。token 随试用结束而失效，届时重新注册，或删掉这个 secret。
-
-作品、UI 组件、状态管理、模板和 AI 工具都需要截图。访客填好仓库链接后，表单会请 Worker（`/api/shot`）按 submission workflow 自己的规则（`packages/enrich/src/source.ts`）检查仓库里有没有它会采用的截图；没有，或者作品没有仓库时，表单会要求提供一张，Worker 也会拒绝没有截图的提交。访客可以上传图片（PNG、JPEG 或 WebP，5 MB 以内，宽度至少 600 像素；应用的截图可以是竖版的手机界面），也可以填图片链接。上传的图片会以 `submissions/<slug>.<ext>` 提交到 PR 的分支上并显示在 PR 里，workflow 把它转成站点用的 WebP 后删除。这项检查按 IP 限流，每分钟 20 次。
-
-bot 开出 PR 后，*Complete submission* workflow 会补上表单问不到的内容：应用图标，按 NSGo 的查找方式取（`nsgo.yaml` 里的 `icon.png`，路径相对于该文件，没有则用它旁边的 `assets/Icon.png`；`nsgo init` 不会生成图标，所以从没加过图标的应用这里也取不到）、README 里第一张不是图标或其他方形 logo 的截图（竖版的手机截图也算），以及五种语言的简介和介绍。UI 组件和状态管理也会照同样的方式补截图，并从仓库设置里补 homepage；表单填了默认值的字段（应用在作品集里的分组 `group`，没有另写分类时分类随分组而定、应用的 `platforms`、UI 组件的 `tag` 和 `surface`、插件的 `surface`、状态管理和插件的 `tags`）由模型在写文案时一并选定。它会跑 catalog 检查，以 bot 身份推到同一分支，并在 PR 里留言说明做了什么；合并前仍需维护者审核。需要在仓库的 Actions 设置里配置 secret：`SUBMIT_APP_PRIVATE_KEY`（App 的 PKCS#8 私钥，与 Worker 用的相同）、`LLM_API_KEY`（Anthropic Messages API 的密钥），走网关时再加 `LLM_BASE_URL`；以及变量 `SUBMIT_APP_CLIENT_ID`（App 的 Client ID）。变量 `LLM_MODEL` 可以换模型（默认 `claude-opus-5-5`）。没有 `LLM_API_KEY` 时文案保持提交时的样子。
-
-通过表单的 Issue 链接发来的 Issue，会由 *Submission issue* workflow（`.github/workflows/issue-submission.yml`）开出同样的 PR：它像 Worker 检查粘贴的条目那样检查这条条目，包括所需的截图和 16 KB 的上限，然后让 bot 开出 PR（*Complete submission* 会在这个 PR 上运行），条目的收录时间记为 Issue 的开启时间，最后把 PR 链接评论到 Issue 上并关闭它。无法收录的条目会收到一条评论，说明要改什么，编辑 Issue 后会重新检查；每个 Issue 上 bot 只保留一条评论。没有表单生成的路径行及其下方 json 代码块的 Issue 不会被处理。Issue 只需要 GitHub 账号，不经过人机验证，所以除了共用的 20 个待审提交上限之外，bot 对同一个人的 Issue 最多同时保留 2 个打开的 PR。它使用同样的 `SUBMIT_APP_PRIVATE_KEY` 和 `SUBMIT_APP_CLIENT_ID`；读取、评论和关闭 Issue 用的是 workflow 自己的 token，所以 App 不需要 Issue 权限。要手动重新检查某个 Issue，用它的编号运行这个 workflow 即可。
-
-## 收录项目
-
-每个条目都是 [`packages/catalog/data`](packages/catalog/data) 下单独的一个 JSON 文件，放在所属类别的目录里，以 `slug` 命名：
-
-| 文件 | 内容 |
-|---|---|
-| `apps/<slug>.json` | 用 NSGo 做的应用 |
-| `ui/<slug>.json` | UI 组件库 |
-| `state/<slug>.json` | 状态管理 |
-| `templates/<slug>.json` | 模板 |
-| `ai/<slug>.json` | AI 工具 |
-| `plugins/<slug>.json` | 插件 |
-| `articles/<slug>.json` | 文章 |
-| `docs/<slug>.json` | NSGo 官方指南 |
-
-添加方式有两种：
-
-- **在站点上：** 点「提交」填表，或者直接粘贴整条 JSON 条目，然后提交：不需要 GitHub 账号，站点的 bot 会替你开 PR。有 GitHub 账号的话，也可以把生成的条目提交为 Issue，站点的 bot 会把它变成同样的 PR，或在 GitHub 编辑器里打开为这个条目新建的文件自己加上。支持 [WebMCP](https://webmachinelearning.github.io/webmcp/) 的浏览器里，AI 代理可以替你检查条目、填好表单，由你核对后提交。
-- **在仓库里：** 在所属类别的目录下加一个文件，然后提 PR。
-
-一个应用的文件 `apps/my-app.json` 长这样：
-
-```json
-{
-  "$schema": "../schema/app.schema.json",
-  "slug": "my-app",
-  "name": "My App",
-  "author": "your-github-login",
-  "kind": "go",
-  "platforms": ["mac", "win", "linux", "ios", "android"],
-  "url": "https://my-app.dev",
-  "repo": "you/my-app",
-  "summary": { "en": "One line about the app.", "ja": "アプリの一行説明。" },
-  "description": { "en": "A few sentences for the app's page." },
-  "added": "2026-11-04T12:00:00Z"
-}
+```sh
+pnpm --filter @vibe-arcade/web covers   # 从每款游戏的 X 帖子抓取封面到 public/covers/
+pnpm --filter @vibe-arcade/web icons    # 根据 public/favicon.svg 重新生成图标
+pnpm --filter @vibe-arcade/web banner   # 重新生成本文件顶部的 .github/assets/banner.png
 ```
 
-- 文件名与 `slug` 相同。`added` 是条目加入站点的时间（UTC），站点 bot 会自动填写，手动添加时写当前时间。除官方指南外每个类别都有这个字段：作品集可以按它把最新的应用排在前面，UI 组件库、状态管理、模板、AI 工具、文章和社区插件按它从早到晚排列；官方插件和官方指南按名字排列。每个条目一个文件，所以同时添加条目的多个 PR 不会互相冲突。
-- 其他类别的文件同样在字段外带 `$schema`、`slug` 和 `added`（官方指南没有 `added`），具体字段见 `data/schema/` 里对应的 schema。
-- `kind` 表示应用用什么写：Go 写的填 `go`，TSX 写的填 `tsx`。`platforms` 列出应用能运行的平台，从 `mac`、`win`、`linux`、`ios`、`android`、`web`、`miniprogram` 中至少选一个。缺少这两个字段时 CI 会报错。
-- `url` 是应用主页：官网，没有官网就填仓库地址，不要求在 GitHub 上。开源应用再用 `repo` 填 GitHub 仓库（`owner/name`），闭源应用不填。
-- 文本字段按语言各写一份。`en` 必填；`zh-CN`、`zh-TW`、`ja`、`ko` 可选，缺少的语言显示英文。
-- 每个文件都在 `$schema` 里指向自己的 JSON Schema（在 `data/schema/`），VS Code 等编辑器会在你输入时补全并检查字段。
-- 链接必须是 https。截图请把宽约 1200px 的 WebP 放进 `apps/web/public/shots/`，并写 `"screenshot": "my-app.webp"`。应用图标写 `"icon": { "ailogo": "<id>" }`，id 来自 [ai-logo](https://github.com/yldm-tech/ai-logo)；用应用自己的图标时，把 128px 的 WebP 放进 `apps/web/public/icons/`，并写 `"icon": { "file": "my-app.webp" }`。不写则显示字母图标。
-- `pnpm test` 会校验每个条目，出错时指出文件、条目和字段。CI 会在每个 PR 上运行它。
+`covers` 会保留已存在的封面，除非加上 `--force`；可以传入 slug 来限定范围；加上 `--likes` 还会刷新游戏文件里的点赞数；只要有点赞数变化，它就把 `packages/catalog/data/meta.json` 里的日期（站点上显示的“最近更新”）改成当天。添加游戏时，这个日期需要手动修改。
 
-界面文案在 `packages/catalog/locales/`，每种语言一个 JSON 文件，键完全相同。`zh-CN.json` 是基准：新增的键要同时加进其余四个文件；缺键或 `{x}`/`{n}` 占位符不一致时，`pnpm typecheck` 和 `pnpm test` 会报错。
+## 部署
+
+网站运行在 Cloudflare Workers 上，用 wrangler 部署：
+
+```sh
+pnpm run deploy
+```
+
+这条命令会构建网站，并按 [`apps/web/wrangler.jsonc`](apps/web/wrangler.jsonc) 执行 `wrangler deploy`；需要登录 Cloudflare，并有权访问其中指定的账号。网站的公开地址是 [`packages/catalog/src/site.ts`](packages/catalog/src/site.ts) 里的 `SITE_URL` 常量，只在这一处定义：canonical 链接、站点地图和分享图都从那里读取。
 
 ## 致谢
 
-- [NSGo](https://github.com/oneo-me/nsgo) 由 [ONEO](https://github.com/oneo-me) 开发（Apache-2.0），是 [NSH](https://nsh.dev) 的 Go 移植版。官方作品、插件、模板和指南的数据以它的仓库和[官网](https://oneo-me.github.io/nsgo/)为准。本站与 ONEO 没有关联，也未获其背书。
-- 应用图标来自 [yldm-tech/ai-logo](https://github.com/yldm-tech/ai-logo)（MIT，分叉自 LobeHub 的 [lobe-icons](https://github.com/lobehub/lobe-icons)）或应用自己的图标；NSGo 官方作品的截图来自 oneo-me/nsgo 的 `docs/public/cases`，其余来自各项目的 README。两者都归各应用作者所有，名称和标志是其商标，仅用于识别。
+游戏、名称、封面和商标归各自的作者所有。封面是作者在 X 上所发帖子里的画面。Vibe Arcade 是一份社区索引，与 Anthropic 或其他任何模型厂商均无关联。
+
+Vibe Arcade 是 [Wiz Games](https://wiz.games) 的项目，由 [@suzukaze_haduki](https://x.com/suzukaze_haduki) 策展。
 
 ## 许可证
 
-代码以 [MIT 许可证](LICENSE) 发布。
+代码以 [MIT 许可证](LICENSE)发布。该许可证不涵盖游戏及其封面。

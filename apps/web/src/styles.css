@@ -1,136 +1,69 @@
-/* The original look: light by default and dark when the system asks for it. Tailwind scans the original look's components (not src/retro, which has its own stylesheet), and the site's colours, fonts, radii and breakpoints are its theme, so components style themselves with utilities: `bg-panel`, `text-fg-3`, `rounded-card`, `max-md:`.
+/* Vibe Arcade's one look: dark only. Tailwind's default colours are cleared and replaced by the design's tokens, so every colour in a component is one of them, and components style themselves with utilities. What utilities cannot say (keyframes, hover choreography between a parent and its children, pseudo-elements, per-language type fixes) is in styles/arcade.css, left outside the cascade layers so those rules win over utilities. The web fonts are self-hosted (styles/fonts.css). */
+@import 'tailwindcss';
+@import './styles/fonts.css';
+@import './styles/arcade.css';
 
-What utilities cannot say, or what many pages share and adjust by class, is kept in the files under styles/, in the components layer below the utilities: rules on bare elements (body, links, focus rings), pseudo-elements, keyframes, the look's primitives (cards, tiles, buttons, lanes, code panels), and the parts of components shared with the retro look (Score, Like), which each look's stylesheet draws under the same class names. */
-@layer theme, base, components, utilities;
-@import 'tailwindcss/theme.css' layer(theme);
-@import 'tailwindcss/utilities.css' layer(utilities) source(none);
-
-/* Tailwind's preflight is left out: the design was drawn on the browser's default styles (heading sizes and margins, list bullets, button padding), and preflight resets them all. Only its border reset is taken, so a `border` utility draws a solid line in the current colour as it does elsewhere. */
-@layer base {
-	*,
-	::before,
-	::after,
-	::backdrop,
-	::file-selector-button {
-		border: 0 solid;
-	}
-}
-@source './components';
-@source './routes';
-@source './lib';
-
-/* In cascade order: the bare elements and the page layout, the primitives (cards, tiles, buttons, tags, lanes, code panels), the like and score classes both looks share, the backdrop, and the motion, whose reduced-motion block turns off rules in the files before it. */
-@import './styles/base.css' layer(components);
-@import './styles/primitives.css' layer(components);
-@import './styles/score.css' layer(components);
-@import './styles/backdrop.css' layer(components);
-@import './styles/motion.css' layer(components);
-
-/* Only the site's own palette, light by default: Tailwind's default colours are cleared so every colour in a component is one of these. Static, as the stylesheets under styles/ read them as variables too. Text in blue uses blue-ink; blue itself is for icons, meters, focus rings and selected borders. */
 @theme static {
 	--color-*: initial;
-	--color-white: #ffffff;
-	--color-black: #000000;
-	--color-bg: #ffffff;
-	--color-soft: #f5f6f8;
-	--color-panel: #ffffff;
-	--color-raised: #ffffff;
-	--color-line: #eceef1;
-	--color-line-2: #e1e3e8;
-	--color-line-3: #d0d3da;
-	--color-field: #868b95;
-	--color-fg: #0c0d10;
-	--color-fg-2: #5b606a;
-	--color-fg-3: #6b707a;
-	--color-blue: #007aff;
-	--color-blue-ink: #0062cc;
-	--color-blue-soft: #eaf3ff;
-	--color-dev: #9a5b00;
-	--color-dev-soft: #fff4e5;
-	--color-ok: #1a7f37;
-	--color-ok-soft: #e8f5ec;
-	--color-like: #c9285c;
-	--color-like-soft: #fdebf1;
-	--color-err: #c62828;
-	--color-dot: #dcdfe5;
-	--color-scrim: rgb(15 18 25 / 0.32);
-	--color-editor: #f6f8fa;
-	--color-editor-bar: #eef1f4;
-	--color-code-kw: #cf222e;
-	--color-code-str: #0a3069;
-	--color-code-fn: #8250df;
-	--color-code-const: #0550ae;
-	--color-code-cmt: #59636e;
+	--color-bg: #101012;
+	--color-panel: #18181d;
+	--color-footer: #0c0c0e;
+	--color-ink: #0b0b0d;
+	--color-band: #131316;
+	--color-track: #232329;
+	--color-line: #2a2a31;
+	--color-line-2: #3a3a42;
+	--color-fg: #f2f0e9;
+	--color-muted: #a3a1aa;
+	--color-soft: #c9c7cf;
+	--color-soft-2: #dad8df;
+	--color-lime: #d4ff3a;
+	--color-heart: #ff5c8a;
 
-	--font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, var(--font-cjk), sans-serif;
-	--font-mono: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
-
-	--radius-box: 12px;
-	--radius-menu: 14px;
-	--radius-frame: 16px;
-	--radius-card: 18px;
-	--radius-band: 22px;
+	/* Bricolage Grotesque has Latin only: headings in other scripts fall through to Inter (Cyrillic), then to the system's CJK face for the page's language (--font-cjk, set on the root element below). */
+	--font-display: 'Bricolage Grotesque', 'Inter', var(--font-cjk), system-ui, sans-serif;
+	--font-sans: 'Inter', var(--font-cjk), system-ui, sans-serif;
+	--font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, var(--font-cjk), monospace;
 }
 
-/* The dark palette, by the system setting: the same variables in the base layer, which follows the theme layer, so every utility and every var(--color-*) in styles/ follows the OS without script. */
 @layer base {
-	@media (prefers-color-scheme: dark) {
-		:root {
-			--color-bg: #0b0c0f;
-			--color-soft: #111318;
-			--color-panel: #15171c;
-			--color-raised: #1b1e24;
-			--color-line: #1f2228;
-			--color-line-2: #272a31;
-			--color-line-3: #353942;
-			--color-field: #636975;
-			--color-fg: #f3f4f6;
-			--color-fg-2: #a6abb4;
-			--color-fg-3: #8e939d;
-			--color-blue: #3d9bff;
-			--color-blue-ink: #6cb2ff;
-			--color-blue-soft: #14263b;
-			--color-dev: #e2b27a;
-			--color-dev-soft: #2a2116;
-			--color-ok: #3fb950;
-			--color-ok-soft: #12261a;
-			--color-like: #ff7a98;
-			--color-like-soft: #2d1620;
-			--color-err: #ff8a80;
-			--color-dot: #22252c;
-			--color-scrim: rgb(0 0 0 / 0.6);
-			--color-editor: #0f1115;
-			--color-editor-bar: #171a20;
-			--color-code-kw: #ff7b72;
-			--color-code-str: #a5d6ff;
-			--color-code-fn: #d2a8ff;
-			--color-code-const: #79c0ff;
-			--color-code-cmt: #8b949e;
-		}
+	/* The CJK face follows the lang attribute on <html>, so a Japanese page never borrows Chinese glyph shapes and nothing is downloaded for these scripts. */
+	:root {
+		color-scheme: dark;
+		--font-cjk: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Noto Sans SC';
 	}
-}
+	:root:lang(zh-TW) {
+		--font-cjk: 'PingFang TC', 'Microsoft JhengHei', 'Noto Sans CJK TC', 'Noto Sans TC';
+	}
+	:root:lang(ja) {
+		--font-cjk: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Noto Sans CJK JP', 'Noto Sans JP';
+	}
+	:root:lang(ko) {
+		--font-cjk: 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans CJK KR', 'Noto Sans KR';
+	}
 
-/* Tailwind's breakpoints (sm 640, md 768, lg 1024, xl 1280) plus the widths the design already turns at, so moving a rule to a utility keeps where it turns. */
-@theme {
-	--breakpoint-xs: 520px;
-	--breakpoint-tab: 700px;
-	--breakpoint-nav: 860px;
-	--breakpoint-split: 960px;
-	--breakpoint-hero: 1000px;
-	--breakpoint-hdr: 1288px;
-}
-
-/* Where the header's search is a round icon button rather than a field (components/Header.tsx): below 1288px; with a coarse pointer, which has no shortcut to show, below 1700px; and in Japanese below 1700px, where the longer section names leave 44px beside the nav, short of the compact field's 88px. */
-@custom-variant search-round {
-	@media (width < 1288px) {
-		@slot;
+	html {
+		scroll-behavior: smooth;
+		background: var(--color-bg);
+		overflow-x: clip;
+		-webkit-text-size-adjust: 100%;
 	}
-	@media (pointer: coarse) and (width < 1700px) {
-		@slot;
+	body {
+		min-height: 100vh;
+		background: var(--color-bg);
+		color: var(--color-fg);
+		font-size: 16px;
+		line-height: 1.5;
+		overflow-x: clip;
 	}
-	@media (width < 1700px) {
-		&:lang(ja) {
-			@slot;
-		}
+	a {
+		color: var(--color-fg);
+	}
+	a:hover {
+		color: var(--color-lime);
+	}
+	::selection {
+		background: var(--color-lime);
+		color: var(--color-bg);
 	}
 }

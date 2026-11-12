@@ -1,0 +1,27 @@
+{
+	"$schema": "../schema/game.schema.json",
+	"slug": "tilt-labyrinth",
+	"name": "Tilt Labyrinth",
+	"creator": "mylifcc",
+	"genre": "Puzzle & toys",
+	"link": {
+		"type": "play",
+		"url": "https://blog.silencestar.com/posts/tilt-labyrinth/play/"
+	},
+	"post": "2120054646282870910",
+	"likes": 32,
+	"model": "Claude Fable 5.2",
+	"cover": "tilt-labyrinth.webp",
+	"summary": {
+		"en": "A wooden ball maze in about 2,000 lines of Three.js.",
+		"zh-CN": "约 2,000 行 Three.js 写成的木制滚珠迷宫。",
+		"zh-TW": "約 2,000 行 Three.js 寫成的木製滾珠迷宮。",
+		"ja": "約2,000行のThree.jsで作った木製ボール迷路。",
+		"ko": "약 2,000줄 Three.js로 만든 나무 구슬 미로.",
+		"es": "Un laberinto de bola de madera en unas 2.000 líneas de Three.js.",
+		"fr": "Un labyrinthe à bille en bois en environ 2 000 lignes de Three.js.",
+		"de": "Ein Holzkugel-Labyrinth in rund 2.000 Zeilen Three.js.",
+		"pt-BR": "Um labirinto de bolinha de madeira em cerca de 2.000 linhas de Three.js.",
+		"ru": "Деревянный лабиринт с шариком примерно в 2000 строк Three.js."
+	}
+}

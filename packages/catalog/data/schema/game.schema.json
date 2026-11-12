@@ -1,0 +1,117 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "game.schema.json",
+	"title": "A game in the index, one file per game named after its slug",
+	"type": "object",
+	"additionalProperties": false,
+	"required": ["$schema", "slug", "name", "creator", "genre", "link", "post", "likes", "model", "cover", "summary"],
+	"properties": {
+		"$schema": {
+			"const": "../schema/game.schema.json"
+		},
+		"slug": {
+			"type": "string",
+			"pattern": "^(?!-)(?!.*--)[a-z0-9-]*[a-z0-9]$",
+			"description": "The file's name without .json and the game's address on the site: the name in lowercase, every run of other characters than a-z and 0-9 turned into one hyphen."
+		},
+		"name": {
+			"type": "string",
+			"minLength": 1,
+			"description": "The game's name as its creator writes it."
+		},
+		"creator": {
+			"type": "string",
+			"pattern": "^[A-Za-z0-9_]{1,15}$",
+			"description": "The creator's handle on X, without the @."
+		},
+		"creatorUrl": {
+			"type": "string",
+			"pattern": "^https://\\S+$",
+			"description": "The creator's page, when it is not their X profile. Leave out to link to https://x.com/<creator>."
+		},
+		"genre": {
+			"enum": ["Shooter", "Racing", "Action", "Exploration", "Sandbox", "Story & sim", "Puzzle & toys"]
+		},
+		"link": {
+			"type": "object",
+			"additionalProperties": false,
+			"required": ["type"],
+			"properties": {
+				"type": {
+					"enum": ["play", "source", "watch"],
+					"description": "What the link leads to: play for the game itself in a browser, source for its repository, watch for a game that can only be seen in a video."
+				},
+				"url": {
+					"type": "string",
+					"pattern": "^https://\\S+$",
+					"description": "Where to play the game or read its source. Only a watch link may leave it out, and then leads to the post on X."
+				}
+			},
+			"if": { "properties": { "type": { "const": "watch" } } },
+			"else": { "required": ["type", "url"] }
+		},
+		"post": {
+			"type": "string",
+			"pattern": "^[1-9][0-9]{17,19}$",
+			"description": "The id of the creator's post on X, the 18 to 20 digits at the end of its link, as a string: it is too large for a JSON number. The date shown for the game is read from it."
+		},
+		"likes": {
+			"type": "integer",
+			"minimum": 0,
+			"description": "Likes on the post when this entry was last updated."
+		},
+		"model": {
+			"type": "string",
+			"minLength": 1,
+			"description": "The AI model the game was built with, as the creator names it, e.g. Claude Fable 5.2."
+		},
+		"cover": {
+			"type": "string",
+			"pattern": "^[a-z0-9-]+\\.webp$",
+			"description": "The cover's file name, <slug>.webp, a 960x600 image in apps/web/public/covers."
+		},
+		"summary": {
+			"$ref": "#/$defs/text",
+			"description": "One line about the game for its card, in every site language."
+		},
+		"pitch": {
+			"$ref": "#/$defs/text",
+			"description": "A longer description, shown where the game is featured, in every site language."
+		},
+		"featured": {
+			"type": "object",
+			"additionalProperties": false,
+			"required": ["apiCost", "buildTime", "outputTokens"],
+			"properties": {
+				"apiCost": { "type": "string", "minLength": 1, "description": "What building the game cost, as the creator reports it, e.g. ~$550." },
+				"buildTime": { "type": "string", "minLength": 1, "description": "How long it took, e.g. 8h." },
+				"outputTokens": { "type": "integer", "minimum": 1, "description": "Tokens the model wrote, as a number, e.g. 2700000." }
+			},
+			"description": "Makes this the featured game of the home page. Exactly one game has it."
+		}
+	},
+	"$defs": {
+		"text": {
+			"type": "object",
+			"additionalProperties": false,
+			"required": ["en", "zh-CN", "zh-TW", "ja", "ko", "es", "fr", "de", "pt-BR", "ru"],
+			"properties": {
+				"en": { "$ref": "#/$defs/line" },
+				"zh-CN": { "$ref": "#/$defs/line" },
+				"zh-TW": { "$ref": "#/$defs/line" },
+				"ja": { "$ref": "#/$defs/line" },
+				"ko": { "$ref": "#/$defs/line" },
+				"es": { "$ref": "#/$defs/line" },
+				"fr": { "$ref": "#/$defs/line" },
+				"de": { "$ref": "#/$defs/line" },
+				"pt-BR": { "$ref": "#/$defs/line" },
+				"ru": { "$ref": "#/$defs/line" }
+			}
+		},
+		"line": {
+			"type": "string",
+			"minLength": 1,
+			"pattern": "^[^\\r\\n]+$"
+		}
+	}
+}

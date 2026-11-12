@@ -1,0 +1,27 @@
+{
+	"$schema": "../schema/game.schema.json",
+	"slug": "spud-smash",
+	"name": "Spud Smash",
+	"creator": "argofowl",
+	"genre": "Action",
+	"link": {
+		"type": "play",
+		"url": "https://fowllabs.com/fable-5-2/spud-smash"
+	},
+	"post": "2119913148929187960",
+	"likes": 131,
+	"model": "Claude Fable 5.2",
+	"cover": "spud-smash.webp",
+	"summary": {
+		"en": "A potato that smashes and torches blue chairs.",
+		"zh-CN": "一颗土豆，砸烂并烧掉蓝色椅子。",
+		"zh-TW": "一顆馬鈴薯，砸爛並燒掉藍色椅子。",
+		"ja": "青い椅子を叩き壊して燃やすジャガイモ。",
+		"ko": "파란 의자를 부수고 불태우는 감자.",
+		"es": "Una patata que destroza y quema sillas azules.",
+		"fr": "Une pomme de terre qui fracasse et brûle des chaises bleues.",
+		"de": "Eine Kartoffel, die blaue Stühle zertrümmert und abfackelt.",
+		"pt-BR": "Uma batata que esmaga e queima cadeiras azuis.",
+		"ru": "Картошка, которая крушит и поджигает синие стулья."
+	}
+}

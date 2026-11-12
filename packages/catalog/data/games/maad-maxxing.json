@@ -1,0 +1,27 @@
+{
+	"$schema": "../schema/game.schema.json",
+	"slug": "maad-maxxing",
+	"name": "Maad Maxxing",
+	"creator": "Andrew_Blumson",
+	"genre": "Racing",
+	"link": {
+		"type": "play",
+		"url": "https://maad-maxxing.vercel.app"
+	},
+	"post": "2120599812512833557",
+	"likes": 165,
+	"model": "Claude Fable 5.2",
+	"cover": "maad-maxxing.webp",
+	"summary": {
+		"en": "100% code, no assets. Three.js + WebGPU, first 3 stages playable.",
+		"zh-CN": "100% 代码，零素材。Three.js + WebGPU，前 3 关可玩。",
+		"zh-TW": "100% 程式碼，零素材。Three.js + WebGPU，前 3 關可玩。",
+		"ja": "100%コード、アセットなし。Three.js + WebGPU、最初の3ステージがプレイ可能。",
+		"ko": "100% 코드, 에셋 없음. Three.js + WebGPU, 첫 3 스테이지 플레이 가능.",
+		"es": "100 % código, sin assets. Three.js + WebGPU, las 3 primeras fases son jugables.",
+		"fr": "100 % code, aucun asset. Three.js + WebGPU, les 3 premiers niveaux sont jouables.",
+		"de": "100 % Code, keine Assets. Three.js + WebGPU, die ersten 3 Level sind spielbar.",
+		"pt-BR": "100% código, sem assets. Three.js + WebGPU, as 3 primeiras fases são jogáveis.",
+		"ru": "100% код, без ассетов. Three.js + WebGPU, первые 3 этапа играбельны."
+	}
+}

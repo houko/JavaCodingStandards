@@ -1,0 +1,28 @@
+{
+	"$schema": "../schema/game.schema.json",
+	"slug": "lanternfall",
+	"name": "Lanternfall",
+	"creator": "loktar00",
+	"creatorUrl": "https://github.com/loktar00",
+	"genre": "Action",
+	"link": {
+		"type": "play",
+		"url": "https://loktar00.github.io/lanternfall/"
+	},
+	"post": "2120279060303520034",
+	"likes": 160,
+	"model": "Claude Fable 5.2",
+	"cover": "lanternfall.webp",
+	"summary": {
+		"en": "Models, animation and effects all generated, down to the enemy death frames.",
+		"zh-CN": "模型、动画、特效全部生成，连敌人死亡帧都不放过。",
+		"zh-TW": "模型、動畫、特效全部生成，連敵人死亡影格都不放過。",
+		"ja": "モデル、アニメ、エフェクトすべて生成。敵の死亡モーションまで。",
+		"ko": "모델, 애니메이션, 이펙트 모두 생성. 적의 사망 프레임까지.",
+		"es": "Modelos, animaciones y efectos generados, hasta los fotogramas de muerte de los enemigos.",
+		"fr": "Modèles, animations et effets générés, jusqu’aux images de mort des ennemis.",
+		"de": "Modelle, Animationen und Effekte komplett generiert, bis zu den Todesframes der Gegner.",
+		"pt-BR": "Modelos, animações e efeitos gerados, até os quadros de morte dos inimigos.",
+		"ru": "Модели, анимации и эффекты сгенерированы, вплоть до кадров гибели врагов."
+	}
+}

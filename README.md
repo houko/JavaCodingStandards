@@ -1,123 +1,165 @@
-# Awesome NSGo
-
-[![Website](https://img.shields.io/badge/website-awesomensgo.dev-007aff)](https://awesomensgo.dev)
-[![CI](https://github.com/yldm-tech/awesome-nsgo/actions/workflows/ci.yml/badge.svg)](https://github.com/yldm-tech/awesome-nsgo/actions/workflows/ci.yml)
-[![License](https://img.shields.io/github/license/yldm-tech/awesome-nsgo)](LICENSE)
-
-The apps, packages, components and guides around [NSGo](https://github.com/oneo-me/nsgo), collected on one site: **[awesomensgo.dev](https://awesomensgo.dev)**. NSGo is a cross-platform native UI engine with a Go backend, made by [ONEO](https://github.com/oneo-me): app logic, the reactive graph and layout run in Go, and you write an app once in Go or TSX. It draws with each platform's own views on iOS and its App Clips, tvOS, watchOS, Android, macOS, Windows, Linux and the web, and Go apps also run in WeChat, QQ, Alipay and Douyin mini programs. NSGo is early, with no release or stable API yet.
-
-Awesome NSGo is an unofficial community catalog kept by yldm-tech, not NSGo's official site, which is [oneo-me.github.io/nsgo](https://oneo-me.github.io/nsgo/).
+# Vibe Arcade
 
 English · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [日本語](README.ja.md) · [한국어](README.ko.md)
 
-[![Awesome NSGo](.github/assets/banner.png)](https://awesomensgo.dev)
+![Vibe Arcade](.github/assets/banner.png)
 
-## What is on the site
+Vibe Arcade is a curated index of games that people built mostly by prompting an AI model and then shared on X. Each entry records the model that built the game, its creator, the original post with its like count, and a link to play it. This repository holds the game data and the site that shows it; the games themselves stay with their creators, on their own hosts.
 
-- **Showcase**: apps built with NSGo, sorted by name, newest or most liked, and filtered by category, language (Go or TSX) and platform (macOS, Windows, Linux, iOS, Android, the web or mini programs). Each has its own page with the full description, a screenshot where the project has one, whether it is written in Go or TSX, the platforms it runs on, its category, when it was added and its other apps by the same author.
-- **Plugins**: NSGo's official packages, all in the module `github.com/oneo-me/nsgo` (desktop windows and tray, mobile tab bars, i18n, Lucide icons, charts, data tables, editors, a terminal view, widgets, testing and more), and community packages, each marked by the apps it serves (Go, TSX or both), plus the `nsgo` command-line tool.
-- **UI components**: component libraries, themes and icons made for NSGo apps.
-- **State**: NSGo's own signals, memos and context, beside the state management libraries made for NSGo apps.
-- **Templates**: projects to start an NSGo app from, beginning with the `go`, `tsx` and `mixed` templates of `nsgo init`.
-- **AI tools**: agent skills, MCP servers and rules that help AI coding agents build NSGo apps.
-- **Learn**: NSGo's official docs, community articles and the official resources (the site, the component reference, the live demo, the examples and NSH).
-- **Search** across everything with <kbd>⌘K</kbd> / <kbd>Ctrl+K</kbd>, and a form that writes the entry for a project you want listed.
+## How games get in
 
-The site speaks Simplified Chinese, Traditional Chinese, English, Japanese and Korean. Every page has its own address per language (`?lang=en`), is rendered on the server, and has hreflang links and a sitemap. Filters, sort orders and tabs are kept in the address too (`/showcase?cat=dev&sort=newest`), so a shared link opens the same view.
+A game is listed when it meets three criteria:
 
-## How it is built
+- **Built mostly by AI.** Code, art or sound were generated with an AI model, and the creator says which one.
+- **Playable in a browser.** One click to play, with no installs and no sign-up walls. A game that only has a source repository or a video can still be listed, and is marked as such.
+- **Shared on X.** Every entry links to the creator's original post, and its likes are counted from that post.
 
-A pnpm monorepo, served by [TanStack Start](https://tanstack.com/start) on [Cloudflare Workers](https://workers.cloudflare.com):
+Any model and any engine count. Like counts are a snapshot taken when the entry was last updated, not a live number.
 
-| Path | What it holds |
-|---|---|
-| `apps/web` | The site: React 19, TanStack Start (server rendering) and Vite with `@cloudflare/vite-plugin`. `wrangler.jsonc` deploys it to `awesomensgo.dev`. |
-| `packages/catalog` | The data: `data/*.json` (apps, UI components, state solutions, templates, AI tools, plugins, articles, guides) and their JSON Schemas, the UI copy in five languages, search and the submit form's entries. Its tests validate every entry. |
-| `packages/enrich` | Completes a pull request the submission bot opens: the app's icon from its repository, its screenshot from the image uploaded or the link given in the form, or else from the repository, and its copy in all five languages (written with Claude). Run by `.github/workflows/enrich-submission.yml`. Once a week `.github/workflows/verify.yml` also checks every listed project's repository and opens a pull request per entry for what the repository says has changed: a deleted, private or disabled repository removes the entry, a renamed or transferred one updates it, a missing homepage is added and a stand-in image is replaced once the project has its own; an archived repository, or one no longer built with NSGo (its `go.mod` no longer requires `github.com/oneo-me/nsgo`), is only listed in the run's summary. Once a week `.github/workflows/prune.yml` proposes, in one pull request a maintainer merges, taking off the entries below the site's bar: a score under 20 after 30 days on the site, no commit for more than 180 days, an archived repository, or one no longer built with NSGo; an entry a maintainer keeps is not proposed again. |
+## Submit a game
 
-App icons come from [yldm-tech/ai-logo](https://github.com/yldm-tech/ai-logo), served by its CDN; the few apps it does not list use their official icon from `apps/web/public/icons/`.
+- Open the [Submit a game](https://github.com/yldm-tech/awesome-vibe-games/issues/new?template=submit-game.yml) issue form. It asks for the game's name, the creator's X handle, the post, the link, the genre, the model and one line of description in English. You do not have to be the creator.
+- Or post the game on X with a playable link and tag [@suzukaze_haduki](https://x.com/suzukaze_haduki).
 
-Each app's page has a share card, a 1200×630 PNG with the app's icon, name, author and screenshot, which link previews show. `vite build` draws the cards into `/og/` (`apps/web/og`), so an app the bot adds gets its card on the deploy that adds it. The build needs the network for them: it fetches the ai-logo icons and, for names outside the Latin script, glyphs from Google Fonts.
+A curator checks each submission, takes the cover from the post and writes the entry in all ten languages. A pull request that adds the game file yourself is also welcome; it has to carry the summary in all ten languages, because the catalog rejects an entry with one missing.
+
+## Game file format
+
+Each game is one JSON file at `packages/catalog/data/games/<slug>.json`, checked against [`game.schema.json`](packages/catalog/data/schema/game.schema.json) and by the catalog's tests. This is [`saltline.json`](packages/catalog/data/games/saltline.json), the entry that uses every field except `creatorUrl` (see [`lanternfall.json`](packages/catalog/data/games/lanternfall.json) for that one):
+
+```json
+{
+  "$schema": "../schema/game.schema.json",
+  "slug": "saltline",
+  "name": "Saltline",
+  "creator": "felixrieseberg",
+  "genre": "Shooter",
+  "link": {
+    "type": "play",
+    "url": "https://claude.ai/artifact/BGY1SztrAYcJQHSsnHHGmp"
+  },
+  "post": "2119925633564463609",
+  "likes": 14391,
+  "model": "Claude Fable 5.2",
+  "cover": "saltline.webp",
+  "summary": {
+    "en": "One-shot FPS. Models, sounds and textures all generated in code, no human feedback.",
+    "zh-CN": "一次性提示生成的 FPS。模型、音效、纹理全部用代码生成，无人工反馈。",
+    "zh-TW": "一次性提示生成的 FPS。模型、音效、材質全部用程式碼生成，無人工回饋。",
+    "ja": "ワンショットで作られたFPS。モデル・音・テクスチャはすべてコード生成、人の手直しなし。",
+    "ko": "원샷 프롬프트로 만든 FPS. 모델, 사운드, 텍스처 모두 코드로 생성, 사람 피드백 없음.",
+    "es": "FPS hecho con prompts de una sola vez. Modelos, sonidos y texturas generados en código, sin feedback humano.",
+    "fr": "Un FPS fait en prompts uniques. Modèles, sons et textures générés en code, sans retour humain.",
+    "de": "Ein One-Shot-Shooter. Modelle, Sounds und Texturen komplett im Code erzeugt, ohne menschliches Feedback.",
+    "pt-BR": "Um FPS feito com prompts únicos. Modelos, sons e texturas gerados em código, sem feedback humano.",
+    "ru": "FPS из одноразовых промптов. Модели, звуки и текстуры сгенерированы кодом, без участия человека."
+  },
+  "pitch": {
+    "en": "A first-person shooter built from one-shot prompts with no human feedback. Models, sounds and textures are all generated in code.",
+    "zh-CN": "一款由一次性提示、无人工反馈做出的第一人称射击游戏。模型、音效和纹理全部由代码生成。",
+    "zh-TW": "一款由一次性提示、無人工回饋做出的第一人稱射擊遊戲。模型、音效和材質全部由程式碼生成。",
+    "ja": "人のフィードバックなし、ワンショットのプロンプトで作られたFPS。モデル・サウンド・テクスチャはすべてコードで生成。",
+    "ko": "사람의 피드백 없이 원샷 프롬프트로 만든 1인칭 슈터. 모델, 사운드, 텍스처 모두 코드로 생성했습니다.",
+    "es": "Un shooter en primera persona creado con prompts únicos, sin feedback humano. Modelos, sonidos y texturas generados en código.",
+    "fr": "Un FPS construit à partir de prompts uniques, sans retour humain. Modèles, sons et textures sont tous générés en code.",
+    "de": "Ein Ego-Shooter aus One-Shot-Prompts, ohne menschliches Feedback. Modelle, Sounds und Texturen sind komplett im Code erzeugt.",
+    "pt-BR": "Um FPS criado com prompts únicos, sem feedback humano. Modelos, sons e texturas foram todos gerados em código.",
+    "ru": "Шутер от первого лица, созданный одноразовыми промптами без участия человека. Модели, звуки и текстуры сгенерированы кодом."
+  },
+  "featured": {
+    "apiCost": "~$550",
+    "buildTime": "8h",
+    "outputTokens": 2700000
+  }
+}
+```
+
+| Field | Required | Meaning |
+| --- | --- | --- |
+| `$schema` | yes | Always `../schema/game.schema.json`. |
+| `slug` | yes | The file name without `.json` and the game's address on the site: the name in lowercase, with every run of characters other than `a-z` and `0-9` turned into one hyphen and no hyphen at either end. `Portals: Endless Worlds` becomes `portals-endless-worlds`. |
+| `name` | yes | The game's name as its creator writes it. |
+| `creator` | yes | The creator's X handle, without the `@`. |
+| `creatorUrl` | no | The creator's page when it is not their X profile. Left out, the site links to `https://x.com/<creator>`. |
+| `genre` | yes | One of `Shooter`, `Racing`, `Action`, `Exploration`, `Sandbox`, `Story & sim`, `Puzzle & toys`. |
+| `link.type` | yes | `play` for a game that runs in a browser, `source` for a repository, `watch` for a game that can only be seen in a video. |
+| `link.url` | for `play` and `source` | Where to play the game or read its source. A `watch` entry may leave it out, and then links to the post. |
+| `post` | yes | The id of the creator's post on X, the digits at the end of its address, written as a string because it is too large for a JSON number. The date shown for the game is read from this id. |
+| `likes` | yes | Likes on the post when the entry was last updated, an integer. |
+| `model` | yes | The AI model the game was built with, as the creator names it. |
+| `cover` | yes | The cover's file name, `<slug>.webp`: a 960x600 image in `apps/web/public/covers/`. |
+| `summary` | yes | One line about the game for its card, in all ten languages. |
+| `pitch` | no | A longer description shown where the game is featured, in all ten languages. |
+| `featured` | no | `apiCost`, `buildTime` and `outputTokens` as the creator reports them. It makes the game the featured one on the home page, so exactly one game has it. |
+
+## Languages
+
+The site and every game summary are available in ten languages: English (`en`, the default), 简体中文 (`zh-CN`), 繁體中文 (`zh-TW`), 日本語 (`ja`), 한국어 (`ko`), Español (`es`), Français (`fr`), Deutsch (`de`), Português (`pt-BR`) and Русский (`ru`). English is served at the bare address and the others with `?lang=<code>`. The interface copy lives in `packages/catalog/locales/<code>.json`, one file per language with the same keys.
+
+## Repository layout
+
+A pnpm monorepo with two packages:
+
+```text
+apps/web/                  @vibe-arcade/web: the site, TanStack Start (React 19) rendered on Cloudflare Workers
+  src/                     routes, components and styles
+  public/covers/           game covers, <slug>.webp
+  public/fonts/            self-hosted web fonts
+  og/                      Vite plugin that draws the share images at build time
+  scripts/                 fetch-covers.ts, site-icons.ts, banner.ts
+  wrangler.jsonc           Cloudflare Workers configuration
+packages/catalog/          @vibe-arcade/catalog: the data and everything derived from it
+  data/games/              one JSON file per game
+  data/schema/             game.schema.json
+  data/meta.json           the day the data last changed, the site's "last updated"
+  locales/                 interface copy, one file per language
+  src/                     loading and validation, filters, languages, site constants
+.github/
+  ISSUE_TEMPLATE/          the Submit a game form
+  workflows/ci.yml         typecheck, test and build on every pull request and on main
+  workflows/links.yml      weekly check of every game link
+```
+
+The weekly [link check](.github/workflows/links.yml) requests each game's play or source link and keeps one issue titled "Dead game links" up to date with the ones that no longer answer. It never edits the data.
 
 ## Development
 
 Requires Node.js 24 or later and pnpm.
 
 ```sh
-pnpm install
-pnpm dev          # local site, rendered by the Workers runtime
-pnpm test         # catalog tests
-pnpm typecheck
-pnpm build
-pnpm preview      # the production build in the Workers runtime
+pnpm install     # install dependencies
+pnpm dev         # run the site locally
+pnpm test        # run the tests of both packages
+pnpm typecheck   # type-check both packages
+pnpm build       # build the site, including the share images
 ```
 
-`pnpm deploy` builds and deploys with Wrangler. It needs a Cloudflare account that holds the zone of the domain in `apps/web/wrangler.jsonc`.
+Three scripts in `apps/web` write files that are committed:
 
-Direct submissions from the form go through a GitHub App installed on this repository, with Cloudflare Turnstile and a per-IP rate limit in front of it. Give the app *Contents* and *Pull requests* read and write access, convert its private key to PKCS#8 (`openssl pkcs8 -topk8 -nocrypt -in key.pem -out key-pkcs8.pem`), and set four secrets with `wrangler secret put` in `apps/web`: `GITHUB_APP_ID`, `GITHUB_APP_PRIVATE_KEY` (the PKCS#8 file), `TURNSTILE_SITE_KEY` and `TURNSTILE_SECRET_KEY`. Until all four are set, the form offers only the GitHub links. For local testing, put Turnstile's [test keys](https://developers.cloudflare.com/turnstile/troubleshooting/testing/) in `apps/web/.dev.vars`.
-
-Stable Chrome turns WebMCP on, and with it the submit form's tools, for the site's visitors only through an origin trial. Register the production origin (`https://awesomensgo.dev`) for the WebMCP trial at [developer.chrome.com/origintrials](https://developer.chrome.com/origintrials/) and set the token with `wrangler secret put WEBMCP_ORIGIN_TRIAL` in `apps/web`: every page then carries it in a `<meta http-equiv="origin-trial">` tag, and without it none does. The token expires with the trial; register again then, or remove the secret.
-
-An app, UI components, state management, a template or an AI tool needs a screenshot. Once the visitor has typed the repository's link, the form asks the Worker (`/api/shot`) whether the repository has one the submission workflow would take, judged by the workflow's own rules (`packages/enrich/src/source.ts`); when it has none, or an app has no repository, the form asks for one, and the Worker refuses the submission without it. The visitor uploads an image (PNG, JPEG or WebP, at most 5 MB and at least 600 pixels wide; an app's may be a portrait phone screen) or gives a link to one. An uploaded image goes on the pull request's branch as `submissions/<slug>.<ext>` and shows in the pull request; the workflow turns it into the site's WebP and removes it. The check is limited to 20 a minute per IP.
-
-When the bot opens a pull request, the *Complete submission* workflow fills in what the form cannot ask for: the app's icon where NSGo looks for it (`icon.png` in `nsgo.yaml`, relative to that file, else `assets/Icon.png` beside it; `nsgo init` writes no icon, so an app that never added one has none to take), the first screenshot in its README that is not the icon or another square logo (a portrait phone screen counts), and the summary and description in all five languages. For UI components and state management it adds the screenshot in the same way and the homepage from the repository's settings, and for what the form fills in with a default (an app's showcase `group`, from which its category follows unless it names one, an app's `platforms`, a UI library's `tag` and `surface`, a plugin's `surface`, the `tags` of state management and plugins) the model picks a value along with the copy. It runs the catalog checks, pushes to the same branch as the bot and comments what it did; a maintainer still reviews the result before merging. It needs, in the repository's Actions settings, the secrets `SUBMIT_APP_PRIVATE_KEY` (the app's PKCS#8 key, as for the Worker), `LLM_API_KEY` (an Anthropic Messages API key) and, for a gateway, `LLM_BASE_URL`, and the variable `SUBMIT_APP_CLIENT_ID` (the app's client ID); the variable `LLM_MODEL` overrides the model (`claude-opus-5-5`). Without `LLM_API_KEY` the copy stays as submitted.
-
-An issue sent through the form's issue link gets the same pull request from the *Submission issue* workflow (`.github/workflows/issue-submission.yml`): it checks the entry as the Worker checks a pasted one, including the screenshot it needs and a 16 KB limit, has the bot open the pull request, on which *Complete submission* runs, with the entry dated when the issue was opened, then comments the pull request on the issue and closes it. An entry that cannot go in gets a comment saying what to fix instead, and editing the issue checks it again; the bot keeps one comment per issue. Issues without the form's path line and the json code block under it are left alone. An issue takes only a GitHub account, not the captcha, so besides the shared limit of 20 open submissions the bot keeps at most 2 open from one person's issues. It uses the same `SUBMIT_APP_PRIVATE_KEY` and `SUBMIT_APP_CLIENT_ID`; the issue is read, commented on and closed with the workflow's own token, so the app needs no access to issues. To check an issue again by hand, run the workflow with its number.
-
-## Adding a project
-
-Every entry is a JSON file of its own under [`packages/catalog/data`](packages/catalog/data), in its category's directory and named after its `slug`:
-
-| File | Lists |
-|---|---|
-| `apps/<slug>.json` | Apps built with NSGo |
-| `ui/<slug>.json` | UI component libraries |
-| `state/<slug>.json` | State management |
-| `templates/<slug>.json` | Templates |
-| `ai/<slug>.json` | AI tools |
-| `plugins/<slug>.json` | Plugins |
-| `articles/<slug>.json` | Articles |
-| `docs/<slug>.json` | NSGo's guides |
-
-There are two ways to add one:
-
-- **On the site:** click "Submit" and fill in the form, or paste a whole entry as JSON, then submit it directly: no GitHub account needed, the site's bot opens the pull request for you. With a GitHub account you can also send the generated entry as an issue, which the site's bot turns into the same pull request, or open the entry's new file in GitHub's editor and add it yourself. An AI agent in a browser with [WebMCP](https://webmachinelearning.github.io/webmcp/) can check the entry and fill in the form for you to check and send.
-- **In the repository:** add a file to the category's directory and open a pull request.
-
-An app's file, `apps/my-app.json`, looks like this:
-
-```json
-{
-  "$schema": "../schema/app.schema.json",
-  "slug": "my-app",
-  "name": "My App",
-  "author": "your-github-login",
-  "kind": "go",
-  "platforms": ["mac", "win", "linux", "ios", "android"],
-  "url": "https://my-app.dev",
-  "repo": "you/my-app",
-  "summary": { "en": "One line about the app.", "ja": "アプリの一行説明。" },
-  "description": { "en": "A few sentences for the app's page." },
-  "added": "2026-11-04T12:00:00Z"
-}
+```sh
+pnpm --filter @vibe-arcade/web covers   # fetch each game's cover from its X post into public/covers/
+pnpm --filter @vibe-arcade/web icons    # redraw the icons from public/favicon.svg
+pnpm --filter @vibe-arcade/web banner   # redraw .github/assets/banner.png, the image at the top of this file
 ```
 
-- The file is named after `slug`. `added` is when the entry joined the site, in UTC; the site bot sets it, and by hand you write the current time. Every category but the guides has it: the showcase can list apps newest first by it, and UI libraries, state management, templates, AI tools, articles and community plugins are listed oldest first. Official plugins and the guides are listed by name. Keeping each entry in its own file means pull requests that add entries at the same time never conflict.
-- The other categories' files have the same `$schema`, `slug` and (but for the guides) `added` around their fields; their schemas in `data/schema/` list the fields.
-- `kind` is `go` for an app written in Go and `tsx` for one written in TSX. `platforms` lists where the app runs, at least one of `mac`, `win`, `linux`, `ios`, `android`, `web` and `miniprogram`. CI rejects an app without them.
-- `url` is the app's homepage: its website, or its repository if it has none; it need not be on GitHub. An open-source app adds its GitHub repository as `repo` (`owner/name`); a closed-source one leaves it out.
-- Text fields hold one string per language. `en` is required; `zh-CN`, `zh-TW`, `ja` and `ko` are optional, and a missing language shows the English text.
-- Each file names its JSON Schema (in `data/schema/`) in `$schema`, so VS Code and other editors complete and check the fields as you type.
-- Links must be https. For a screenshot, add a WebP about 1200px wide to `apps/web/public/shots/` and set `"screenshot": "my-app.webp"`. For an app icon, set `"icon": { "ailogo": "<id>" }` with an [ai-logo](https://github.com/yldm-tech/ai-logo) id; for the app's own icon, add a 128px WebP to `apps/web/public/icons/` and set `"icon": { "file": "my-app.webp" }`. Leave it out for a letter tile.
-- `pnpm test` checks every entry and names the file, entry and field of each mistake. CI runs it on every pull request.
+`covers` keeps a cover that already exists unless `--force` is given, takes slugs to limit the run, and with `--likes` also refreshes the like counts in the game files; when a count changes it moves the day in `packages/catalog/data/meta.json`, which the site shows as "last updated", to today. Set that day by hand when you add a game.
 
-The UI copy is in `packages/catalog/locales/`, one JSON file per language with the same keys. `zh-CN.json` is the reference: add a new key there and to the other four files; `pnpm typecheck` and `pnpm test` report a missing key or a mismatched `{x}`/`{n}` placeholder.
+## Deployment
+
+The site runs on Cloudflare Workers and is deployed with wrangler:
+
+```sh
+pnpm run deploy
+```
+
+This builds the site and runs `wrangler deploy` with [`apps/web/wrangler.jsonc`](apps/web/wrangler.jsonc); it needs a Cloudflare login with access to the account named there. The site's public address is the `SITE_URL` constant in [`packages/catalog/src/site.ts`](packages/catalog/src/site.ts), the single place it is defined: canonical links, the sitemap and the share images all read it from there.
 
 ## Credits
 
-- [NSGo](https://github.com/oneo-me/nsgo) is made by [ONEO](https://github.com/oneo-me) (Apache-2.0); it is a Go port of [NSH](https://nsh.dev). The official showcase apps, plugins, templates and guides follow its repository and [site](https://oneo-me.github.io/nsgo/). This site is not affiliated with or endorsed by ONEO.
-- App icons are from [yldm-tech/ai-logo](https://github.com/yldm-tech/ai-logo) (MIT, a fork of LobeHub's [lobe-icons](https://github.com/lobehub/lobe-icons)) or the apps' own icons. Screenshots of NSGo's official showcase apps come from oneo-me/nsgo's `docs/public/cases`, the others from the projects' READMEs. Both belong to the apps' authors; names and logos are their trademarks and are shown to identify them.
+Games, names, covers and trademarks belong to their creators. The covers are frames from the creators' posts on X. Vibe Arcade is a community index and is not affiliated with Anthropic or any other model maker.
+
+Vibe Arcade is a [Wiz Games](https://wiz.games) project, curated by [@suzukaze_haduki](https://x.com/suzukaze_haduki).
 
 ## License
 
-The code is released under the [MIT License](LICENSE).
+The code is released under the [MIT License](LICENSE). The license does not cover the games or their covers.

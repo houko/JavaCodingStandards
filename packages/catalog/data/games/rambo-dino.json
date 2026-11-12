@@ -1,0 +1,27 @@
+{
+	"$schema": "../schema/game.schema.json",
+	"slug": "rambo-dino",
+	"name": "Rambo Dino",
+	"creator": "noclipepe",
+	"genre": "Action",
+	"link": {
+		"type": "play",
+		"url": "https://noclipepe.pages.dev/dino"
+	},
+	"post": "2119927838321328577",
+	"likes": 131,
+	"model": "Claude Fable 5.2",
+	"cover": "rambo-dino.webp",
+	"summary": {
+		"en": "The Chrome T-Rex game, reworked as an action game.",
+		"zh-CN": "Chrome 小恐龙游戏，改造成动作游戏。",
+		"zh-TW": "Chrome 小恐龍遊戲，改造成動作遊戲。",
+		"ja": "ChromeのT-Rexゲームをアクションゲームに作り替え。",
+		"ko": "크롬 공룡 게임을 액션 게임으로 재탄생.",
+		"es": "El juego del T-Rex de Chrome, convertido en juego de acción.",
+		"fr": "Le jeu du T-Rex de Chrome, transformé en jeu d’action.",
+		"de": "Das Chrome-T-Rex-Spiel als Actionspiel neu gedacht.",
+		"pt-BR": "O jogo do T-Rex do Chrome, transformado em jogo de ação.",
+		"ru": "Игра с динозавром из Chrome, переделанная в экшен."
+	}
+}
