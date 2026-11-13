@@ -123,5 +123,8 @@
 	"oneGame": "1 juego",
 	"linkDown": "Enlace caído",
 	"linkDownNote": "El enlace del juego dejó de responder el {date}, así que esto lleva a la publicación del creador.",
-	"newBadge": "Nuevo"
+	"newBadge": "Nuevo",
+	"errorTitle": "Algo falló",
+	"errorBody": "No se pudo mostrar la página. No es cosa tuya; vuelve a intentarlo en un momento.",
+	"tryAgain": "Reintentar"
 }

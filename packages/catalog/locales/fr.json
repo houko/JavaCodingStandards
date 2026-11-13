@@ -123,5 +123,8 @@
 	"oneGame": "1 jeu",
 	"linkDown": "Lien hors service",
 	"linkDownNote": "Le lien du jeu ne répond plus depuis le {date} ; ceci mène donc à la publication du créateur.",
-	"newBadge": "Nouveau"
+	"newBadge": "Nouveau",
+	"errorTitle": "Quelque chose a planté",
+	"errorBody": "La page n’a pas pu s’afficher. Ce n’est pas de votre fait ; réessayez dans un instant.",
+	"tryAgain": "Réessayer"
 }

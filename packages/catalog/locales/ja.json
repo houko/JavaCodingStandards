@@ -123,5 +123,8 @@
 	"oneGame": "1 本",
 	"linkDown": "リンク切れ",
 	"linkDownNote": "ゲームのリンクは {date} から応答していないため、作者の投稿へ案内しています。",
-	"newBadge": "NEW"
+	"newBadge": "NEW",
+	"errorTitle": "問題が発生しました",
+	"errorBody": "このページを表示できませんでした。お使いの環境のせいではありません。少し待ってからもう一度お試しください。",
+	"tryAgain": "もう一度試す"
 }

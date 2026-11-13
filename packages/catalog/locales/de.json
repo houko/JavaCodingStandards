@@ -123,5 +123,8 @@
 	"oneGame": "1 Spiel",
 	"linkDown": "Link offline",
 	"linkDownNote": "Der Link zum Spiel antwortet seit dem {date} nicht mehr, deshalb führt dies zum Post des Creators.",
-	"newBadge": "Neu"
+	"newBadge": "Neu",
+	"errorTitle": "Etwas ist schiefgelaufen",
+	"errorBody": "Die Seite konnte nicht angezeigt werden. Das liegt nicht an dir; versuch es gleich noch einmal.",
+	"tryAgain": "Erneut versuchen"
 }

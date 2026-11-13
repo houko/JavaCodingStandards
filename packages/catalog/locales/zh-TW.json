@@ -123,5 +123,8 @@
 	"oneGame": "1 款遊戲",
 	"linkDown": "連結失效",
 	"linkDownNote": "遊戲連結自 {date} 起無法存取，這裡改為指向作者的原始貼文。",
-	"newBadge": "新"
+	"newBadge": "新",
+	"errorTitle": "出了點問題",
+	"errorBody": "這個頁面暫時無法顯示，不是你的問題，請稍後再試。",
+	"tryAgain": "重試"
 }

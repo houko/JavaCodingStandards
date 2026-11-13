@@ -123,5 +123,8 @@
 	"oneGame": "1 game",
 	"linkDown": "Link down",
 	"linkDownNote": "The game's link stopped answering on {date}, so this goes to the creator's post instead.",
-	"newBadge": "New"
+	"newBadge": "New",
+	"errorTitle": "Something broke",
+	"errorBody": "The page could not be shown. It is not you; try again in a moment.",
+	"tryAgain": "Try again"
 }
