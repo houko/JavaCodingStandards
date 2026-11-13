@@ -10,12 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as FeedDotxmlRouteImport } from './routes/feed[.]xml'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as GamesSlugRouteImport } from './routes/games/$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FeedDotxmlRoute = FeedDotxmlRouteImport.update({
+  id: '/feed.xml',
+  path: '/feed.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -31,30 +37,34 @@ const GamesSlugRoute = GamesSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/feed.xml': typeof FeedDotxmlRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/games/$slug': typeof GamesSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/feed.xml': typeof FeedDotxmlRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/games/$slug': typeof GamesSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/feed.xml': typeof FeedDotxmlRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/games/$slug': typeof GamesSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/sitemap.xml' | '/games/$slug'
+  fullPaths: '/' | '/feed.xml' | '/sitemap.xml' | '/games/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/sitemap.xml' | '/games/$slug'
-  id: '__root__' | '/' | '/sitemap.xml' | '/games/$slug'
+  to: '/' | '/feed.xml' | '/sitemap.xml' | '/games/$slug'
+  id: '__root__' | '/' | '/feed.xml' | '/sitemap.xml' | '/games/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  FeedDotxmlRoute: typeof FeedDotxmlRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   GamesSlugRoute: typeof GamesSlugRoute
 }
@@ -66,6 +76,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/feed.xml': {
+      id: '/feed.xml'
+      path: '/feed.xml'
+      fullPath: '/feed.xml'
+      preLoaderRoute: typeof FeedDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sitemap.xml': {
@@ -87,6 +104,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  FeedDotxmlRoute: FeedDotxmlRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   GamesSlugRoute: GamesSlugRoute,
 }

@@ -27,6 +27,8 @@ export const Route = createRootRoute({
 			{ rel: 'icon', href: '/favicon.ico', sizes: 'any' },
 			{ rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
 			{ rel: 'manifest', href: '/site.webmanifest' },
+			// The feed of new games (lib/feed.ts), for readers that look for one on the page.
+			{ rel: 'alternate', type: 'application/atom+xml', title: SITE_NAME, href: '/feed.xml' },
 			// The display face sets the hero's first line, so it is fetched alongside the stylesheet rather than after it. Font preloads are always fetched in CORS mode, hence crossOrigin on a same-origin file.
 			{ rel: 'preload', as: 'font', type: 'font/woff2', href: '/fonts/bricolage-grotesque-latin.woff2', crossOrigin: 'anonymous' },
 			{ rel: 'stylesheet', href: styles },
