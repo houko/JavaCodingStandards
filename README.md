@@ -191,6 +191,7 @@ packages/catalog/          @vibe-arcade/catalog: the data and everything derived
   workflows/deploy.yml     deploy main to Cloudflare Workers once CI has passed on it
   workflows/links.yml      daily check of every game link, with a pull request to mark a game whose link stays dead
   workflows/uptime.yml     every half hour, check the live site answers; failing bots and checks keep an alert issue open
+  workflows/deps.yml       weekly dependency update within ranges; Dependabot keeps the Actions current
 ```
 
 The daily [link check](.github/workflows/links.yml) requests each game's play or source link. A link that does not answer is listed in one issue titled "Dead game links", which counts the checks in a row that found it dead. After three, the game is marked as down (`down` in its file), so a host that is out for a day never marks anything; when a marked game's link answers again, the mark comes off. Each change lands through a pull request that merges itself once CI passes and deploys the site. A game that has only moved is fixed by correcting its `link.url`; the mark comes off at the next check.

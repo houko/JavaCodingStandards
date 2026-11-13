@@ -1,0 +1,84 @@
+name: Dependencies
+
+# Updates the dependencies once a week within the version ranges in package.json (pnpm update: minor and patch releases), and lands the update through one pull request from bot/deps once typecheck, tests and the build pass here and CI passes on the pull request; it then merges itself and deploys (.github/scripts/merge-when-green.sh). A major release changes a range and is left to a person. GitHub Actions' own versions are kept up by Dependabot (.github/dependabot.yml).
+on:
+  schedule:
+    - cron: '23 4 * * 2'
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: write
+  issues: write
+  pull-requests: write
+  statuses: write
+
+concurrency:
+  group: deps
+  cancel-in-progress: false
+
+env:
+  BRANCH: bot/deps
+  GH_TOKEN: ${{ github.token }}
+  GH_REPO: ${{ github.repository }}
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: |
+          pnpm install --frozen-lockfile
+          pnpm list -r --depth 0 --json > "$RUNNER_TEMP/before.json"
+          pnpm update -r
+          pnpm list -r --depth 0 --json > "$RUNNER_TEMP/after.json"
+      - id: diff
+        run: |
+          if git diff --quiet; then echo "changed=false" >> "$GITHUB_OUTPUT"; else echo "changed=true" >> "$GITHUB_OUTPUT"; fi
+      # The same checks as CI, so an update that breaks anything never becomes a pull request.
+      - if: steps.diff.outputs.changed == 'true'
+        run: |
+          pnpm typecheck
+          pnpm test
+          pnpm build
+      - if: steps.diff.outputs.changed == 'true'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git switch --create "$BRANCH"
+          git add package.json pnpm-lock.yaml apps/web/package.json packages/catalog/package.json
+          git commit --message 'chore: update dependencies within their ranges'
+          git push --force origin "$BRANCH"
+          {
+            echo "## Summary"
+            echo
+            echo "The weekly dependency update, within the ranges in package.json. Typecheck, tests and the build passed on it before this was opened; it merges itself once CI passes."
+            echo
+            node .github/scripts/deps-diff.mjs "$RUNNER_TEMP/before.json" "$RUNNER_TEMP/after.json"
+            echo
+            echo "## Screenshots"
+            echo
+            echo "None."
+          } > "$RUNNER_TEMP/pr.md"
+          if [ -n "$(gh pr list --head "$BRANCH" --state open --json number --jq '.[].number')" ]; then
+            gh pr edit "$BRANCH" --body-file "$RUNNER_TEMP/pr.md"
+          else
+            gh pr create --head "$BRANCH" --base "$GITHUB_REF_NAME" --title 'chore: update dependencies within their ranges' --body-file "$RUNNER_TEMP/pr.md"
+          fi
+          .github/scripts/merge-when-green.sh "$BRANCH"
+
+      # One issue stays open while this keeps failing, and closes once it works again (.github/scripts/alert.sh).
+      - if: failure()
+        run: |
+          .github/scripts/alert.sh fail 'Bot failing: dependency update' "The weekly dependency update failed: an update within range broke typecheck, tests or the build, or the bot itself failed. [Run]($RUN_URL)"
+        env:
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+      - if: success()
+        run: |
+          .github/scripts/alert.sh ok 'Bot failing: dependency update'
