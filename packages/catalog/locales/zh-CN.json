@@ -122,5 +122,6 @@
 	"nowPlaying": "正在播放",
 	"oneGame": "1 款游戏",
 	"linkDown": "链接失效",
-	"linkDownNote": "游戏链接自 {date} 起无法访问，这里改为指向作者的原帖。"
+	"linkDownNote": "游戏链接自 {date} 起无法访问，这里改为指向作者的原帖。",
+	"newBadge": "新"
 }

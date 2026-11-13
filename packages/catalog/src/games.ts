@@ -60,6 +60,8 @@ export interface Game {
 	genre: Genre;
 	// url is the file's link, or the X post for a game that can only be watched there. A game marked as down is one of those for as long as the mark stands, whatever its file's link says.
 	link: { type: LinkType; url: string };
+	// The day (UTC, YYYY-MM-DD) the game joined the site, for the games added since the field was introduced; it makes a game new (isNew) for NEW_DAYS.
+	added?: string;
 	// The day (UTC, YYYY-MM-DD) the game was marked as down: its link had stopped answering the daily check (.github/workflows/links.yml). The game stays listed and points at its post.
 	down?: string;
 	// The id of the creator's post on X, a string of digits (too large for a JSON number).
@@ -99,7 +101,7 @@ const POST_ID = /^[1-9][0-9]{17,19}$/;
 const DAY = /^\d{4}-\d{2}-\d{2}$/;
 
 // The fields of a game's file, of its link and of its notes block: the reader rejects any other, and the tests hold the schema to the same lists.
-export const GAME_FIELDS = ['$schema', 'slug', 'name', 'creator', 'creatorUrl', 'genre', 'link', 'post', 'likes', 'model', 'cover', 'summary', 'pitch', 'notes', 'down'] as const;
+export const GAME_FIELDS = ['$schema', 'slug', 'name', 'creator', 'creatorUrl', 'genre', 'link', 'post', 'likes', 'model', 'cover', 'summary', 'pitch', 'notes', 'down', 'added'] as const;
 export const GAME_REQUIRED = ['$schema', 'slug', 'name', 'creator', 'genre', 'link', 'post', 'likes', 'model', 'cover', 'summary'] as const;
 export const LINK_FIELDS = ['type', 'url'] as const;
 export const NOTES_FIELDS = [...NOTE_FIELDS, 'prompt'] as const;
@@ -138,6 +140,7 @@ function readGame(r: Reader): Game {
 	// Only a game that can just be watched may leave the link out: its post is where the video is.
 	const url = type === 'watch' ? (l.optUrl('url') ?? postUrl) : l.url('url');
 	const down = r.raw.down === undefined ? undefined : r.match('down', DAY, 'a day, YYYY-MM-DD');
+	const added = r.raw.added === undefined ? undefined : r.match('added', DAY, 'a day, YYYY-MM-DD');
 	const cover = r.match('cover', COVER, 'a .webp file name');
 	if (cover !== `${slug}.webp`) r.fail('cover', `must be "${slug}.webp", the file in apps/web/public/covers named after the slug`);
 	const n = r.optObj('notes');
@@ -150,6 +153,7 @@ function readGame(r: Reader): Game {
 		genre,
 		link: down === undefined ? { type, url } : { type: 'watch', url: postUrl },
 		down,
+		added,
 		post,
 		postUrl,
 		postedAt: postTime(post),
@@ -281,6 +285,17 @@ export function creatorByHandle(handle: string): Creator | undefined {
 
 // The day (UTC) the data last changed, e.g. 2026-11-12: a game added or the like counts refreshed. It is written in data/meta.json rather than derived, since neither change shows in the games' post dates.
 export const LAST_UPDATED = new Reader('meta.json', meta).match('updated', DAY, 'a day, YYYY-MM-DD');
+
+// How long a game added to the site counts as new.
+export const NEW_DAYS = 14;
+const DAY_MS = 86_400_000;
+
+// Whether a game was added in the NEW_DAYS before the data last changed. Counted from that day rather than from today, so the server and every visitor's browser agree, and so the mark moves with each deploy of new data rather than with the clock.
+export function isNew(game: Game): boolean {
+	if (game.added === undefined) return false;
+	const age = (Date.parse(LAST_UPDATED) - Date.parse(game.added)) / DAY_MS;
+	return age >= 0 && age < NEW_DAYS;
+}
 
 export function topLiked(n: number): Game[] {
 	return GAMES.slice(0, n);

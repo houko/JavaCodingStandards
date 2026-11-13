@@ -1,4 +1,4 @@
-import { GENRE_COLORS, GENRE_KEYS, type Game, type LangCode, formatCount, formatDay, pick, t } from '@vibe-arcade/catalog';
+import { GENRE_COLORS, GENRE_KEYS, type Game, type LangCode, formatCount, formatDay, isNew, pick, t } from '@vibe-arcade/catalog';
 import type { MouseEvent } from 'react';
 import { prefersReducedMotion } from '../lib/motion';
 import { NEW_TAB } from '../lib/ui';
@@ -17,7 +17,8 @@ interface GameCardProps {
 	onOpen: (slug: string) => void;
 }
 
-const BADGE = 'absolute top-3 rounded-md px-2 py-1 font-mono text-[11px] font-semibold';
+const CHIP = 'rounded-md px-2 py-1 font-mono text-[11px] font-semibold';
+const BADGE = `absolute top-3 ${CHIP}`;
 
 // While the pointer is over a card its clip plays over the cover, from the start each time. Nothing of the clip is fetched before that (preload none), and a visitor who asked for less motion keeps the cover.
 function playClip(e: MouseEvent<HTMLLIElement>) {
@@ -40,14 +41,18 @@ function stopClip(e: MouseEvent<HTMLLIElement>) {
 export function GameCard({ game, index, lang, pop, onOpen }: GameCardProps) {
 	const tr = t(lang);
 	const action = tr[game.link.type];
+	const fresh = isNew(game);
 	return (
 		<li onMouseEnter={playClip} onMouseLeave={stopClip} className={`avg-card ${pop} flex flex-col overflow-hidden rounded-xl border border-line bg-panel`} style={{ animationDelay: `${Math.min(index, 16) * 35}ms` }}>
 			{/* The pointer's way into the game's details. The keyboard and a screen reader use the title's link below, so this copy of it is hidden from both. */}
 			<button type='button' tabIndex={-1} aria-hidden='true' onClick={() => onOpen(game.slug)} className='relative block aspect-[16/10] w-full cursor-pointer overflow-hidden bg-ink'>
 				<Cover game={game} alt='' className='absolute inset-0 size-full text-[22px]' />
 				{game.video && <video src={game.video} muted loop playsInline preload='none' className='avg-vid pointer-events-none absolute inset-0 size-full object-cover opacity-0' />}
-				<span className={`${BADGE} left-3 tracking-[0.06em] text-bg uppercase`} style={{ backgroundColor: GENRE_COLORS[game.genre] }}>
-					{tr[GENRE_KEYS[game.genre]]}
+				<span className='absolute top-3 left-3 flex gap-1.5'>
+					<span className={`${CHIP} tracking-[0.06em] text-bg uppercase`} style={{ backgroundColor: GENRE_COLORS[game.genre] }}>
+						{tr[GENRE_KEYS[game.genre]]}
+					</span>
+					{fresh && <span className={`${CHIP} bg-lime tracking-[0.06em] text-bg uppercase`}>{tr.newBadge}</span>}
 				</span>
 				<span className={`${BADGE} right-3 bg-bg text-fg`}>#{String(index + 1).padStart(2, '0')}</span>
 				{game.down && <span className={`${BADGE} top-auto bottom-3 left-3 bg-bg tracking-[0.06em] text-heart uppercase`}>{tr.linkDown}</span>}
@@ -66,6 +71,7 @@ export function GameCard({ game, index, lang, pop, onOpen }: GameCardProps) {
 				</p>
 				<p className='flex-1 text-[14px] text-soft'>
 					{/* The cover's badge is hidden from a screen reader with the cover, so the mark is said here. */}
+					{fresh && <span className='sr-only'>{tr.newBadge}. </span>}
 					{game.down && <span className='sr-only'>{tr.linkDown}. </span>}
 					{pick(game.summary, lang)}
 				</p>

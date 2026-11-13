@@ -122,5 +122,6 @@
 	"nowPlaying": "En lecture",
 	"oneGame": "1 jeu",
 	"linkDown": "Lien hors service",
-	"linkDownNote": "Le lien du jeu ne répond plus depuis le {date} ; ceci mène donc à la publication du créateur."
+	"linkDownNote": "Le lien du jeu ne répond plus depuis le {date} ; ceci mène donc à la publication du créateur.",
+	"newBadge": "Nouveau"
 }
