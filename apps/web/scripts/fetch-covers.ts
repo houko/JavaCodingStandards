@@ -148,7 +148,8 @@ for (const slug of slugs) {
 
 console.table(rows);
 const changed = rows.filter((r) => r.likes);
-if (changed.length) await writeFile(META_FILE, `{\n\t"updated": "${new Date().toISOString().slice(0, 10)}"\n}\n`);
+// Only the day moves; the rest of meta.json (the week's picks) is kept as it is.
+if (changed.length) await writeFile(META_FILE, `${JSON.stringify({ ...JSON.parse(await readFile(META_FILE, 'utf8')), updated: new Date().toISOString().slice(0, 10) }, null, '\t')}\n`);
 if (withLikes) console.log(changed.length ? `likes changed in ${changed.length} games:\n${changed.map((r) => `  ${r.slug}: ${r.likes}`).join('\n')}` : 'likes: no changes');
 const missing = rows.filter((r) => r.cover === 'MISSING');
 if (missing.length) {

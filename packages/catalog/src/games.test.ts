@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import schema from '../data/schema/game.schema.json';
 import { CREATORS, GAMES, GAME_FIELDS, GAME_REQUIRED, GAME_SCHEMA, GENRES, GENRE_COLORS, GENRE_COUNTS, GENRE_KEYS, HERO_GAMES, LAST_UPDATED, LINK_FIELDS, LINK_TYPES, MODELS, NOTES_FIELDS, NOTE_FIELDS, PICKS, creatorByHandle, creatorsCount, filterGames, formatCount, formatDay, gameBySlug, movedSlug, readGames, relatedGames, slugOf, topLiked } from './games';
-import { LANGS, type Text } from './lang';
+import { LANGS, type Text, pick } from './lang';
 import { LOCALES } from './strings';
 import { t } from './translate';
 import { CatalogError } from './validate';
@@ -60,11 +60,11 @@ describe('the games', () => {
 		for (const g of GAMES) expect(g.postedAt.slice(0, 10), g.slug).toBe(new Date(Math.floor(Number(g.post) / 4194304) + 1288834974657).toISOString().slice(0, 10));
 	});
 
-	it('are summarised in all ten languages, on one line each', () => {
+	it('are summarised in English at least, and only in site languages', () => {
 		for (const g of GAMES) {
 			for (const text of g.pitch ? [g.summary, g.pitch] : [g.summary]) {
-				expect(Object.keys(text).sort(), g.slug).toEqual([...LANGS].sort());
-				for (const lang of LANGS) expect(text[lang].trim(), `${g.slug} ${lang}`).not.toBe('');
+				expect(text.en.trim(), g.slug).not.toBe('');
+				for (const lang of Object.keys(text)) expect(LANGS, `${g.slug} ${lang}`).toContain(lang);
 			}
 		}
 	});
@@ -241,10 +241,13 @@ describe("a game's file", () => {
 		expect(read({ link: { type: 'watch', url: 'https://video.example/kit' } })()[0].link).toEqual({ type: 'watch', url: 'https://video.example/kit' });
 	});
 
-	it('must be summarised in every language', () => {
-		const { ko: _dropped, ...rest } = TEXT;
-		expect(read({ summary: rest })).toThrow(/summary.ko is required/);
-		expect(read({ pitch: rest })).toThrow(/pitch.ko is required/);
+	it('must be summarised in English, and may leave other languages to fall back to it', () => {
+		const { en: _english, ...rest } = TEXT;
+		expect(read({ summary: rest })).toThrow(/summary.en is required/);
+		expect(read({ pitch: rest })).toThrow(/pitch.en is required/);
+		const [english] = read({ summary: { en: 'Only English.' } })();
+		expect(pick(english.summary, 'ja')).toBe('Only English.');
+		expect(pick(TEXT, 'ja')).toBe(TEXT.ja);
 		expect(read({ summary: undefined })).toThrow(/summary must be an object of texts by language/);
 	});
 
@@ -306,7 +309,7 @@ describe('game.schema.json', () => {
 	it('lists the genres, the kinds of link and the languages', () => {
 		expect(schema.properties.genre.enum).toEqual([...GENRES]);
 		expect(link.properties.type.enum).toEqual([...LINK_TYPES]);
-		expect(text.required).toEqual([...LANGS]);
+		expect(text.required).toEqual(['en']);
 		expect(Object.keys(text.properties)).toEqual([...LANGS]);
 		expect(text.additionalProperties).toBe(false);
 		expect(schema.properties.summary.$ref).toBe('#/$defs/text');

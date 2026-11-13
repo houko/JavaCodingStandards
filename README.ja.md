@@ -29,8 +29,8 @@ Vibe Arcade は AI でつくったゲームのアーケードです。主に AI 
 
 | # | ゲーム | クリエイター | ジャンル | モデル | |
 | --- | --- | --- | --- | --- | --- |
-| 1 | [**Saltline**](https://vibe.wiz.games/games/saltline?lang=ja)<br>ワンショットで作られたFPS。モデル・音・テクスチャはすべてコード生成、人の手直しなし。 | [@felixrieseberg](https://x.com/felixrieseberg) | シューター | Claude Fable 5.2 | [プレイ](https://claude.ai/artifact/BGY1SztrAYcJQHSsnHHGmp) · [投稿](https://x.com/i/status/2119925633564463609) |
-| 2 | [**Starry Night Rider**](https://vibe.wiz.games/games/starry-night-rider?lang=ja)<br>ゴッホと一緒に彼の「星月夜」の中を駆け抜ける。 | [@ebbyamir](https://x.com/ebbyamir) | 探索 | Claude Fable 5.2 | [プレイ](https://starrynightrider.com) · [投稿](https://x.com/i/status/2120284261089673376) |
+| 1 | [**Starry Night Rider**](https://vibe.wiz.games/games/starry-night-rider?lang=ja)<br>ゴッホと一緒に彼の「星月夜」の中を駆け抜ける。 | [@ebbyamir](https://x.com/ebbyamir) | 探索 | Claude Fable 5.2 | [プレイ](https://starrynightrider.com) · [投稿](https://x.com/i/status/2120284261089673376) |
+| 2 | [**Saltline**](https://vibe.wiz.games/games/saltline?lang=ja)<br>ワンショットで作られたFPS。モデル・音・テクスチャはすべてコード生成、人の手直しなし。 | [@felixrieseberg](https://x.com/felixrieseberg) | シューター | Claude Fable 5.2 | [プレイ](https://claude.ai/artifact/BGY1SztrAYcJQHSsnHHGmp) · [投稿](https://x.com/i/status/2119925633564463609) |
 | 3 | [**What the Water Keeps**](https://vibe.wiz.games/games/what-the-water-keeps?lang=ja)<br>8つの夢のような世界をめぐる、穏やかなボートの旅。 | [@kevin_t_ngo](https://x.com/kevin_t_ngo) | 探索 | Claude Fable 5.2 | [プレイ](https://what-the-water-keeps.vercel.app/) · [投稿](https://x.com/i/status/2119868968307695818) |
 | 4 | [**Mirror Earth**](https://vibe.wiz.games/games/mirror-earth?lang=ja)<br>地球まるごと破壊できるゲーム世界。天気は現実の地球と連動。 | [@mattshumer_](https://x.com/mattshumer_) | サンドボックス | Claude Fable 5.2 | [プレイ](https://www.spawn.co/@mattshumer/earth) · [投稿](https://x.com/i/status/2119877065701036047) |
 | 5 | [**Portals: Endless Worlds**](https://vibe.wiz.games/games/portals-endless-worlds?lang=ja)<br>ポータルでつながる450以上のコードだけの3D世界。25,000のエージェントが構築。 | [@emollick](https://x.com/emollick) | 探索 | Claude Fable 5.2 | [プレイ](https://portals-endless-worlds.netlify.app/) · [投稿](https://x.com/i/status/2119918307457577163) |
@@ -39,17 +39,17 @@ Vibe Arcade は AI でつくったゲームのアーケードです。主に AI 
 | 8 | [**Voxel Engine**](https://vibe.wiz.games/games/voxel-engine?lang=ja)<br>1つのプロンプトから作られたサウンド付きボクセルエンジン。 | [@mattshumer_](https://x.com/mattshumer_) | サンドボックス | Claude Fable 5.2 | [プレイ](https://www.spawn.co/@mattshumer/voxel-engine) · [投稿](https://x.com/i/status/2119870965106483384) |
 | 9 | [**Siege Wing**](https://vibe.wiz.games/games/siege-wing?lang=ja)<br>ヘリで中世の戦場へ。大砲・ロケット・ミサイルでバリスタと城に挑む。 | [@builderjaydub](https://x.com/builderjaydub) | シューター | Claude Fable 5.2 | [プレイ](https://bannerfall.itch.io/siege-wing) · [投稿](https://x.com/i/status/2120223731520040966) |
 | 10 | [**I Would Have Gotten Away With It**](https://vibe.wiz.games/games/i-would-have-gotten-away-with-it?lang=ja)<br>逆スクービー・ドゥー。悪役になって子どもたちを怖がらせて追い払う。 | [@emollick](https://x.com/emollick) | ストーリー・シム | Claude Fable 5.2 | [プレイ](https://i-would-have-gotten-away-with-it.netlify.app/) · [投稿](https://x.com/i/status/2119876449494540554) |
-| 11 | [**Childhood Rug Racer**](https://vibe.wiz.games/games/childhood-rug-racer?lang=ja)<br>子どもの頃の遊びマットの上でおもちゃの車レース。 | [@noclipepe](https://x.com/noclipepe) | レース | GPT-6.2 Sol vs Fable | [プレイ](https://noclipepe.pages.dev/rug/) · [投稿](https://x.com/i/status/2119728047754547326) |
-| 12 | [**Cloud Stunt 3D**](https://vibe.wiz.games/games/cloud-stunt-3d?lang=ja)<br>30分で生成されたスタントゲーム。 | [@jev_chat](https://x.com/jev_chat) | レース | Claude Fable 5.2 | [プレイ](https://finderchangchang.github.io/cloud-stunt-3d/) · [投稿](https://x.com/i/status/2120015641151426838) |
-| 13 | [**Patchwork Quilt**](https://vibe.wiz.games/games/patchwork-quilt?lang=ja)<br>パッチワークのコマ撮り風おもちゃの世界。 | [@BlendiByl](https://x.com/BlendiByl) | パズル・おもちゃ | Claude Fable 5.2 | [プレイ](https://patch.gg/blendi/patchwork-quilt) · [投稿](https://x.com/i/status/2120746541636047347) |
+| 11 | [**Patchwork Quilt**](https://vibe.wiz.games/games/patchwork-quilt?lang=ja)<br>パッチワークのコマ撮り風おもちゃの世界。 | [@BlendiByl](https://x.com/BlendiByl) | パズル・おもちゃ | Claude Fable 5.2 | [プレイ](https://patch.gg/blendi/patchwork-quilt) · [投稿](https://x.com/i/status/2120746541636047347) |
+| 12 | [**Childhood Rug Racer**](https://vibe.wiz.games/games/childhood-rug-racer?lang=ja)<br>子どもの頃の遊びマットの上でおもちゃの車レース。 | [@noclipepe](https://x.com/noclipepe) | レース | GPT-6.2 Sol vs Fable | [プレイ](https://noclipepe.pages.dev/rug/) · [投稿](https://x.com/i/status/2119728047754547326) |
+| 13 | [**Cloud Stunt 3D**](https://vibe.wiz.games/games/cloud-stunt-3d?lang=ja)<br>30分で生成されたスタントゲーム。 | [@jev_chat](https://x.com/jev_chat) | レース | Claude Fable 5.2 | [プレイ](https://finderchangchang.github.io/cloud-stunt-3d/) · [投稿](https://x.com/i/status/2120015641151426838) |
 | 14 | [**Hogwarts Royale**](https://vibe.wiz.games/games/hogwarts-royale?lang=ja)<br>1行のプロンプトから生まれた魔法学校バトロワ。 | [@mattshumer_](https://x.com/mattshumer_) | アクション | Claude Fable 5.2 | [プレイ](https://www.spawn.co/@mattshumer/hogwarts-royale) · [投稿](https://x.com/i/status/2119872098306810226) |
 | 15 | [**Dread and District**](https://vibe.wiz.games/games/dread-and-district?lang=ja)<br>ファンタジー物流シム。優れたサプライチェーンが悪を倒す。エージェント群で制作。 | [@emollick](https://x.com/emollick) | ストーリー・シム | Claude Fable 5.2 | [プレイ](https://dread-and-district.netlify.app) · [投稿](https://x.com/i/status/2120248525254742318) |
 | 16 | [**Worm Rider**](https://vibe.wiz.games/games/worm-rider?lang=ja)<br>Claude Codeで作った220KBのオープンソースゲーム。 | [@AmirMushich](https://x.com/AmirMushich) | アクション | Claude Fable 5.2 | [ソース](https://github.com/amirmushichge/worm-rider) · [投稿](https://x.com/i/status/2119937977426338283) |
 | 17 | [**Maad Maxxing**](https://vibe.wiz.games/games/maad-maxxing?lang=ja)<br>100%コード、アセットなし。Three.js + WebGPU、最初の3ステージがプレイ可能。 | [@Andrew_Blumson](https://x.com/Andrew_Blumson) | レース | Claude Fable 5.2 | [プレイ](https://maad-maxxing.vercel.app) · [投稿](https://x.com/i/status/2120599812512833557) |
 | 18 | [**Frontline Warfare Deathmatch**](https://vibe.wiz.games/games/frontline-warfare-deathmatch?lang=ja)<br>ブラウザで遊べるミリタリーシューターのデスマッチ。 | [@alightinastorm](https://x.com/alightinastorm) | シューター | Claude Fable 5.2 | [プレイ](https://spawn.co/@robot/frontline-warfare-deathmatch) · [投稿](https://x.com/i/status/2120020469487440210) |
 | 19 | [**Lanternfall**](https://vibe.wiz.games/games/lanternfall?lang=ja)<br>モデル、アニメ、エフェクトすべて生成。敵の死亡モーションまで。 | [@loktar00](https://github.com/loktar00) | アクション | Claude Fable 5.2 | [プレイ](https://loktar00.github.io/lanternfall/) · [投稿](https://x.com/i/status/2120279060303520034) |
-| 20 | [**Turbo Tails**](https://vibe.wiz.games/games/turbo-tails?lang=ja)<br>6人のレーサー、ドリフト、ジャンプ台、アイテム、マルチプレイ対応の3Dカートレース。 | [@petergyang](https://x.com/petergyang) | レース | Claude Fable 5.2 | [プレイ](https://turbo-tails.vercel.app) · [投稿](https://x.com/i/status/2119901658394358005) |
-| 21 | [**Rambo Dino**](https://vibe.wiz.games/games/rambo-dino?lang=ja)<br>ChromeのT-Rexゲームをアクションゲームに作り替え。 | [@noclipepe](https://x.com/noclipepe) | アクション | Claude Fable 5.2 | [プレイ](https://noclipepe.pages.dev/dino) · [投稿](https://x.com/i/status/2119927838321328577) |
+| 20 | [**Rambo Dino**](https://vibe.wiz.games/games/rambo-dino?lang=ja)<br>ChromeのT-Rexゲームをアクションゲームに作り替え。 | [@noclipepe](https://x.com/noclipepe) | アクション | Claude Fable 5.2 | [プレイ](https://noclipepe.pages.dev/dino) · [投稿](https://x.com/i/status/2119927838321328577) |
+| 21 | [**Turbo Tails**](https://vibe.wiz.games/games/turbo-tails?lang=ja)<br>6人のレーサー、ドリフト、ジャンプ台、アイテム、マルチプレイ対応の3Dカートレース。 | [@petergyang](https://x.com/petergyang) | レース | Claude Fable 5.2 | [プレイ](https://turbo-tails.vercel.app) · [投稿](https://x.com/i/status/2119901658394358005) |
 | 22 | [**Spud Smash**](https://vibe.wiz.games/games/spud-smash?lang=ja)<br>青い椅子を叩き壊して燃やすジャガイモ。 | [@argofowl](https://x.com/argofowl) | アクション | Claude Fable 5.2 | [プレイ](https://fowllabs.com/fable-5-2/spud-smash) · [投稿](https://x.com/i/status/2119913148929187960) |
 | 23 | [**Skyflare**](https://vibe.wiz.games/games/skyflare?lang=ja)<br>3時間で作った戦闘機ゲーム。 | [@AugustCastilIo](https://x.com/AugustCastilIo) | シューター | Claude Fable 5.2 | [プレイ](https://skyflare-game.vercel.app) · [投稿](https://x.com/i/status/2120290751502581879) |
 | 24 | [**Feed the Backrooms**](https://vibe.wiz.games/games/feed-the-backrooms?lang=ja)<br>怪物になって、バックルームに迷い込んだ人を捕まえる。 | [@LexnLin](https://x.com/LexnLin) | ストーリー・シム | Claude Fable 5.2 | [プレイ](https://feed-backrooms.vercel.app) · [投稿](https://x.com/i/status/2119966127149429093) |
@@ -84,7 +84,7 @@ Vibe Arcade は AI でつくったゲームのアーケードです。主に AI 
 - [Submit a game](https://github.com/yldm-tech/awesome-vibe-games/issues/new?template=submit-game.yml) の issue フォームを開いてください。ゲーム名、作者の X ハンドル、投稿、リンク、ジャンル、モデル、英語での一行説明を入力します。作者本人でなくてもかまいません。
 - または、遊べるリンクを付けてゲームを X に投稿し、[@suzukaze_haduki](https://x.com/suzukaze_haduki) をタグ付けしてください。
 
-投稿はキュレーターが一件ずつ確認し、投稿からカバーを取り、エントリを 10 言語すべてで書きます。ゲームのファイルを自分で追加する pull request も歓迎します。その場合は概要を 10 言語すべてで書く必要があります。1 つでも欠けているエントリはカタログが受け付けないためです。
+[投稿ワークフロー](.github/workflows/submissions.yml)が、人の手を介さず数分でゲームを掲載します。投稿が存在し作者本人のものか、プレイ用またはソースのリンクが応答するか、まだ掲載されていないかを確かめたうえで、投稿からカバー、クリップ、作者のアバターを取り、issue を閉じるプルリクエストを開き、CI が通ればマージしてサイトをデプロイします。問題があれば issue にその旨を書き込み、issue を編集すると再試行します。概要はまず英語で載り、翻訳されるまで他の言語でも英語が表示されます。ゲームのファイルを自分で追加する pull request も歓迎します。
 
 ## ゲームファイルの形式
 
@@ -156,8 +156,8 @@ Vibe Arcade は AI でつくったゲームのアーケードです。主に AI 
 | `likes` | はい | エントリを最後に更新した時点での投稿のいいね数。整数。 |
 | `model` | はい | ゲームの制作に使われた AI モデル。作者の呼び方どおりに書きます。 |
 | `cover` | はい | カバーのファイル名 `<slug>.webp`。`apps/web/public/covers/` に置く 960x600 の画像です。 |
-| `summary` | はい | カードに載せるゲームの一行説明。10 言語すべて。 |
-| `pitch` | いいえ | ゲームのページと、ピックアップに選ばれたときに表示される長めの説明。10 言語すべて。 |
+| `summary` | はい | カードに載せるゲームの一行説明。`en` は必須で、ほかの言語は任意です。書かれていない言語では英語が表示されます。 |
+| `pitch` | いいえ | ゲームのページと、ピックアップに選ばれたときに表示される長めの説明。言語の扱いは `summary` と同じです。 |
 | `notes` | いいえ | 作者が公表した制作データを、書かれたとおりに。`time`、`cost`、`tokens`、`prompts`、`lines`、`size`、`agents` のいずれかと、ゲームの元になったプロンプト `prompt`。ゲームの「制作データ」として表示されます。 |
 | `down` | いいえ | ゲームをリンク切れとしてマークした日（`YYYY-MM-DD`）。毎日のリンクチェックが、自身のプルリクエストを通じて書き込み、取り除きます。設定されているあいだもゲームは掲載されたままで、リンク切れであることを表示し、作者の投稿へ案内します。 |
 
@@ -193,7 +193,7 @@ packages/catalog/          @vibe-arcade/catalog：データと、そこから導
   workflows/links.yml      全ゲームのリンクを毎日チェックし、切れたままのゲームをマークするプルリクエストを出す
 ```
 
-毎日の[リンクチェック](.github/workflows/links.yml)は、各ゲームのプレイ用またはソースのリンクにリクエストを送ります。応答しないリンクは「Dead game links」というタイトルの 1 つの issue に載り、連続して何回切れていたかもそこに記録されます。3 回続くと、ゲームをリンク切れとしてマークする（ファイルに `down` を書く）プルリクエストを出します。ホストが 1 日落ちただけではマークされません。マークされたゲームのリンクが再び応答すれば、マークを外すプルリクエストを出します。チェックは提案するだけで、誰かがプルリクエストをマージするまで `main` は変わりません。ゲームが移転しただけなら、`link.url` を直すほうが適切です。
+毎日の[リンクチェック](.github/workflows/links.yml)は、各ゲームのプレイ用またはソースのリンクにリクエストを送ります。応答しないリンクは「Dead game links」というタイトルの 1 つの issue に載り、連続して何回切れていたかもそこに記録されます。3 回続くとゲームはリンク切れとしてマークされ（ファイルの `down`）、ホストが 1 日落ちただけではマークされません。マークされたゲームのリンクが再び応答すれば、マークは外れます。どの変更もプルリクエストを通じて反映され、CI が通れば自動でマージされてサイトがデプロイされます。ゲームが移転しただけなら `link.url` を直せば、次のチェックでマークが外れます。
 
 ## 開発
 

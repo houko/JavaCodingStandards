@@ -43,12 +43,11 @@ describe('Reader', () => {
 		}
 	});
 
-	it('wants a text in every site language and in no other', () => {
-		for (const lang of LANGS) {
-			const { [lang]: _dropped, ...rest } = TEXT;
-			expect(read({ ...ok, summary: rest }), lang).toThrow(new RegExp(`summary\\.${lang} is required`));
-			expect(read({ ...ok, summary: { ...TEXT, [lang]: ' ' } }), lang).toThrow(new RegExp(`summary\\.${lang} must be a non-empty string`));
-		}
+	it('wants a text in English, in any other site language, and in no other language', () => {
+		const { en: _english, ...rest } = TEXT;
+		expect(read({ ...ok, summary: rest })).toThrow(/summary\.en is required/);
+		expect(read({ ...ok, summary: { en: 'A kit.' } })).not.toThrow();
+		for (const lang of LANGS) expect(read({ ...ok, summary: { ...TEXT, [lang]: ' ' } }), lang).toThrow(new RegExp(`summary\\.${lang} must be a non-empty string`));
 		expect(read({ ...ok, summary: { ...TEXT, it: 'Un kit.' } })).toThrow(/summary.it is not a site language \(en, zh-CN, zh-TW, ja, ko, es, fr, de, pt-BR, ru\)/);
 		expect(read({ ...ok, summary: 'A kit.' })).toThrow(/summary must be an object of texts by language/);
 		expect(read({ ...ok, summary: [TEXT] })).toThrow(/summary must be an object of texts by language/);

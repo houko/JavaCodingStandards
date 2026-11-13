@@ -85,7 +85,8 @@ export class Reader {
 			if (LINE_BREAK.test(s)) this.fail(`${field}.${lang}`, 'must be a single line');
 			if (INVISIBLE_WRAP.test(s)) this.fail(`${field}.${lang}`, 'must not contain invisible wrap controls');
 		}
-		for (const lang of LANGS) if (!(lang in v)) this.fail(`${field}.${lang}`, 'is required: the text is written in every site language');
+		// English is the one language every text must have: the others fall back to it (pick in lang.ts).
+		if (!('en' in v)) this.fail(`${field}.en`, 'is required: the other languages fall back to the English');
 		return v as Text;
 	}
 

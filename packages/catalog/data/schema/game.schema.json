@@ -72,11 +72,11 @@
 		},
 		"summary": {
 			"$ref": "#/$defs/text",
-			"description": "One line about the game for its card, in every site language."
+			"description": "One line about the game for its card, in English and any of the other site languages; a language left out shows the English."
 		},
 		"pitch": {
 			"$ref": "#/$defs/text",
-			"description": "A longer description, shown where the game is featured, in every site language."
+			"description": "A longer description, shown on the game's page and where it is a pick, in English and any of the other site languages."
 		},
 		"notes": {
 			"type": "object",
@@ -104,7 +104,8 @@
 		"text": {
 			"type": "object",
 			"additionalProperties": false,
-			"required": ["en", "zh-CN", "zh-TW", "ja", "ko", "es", "fr", "de", "pt-BR", "ru"],
+			"required": ["en"],
+			"description": "A text in English and in any of the other site languages; a language left out shows the English.",
 			"properties": {
 				"en": { "$ref": "#/$defs/line" },
 				"zh-CN": { "$ref": "#/$defs/line" },

@@ -29,8 +29,8 @@ Vibe Arcade 是 AI 遊戲的街機廳：一份人工整理的瀏覽器遊戲索�
 
 | # | 遊戲 | 作者 | 類型 | 模型 | |
 | --- | --- | --- | --- | --- | --- |
-| 1 | [**Saltline**](https://vibe.wiz.games/games/saltline?lang=zh-TW)<br>一次性提示生成的 FPS。模型、音效、材質全部用程式碼生成，無人工回饋。 | [@felixrieseberg](https://x.com/felixrieseberg) | 射擊 | Claude Fable 5.2 | [遊玩](https://claude.ai/artifact/BGY1SztrAYcJQHSsnHHGmp) · [原文](https://x.com/i/status/2119925633564463609) |
-| 2 | [**Starry Night Rider**](https://vibe.wiz.games/games/starry-night-rider?lang=zh-TW)<br>跟著梵谷騎行穿越他的《星夜》。 | [@ebbyamir](https://x.com/ebbyamir) | 探索 | Claude Fable 5.2 | [遊玩](https://starrynightrider.com) · [原文](https://x.com/i/status/2120284261089673376) |
+| 1 | [**Starry Night Rider**](https://vibe.wiz.games/games/starry-night-rider?lang=zh-TW)<br>跟著梵谷騎行穿越他的《星夜》。 | [@ebbyamir](https://x.com/ebbyamir) | 探索 | Claude Fable 5.2 | [遊玩](https://starrynightrider.com) · [原文](https://x.com/i/status/2120284261089673376) |
+| 2 | [**Saltline**](https://vibe.wiz.games/games/saltline?lang=zh-TW)<br>一次性提示生成的 FPS。模型、音效、材質全部用程式碼生成，無人工回饋。 | [@felixrieseberg](https://x.com/felixrieseberg) | 射擊 | Claude Fable 5.2 | [遊玩](https://claude.ai/artifact/BGY1SztrAYcJQHSsnHHGmp) · [原文](https://x.com/i/status/2119925633564463609) |
 | 3 | [**What the Water Keeps**](https://vibe.wiz.games/games/what-the-water-keeps?lang=zh-TW)<br>平靜的小船之旅，穿越八個夢境般的世界。 | [@kevin_t_ngo](https://x.com/kevin_t_ngo) | 探索 | Claude Fable 5.2 | [遊玩](https://what-the-water-keeps.vercel.app/) · [原文](https://x.com/i/status/2119868968307695818) |
 | 4 | [**Mirror Earth**](https://vibe.wiz.games/games/mirror-earth?lang=zh-TW)<br>整個地球都是可破壞的遊戲世界，天氣與真實地球同步。 | [@mattshumer_](https://x.com/mattshumer_) | 沙盒 | Claude Fable 5.2 | [遊玩](https://www.spawn.co/@mattshumer/earth) · [原文](https://x.com/i/status/2119877065701036047) |
 | 5 | [**Portals: Endless Worlds**](https://vibe.wiz.games/games/portals-endless-worlds?lang=zh-TW)<br>450+ 個純程式碼 3D 世界由傳送門相連，由 25,000 個代理建造。 | [@emollick](https://x.com/emollick) | 探索 | Claude Fable 5.2 | [遊玩](https://portals-endless-worlds.netlify.app/) · [原文](https://x.com/i/status/2119918307457577163) |
@@ -39,17 +39,17 @@ Vibe Arcade 是 AI 遊戲的街機廳：一份人工整理的瀏覽器遊戲索�
 | 8 | [**Voxel Engine**](https://vibe.wiz.games/games/voxel-engine?lang=zh-TW)<br>帶音效的體素引擎，一句提示生成。 | [@mattshumer_](https://x.com/mattshumer_) | 沙盒 | Claude Fable 5.2 | [遊玩](https://www.spawn.co/@mattshumer/voxel-engine) · [原文](https://x.com/i/status/2119870965106483384) |
 | 9 | [**Siege Wing**](https://vibe.wiz.games/games/siege-wing?lang=zh-TW)<br>駕駛直升機闖入中世紀戰場，用加農砲、火箭和飛彈對抗弩砲與城堡。 | [@builderjaydub](https://x.com/builderjaydub) | 射擊 | Claude Fable 5.2 | [遊玩](https://bannerfall.itch.io/siege-wing) · [原文](https://x.com/i/status/2120223731520040966) |
 | 10 | [**I Would Have Gotten Away With It**](https://vibe.wiz.games/games/i-would-have-gotten-away-with-it?lang=zh-TW)<br>反向《史酷比》：你是反派，負責嚇跑那群多管閒事的孩子。 | [@emollick](https://x.com/emollick) | 劇情與模擬 | Claude Fable 5.2 | [遊玩](https://i-would-have-gotten-away-with-it.netlify.app/) · [原文](https://x.com/i/status/2119876449494540554) |
-| 11 | [**Childhood Rug Racer**](https://vibe.wiz.games/games/childhood-rug-racer?lang=zh-TW)<br>在童年的遊戲地毯上開玩具車賽跑。 | [@noclipepe](https://x.com/noclipepe) | 競速 | GPT-6.2 Sol vs Fable | [遊玩](https://noclipepe.pages.dev/rug/) · [原文](https://x.com/i/status/2119728047754547326) |
-| 12 | [**Cloud Stunt 3D**](https://vibe.wiz.games/games/cloud-stunt-3d?lang=zh-TW)<br>30 分鐘生成的特技遊戲。 | [@jev_chat](https://x.com/jev_chat) | 競速 | Claude Fable 5.2 | [遊玩](https://finderchangchang.github.io/cloud-stunt-3d/) · [原文](https://x.com/i/status/2120015641151426838) |
-| 13 | [**Patchwork Quilt**](https://vibe.wiz.games/games/patchwork-quilt?lang=zh-TW)<br>拼布定格動畫風格的玩具世界。 | [@BlendiByl](https://x.com/BlendiByl) | 解謎與玩具 | Claude Fable 5.2 | [遊玩](https://patch.gg/blendi/patchwork-quilt) · [原文](https://x.com/i/status/2120746541636047347) |
+| 11 | [**Patchwork Quilt**](https://vibe.wiz.games/games/patchwork-quilt?lang=zh-TW)<br>拼布定格動畫風格的玩具世界。 | [@BlendiByl](https://x.com/BlendiByl) | 解謎與玩具 | Claude Fable 5.2 | [遊玩](https://patch.gg/blendi/patchwork-quilt) · [原文](https://x.com/i/status/2120746541636047347) |
+| 12 | [**Childhood Rug Racer**](https://vibe.wiz.games/games/childhood-rug-racer?lang=zh-TW)<br>在童年的遊戲地毯上開玩具車賽跑。 | [@noclipepe](https://x.com/noclipepe) | 競速 | GPT-6.2 Sol vs Fable | [遊玩](https://noclipepe.pages.dev/rug/) · [原文](https://x.com/i/status/2119728047754547326) |
+| 13 | [**Cloud Stunt 3D**](https://vibe.wiz.games/games/cloud-stunt-3d?lang=zh-TW)<br>30 分鐘生成的特技遊戲。 | [@jev_chat](https://x.com/jev_chat) | 競速 | Claude Fable 5.2 | [遊玩](https://finderchangchang.github.io/cloud-stunt-3d/) · [原文](https://x.com/i/status/2120015641151426838) |
 | 14 | [**Hogwarts Royale**](https://vibe.wiz.games/games/hogwarts-royale?lang=zh-TW)<br>一句提示生成的魔法學院大逃殺。 | [@mattshumer_](https://x.com/mattshumer_) | 動作 | Claude Fable 5.2 | [遊玩](https://www.spawn.co/@mattshumer/hogwarts-royale) · [原文](https://x.com/i/status/2119872098306810226) |
 | 15 | [**Dread and District**](https://vibe.wiz.games/games/dread-and-district?lang=zh-TW)<br>奇幻物流模擬：好的供應鏈打敗邪惡。由一群代理協作完成。 | [@emollick](https://x.com/emollick) | 劇情與模擬 | Claude Fable 5.2 | [遊玩](https://dread-and-district.netlify.app) · [原文](https://x.com/i/status/2120248525254742318) |
 | 16 | [**Worm Rider**](https://vibe.wiz.games/games/worm-rider?lang=zh-TW)<br>用 Claude Code 打造的 220 KB 開源遊戲。 | [@AmirMushich](https://x.com/AmirMushich) | 動作 | Claude Fable 5.2 | [原始碼](https://github.com/amirmushichge/worm-rider) · [原文](https://x.com/i/status/2119937977426338283) |
 | 17 | [**Maad Maxxing**](https://vibe.wiz.games/games/maad-maxxing?lang=zh-TW)<br>100% 程式碼，零素材。Three.js + WebGPU，前 3 關可玩。 | [@Andrew_Blumson](https://x.com/Andrew_Blumson) | 競速 | Claude Fable 5.2 | [遊玩](https://maad-maxxing.vercel.app) · [原文](https://x.com/i/status/2120599812512833557) |
 | 18 | [**Frontline Warfare Deathmatch**](https://vibe.wiz.games/games/frontline-warfare-deathmatch?lang=zh-TW)<br>瀏覽器裡的軍事射擊死鬥。 | [@alightinastorm](https://x.com/alightinastorm) | 射擊 | Claude Fable 5.2 | [遊玩](https://spawn.co/@robot/frontline-warfare-deathmatch) · [原文](https://x.com/i/status/2120020469487440210) |
 | 19 | [**Lanternfall**](https://vibe.wiz.games/games/lanternfall?lang=zh-TW)<br>模型、動畫、特效全部生成，連敵人死亡影格都不放過。 | [@loktar00](https://github.com/loktar00) | 動作 | Claude Fable 5.2 | [遊玩](https://loktar00.github.io/lanternfall/) · [原文](https://x.com/i/status/2120279060303520034) |
-| 20 | [**Turbo Tails**](https://vibe.wiz.games/games/turbo-tails?lang=zh-TW)<br>3D 卡丁車：六名車手、甩尾、跳台、道具，支援多人。 | [@petergyang](https://x.com/petergyang) | 競速 | Claude Fable 5.2 | [遊玩](https://turbo-tails.vercel.app) · [原文](https://x.com/i/status/2119901658394358005) |
-| 21 | [**Rambo Dino**](https://vibe.wiz.games/games/rambo-dino?lang=zh-TW)<br>Chrome 小恐龍遊戲，改造成動作遊戲。 | [@noclipepe](https://x.com/noclipepe) | 動作 | Claude Fable 5.2 | [遊玩](https://noclipepe.pages.dev/dino) · [原文](https://x.com/i/status/2119927838321328577) |
+| 20 | [**Rambo Dino**](https://vibe.wiz.games/games/rambo-dino?lang=zh-TW)<br>Chrome 小恐龍遊戲，改造成動作遊戲。 | [@noclipepe](https://x.com/noclipepe) | 動作 | Claude Fable 5.2 | [遊玩](https://noclipepe.pages.dev/dino) · [原文](https://x.com/i/status/2119927838321328577) |
+| 21 | [**Turbo Tails**](https://vibe.wiz.games/games/turbo-tails?lang=zh-TW)<br>3D 卡丁車：六名車手、甩尾、跳台、道具，支援多人。 | [@petergyang](https://x.com/petergyang) | 競速 | Claude Fable 5.2 | [遊玩](https://turbo-tails.vercel.app) · [原文](https://x.com/i/status/2119901658394358005) |
 | 22 | [**Spud Smash**](https://vibe.wiz.games/games/spud-smash?lang=zh-TW)<br>一顆馬鈴薯，砸爛並燒掉藍色椅子。 | [@argofowl](https://x.com/argofowl) | 動作 | Claude Fable 5.2 | [遊玩](https://fowllabs.com/fable-5-2/spud-smash) · [原文](https://x.com/i/status/2119913148929187960) |
 | 23 | [**Skyflare**](https://vibe.wiz.games/games/skyflare?lang=zh-TW)<br>三小時做出來的戰鬥機遊戲。 | [@AugustCastilIo](https://x.com/AugustCastilIo) | 射擊 | Claude Fable 5.2 | [遊玩](https://skyflare-game.vercel.app) · [原文](https://x.com/i/status/2120290751502581879) |
 | 24 | [**Feed the Backrooms**](https://vibe.wiz.games/games/feed-the-backrooms?lang=zh-TW)<br>扮演怪物，抓捕迷失在後室的人。 | [@LexnLin](https://x.com/LexnLin) | 劇情與模擬 | Claude Fable 5.2 | [遊玩](https://feed-backrooms.vercel.app) · [原文](https://x.com/i/status/2119966127149429093) |
@@ -84,7 +84,7 @@ Vibe Arcade 是 AI 遊戲的街機廳：一份人工整理的瀏覽器遊戲索�
 - 填寫 [Submit a game](https://github.com/yldm-tech/awesome-vibe-games/issues/new?template=submit-game.yml) issue 表單。表單需要遊戲名稱、作者的 X 帳號、貼文、連結、類型、模型和一句英文簡介。提交者不必是作者本人。
 - 或者把遊戲連同可玩的連結發到 X 上，並標記 [@suzukaze_haduki](https://x.com/suzukaze_haduki)。
 
-每筆提交都由策展人核對，封面取自貼文，條目的十種語言文字也由策展人撰寫。也歡迎直接發 pull request 新增遊戲檔案；簡介必須備齊十種語言，因為缺少任何一種，目錄都會拒絕這個條目。
+[投稿工作流程](.github/workflows/submissions.yml)會在幾分鐘內自動上架遊戲，全程無人值守。它會檢查貼文是否存在、是否由作者本人發布，遊玩或原始碼連結能否開啟，遊戲是否已收錄；然後從貼文取封面、短片和作者頭像，開一個關閉該 issue 的 PR，CI 通過後自動合併並部署網站。如果有問題，它會在 issue 裡說明，編輯 issue 就會重試。簡介先以英文上線，其他語言在翻譯前顯示英文。也歡迎直接發 pull request 新增遊戲檔案。
 
 ## 遊戲檔案格式
 
@@ -156,8 +156,8 @@ Vibe Arcade 是 AI 遊戲的街機廳：一份人工整理的瀏覽器遊戲索�
 | `likes` | 是 | 條目上次更新時貼文的按讚數，整數。 |
 | `model` | 是 | 製作遊戲所用的 AI 模型，依作者的稱呼。 |
 | `cover` | 是 | 封面檔名 `<slug>.webp`：一張 960x600 的圖片，放在 `apps/web/public/covers/`。 |
-| `summary` | 是 | 卡片上的一句話簡介，十種語言齊全。 |
-| `pitch` | 否 | 遊戲詳情頁和入選精選時顯示的較長介紹，十種語言齊全。 |
+| `summary` | 是 | 卡片上的一句話簡介。`en` 必填；其他語言可選，未填寫時顯示英文。 |
+| `pitch` | 否 | 遊戲詳情頁和入選精選時顯示的較長介紹，語言規則同 `summary`。 |
 | `notes` | 否 | 作者公布的製作數據，原樣照錄：可以有 `time`、`cost`、`tokens`、`prompts`、`lines`、`size`、`agents`，以及生成遊戲所用的提示詞 `prompt`。顯示為遊戲的「製作數據」。 |
 | `down` | 否 | 遊戲被標記為連結失效的日期（`YYYY-MM-DD`）。由每日連結檢查透過它的 PR 寫入和移除；帶這個欄位時遊戲仍會顯示，但會註明連結失效，並改為指向作者的原始貼文。 |
 
@@ -193,7 +193,7 @@ packages/catalog/          @vibe-arcade/catalog：資料以及由它衍生的一
   workflows/links.yml      每天檢查所有遊戲連結，連結持續失效的遊戲會收到一個標記用的 PR
 ```
 
-每天的[連結檢查](.github/workflows/links.yml)會請求每款遊戲的遊玩或原始碼連結。不再回應的連結會列在一個標題為「Dead game links」的 issue 裡，issue 同時記錄它連續多少次檢查都失效。連續三次之後，檢查會開一個 PR 把遊戲標記為連結失效（遊戲檔案裡的 `down`），所以主機只當機一天不會觸發標記；被標記的遊戲連結恢復回應後，會再開一個 PR 移除標記。檢查只提出建議：有人合併 PR 之前，`main` 上什麼都不會變；如果遊戲只是換了位址，更好的做法是改正它的 `link.url`。
+每天的[連結檢查](.github/workflows/links.yml)會請求每款遊戲的遊玩或原始碼連結。不再回應的連結會列在一個標題為「Dead game links」的 issue 裡，issue 同時記錄它連續多少次檢查都失效。連續三次之後，遊戲會被標記為連結失效（遊戲檔案裡的 `down`），所以主機只當機一天不會觸發標記；被標記的遊戲連結恢復回應後，標記會被移除。每次變更都透過一個 PR 落地，CI 通過後自動合併並部署網站。如果遊戲只是換了位址，改正它的 `link.url` 即可，下次檢查時標記會自動移除。
 
 ## 開發
 

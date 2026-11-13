@@ -1,7 +1,7 @@
 // Requests the link of every game in packages/catalog/data/games, once a day from .github/workflows/links.yml, and acts on what it finds in two steps (the rules are in link-health.mjs):
 //
 // 1. A link that does not answer is reported in one issue titled ISSUE_TITLE, which also carries how many checks in a row have found each link dead.
-// 2. A link dead DOWN_AFTER checks in a row gets its game marked: the script writes "down": "<today>" into the game's file, and removes it from a marked game whose link answers again. It only changes the working tree; the workflow turns the change into a pull request, so a person still decides.
+// 2. A link dead DOWN_AFTER checks in a row gets its game marked: the script writes "down": "<today>" into the game's file, and removes it from a marked game whose link answers again. It only changes the working tree; the workflow lands the change through a pull request that merges itself once CI passes.
 //
 // It has no dependencies. With GH_TOKEN (or GITHUB_TOKEN) set it reads and writes the issue through the gh CLI. Without a token it is a dry run: it prints the report and touches neither the issue nor the files.
 import { execFileSync } from 'node:child_process';
@@ -112,7 +112,7 @@ function syncIssue(open, dead, unknown, state) {
 		return;
 	}
 	const parts = [
-		`${dead.length} game ${dead.length === 1 ? 'link' : 'links'} did not answer in the latest daily check. A link that is dead ${DOWN_AFTER} checks in a row gets a pull request that marks its game as down, and one that takes the mark off when the link answers again. Before then, open the link in a browser: fix it, switch the entry to \`watch\`, or remove the game. This issue is rewritten by every check and closes by itself once nothing is dead.`,
+		`${dead.length} game ${dead.length === 1 ? 'link' : 'links'} did not answer in the latest daily check. A link that is dead ${DOWN_AFTER} checks in a row gets its game marked as down, and the mark comes off when the link answers again. Before then, a fixed \`link.url\` stops the count. This issue is rewritten by every check and closes by itself once nothing is dead.`,
 		table(dead, state),
 	];
 	if (unknown.length > 0) parts.push('These could not be judged, usually because the host refuses automated requests:', table(unknown));
@@ -130,10 +130,10 @@ function applyMarks({ mark, unmark }, state) {
 	for (const row of unmark) writeFileSync(gameFile(row.slug), withDown(readFileSync(gameFile(row.slug), 'utf8'), undefined));
 	const meta = JSON.parse(readFileSync(META_FILE, 'utf8'));
 	writeFileSync(META_FILE, `${JSON.stringify({ ...meta, updated: today }, null, '\t')}\n`);
-	const parts = ['## Summary', 'The daily link check wants these marks changed. A marked game stays listed: its card says the link is down and sends visitors to the creator\'s post instead. Open each link in a browser before merging; if a game has moved, fix its `link.url` instead and close this.'];
+	const parts = ['## Summary', 'The daily link check changes these marks. A marked game stays listed: its card says the link is down and sends visitors to the creator\'s post instead. This merges itself once CI passes; if a game has only moved, fixing its `link.url` takes the mark off at the next check.'];
 	if (mark.length > 0) parts.push(`**Marked as down** (dead ${DOWN_AFTER} or more checks in a row):`, table(mark, state));
 	if (unmark.length > 0) parts.push('**No longer down** (the link answers again):', table(unmark));
-	parts.push(`Checked on ${today}.${process.env.RUN_URL ? ` [Run](${process.env.RUN_URL})` : ''} This pull request is rewritten by every check while it is open, and closed if nothing needs changing any more.`, '## Screenshots', 'None.');
+	parts.push(`Checked on ${today}.${process.env.RUN_URL ? ` [Run](${process.env.RUN_URL})` : ''}`, '## Screenshots', 'None.');
 	return `${parts.join('\n\n')}\n`;
 }
 

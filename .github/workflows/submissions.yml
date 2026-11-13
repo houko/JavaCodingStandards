@@ -1,0 +1,96 @@
+name: Submissions
+
+# Lists a game submitted through the "Submit a game" issue form, with no one in the loop. When such an issue is opened or edited, the bot reads its answers and checks them against X and the game's link (.github/scripts/draft-submission.mjs); if anything is wrong it says what on the issue, and an edit tries again. Otherwise it writes the game file, fetches the cover, the clip and the creator's avatar from the post, runs the same checks as CI, opens a pull request that closes the issue, merges it once CI passes and deploys the site (.github/scripts/merge-when-green.sh). The summary is in English; the other languages show it until they are translated.
+on:
+  issues:
+    types: [opened, edited, reopened]
+
+permissions:
+  actions: write
+  contents: write
+  issues: write
+  pull-requests: write
+
+# One run per issue at a time; an edit made while a run is going waits for it, so a fix is never lost.
+concurrency:
+  group: submission-${{ github.event.issue.number }}
+  cancel-in-progress: false
+
+env:
+  GH_TOKEN: ${{ github.token }}
+  GH_REPO: ${{ github.repository }}
+  ISSUE: ${{ github.event.issue.number }}
+  BRANCH: submission/${{ github.event.issue.number }}
+
+jobs:
+  list:
+    if: github.event.issue.state == 'open' && contains(github.event.issue.labels.*.name, 'submission')
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      # The issue's text reaches the script through the environment, never through the shell.
+      - id: draft
+        run: node .github/scripts/draft-submission.mjs
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+      - if: steps.draft.outputs.problem
+        run: gh issue comment "$ISSUE" --body "This could not be listed yet. $PROBLEM Edit the issue to try again."
+        env:
+          PROBLEM: ${{ steps.draft.outputs.problem }}
+      - if: steps.draft.outputs.slug
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg > /dev/null
+          pnpm install --frozen-lockfile
+      # Every game needs a cover, so a post without a picture or a video cannot be listed. The clip is a bonus: a post without a video simply gets none.
+      - if: steps.draft.outputs.slug
+        id: media
+        run: |
+          cd apps/web
+          if node scripts/fetch-covers.ts "$SLUG" > "$RUNNER_TEMP/covers.log" 2>&1; then echo "cover=yes" >> "$GITHUB_OUTPUT"; else echo "cover=no" >> "$GITHUB_OUTPUT"; cat "$RUNNER_TEMP/covers.log"; fi
+          node scripts/fetch-media.ts "$SLUG" || true
+        env:
+          SLUG: ${{ steps.draft.outputs.slug }}
+      - if: steps.draft.outputs.slug && steps.media.outputs.cover != 'yes'
+        run: |
+          gh issue comment "$ISSUE" --body "This could not be listed yet. The bot found no picture or video in the post to make the game's cover from. Edit the issue to point at a post that shows the game."
+          exit 1
+      - if: steps.draft.outputs.slug
+        run: |
+          pnpm --filter @vibe-arcade/web og-fonts
+          pnpm --filter @vibe-arcade/web readme
+          pnpm typecheck
+          pnpm test
+      - if: steps.draft.outputs.slug
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git switch --create "$BRANCH"
+          git add packages/catalog/data apps/web/public apps/web/og/fonts README*.md
+          git commit --message "feat: add $NAME"
+          git push --force origin "$BRANCH"
+          {
+            echo "## Summary"
+            echo
+            echo "Adds **$NAME** from #$ISSUE. Closes #$ISSUE."
+            echo
+            echo "Written by the submissions workflow from the issue's answers, after checking that the post is the creator's and the link answers; the cover, clip and avatar come from the post. It merges itself once CI passes."
+            echo
+            echo "## Screenshots"
+            echo
+            echo "None."
+          } > "$RUNNER_TEMP/pr.md"
+          if [ -z "$(gh pr list --head "$BRANCH" --state open --json number --jq '.[].number')" ]; then
+            gh pr create --head "$BRANCH" --base "$GITHUB_REF_NAME" --title "feat: add $NAME" --body-file "$RUNNER_TEMP/pr.md"
+          fi
+          .github/scripts/merge-when-green.sh "$BRANCH"
+          gh issue comment "$ISSUE" --body "Listed: https://vibe.wiz.games/games/$SLUG (live once the deploy finishes, in a few minutes). Thanks!"
+        env:
+          SLUG: ${{ steps.draft.outputs.slug }}
+          NAME: ${{ steps.draft.outputs.name }}

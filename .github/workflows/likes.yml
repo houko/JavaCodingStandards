@@ -1,0 +1,73 @@
+name: Likes
+
+# Refreshes the like count of every game from its post on X once a week, and lands the new counts through one pull request from bot/likes, which merges itself once CI passes and deploys the site (.github/scripts/merge-when-green.sh). The counts are a snapshot shown as such ("likes on X"); this keeps the snapshot from going stale without anyone remembering to. When a count changes, the site's "last updated" day moves to the day of the run.
+on:
+  schedule:
+    - cron: '41 4 * * 1'
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: likes
+  cancel-in-progress: false
+
+env:
+  BRANCH: bot/likes
+  GH_TOKEN: ${{ github.token }}
+  GH_REPO: ${{ github.repository }}
+
+jobs:
+  likes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      # A post X does not answer for keeps its count; the run's log says which.
+      - run: node scripts/fetch-covers.ts --likes | tee "$RUNNER_TEMP/likes.log"
+        working-directory: apps/web
+      - id: diff
+        run: |
+          if git diff --quiet; then echo "changed=false" >> "$GITHUB_OUTPUT"; else echo "changed=true" >> "$GITHUB_OUTPUT"; fi
+      - if: steps.diff.outputs.changed == 'true'
+        run: |
+          pnpm typecheck
+          pnpm test
+      - if: steps.diff.outputs.changed == 'true'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git switch --create "$BRANCH"
+          git add packages/catalog/data
+          git commit --message 'chore: refresh like counts from X'
+          git push --force origin "$BRANCH"
+          {
+            echo "## Summary"
+            echo
+            echo "The weekly refresh of like counts from each game's post on X. Merging it updates the counts, the order of the lists and the site's \"last updated\" day."
+            echo
+            echo '```text'
+            sed -n '/^likes changed in/,$p' "$RUNNER_TEMP/likes.log"
+            echo '```'
+            echo
+            echo "It merges itself once CI passes."
+            echo
+            echo "## Screenshots"
+            echo
+            echo "None."
+          } > "$RUNNER_TEMP/pr.md"
+          if [ -n "$(gh pr list --head "$BRANCH" --state open --json number --jq '.[].number')" ]; then
+            gh pr edit "$BRANCH" --body-file "$RUNNER_TEMP/pr.md"
+          else
+            gh pr create --head "$BRANCH" --base "$GITHUB_REF_NAME" --title 'chore: refresh like counts from X' --body-file "$RUNNER_TEMP/pr.md"
+          fi
+          .github/scripts/merge-when-green.sh "$BRANCH"
