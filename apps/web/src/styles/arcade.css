@@ -435,6 +435,10 @@ section[id] {
 		border-color 0.2s,
 		box-shadow 0.2s;
 }
+/* A select draws its own arrow (an icon laid over its right edge, with room left for it), as the browsers' own sits flush against the border and differs from one to the next. */
+.avg-select {
+	appearance: none;
+}
 .avg-field:focus {
 	outline: none;
 	border-color: var(--color-lime);

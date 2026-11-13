@@ -178,3 +178,11 @@ export function Bubble({ size = 16, className }: IconProps) {
 		</Icon>
 	);
 }
+
+export function ChevronDown({ size = 16, className }: IconProps) {
+	return (
+		<Icon size={size} stroke={2.2} className={className}>
+			<path d='M6 9l6 6 6-6' />
+		</Icon>
+	);
+}

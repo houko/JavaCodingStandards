@@ -1,7 +1,7 @@
 import { GAMES, MODELS, type Translations } from '@vibe-arcade/catalog';
 import { useEffect, useRef, useState } from 'react';
 import { Q_MAX, modelSlug } from '../lib/search';
-import { Close, Reset, Search } from './Icons';
+import { ChevronDown, Close, Reset, Search } from './Icons';
 
 interface ToolbarProps {
 	tr: Translations;
@@ -64,16 +64,19 @@ export function Toolbar({ tr, q, model, sortNew, filtered, onQuery, onModel, onS
 			<label htmlFor='game-model' className='sr-only'>
 				{tr.model}
 			</label>
-			<select id='game-model' value={model ?? ALL} onChange={(e) => onModel(e.target.value || undefined)} className='avg-field min-h-11 max-w-full min-w-0 cursor-pointer rounded-lg border border-line-2 bg-panel px-3 text-[14px] text-fg max-[419px]:w-full sm:max-w-60'>
-				<option value={ALL}>
-					{tr.allModels} ({GAMES.length})
-				</option>
-				{MODELS.map((m) => (
-					<option key={m.name} value={modelSlug(m.name)}>
-						{m.name} ({m.count})
+			<div className='relative flex max-w-full min-w-0 items-center max-[419px]:w-full sm:max-w-60'>
+				<select id='game-model' value={model ?? ALL} onChange={(e) => onModel(e.target.value || undefined)} className='avg-field avg-select min-h-11 w-full cursor-pointer rounded-lg border border-line-2 bg-panel py-0 pr-9 pl-3 text-[14px] text-fg'>
+					<option value={ALL}>
+						{tr.allModels} ({GAMES.length})
 					</option>
-				))}
-			</select>
+					{MODELS.map((m) => (
+						<option key={m.name} value={modelSlug(m.name)}>
+							{m.name} ({m.count})
+						</option>
+					))}
+				</select>
+				<ChevronDown className='pointer-events-none absolute right-3 text-muted' />
+			</div>
 			<div role='group' aria-label={tr.sortLabel} className='flex overflow-hidden rounded-lg border border-line-2 max-[419px]:w-full'>
 				<button type='button' aria-pressed={!sortNew} onClick={() => onSort(false)} className={`${TOGGLE} ${sortNew ? 'bg-transparent text-fg' : 'bg-fg text-bg'}`}>
 					{tr.mostLiked}
