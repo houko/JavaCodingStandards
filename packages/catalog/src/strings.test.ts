@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { GENRES, GENRE_KEYS } from './games';
 import { LANGS, type LangCode, fill } from './lang';
-import { CURATOR_HANDLE, MAKER_NAME, SITE_NAME } from './site';
+import { CURATOR_HANDLE, SITE_NAME } from './site';
 import { LOCALES, type StringKey } from './strings';
 import { t } from './translate';
 
@@ -32,7 +32,7 @@ describe('UI copy', () => {
 
 	it('uses the placeholders the site fills', () => {
 		const withHoles = Object.fromEntries(KEYS.filter((key) => holes(LOCALES.en[key])).map((key) => [key, holes(LOCALES.en[key])]));
-		expect(withHoles).toEqual({ a2: '{models}', gameDescription: '{genre},{model},{summary}', gameTitle: '{creator},{name}', madeBy: '{maker}', moreIn: '{g}', showing: '{a},{b}' });
+		expect(withHoles).toEqual({ a2: '{models}', gameDescription: '{genre},{model},{summary}', gameTitle: '{creator},{name}', madeBy: '{maker}', gamesBy: '{c}', moreIn: '{g}', nGames: '{n}', showing: '{a},{b}' });
 	});
 
 	it('is free of manual line breaks and invisible wrap hints', () => {
@@ -56,8 +56,7 @@ describe('UI copy', () => {
 			expect(LOCALES[lang].siteTitle, lang).toContain(SITE_NAME);
 			expect(LOCALES[lang].gameTitle, lang).toContain(SITE_NAME);
 			expect(LOCALES[lang].a3, lang).toContain(`@${CURATOR_HANDLE}`);
-			expect(LOCALES[lang].a4, lang).toContain(SITE_NAME);
-			expect(LOCALES[lang].a4, lang).toContain(MAKER_NAME);
+			expect(LOCALES[lang].a5, lang).toContain(`@${CURATOR_HANDLE}`);
 		}
 	});
 

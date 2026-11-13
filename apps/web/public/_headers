@@ -7,8 +7,12 @@
 /fonts/*
   Cache-Control: public, max-age=31536000, immutable
 
-# These keep their names when their content changes, so they are cached for a day and may be served stale for a week while revalidating. A cover is always <slug>.webp and is overwritten when it is replaced; a game's share card is redrawn from its cover, name and like count on every build.
+# These keep their names when their content changes, so they are cached for a day and may be served stale for a week while revalidating. A cover is always <slug>.webp and is overwritten when it is replaced, and the same goes for a game's clips and a creator's avatar; a game's share card is redrawn from its cover, name and like count on every build.
 /covers/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+/videos/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+/avatars/*
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 /og/*
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800

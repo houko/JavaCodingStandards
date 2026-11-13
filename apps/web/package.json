@@ -13,6 +13,7 @@
 		"deploy": "pnpm run build && wrangler deploy",
 		"cf-typegen": "wrangler types",
 		"covers": "node scripts/fetch-covers.ts",
+		"media": "node scripts/fetch-media.ts",
 		"icons": "node scripts/site-icons.ts",
 		"banner": "node scripts/banner.ts"
 	},

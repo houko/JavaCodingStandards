@@ -66,10 +66,10 @@ Vibe Arcade は、主に AI モデルへのプロンプトで作られ、X で�
     "pt-BR": "Um FPS criado com prompts únicos, sem feedback humano. Modelos, sons e texturas foram todos gerados em código.",
     "ru": "Шутер от первого лица, созданный одноразовыми промптами без участия человека. Модели, звуки и текстуры сгенерированы кодом."
   },
-  "featured": {
-    "apiCost": "~$550",
-    "buildTime": "8h",
-    "outputTokens": 2700000
+  "notes": {
+    "time": "8h",
+    "cost": "~$550",
+    "tokens": "2.7M out · 445M in"
   }
 }
 ```
@@ -89,8 +89,8 @@ Vibe Arcade は、主に AI モデルへのプロンプトで作られ、X で�
 | `model` | はい | ゲームの制作に使われた AI モデル。作者の呼び方どおりに書きます。 |
 | `cover` | はい | カバーのファイル名 `<slug>.webp`。`apps/web/public/covers/` に置く 960x600 の画像です。 |
 | `summary` | はい | カードに載せるゲームの一行説明。10 言語すべて。 |
-| `pitch` | いいえ | ゲームが注目作として表示されるときの長めの説明。10 言語すべて。 |
-| `featured` | いいえ | 作者が公表した `apiCost`、`buildTime`、`outputTokens`。これを持つゲームがトップページの注目作になるため、持つのはちょうど 1 本だけです。 |
+| `pitch` | いいえ | ゲームのページと、ピックアップに選ばれたときに表示される長めの説明。10 言語すべて。 |
+| `notes` | いいえ | 作者が公表した制作データを、書かれたとおりに。`time`、`cost`、`tokens`、`prompts`、`lines`、`size`、`agents` のいずれかと、ゲームの元になったプロンプト `prompt`。ゲームの「制作データ」として表示されます。 |
 
 ## 言語
 
@@ -104,14 +104,17 @@ Vibe Arcade は、主に AI モデルへのプロンプトで作られ、X で�
 apps/web/                  @vibe-arcade/web：サイト。TanStack Start（React 19）を Cloudflare Workers 上でレンダリング
   src/                     ルート、コンポーネント、スタイル
   public/covers/           ゲームのカバー、<slug>.webp
+  public/videos/           ゲームの無音ショートクリップ、<slug>.mp4。hero/<slug>.mp4 はヒーロー画面用
+  public/avatars/          クリエイターのアバター、<handle>.webp
   public/fonts/            セルフホストの Web フォント
   og/                      ビルド時に共有用画像を描く Vite プラグイン
-  scripts/                 fetch-covers.ts、site-icons.ts、banner.ts
+  scripts/                 fetch-covers.ts、fetch-media.ts、site-icons.ts、banner.ts
   wrangler.jsonc           Cloudflare Workers の設定
 packages/catalog/          @vibe-arcade/catalog：データと、そこから導かれるものすべて
   data/games/              ゲーム 1 本につき 1 つの JSON ファイル
   data/schema/             game.schema.json
-  data/meta.json           データを最後に変更した日。サイトの「最終更新」
+  data/meta.json           データを最後に変更した日（サイトの「最終更新」）と今週のピックアップ
+  data/media.json          クリップのあるゲームとアバターのあるクリエイターの一覧。fetch-media.ts が書き出す
   locales/                 画面の文言、言語ごとに 1 ファイル
   src/                     読み込みと検証、絞り込み、言語、サイトの定数
 .github/
@@ -138,11 +141,12 @@ pnpm build       # サイトをビルド（共有用画像を含む）
 
 ```sh
 pnpm --filter @vibe-arcade/web covers   # 各ゲームの X 投稿からカバーを取得して public/covers/ に保存
+pnpm --filter @vibe-arcade/web media    # 各ゲームの X 投稿からクリップを切り出し、クリエイターのアバターを取得（ffmpeg が必要）
 pnpm --filter @vibe-arcade/web icons    # public/favicon.svg からアイコンを作り直す
 pnpm --filter @vibe-arcade/web banner   # このファイル冒頭の .github/assets/banner.png を作り直す
 ```
 
-`covers` は、`--force` を付けないかぎり既存のカバーを残します。slug を渡すと対象を絞れます。`--likes` を付けると、ゲームファイルのいいね数も更新します。いいね数が変わった場合は、`packages/catalog/data/meta.json` の日付（サイトに「最終更新」として表示されます）を当日に書き換えます。ゲームを追加したときは、この日付を手で直してください。
+`covers` は、`--force` を付けないかぎり既存のカバーを残します。slug を渡すと対象を絞れます。`--likes` を付けると、ゲームファイルのいいね数も更新します。いいね数が変わった場合は、`packages/catalog/data/meta.json` の日付（サイトに「最終更新」として表示されます）を当日に書き換えます。ゲームを追加したときは、この日付を手で直してください。`media` は、各ゲームの投稿の動画から 6 秒の無音クリップを切り出して `public/videos/` に保存し、いいねの多い 6 本にはヒーロー画面用の大きめのクリップも作ります。自分で投稿したクリエイターのアバターは `public/avatars/` に保存します。結果は `packages/catalog/data/media.json` に書き出すので、メディアと一緒にコミットしてください。こちらも `--force` を付けないかぎり既存のファイルを残し、slug で対象を絞れます。今週のピックアップは `meta.json` の `picks` に並べた slug で、手で編集します。
 
 ## デプロイ
 
@@ -156,10 +160,10 @@ pnpm run deploy
 
 ## クレジット
 
-ゲーム、名称、カバー、商標は各作者に帰属します。カバーは作者の X 投稿に含まれる画面です。Vibe Arcade はコミュニティによるインデックスで、Anthropic をはじめとするモデル提供元のいずれとも提携していません。
+ゲーム、名称、カバー、クリップ、商標は各作者に帰属します。カバーとクリップは作者の X 投稿から、アバターは X のプロフィール画像から取っています。掲載内容の変更や削除を希望する作者は、X で [@suzukaze_haduki](https://x.com/suzukaze_haduki) に連絡するか、issue を立ててください。Vibe Arcade はコミュニティによるインデックスで、Anthropic をはじめとするモデル提供元のいずれとも提携していません。
 
 Vibe Arcade は [Wiz Games](https://wiz.games) のプロジェクトで、[@suzukaze_haduki](https://x.com/suzukaze_haduki) がキュレーションしています。
 
 ## ライセンス
 
-コードは [MIT ライセンス](LICENSE)で公開しています。このライセンスはゲームとそのカバーには及びません。
+コードは [MIT ライセンス](LICENSE)で公開しています。このライセンスはゲームとそのカバー、クリップ、クリエイターのアバターには及びません。

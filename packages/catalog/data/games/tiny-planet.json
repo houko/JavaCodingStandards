@@ -23,5 +23,8 @@
 		"de": "Ein winziger Planet zum Herumlaufen. Open Source.",
 		"pt-BR": "Um planetinha para você explorar a pé. Código aberto.",
 		"ru": "Крошечная планета, по которой можно гулять. Открытый исходный код."
+	},
+	"notes": {
+		"prompts": "1"
 	}
 }

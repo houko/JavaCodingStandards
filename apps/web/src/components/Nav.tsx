@@ -37,6 +37,9 @@ export function Nav({ home }: { home: boolean }) {
 					<SectionLink home={home} id='games' className={SECTION_LINK} onClick={close}>
 						{tr.games}
 					</SectionLink>
+					<SectionLink home={home} id='creators' className={SECTION_LINK} onClick={close}>
+						{tr.creatorsH}
+					</SectionLink>
 					<SectionLink home={home} id='top-liked' className={SECTION_LINK} onClick={close}>
 						{tr.mostLiked}
 					</SectionLink>

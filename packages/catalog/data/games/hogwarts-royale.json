@@ -23,5 +23,9 @@
 		"de": "Ein Battle Royale an einer Zauberschule, aus einem Einzeiler-Prompt.",
 		"pt-BR": "Um battle royale numa escola de magia, a partir de um prompt de uma linha.",
 		"ru": "Королевская битва в школе магии из однострочного промпта."
+	},
+	"notes": {
+		"prompts": "1",
+		"prompt": "Fable 5.2, create a mashup of Harry Potter and Fortnite"
 	}
 }

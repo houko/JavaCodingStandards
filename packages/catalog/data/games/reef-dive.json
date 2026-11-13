@@ -13,15 +13,15 @@
 	"model": "Claude Fable 5.2",
 	"cover": "reef-dive.webp",
 	"summary": {
-		"en": "Dive a coral reef, built with Three.js.",
-		"zh-CN": "潜入珊瑚礁，用 Three.js 打造。",
-		"zh-TW": "潛入珊瑚礁，用 Three.js 打造。",
-		"ja": "Three.jsで作ったサンゴ礁ダイビング。",
-		"ko": "Three.js로 만든 산호초 다이빙.",
-		"es": "Bucea en un arrecife de coral, hecho con Three.js.",
-		"fr": "Plongez dans un récif corallien, fait avec Three.js.",
-		"de": "Tauche durch ein Korallenriff, gebaut mit Three.js.",
-		"pt-BR": "Mergulhe num recife de coral, feito com Three.js.",
-		"ru": "Погружение к коралловому рифу, сделано на Three.js."
+		"en": "Spear-fish, dodge sharks, pilot a sub and dive 140 m into the Blue Hole.",
+		"zh-CN": "用鱼叉捕鱼、躲避鲨鱼、驾驶潜艇，下潜 140 米直达蓝洞。",
+		"zh-TW": "用魚叉捕魚、閃避鯊魚、駕駛潛艇，下潛 140 公尺直達藍洞。",
+		"ja": "銛で魚を突き、サメをかわし、潜水艇で水深140mのブルーホールへ。",
+		"ko": "작살로 물고기를 잡고 상어를 피하며 잠수정으로 140m 블루홀까지 잠수.",
+		"es": "Pesca con arpón, esquiva tiburones, pilota un submarino y baja 140 m al Blue Hole.",
+		"fr": "Pêche au harpon, évitez les requins, pilotez un sous-marin et plongez à 140 m dans le Blue Hole.",
+		"de": "Speerfischen, Haien ausweichen, U-Boot steuern und 140 m tief ins Blue Hole tauchen.",
+		"pt-BR": "Pesque com arpão, fuja de tubarões, pilote um submarino e mergulhe 140 m no Blue Hole.",
+		"ru": "Подводная охота, акулы, подлодка и погружение на 140 м в Голубую дыру."
 	}
 }

@@ -23,5 +23,8 @@
 		"de": "Ein Holzkugel-Labyrinth in rund 2.000 Zeilen Three.js.",
 		"pt-BR": "Um labirinto de bolinha de madeira em cerca de 2.000 linhas de Three.js.",
 		"ru": "Деревянный лабиринт с шариком примерно в 2000 строк Three.js."
+	},
+	"notes": {
+		"lines": "2,000"
 	}
 }

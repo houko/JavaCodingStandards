@@ -23,5 +23,8 @@
 		"de": "Ein Stuntspiel, in 30 Minuten generiert.",
 		"pt-BR": "Um jogo de manobras gerado em 30 minutos.",
 		"ru": "Трюковая игра, сгенерированная за 30 минут."
+	},
+	"notes": {
+		"time": "30m"
 	}
 }

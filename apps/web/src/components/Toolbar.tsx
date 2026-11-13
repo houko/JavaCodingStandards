@@ -1,26 +1,31 @@
-import type { Translations } from '@vibe-arcade/catalog';
+import { GAMES, MODELS, type Translations } from '@vibe-arcade/catalog';
 import { useEffect, useRef, useState } from 'react';
-import { Q_MAX } from '../lib/search';
-import { BTN_LINE } from '../lib/ui';
-import { Dice } from './Icons';
+import { Q_MAX, modelSlug } from '../lib/search';
+import { Close, Reset, Search } from './Icons';
 
 interface ToolbarProps {
 	tr: Translations;
-	// The search text and order in the URL.
+	// The search text, model and order in the URL.
 	q: string;
+	model: string | undefined;
 	sortNew: boolean;
+	// Whether any filter is set, which shows the reset button.
+	filtered: boolean;
 	onQuery: (q: string) => void;
+	onModel: (model: string | undefined) => void;
 	onSort: (sortNew: boolean) => void;
-	onSurprise: () => void;
+	onReset: () => void;
 }
 
 const TOGGLE = 'avg-tog min-h-11 flex-1 cursor-pointer px-3.5 text-[14px] whitespace-nowrap';
+const ALL = '';
 
-// Surprise, search and sort. On a phone the three stack at full width.
-export function Toolbar({ tr, q, sortNew, onQuery, onSort, onSurprise }: ToolbarProps) {
-	// The field keeps its own text and reports each change, rather than being driven by the URL: a value that round-trips through navigation on every keystroke breaks IME composition (Chinese, Japanese, Korean input). The URL only writes back when it changes by another hand: Back, a footer genre link, Clear filters.
+// Search, model, order and reset, in one row that wraps on a narrow screen.
+export function Toolbar({ tr, q, model, sortNew, filtered, onQuery, onModel, onSort, onReset }: ToolbarProps) {
+	// The field keeps its own text and reports each change, rather than being driven by the URL: a value that round-trips through navigation on every keystroke breaks IME composition (Chinese, Japanese, Korean input). The URL only writes back when it changes by another hand: Back, a footer genre link, the reset button.
 	const [text, setText] = useState(q);
 	const reported = useRef(q);
+	const field = useRef<HTMLInputElement>(null);
 	useEffect(() => {
 		if (q !== reported.current) {
 			reported.current = q;
@@ -35,18 +40,41 @@ export function Toolbar({ tr, q, sortNew, onQuery, onSort, onSurprise }: Toolbar
 	};
 
 	return (
-		<div className='flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center'>
-			<button type='button' onClick={onSurprise} className={`${BTN_LINE} px-3.5 text-[14px]`}>
-				<Dice size={16} />
-				{tr.surprise}
-			</button>
-			<div className='flex items-center gap-3'>
-				<label htmlFor='game-search' className='flex-none text-[14px] text-muted'>
+		<div className='flex flex-wrap items-center gap-2.5'>
+			<div className='relative min-w-0 flex-[1_1_240px] sm:max-w-[380px]'>
+				<label htmlFor='game-search' className='sr-only'>
 					{tr.search}
 				</label>
-				<input id='game-search' type='search' value={text} onChange={(e) => onInput(e.target.value)} placeholder={tr.searchPh} maxLength={Q_MAX} autoComplete='off' enterKeyHint='search' className='avg-field min-h-11 w-full min-w-0 rounded-lg border border-line-2 bg-panel px-3.5 py-2.5 text-[15px] text-fg placeholder:text-muted sm:w-60' />
+				<Search className='pointer-events-none absolute top-[13px] left-[13px] text-muted' />
+				<input ref={field} id='game-search' type='search' value={text} onChange={(e) => onInput(e.target.value)} placeholder={tr.searchPh} maxLength={Q_MAX} autoComplete='off' enterKeyHint='search' className='avg-field avg-search min-h-11 w-full rounded-lg border border-line-2 bg-panel py-2.5 pr-11 pl-10 text-[15px] text-fg placeholder:text-muted' />
+				{text !== '' && (
+					<button
+						type='button'
+						aria-label={tr.clear}
+						onClick={() => {
+							onInput('');
+							field.current?.focus();
+						}}
+						className='absolute top-0 right-0 flex size-11 cursor-pointer items-center justify-center rounded-lg text-muted hover:text-fg'
+					>
+						<Close size={16} />
+					</button>
+				)}
 			</div>
-			<div role='group' aria-label={tr.sortLabel} className='flex overflow-hidden rounded-lg border border-line-2'>
+			<label htmlFor='game-model' className='sr-only'>
+				{tr.model}
+			</label>
+			<select id='game-model' value={model ?? ALL} onChange={(e) => onModel(e.target.value || undefined)} className='avg-field min-h-11 max-w-full min-w-0 cursor-pointer rounded-lg border border-line-2 bg-panel px-3 text-[14px] text-fg max-[419px]:w-full sm:max-w-60'>
+				<option value={ALL}>
+					{tr.allModels} ({GAMES.length})
+				</option>
+				{MODELS.map((m) => (
+					<option key={m.name} value={modelSlug(m.name)}>
+						{m.name} ({m.count})
+					</option>
+				))}
+			</select>
+			<div role='group' aria-label={tr.sortLabel} className='flex overflow-hidden rounded-lg border border-line-2 max-[419px]:w-full'>
 				<button type='button' aria-pressed={!sortNew} onClick={() => onSort(false)} className={`${TOGGLE} ${sortNew ? 'bg-transparent text-fg' : 'bg-fg text-bg'}`}>
 					{tr.mostLiked}
 				</button>
@@ -54,6 +82,12 @@ export function Toolbar({ tr, q, sortNew, onQuery, onSort, onSurprise }: Toolbar
 					{tr.newest}
 				</button>
 			</div>
+			{filtered && (
+				<button type='button' onClick={onReset} className='avg-btn inline-flex min-h-11 cursor-pointer items-center gap-1.5 rounded-lg px-2 text-[14px] font-semibold text-lime'>
+					<Reset />
+					{tr.reset}
+				</button>
+			)}
 		</div>
 	);
 }

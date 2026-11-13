@@ -66,10 +66,10 @@ Vibe Arcade는 주로 AI 모델에 프롬프트를 주어 만들고 X에 공개�
     "pt-BR": "Um FPS criado com prompts únicos, sem feedback humano. Modelos, sons e texturas foram todos gerados em código.",
     "ru": "Шутер от первого лица, созданный одноразовыми промптами без участия человека. Модели, звуки и текстуры сгенерированы кодом."
   },
-  "featured": {
-    "apiCost": "~$550",
-    "buildTime": "8h",
-    "outputTokens": 2700000
+  "notes": {
+    "time": "8h",
+    "cost": "~$550",
+    "tokens": "2.7M out · 445M in"
   }
 }
 ```
@@ -89,8 +89,8 @@ Vibe Arcade는 주로 AI 모델에 프롬프트를 주어 만들고 X에 공개�
 | `model` | 예 | 게임 제작에 쓰인 AI 모델. 제작자가 부르는 이름 그대로 씁니다. |
 | `cover` | 예 | 커버 파일 이름 `<slug>.webp`. `apps/web/public/covers/`에 두는 960x600 이미지입니다. |
 | `summary` | 예 | 카드에 쓰이는 게임 한 줄 설명. 10개 언어 모두. |
-| `pitch` | 아니요 | 게임이 추천작으로 표시될 때 쓰이는 더 긴 설명. 10개 언어 모두. |
-| `featured` | 아니요 | 제작자가 밝힌 `apiCost`, `buildTime`, `outputTokens`. 이 필드가 있는 게임이 홈 화면의 추천작이 되므로, 정확히 한 게임만 가집니다. |
+| `pitch` | 아니요 | 게임 페이지와 추천작으로 뽑혔을 때 표시되는 더 긴 설명. 10개 언어 모두. |
+| `notes` | 아니요 | 제작자가 밝힌 제작 데이터를 쓰인 그대로. `time`, `cost`, `tokens`, `prompts`, `lines`, `size`, `agents` 중 있는 것과, 게임을 만든 프롬프트 `prompt`. 게임의 "제작 데이터"로 표시됩니다. |
 
 ## 언어
 
@@ -104,14 +104,17 @@ Vibe Arcade는 주로 AI 모델에 프롬프트를 주어 만들고 X에 공개�
 apps/web/                  @vibe-arcade/web: 사이트. TanStack Start(React 19)를 Cloudflare Workers에서 렌더링
   src/                     라우트, 컴포넌트, 스타일
   public/covers/           게임 커버, <slug>.webp
+  public/videos/           게임의 무음 짧은 클립, <slug>.mp4. hero/<slug>.mp4는 히어로 화면용
+  public/avatars/          크리에이터 아바타, <handle>.webp
   public/fonts/            직접 호스팅하는 웹 폰트
   og/                      빌드할 때 공유 이미지를 그리는 Vite 플러그인
-  scripts/                 fetch-covers.ts, site-icons.ts, banner.ts
+  scripts/                 fetch-covers.ts, fetch-media.ts, site-icons.ts, banner.ts
   wrangler.jsonc           Cloudflare Workers 설정
 packages/catalog/          @vibe-arcade/catalog: 데이터와 거기서 파생되는 모든 것
   data/games/              게임마다 JSON 파일 하나
   data/schema/             game.schema.json
-  data/meta.json           데이터가 마지막으로 바뀐 날, 사이트의 "최근 업데이트"
+  data/meta.json           데이터가 마지막으로 바뀐 날(사이트의 "최근 업데이트")과 이번 주 추천
+  data/media.json          클립이 있는 게임과 아바타가 있는 크리에이터 목록. fetch-media.ts가 기록
   locales/                 화면 문구, 언어마다 파일 하나
   src/                     불러오기와 검증, 필터, 언어, 사이트 상수
 .github/
@@ -138,11 +141,12 @@ pnpm build       # 사이트 빌드(공유 이미지 포함)
 
 ```sh
 pnpm --filter @vibe-arcade/web covers   # 각 게임의 X 게시물에서 커버를 가져와 public/covers/에 저장
+pnpm --filter @vibe-arcade/web media    # 각 게임의 X 게시물에서 클립을 잘라내고 크리에이터 아바타를 가져옴(ffmpeg 필요)
 pnpm --filter @vibe-arcade/web icons    # public/favicon.svg로 아이콘을 다시 생성
 pnpm --filter @vibe-arcade/web banner   # 이 파일 맨 위의 .github/assets/banner.png를 다시 생성
 ```
 
-`covers`는 `--force`를 주지 않는 한 이미 있는 커버를 그대로 둡니다. slug를 넘기면 대상을 좁힐 수 있고, `--likes`를 주면 게임 파일의 좋아요 수도 갱신합니다. 좋아요 수가 바뀌면 `packages/catalog/data/meta.json`의 날짜(사이트에 "최근 업데이트"로 표시됩니다)를 오늘로 바꿉니다. 게임을 추가할 때는 이 날짜를 직접 고치세요.
+`covers`는 `--force`를 주지 않는 한 이미 있는 커버를 그대로 둡니다. slug를 넘기면 대상을 좁힐 수 있고, `--likes`를 주면 게임 파일의 좋아요 수도 갱신합니다. 좋아요 수가 바뀌면 `packages/catalog/data/meta.json`의 날짜(사이트에 "최근 업데이트"로 표시됩니다)를 오늘로 바꿉니다. 게임을 추가할 때는 이 날짜를 직접 고치세요.`media`는 각 게임 게시물의 영상에서 6초짜리 무음 클립을 잘라 `public/videos/`에 저장하고, 좋아요가 가장 많은 여섯 게임에는 히어로 화면용으로 더 큰 클립도 만듭니다. 직접 게시한 크리에이터의 아바타는 `public/avatars/`에 저장합니다. 결과는 `packages/catalog/data/media.json`에 기록하므로 미디어와 함께 커밋하세요. 이 명령도 `--force`를 주지 않는 한 이미 있는 파일을 그대로 두고, slug로 대상을 좁힐 수 있습니다. 이번 주 추천은 `meta.json`의 `picks`에 적은 slug이며 직접 편집합니다.
 
 ## 배포
 
@@ -156,10 +160,10 @@ pnpm run deploy
 
 ## 크레딧
 
-게임, 이름, 커버, 상표는 각 제작자에게 있습니다. 커버는 제작자가 X에 올린 게시물의 화면입니다. Vibe Arcade는 커뮤니티 인덱스이며, Anthropic을 비롯한 어떤 모델 제작사와도 제휴 관계가 없습니다.
+게임, 이름, 커버, 클립, 상표는 각 제작자에게 있습니다. 커버와 클립은 제작자가 X에 올린 게시물에서, 아바타는 X 프로필 사진에서 가져왔습니다. 항목의 수정이나 삭제를 원하는 제작자는 X에서 [@suzukaze_haduki](https://x.com/suzukaze_haduki)에게 연락하거나 issue를 열어 주세요. Vibe Arcade는 커뮤니티 인덱스이며, Anthropic을 비롯한 어떤 모델 제작사와도 제휴 관계가 없습니다.
 
 Vibe Arcade는 [Wiz Games](https://wiz.games)의 프로젝트이며 [@suzukaze_haduki](https://x.com/suzukaze_haduki)가 큐레이션합니다.
 
 ## 라이선스
 
-코드는 [MIT 라이선스](LICENSE)로 공개합니다. 이 라이선스는 게임과 그 커버에는 적용되지 않습니다.
+코드는 [MIT 라이선스](LICENSE)로 공개합니다. 이 라이선스는 게임과 그 커버, 클립, 크리에이터의 아바타에는 적용되지 않습니다.

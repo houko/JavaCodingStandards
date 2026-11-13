@@ -1,7 +1,7 @@
 {
 	"$schema": "../schema/game.schema.json",
-	"slug": "3d-action-game",
-	"name": "3D action game",
+	"slug": "wu-suo-shan-men",
+	"name": "雾锁山门",
 	"creator": "op7418",
 	"genre": "Action",
 	"link": {
@@ -11,7 +11,7 @@
 	"post": "2120694045299327187",
 	"likes": 794,
 	"model": "Claude Fable 5.2",
-	"cover": "3d-action-game.webp",
+	"cover": "wu-suo-shan-men.webp",
 	"summary": {
 		"en": "One afternoon, 4.5B tokens: models, scenes, moves and optimisation in a single 30 MB HTML file.",
 		"zh-CN": "一个下午、45 亿 token：模型、场景、动作和优化全塞进一个 30 MB 的 HTML 文件。",
@@ -23,5 +23,9 @@
 		"de": "Ein Nachmittag, 4,5 Mrd. Tokens: Modelle, Szenen, Moves und Optimierung in einer 30-MB-HTML-Datei.",
 		"pt-BR": "Uma tarde, 4,5 bilhões de tokens: modelos, cenários, movimentos e otimização em um único HTML de 30 MB.",
 		"ru": "Один вечер, 4,5 млрд токенов: модели, сцены, движения и оптимизация в одном HTML-файле на 30 МБ."
+	},
+	"notes": {
+		"tokens": "4.5B",
+		"size": "30 MB"
 	}
 }

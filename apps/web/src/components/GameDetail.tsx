@@ -2,9 +2,12 @@ import { GENRE_COLORS, GENRE_KEYS, type Game, type LangCode, fill, formatCount, 
 import { type MouseEvent, useEffect, useState } from 'react';
 import { gamePath, pagePath } from '../lib/seo';
 import { BTN_LIME, BTN_LINE, KICKER, NEW_TAB } from '../lib/ui';
+import { Clip } from './Clip';
 import { Cover } from './Cover';
+import { CreatorLink } from './CreatorLink';
 import { GameLink } from './GameLink';
-import { ArrowOut, Close, Heart, LinkIcon } from './Icons';
+import { ArrowOut, ChevronLeft, ChevronRight, Close, Heart, LinkIcon } from './Icons';
+import { Notes } from './Notes';
 
 interface GameDetailProps {
 	game: Game;
@@ -15,7 +18,19 @@ interface GameDetailProps {
 	// In the dialog: closes it, and shows a related game in place. On the game's own page both are left out and related games are plain links.
 	onClose?: () => void;
 	onOpen?: (slug: string) => void;
+	// In the dialog: the game's place in the list it was opened from and the way to its neighbours.
+	nav?: GameNav;
 }
+
+export interface GameNav {
+	// From 1.
+	position: number;
+	total: number;
+	onPrev: () => void;
+	onNext: () => void;
+}
+
+const NAV_BTN = 'avg-navbtn absolute top-1/2 -mt-[22px] flex size-11 cursor-pointer items-center justify-center rounded-full bg-bg/82 text-fg';
 
 const ACTION = { play: 'playLabel', source: 'sourceLabel', watch: 'watchLabel' } as const;
 
@@ -49,8 +64,8 @@ function ShareLink({ game, lang }: { game: Game; lang: LangCode }) {
 	);
 }
 
-// Everything about one game: its cover, who made it with what, the summary, the ways out (play, post, share) and three related games. The dialog on the home page and the game's own page render this same body.
-export function GameDetail({ game, lang, heading: Heading, headingId, onClose, onOpen }: GameDetailProps) {
+// Everything about one game: its cover and clip, who made it with what, the summary, what the creator reported about building it, the ways out (play, post, share) and three related games. The dialog on the home page and the game's own page render this same body.
+export function GameDetail({ game, lang, heading: Heading, headingId, onClose, onOpen, nav }: GameDetailProps) {
 	const tr = t(lang);
 	const genre = tr[GENRE_KEYS[game.genre]];
 	// The heading of the related games sits one level under the game's name.
@@ -59,6 +74,7 @@ export function GameDetail({ game, lang, heading: Heading, headingId, onClose, o
 		<>
 			<div className='relative aspect-[16/9] overflow-hidden bg-ink'>
 				<Cover game={game} alt={`${game.name} — ${tr.coverAlt}`} eager={!onClose} className='avg-kb absolute inset-0 size-full text-[36px]' />
+				{(game.heroVideo ?? game.video) && <Clip src={(game.heroVideo ?? game.video) as string} />}
 				<span className='absolute top-4 left-4 rounded-md px-2.5 py-1.5 font-mono text-[12px] font-semibold tracking-[0.06em] text-bg uppercase' style={{ backgroundColor: GENRE_COLORS[game.genre] }}>
 					{genre}
 				</span>
@@ -67,6 +83,19 @@ export function GameDetail({ game, lang, heading: Heading, headingId, onClose, o
 						<Close />
 					</button>
 				)}
+				{nav && nav.total > 1 && (
+					<>
+						<button type='button' onClick={nav.onPrev} aria-label={tr.prev} className={`${NAV_BTN} left-3`}>
+							<ChevronLeft />
+						</button>
+						<button type='button' onClick={nav.onNext} aria-label={tr.next} className={`${NAV_BTN} right-3`}>
+							<ChevronRight />
+						</button>
+						<span className='absolute right-4 bottom-3.5 rounded-full bg-bg px-2.5 py-1 font-mono text-[12px] text-fg'>
+							{nav.position} / {nav.total}
+						</span>
+					</>
+				)}
 			</div>
 			<div className='flex flex-col gap-4 p-5 sm:p-7'>
 				<Heading id={headingId} className='font-display text-[30px] leading-[1.05] font-extrabold tracking-[-0.03em] sm:text-[40px]'>
@@ -74,12 +103,13 @@ export function GameDetail({ game, lang, heading: Heading, headingId, onClose, o
 				</Heading>
 				<p className='text-[15px] text-muted'>
 					{tr.by}{' '}
-					<a href={game.creatorUrl} rel='noopener noreferrer' className='underline'>
+					<CreatorLink creator={game.creator} className='underline'>
 						@{game.creator}
-					</a>{' '}
+					</CreatorLink>{' '}
 					· {tr.builtWith} {game.model} · {tr.posted} <time dateTime={game.postedAt}>{formatDay(game.postedAt, lang)}</time>
 				</p>
 				<p className='max-w-[680px] text-[17px] text-soft-2 sm:text-[18px]'>{pick(game.pitch ?? game.summary, lang)}</p>
+				{game.notes && <Notes notes={game.notes} tr={tr} heading={SubHeading} />}
 				<div className='flex flex-wrap items-center gap-3'>
 					<a href={game.link.url} {...NEW_TAB} className={`${BTN_LIME} min-h-12 px-5`}>
 						{tr[ACTION[game.link.type]]}

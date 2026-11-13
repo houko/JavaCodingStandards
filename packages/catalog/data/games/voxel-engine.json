@@ -23,5 +23,8 @@
 		"de": "Eine Voxel-Engine mit Sound, aus einem einzigen Prompt.",
 		"pt-BR": "Um motor de voxels com som, a partir de um único prompt.",
 		"ru": "Воксельный движок со звуком из одного промпта."
+	},
+	"notes": {
+		"prompts": "1"
 	}
 }

@@ -10,7 +10,7 @@ export function Faq({ lang }: { lang: LangCode }) {
 		{ q: tr.q1, a: tr.a1 },
 		{ q: tr.q2, a: fill(tr.a2, { models }) },
 		{ q: tr.q3, a: tr.a3 },
-		{ q: tr.q4, a: tr.a4 },
+		{ q: tr.q5, a: tr.a5 },
 	];
 	return (
 		<section id='faq' className={`avg-reveal ${WRAP} pb-20 sm:pb-24`} aria-labelledby='faq-h'>

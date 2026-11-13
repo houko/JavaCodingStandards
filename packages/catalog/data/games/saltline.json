@@ -36,9 +36,9 @@
 		"pt-BR": "Um FPS criado com prompts únicos, sem feedback humano. Modelos, sons e texturas foram todos gerados em código.",
 		"ru": "Шутер от первого лица, созданный одноразовыми промптами без участия человека. Модели, звуки и текстуры сгенерированы кодом."
 	},
-	"featured": {
-		"apiCost": "~$550",
-		"buildTime": "8h",
-		"outputTokens": 2700000
+	"notes": {
+		"time": "8h",
+		"cost": "~$550",
+		"tokens": "2.7M out · 445M in"
 	}
 }
