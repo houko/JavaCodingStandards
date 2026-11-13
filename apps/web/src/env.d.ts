@@ -1,6 +1,6 @@
-// The Worker's bindings, as wrangler.jsonc defines them: only the static assets, so the module is declared here rather than generating the whole runtime's types.
+// The Worker's bindings, as wrangler.jsonc defines them: the R2 bucket of the clips, so the module is declared here rather than generating the whole runtime's types.
 declare module 'cloudflare:workers' {
-	export const env: { ASSETS: { fetch(request: Request): Promise<Response> } };
+	export const env: { MEDIA: import('./lib/media').MediaBucket };
 }
 
 // Cloudflare's streaming HTML rewriter, a global of the Workers runtime; only what src/server.ts uses.

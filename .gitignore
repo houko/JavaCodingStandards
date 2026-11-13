@@ -9,3 +9,5 @@ dist/
 .playwright-cli/
 .playwright-mcp/
 /output/
+# Clips cut by apps/web/scripts/fetch-media.ts, kept locally; the site serves them from R2
+apps/web/.media/

@@ -57,6 +57,8 @@ jobs:
           node scripts/fetch-media.ts "$SLUG" || true
         env:
           SLUG: ${{ steps.draft.outputs.slug }}
+          # The clips are uploaded to the site's R2 bucket; without the token the game is listed without one.
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       - if: steps.draft.outputs.slug && steps.media.outputs.cover != 'yes'
         run: |
           gh issue comment "$ISSUE" --body "This could not be listed yet. The bot found no picture or video in the post to make the game's cover from. Edit the issue to point at a post that shows the game."

@@ -173,9 +173,9 @@ Vibe Arcade 是 AI 游戏的街机厅：一份人工整理的浏览器游戏索�
 apps/web/                  @vibe-arcade/web：网站，TanStack Start（React 19），在 Cloudflare Workers 上渲染
   src/                     路由、组件和样式
   public/covers/           游戏封面，<slug>.webp
-  public/videos/           游戏的无声短片，<slug>.mp4；hero/<slug>.mp4 供首屏播放
   public/avatars/          创作者头像，<handle>.webp
   public/fonts/            自托管的网页字体
+  .media/                  fetch-media.ts 剪出的短片，仅保存在本地（git 忽略）；网站从 R2 存储桶 vibe-arcade-media 提供它们
   og/                      在构建时绘制分享图的 Vite 插件
   scripts/                 fetch-covers.ts、fetch-media.ts、readme-games.ts、site-icons.ts、banner.ts
   wrangler.jsonc           Cloudflare Workers 配置
@@ -217,7 +217,7 @@ pnpm --filter @vibe-arcade/web banner   # 重新生成本文件顶部的 .github
 pnpm --filter @vibe-arcade/web readme   # 根据数据重新生成各 README 里的游戏列表
 ```
 
-`covers` 会保留已存在的封面，除非加上 `--force`；可以传入 slug 来限定范围；加上 `--likes` 还会刷新游戏文件里的点赞数；只要有点赞数变化，它就把 `packages/catalog/data/meta.json` 里的日期（站点上显示的“最近更新”）改成当天。添加游戏时，这个日期需要手动修改。`media` 从每款游戏帖子的视频里剪出六秒无声短片存入 `public/videos/`，为点赞最多的六款再剪一段更大的供首屏播放，并把亲自发帖的创作者的头像存入 `public/avatars/`。它把结果列在 `packages/catalog/data/media.json` 里，这个文件要和媒体文件一起提交。它同样会保留已存在的文件，除非加上 `--force`，也可以传入 slug。本周精选是 `meta.json` 里 `picks` 下的 slug，手动维护。`readme` 会重写本文件及其各语言版本里的游戏列表；添加、改名或删除游戏后要运行它，因为只要 README 落后于数据，测试就会失败。
+`covers` 会保留已存在的封面，除非加上 `--force`；可以传入 slug 来限定范围；加上 `--likes` 还会刷新游戏文件里的点赞数；只要有点赞数变化，它就把 `packages/catalog/data/meta.json` 里的日期（站点上显示的“最近更新”）改成当天。添加游戏时，这个日期需要手动修改。`media` 从每款游戏帖子的视频里剪出六秒无声短片，并为点赞最多的六款再剪一段更大的供首屏播放，然后上传到 R2 存储桶 `vibe-arcade-media`，网站从那里提供它们（需要 Cloudflare 登录或 `CLOUDFLARE_API_TOKEN`），短片不放进仓库；并把亲自发帖的创作者的头像存入 `public/avatars/`。它把结果列在 `packages/catalog/data/media.json` 里，这个文件要和媒体文件一起提交。它同样会保留已存在的文件，除非加上 `--force`，也可以传入 slug。本周精选是 `meta.json` 里 `picks` 下的 slug，手动维护。`readme` 会重写本文件及其各语言版本里的游戏列表；添加、改名或删除游戏后要运行它，因为只要 README 落后于数据，测试就会失败。
 
 ## 部署
 

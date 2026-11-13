@@ -173,9 +173,9 @@ Vibe Arcade は AI でつくったゲームのアーケードです。主に AI 
 apps/web/                  @vibe-arcade/web：サイト。TanStack Start（React 19）を Cloudflare Workers 上でレンダリング
   src/                     ルート、コンポーネント、スタイル
   public/covers/           ゲームのカバー、<slug>.webp
-  public/videos/           ゲームの無音ショートクリップ、<slug>.mp4。hero/<slug>.mp4 はヒーロー画面用
   public/avatars/          クリエイターのアバター、<handle>.webp
   public/fonts/            セルフホストの Web フォント
+  .media/                  fetch-media.ts が切り出したクリップ。手元にだけ置き（git は無視）、サイトは R2 バケット vibe-arcade-media から配信
   og/                      ビルド時に共有用画像を描く Vite プラグイン
   scripts/                 fetch-covers.ts、fetch-media.ts、readme-games.ts、site-icons.ts、banner.ts
   wrangler.jsonc           Cloudflare Workers の設定
@@ -217,7 +217,7 @@ pnpm --filter @vibe-arcade/web banner   # このファイル冒頭の .github/as
 pnpm --filter @vibe-arcade/web readme   # 各 README のゲーム一覧をデータから作り直す
 ```
 
-`covers` は、`--force` を付けないかぎり既存のカバーを残します。slug を渡すと対象を絞れます。`--likes` を付けると、ゲームファイルのいいね数も更新します。いいね数が変わった場合は、`packages/catalog/data/meta.json` の日付（サイトに「最終更新」として表示されます）を当日に書き換えます。ゲームを追加したときは、この日付を手で直してください。`media` は、各ゲームの投稿の動画から 6 秒の無音クリップを切り出して `public/videos/` に保存し、いいねの多い 6 本にはヒーロー画面用の大きめのクリップも作ります。自分で投稿したクリエイターのアバターは `public/avatars/` に保存します。結果は `packages/catalog/data/media.json` に書き出すので、メディアと一緒にコミットしてください。こちらも `--force` を付けないかぎり既存のファイルを残し、slug で対象を絞れます。今週のピックアップは `meta.json` の `picks` に並べた slug で、手で編集します。`readme` は、このファイルと各言語版のゲーム一覧を書き換えます。README がデータより古いあいだはテストが失敗するので、ゲームを追加、改名、削除したら実行してください。
+`covers` は、`--force` を付けないかぎり既存のカバーを残します。slug を渡すと対象を絞れます。`--likes` を付けると、ゲームファイルのいいね数も更新します。いいね数が変わった場合は、`packages/catalog/data/meta.json` の日付（サイトに「最終更新」として表示されます）を当日に書き換えます。ゲームを追加したときは、この日付を手で直してください。`media` は、各ゲームの投稿の動画から 6 秒の無音クリップを、いいねの多い 6 本にはヒーロー画面用の大きめのクリップも切り出し、サイトが配信に使う R2 バケット `vibe-arcade-media` にアップロードします（Cloudflare へのログインか `CLOUDFLARE_API_TOKEN` が必要）。クリップはリポジトリには入れません。自分で投稿したクリエイターのアバターは `public/avatars/` に保存します。結果は `packages/catalog/data/media.json` に書き出すので、メディアと一緒にコミットしてください。こちらも `--force` を付けないかぎり既存のファイルを残し、slug で対象を絞れます。今週のピックアップは `meta.json` の `picks` に並べた slug で、手で編集します。`readme` は、このファイルと各言語版のゲーム一覧を書き換えます。README がデータより古いあいだはテストが失敗するので、ゲームを追加、改名、削除したら実行してください。
 
 ## デプロイ
 

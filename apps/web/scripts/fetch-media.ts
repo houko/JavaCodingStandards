@@ -1,8 +1,8 @@
-// Fetches the moving pictures and faces the site shows beside the covers, all from each game's X post: a short silent clip of the post's video into public/videos/<slug>.mp4 (640x400, what a card plays under the pointer and the game's own page shows), a larger one into public/videos/hero/<slug>.mp4 (960x540) for the games the hero screen rotates through, and the creator's avatar into public/avatars/<handle>.webp (96x96), when the post is the creator's own. It then writes packages/catalog/data/media.json, the list of what exists, which is how the site knows which games have a clip and which creators a face.
+// Fetches the moving pictures and faces the site shows beside the covers, all from each game's X post: a short silent clip of the post's video, videos/<slug>.mp4 (640x400, what a card plays under the pointer and the game's own page shows), and a larger one, videos/hero/<slug>.mp4 (960x540), for the games the hero screen rotates through, both uploaded to the R2 bucket the Worker serves them from (wrangler.jsonc) and kept in apps/web/.media, which git ignores; and the creator's avatar into public/avatars/<handle>.webp (96x96), when the post is the creator's own. It then writes packages/catalog/data/media.json, the list of what exists, which is how the site knows which games have a clip and which creators a face; a clip listed there is taken to be in the bucket.
 //
 //     cd apps/web && node scripts/fetch-media.ts [--force] [slug...]
 //
-// Without slugs it walks every game in packages/catalog/data/games. A file that already exists is kept unless --force is given. The post is read from X's syndication endpoint (the one embedded posts use). A post without a video simply gets no clip, and the card shows its cover alone; nothing is faked. Clips are cut with ffmpeg, which must be on the PATH. Commit what the script writes.
+// Without slugs it walks every game in packages/catalog/data/games. A clip already listed in media.json and an avatar already on disk are kept unless --force is given. The post is read from X's syndication endpoint (the one embedded posts use). A post without a video simply gets no clip, and the card shows its cover alone; nothing is faked. Clips are cut with ffmpeg, which must be on the PATH, and uploaded with wrangler, which needs a Cloudflare login or CLOUDFLARE_API_TOKEN. Commit what the script writes.
 
 import { execFile } from 'node:child_process';
 import { existsSync } from 'node:fs';
@@ -15,8 +15,11 @@ const run = promisify(execFile);
 
 const GAMES_DIR = join(import.meta.dirname, '../../../packages/catalog/data/games');
 const MEDIA_FILE = join(import.meta.dirname, '../../../packages/catalog/data/media.json');
-const VIDEOS_DIR = join(import.meta.dirname, '../public/videos');
-const HERO_DIR = join(VIDEOS_DIR, 'hero');
+const MEDIA_DIR = join(import.meta.dirname, '../.media');
+const HERO_DIR = join(MEDIA_DIR, 'videos/hero');
+const BUCKET = 'vibe-arcade-media';
+const ACCOUNT_ID = 'e2b27aea5f599efdbe0a7016a2580d05';
+const UPLOAD_TIMEOUT_MS = 120_000;
 const AVATARS_DIR = join(import.meta.dirname, '../public/avatars');
 // How many games the hero screen rotates through: the most liked ones that have a video (HERO_GAMES in the catalog's games.ts).
 const HERO_COUNT = 6;
@@ -106,8 +109,21 @@ if (unknown.length) throw new Error(`no such game: ${unknown.join(', ')}`);
 await mkdir(HERO_DIR, { recursive: true });
 await mkdir(AVATARS_DIR, { recursive: true });
 
-const cardFile = (slug: string) => join(VIDEOS_DIR, `${slug}.mp4`);
-const heroFile = (slug: string) => join(HERO_DIR, `${slug}.mp4`);
+const cardKey = (slug: string) => `videos/${slug}.mp4`;
+const heroKey = (slug: string) => `videos/hero/${slug}.mp4`;
+const local = (key: string) => join(MEDIA_DIR, key);
+
+// What media.json listed before this run: the clips in the bucket.
+const listed: { videos: string[]; heroVideos: string[] } = existsSync(MEDIA_FILE) ? JSON.parse(await readFile(MEDIA_FILE, 'utf8')) : { videos: [], heroVideos: [] };
+const inBucket = new Set([...listed.videos.map(cardKey), ...listed.heroVideos.map(heroKey)]);
+
+// Cuts a clip into .media and uploads it under its key.
+async function cutAndUpload(post: Post, shape: typeof CARD, key: string): Promise<string> {
+	const size = await cut(post, shape, local(key));
+	await run('pnpm', ['exec', 'wrangler', 'r2', 'object', 'put', `${BUCKET}/${key}`, '--file', local(key), '--content-type', 'video/mp4', '--remote'], { timeout: UPLOAD_TIMEOUT_MS, env: { ...process.env, CLOUDFLARE_ACCOUNT_ID: ACCOUNT_ID } });
+	inBucket.add(key);
+	return size;
+}
 const avatarFile = (handle: string) => join(AVATARS_DIR, `${handle.toLowerCase()}.webp`);
 
 // The first pass cuts the cards' clips and saves the avatars; the hero's games are only known once it is clear which games have a video at all.
@@ -116,7 +132,7 @@ const rows: { slug: string; clip: string; avatar: string; note: string }[] = [];
 for (const game of wanted.length ? games.filter((g) => wanted.includes(g.slug)) : games) {
 	const row = { slug: game.slug, clip: '', avatar: '', note: '' };
 	rows.push(row);
-	const needClip = force || !existsSync(cardFile(game.slug));
+	const needClip = force || !inBucket.has(cardKey(game.slug));
 	const needAvatar = force || !existsSync(avatarFile(game.creator));
 	if (!needClip && !needAvatar) {
 		row.clip = 'kept';
@@ -130,7 +146,7 @@ for (const game of wanted.length ? games.filter((g) => wanted.includes(g.slug)) 
 			posts.set(game.slug, post);
 			if (!needClip) row.clip = 'kept';
 			else if (post.variants.length === 0) row.clip = 'no video';
-			else row.clip = await cut(post, CARD, cardFile(game.slug));
+			else row.clip = await cutAndUpload(post, CARD, cardKey(game.slug));
 			if (!needAvatar) row.avatar = 'kept';
 			else if (!post.avatar) row.avatar = 'none';
 			// A post made by someone else about the game would give that person's face to the creator.
@@ -148,10 +164,10 @@ for (const game of wanted.length ? games.filter((g) => wanted.includes(g.slug)) 
 	await new Promise((r) => setTimeout(r, PAUSE_MS));
 }
 
-const withClip = games.filter((g) => existsSync(cardFile(g.slug)));
+const withClip = games.filter((g) => inBucket.has(cardKey(g.slug)));
 const heroGames = [...withClip].sort((a, b) => b.likes - a.likes || (a.slug < b.slug ? -1 : 1)).slice(0, HERO_COUNT);
 for (const game of heroGames) {
-	if (!force && existsSync(heroFile(game.slug))) continue;
+	if (!force && inBucket.has(heroKey(game.slug))) continue;
 	try {
 		let post = posts.get(game.slug);
 		if (!post) {
@@ -159,7 +175,7 @@ for (const game of heroGames) {
 			if (typeof read === 'string') throw new Error(read);
 			post = read;
 		}
-		console.log(`${game.slug}: hero clip ${await cut(post, HERO, heroFile(game.slug))}`);
+		console.log(`${game.slug}: hero clip ${await cutAndUpload(post, HERO, heroKey(game.slug))}`);
 	} catch (err) {
 		console.error(`${game.slug}: hero clip failed: ${(err as Error).message.split('\n')[0]}`);
 	}
@@ -167,7 +183,7 @@ for (const game of heroGames) {
 
 const media = {
 	videos: withClip.map((g) => g.slug).sort(),
-	heroVideos: heroGames.filter((g) => existsSync(heroFile(g.slug))).map((g) => g.slug).sort(),
+	heroVideos: heroGames.filter((g) => inBucket.has(heroKey(g.slug))).map((g) => g.slug).sort(),
 	avatars: [...new Set(games.map((g) => g.creator.toLowerCase()))].filter((h) => existsSync(avatarFile(h))).sort(),
 };
 await writeFile(MEDIA_FILE, `${JSON.stringify(media, null, '\t')}\n`);

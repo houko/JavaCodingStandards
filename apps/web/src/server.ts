@@ -1,10 +1,10 @@
-// The Worker's entry: TanStack Start's default handler (createStartHandler with the streaming renderer), with the redirects the router cannot give in front of it and the security headers on everything it returns (src/lib/security.ts). Static assets (public/ and the client bundle) are served before the Worker runs and never reach this, except the clips under /videos, which wrangler.jsonc routes here so that a part of one can be served (src/lib/range.ts).
+// The Worker's entry: TanStack Start's default handler (createStartHandler with the streaming renderer), with the redirects the router cannot give in front of it and the security headers on everything it returns (src/lib/security.ts). Static assets (public/ and the client bundle) are served before the Worker runs and never reach this, and serve no clips: those come from R2 through here (src/lib/media.ts).
 import { SITE_URL, movedSlug } from '@vibe-arcade/catalog';
 import type { Register } from '@tanstack/react-router';
 import { createServerEntry, createStartHandler, defaultStreamHandler } from '@tanstack/react-start/server';
 import { env } from 'cloudflare:workers';
 import { gameCardPath } from '../og/paths';
-import { withRange } from './lib/range';
+import { serveMedia } from './lib/media';
 import { contentSecurityPolicy, makeNonce, securityHeaders } from './lib/security';
 
 const handler = createStartHandler(defaultStreamHandler);
@@ -59,10 +59,10 @@ export default createServerEntry<Register>({
 		// A link preview made before the cards moved to /og/v2/ still asks for the old address; it gets the current card.
 		const oldCard = url.pathname.match(OLD_CARD)?.[1];
 		if (oldCard !== undefined) return Response.redirect(`${url.origin}${gameCardPath(oldCard)}`, 301);
-		if (url.pathname.startsWith('/videos/')) {
-			const asset = await env.ASSETS.fetch(request);
+		if (url.pathname.startsWith('/videos/') && (request.method === 'GET' || request.method === 'HEAD')) {
 			// A clip that does not exist gets the site's own 404 page below.
-			if (asset.status !== 404) return secured(await withRange(request, asset), https);
+			const clip = await serveMedia(request, env.MEDIA, url.pathname.slice(1));
+			if (clip) return secured(clip, https);
 		}
 		return secured(await handler(request, opts), https);
 	},

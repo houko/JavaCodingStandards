@@ -173,9 +173,9 @@ A pnpm monorepo with two packages:
 apps/web/                  @vibe-arcade/web: the site, TanStack Start (React 19) rendered on Cloudflare Workers
   src/                     routes, components and styles
   public/covers/           game covers, <slug>.webp
-  public/videos/           short silent clips of the games, <slug>.mp4, and hero/<slug>.mp4 for the hero screen
   public/avatars/          creators' avatars, <handle>.webp
   public/fonts/            self-hosted web fonts
+  .media/                  the clips, cut by fetch-media.ts and kept locally (git ignores them); the site serves them from the R2 bucket vibe-arcade-media
   og/                      Vite plugin that draws the share images at build time
   scripts/                 fetch-covers.ts, fetch-media.ts, readme-games.ts, site-icons.ts, banner.ts
   wrangler.jsonc           Cloudflare Workers configuration
@@ -217,7 +217,7 @@ pnpm --filter @vibe-arcade/web banner   # redraw .github/assets/banner.png, the 
 pnpm --filter @vibe-arcade/web readme   # redraw the list of games in the READMEs from the data
 ```
 
-`covers` keeps a cover that already exists unless `--force` is given, takes slugs to limit the run, and with `--likes` also refreshes the like counts in the game files; when a count changes it moves the day in `packages/catalog/data/meta.json`, which the site shows as "last updated", to today. Set that day by hand when you add a game. `media` cuts a six-second silent clip from the video of each game's post into `public/videos/`, a larger one for the six most liked games, which the hero screen plays, and saves the avatar of each creator who posted their game themselves into `public/avatars/`. It lists what it found in `packages/catalog/data/media.json`; commit that file with the media. It also keeps what exists unless `--force` is given, and takes slugs. The picks of the week are the slugs under `picks` in `meta.json`, edited by hand. `readme` rewrites the list of games in this file and its translations; run it after adding, renaming or removing a game, since the tests fail while a README is behind the data.
+`covers` keeps a cover that already exists unless `--force` is given, takes slugs to limit the run, and with `--likes` also refreshes the like counts in the game files; when a count changes it moves the day in `packages/catalog/data/meta.json`, which the site shows as "last updated", to today. Set that day by hand when you add a game. `media` cuts a six-second silent clip from the video of each game's post, and a larger one for the six most liked games, which the hero screen plays, and uploads both to the R2 bucket `vibe-arcade-media`, from which the site serves them (it needs a Cloudflare login, or `CLOUDFLARE_API_TOKEN`); the clips are not in the repository, and saves the avatar of each creator who posted their game themselves into `public/avatars/`. It lists what it found in `packages/catalog/data/media.json`; commit that file with the media. It also keeps what exists unless `--force` is given, and takes slugs. The picks of the week are the slugs under `picks` in `meta.json`, edited by hand. `readme` rewrites the list of games in this file and its translations; run it after adding, renaming or removing a game, since the tests fail while a README is behind the data.
 
 ## Deployment
 
