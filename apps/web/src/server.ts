@@ -1,7 +1,9 @@
-// The Worker's entry: TanStack Start's default handler (createStartHandler with the streaming renderer), with two permanent redirects in front of it that the router cannot give, and two security headers on the pages it renders. Static assets (public/ and the client bundle) are served before the Worker runs and never reach this.
+// The Worker's entry: TanStack Start's default handler (createStartHandler with the streaming renderer), with two permanent redirects in front of it that the router cannot give, and two security headers on the pages it renders. Static assets (public/ and the client bundle) are served before the Worker runs and never reach this, except the clips under /videos, which wrangler.jsonc routes here so that a part of one can be served (src/lib/range.ts).
 import { SITE_URL } from '@vibe-arcade/catalog';
 import type { Register } from '@tanstack/react-router';
 import { createServerEntry, createStartHandler, defaultStreamHandler } from '@tanstack/react-start/server';
+import { env } from 'cloudflare:workers';
+import { withRange } from './lib/range';
 
 const handler = createStartHandler(defaultStreamHandler);
 const SITE = new URL(SITE_URL);
@@ -18,6 +20,11 @@ export default createServerEntry<Register>({
 		if (url.pathname.length > 1 && url.pathname.endsWith('/')) {
 			url.pathname = url.pathname.replace(/\/+$/, '') || '/';
 			return Response.redirect(url.toString(), 308);
+		}
+		if (url.pathname.startsWith('/videos/')) {
+			const asset = await env.ASSETS.fetch(request);
+			// A clip that does not exist gets the site's own 404 page below.
+			if (asset.status !== 404) return withRange(request, asset);
 		}
 		const response = await handler(request, opts);
 		if (!response.headers.get('content-type')?.includes('text/html')) return response;
