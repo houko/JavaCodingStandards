@@ -39,8 +39,10 @@ jobs:
       - id: diff
         run: |
           if git diff --quiet; then echo "changed=false" >> "$GITHUB_OUTPUT"; else echo "changed=true" >> "$GITHUB_OUTPUT"; fi
+      # The READMEs list the games most liked first, so new counts can reorder them.
       - if: steps.diff.outputs.changed == 'true'
         run: |
+          pnpm --filter @vibe-arcade/web readme
           pnpm typecheck
           pnpm test
       - if: steps.diff.outputs.changed == 'true'
@@ -48,7 +50,7 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git switch --create "$BRANCH"
-          git add packages/catalog/data
+          git add packages/catalog/data README*.md
           git commit --message 'chore: refresh like counts from X'
           git push --force origin "$BRANCH"
           {
