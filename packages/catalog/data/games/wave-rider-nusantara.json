@@ -1,0 +1,18 @@
+{
+	"$schema": "../schema/game.schema.json",
+	"slug": "wave-rider-nusantara",
+	"name": "Wave Rider Nusantara",
+	"creator": "abusofianid",
+	"genre": "Exploration",
+	"link": {
+		"type": "source",
+		"url": "https://github.com/abusofianid/game-wave-rider-nusantara"
+	},
+	"post": "2121088313658572857",
+	"likes": 0,
+	"model": "Gemini and chat gpt",
+	"cover": "wave-rider-nusantara.webp",
+	"summary": {
+		"en": "Arcade-style game inspired by the culture and visual identity of the Indonesian archipelago."
+	}
+}
