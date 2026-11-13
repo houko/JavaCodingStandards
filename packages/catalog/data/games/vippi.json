@@ -23,5 +23,17 @@
 		"de": "Ein schneller Ego-Shooter im Arcade-Stil.",
 		"pt-BR": "Um FPS rápido no estilo arcade.",
 		"ru": "Быстрый шутер от первого лица в аркадном стиле."
+	},
+	"pitch": {
+		"en": "A fast, arcade-style first-person shooter in the vein of Call of Duty, built with Claude Fable 5.2.",
+		"zh-CN": "一款 Call of Duty 风格的快节奏街机式第一人称射击游戏，用 Claude Fable 5.2 制作。",
+		"zh-TW": "一款 Call of Duty 風格的快節奏街機式第一人稱射擊遊戲，使用 Claude Fable 5.2 製作。",
+		"ja": "Call of Duty風の、テンポの速いアーケード調FPS。Claude Fable 5.2で制作。",
+		"ko": "Call of Duty 스타일의 빠른 아케이드풍 1인칭 슈터로, Claude Fable 5.2로 만들었습니다.",
+		"es": "Un shooter en primera persona rápido y arcade al estilo de Call of Duty, hecho con Claude Fable 5.2.",
+		"fr": "Un FPS rapide au style arcade, dans la veine de Call of Duty, créé avec Claude Fable 5.2.",
+		"de": "Ein schneller Ego-Shooter im Arcade-Stil nach dem Vorbild von Call of Duty, gebaut mit Claude Fable 5.2.",
+		"pt-BR": "Um FPS rápido no estilo arcade, inspirado em Call of Duty, feito com Claude Fable 5.2.",
+		"ru": "Быстрый аркадный шутер от первого лица в духе Call of Duty, сделанный с Claude Fable 5.2."
 	}
 }

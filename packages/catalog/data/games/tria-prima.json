@@ -24,6 +24,18 @@
 		"pt-BR": "Alquimia de fantasia sombria: cinco missões numa ilha de mundo aberto.",
 		"ru": "Алхимия в стиле тёмного фэнтези: пять миссий на острове с открытым миром."
 	},
+	"pitch": {
+		"en": "A dark-fantasy alchemy game made from one prompt with no assets: every model, texture and sound is generated in code. It has five missions on an open-world island and plays in the browser.",
+		"zh-CN": "一款仅用一句提示做出的黑暗奇幻炼金术游戏，没有任何素材，所有模型、纹理和音效都由代码生成。开放世界岛屿上有五个任务，可在浏览器中游玩。",
+		"zh-TW": "一款只用一句提示做出的黑暗奇幻鍊金術遊戲，沒有任何素材，所有模型、材質和音效都由程式碼生成。開放世界島嶼上有五個任務，可在瀏覽器中遊玩。",
+		"ja": "1つのプロンプトで作られたダークファンタジーの錬金術ゲーム。アセットは使わず、モデル、テクスチャ、サウンドはすべてコードで生成。オープンワールドの島で5つのミッションに挑み、ブラウザで遊べる。",
+		"ko": "프롬프트 하나로 만든 다크 판타지 연금술 게임입니다. 에셋 없이 모든 모델, 텍스처, 사운드를 코드로 생성했습니다. 오픈월드 섬에서 다섯 개의 미션을 진행하며 브라우저에서 플레이할 수 있습니다.",
+		"es": "Un juego de alquimia de fantasía oscura hecho con un solo prompt y sin assets: cada modelo, textura y sonido se genera en código. Tiene cinco misiones en una isla de mundo abierto y se juega en el navegador.",
+		"fr": "Un jeu d’alchimie dark fantasy créé à partir d’un seul prompt, sans assets : chaque modèle, texture et son est généré en code. Il propose cinq missions sur une île en monde ouvert et se joue dans le navigateur.",
+		"de": "Ein Dark-Fantasy-Alchemiespiel aus einem einzigen Prompt, ganz ohne Assets: Jedes Modell, jede Textur und jeder Sound wird im Code erzeugt. Es bietet fünf Missionen auf einer Open-World-Insel und läuft im Browser.",
+		"pt-BR": "Um jogo de alquimia de fantasia sombria feito com um único prompt e sem assets: cada modelo, textura e som é gerado em código. São cinco missões numa ilha de mundo aberto, e dá para jogar no navegador.",
+		"ru": "Алхимическая игра в стиле тёмного фэнтези, созданная по одному промпту без ассетов: все модели, текстуры и звуки сгенерированы кодом. Пять миссий на острове с открытым миром, играть можно в браузере."
+	},
 	"notes": {
 		"prompts": "1"
 	}

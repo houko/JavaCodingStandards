@@ -24,6 +24,18 @@
 		"pt-BR": "Um labirinto de bolinha de madeira em cerca de 2.000 linhas de Three.js.",
 		"ru": "Деревянный лабиринт с шариком примерно в 2000 строк Three.js."
 	},
+	"pitch": {
+		"en": "Asked to make an AAA game on its own, Fable 5.2 built this wooden ball maze, playable from one HTML file. It cut frame time on an M3 Max at Retina resolution from 55 ms to 9 ms by measuring each post-processing pass.",
+		"zh-CN": "让 Fable 5.2 自己做一款 AAA 游戏，它做出了这个木制滚珠迷宫，一个 HTML 文件就能玩。它逐个关闭后期处理通道测量耗时，把 M3 Max 上 Retina 分辨率的单帧耗时从 55 ms 压到 9 ms。",
+		"zh-TW": "讓 Fable 5.2 自己做一款 AAA 遊戲，它做出了這個木製滾珠迷宮，一個 HTML 檔就能玩。它逐一關閉後製處理通道來測量耗時，把 M3 Max 上 Retina 解析度的每個影格耗時從 55 ms 壓到 9 ms。",
+		"ja": "Fable 5.2に単独でAAAゲームを作らせたところ、HTMLファイル1つで遊べるこの木製ボール迷路ができた。ポストプロセスのパスを1つずつ計測し、M3 MaxのRetina解像度で1フレーム55msから9msまで短縮した。",
+		"ko": "Fable 5.2에게 혼자 AAA 게임을 만들게 하자 HTML 파일 하나로 플레이할 수 있는 이 나무 구슬 미로가 나왔습니다. 후처리 패스를 하나씩 꺼 가며 비용을 측정해 M3 Max Retina 해상도에서 프레임당 55ms를 9ms로 줄였습니다.",
+		"es": "Se le pidió a Fable 5.2 que hiciera por su cuenta un juego AAA y creó este laberinto de bola de madera, jugable desde un solo HTML. Midió cada pasada de posprocesado y bajó el tiempo por fotograma en un M3 Max con resolución Retina de 55 ms a 9 ms.",
+		"fr": "Chargé de créer seul un jeu AAA, Fable 5.2 a construit ce labyrinthe à bille en bois, jouable depuis un seul fichier HTML. En mesurant chaque passe de post-traitement, il a fait passer le temps par image de 55 ms à 9 ms en résolution Retina sur un M3 Max.",
+		"de": "Mit dem Auftrag, allein ein AAA-Spiel zu bauen, schuf Fable 5.2 dieses Holzkugel-Labyrinth, spielbar aus einer einzigen HTML-Datei. Durch Messen jedes Post-Processing-Passes senkte es die Frame-Zeit auf einem M3 Max in Retina-Auflösung von 55 ms auf 9 ms.",
+		"pt-BR": "Desafiado a fazer sozinho um jogo AAA, o Fable 5.2 criou este labirinto de bolinha de madeira, jogável a partir de um único HTML. Medindo cada passe de pós-processamento, reduziu o tempo por quadro num M3 Max em resolução Retina de 55 ms para 9 ms.",
+		"ru": "Получив задачу самостоятельно сделать AAA-игру, Fable 5.2 создал этот деревянный лабиринт с шариком, который запускается из одного HTML-файла. Замерив каждый проход постобработки, он сократил время кадра на M3 Max в разрешении Retina с 55 до 9 мс."
+	},
 	"notes": {
 		"lines": "2,000"
 	}

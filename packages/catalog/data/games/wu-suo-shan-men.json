@@ -24,6 +24,18 @@
 		"pt-BR": "Uma tarde, 4,5 bilhões de tokens: modelos, cenários, movimentos e otimização em um único HTML de 30 MB.",
 		"ru": "Один вечер, 4,5 млрд токенов: модели, сцены, движения и оптимизация в одном HTML-файле на 30 МБ."
 	},
+	"pitch": {
+		"en": "A 3D action game that Fable 5.2 made in a single afternoon with 4.5 billion tokens. It handled the models, scene design, move design and optimisation itself, all packed into one 30 MB HTML file.",
+		"zh-CN": "Fable 5.2 只用一个下午、45 亿 token 做出的 3D 动作游戏。模型、场景设计、动作设计和优化都由它完成，全部融合在一个 30 MB 的 HTML 文件里。",
+		"zh-TW": "Fable 5.2 只用一個下午、45 億 token 做出的 3D 動作遊戲。模型、場景設計、動作設計和最佳化都由它完成，全部整合在一個 30 MB 的 HTML 檔裡。",
+		"ja": "Fable 5.2が午後だけで、45億トークンを使って作った3Dアクションゲーム。モデル、シーン設計、モーション設計、最適化もすべて自ら手がけ、30MBのHTMLファイル1つにまとめた。",
+		"ko": "Fable 5.2가 오후 한나절 동안 45억 토큰으로 만든 3D 액션 게임입니다. 모델, 씬 디자인, 모션 디자인, 최적화까지 직접 맡았고, 모두 30MB HTML 파일 하나에 담았습니다.",
+		"es": "Un juego de acción en 3D que Fable 5.2 hizo en una sola tarde con 4.500 millones de tokens. Se encargó él mismo de los modelos, el diseño de escenas, los movimientos y la optimización, todo en un único HTML de 30 MB.",
+		"fr": "Un jeu d’action en 3D que Fable 5.2 a réalisé en un seul après-midi avec 4,5 milliards de tokens. Il s’est chargé lui-même des modèles, des décors, des animations et de l’optimisation, le tout dans un seul fichier HTML de 30 Mo.",
+		"de": "Ein 3D-Actionspiel, das Fable 5.2 an einem einzigen Nachmittag mit 4,5 Milliarden Tokens baute. Modelle, Szenendesign, Bewegungsdesign und Optimierung übernahm es selbst, alles in einer 30 MB großen HTML-Datei.",
+		"pt-BR": "Um jogo de ação em 3D que o Fable 5.2 fez em uma única tarde com 4,5 bilhões de tokens. Ele cuidou sozinho dos modelos, do design de cenários, dos movimentos e da otimização, tudo num único HTML de 30 MB.",
+		"ru": "3D-экшен, который Fable 5.2 сделал за полдня, потратив 4,5 млрд токенов. Модели, дизайн сцен, движения и оптимизацию он взял на себя, и всё это уместилось в одном HTML-файле на 30 МБ."
+	},
 	"notes": {
 		"tokens": "4.5B",
 		"size": "30 MB"

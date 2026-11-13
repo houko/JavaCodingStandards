@@ -23,5 +23,17 @@
 		"de": "Ein kurzes Spiel für Speedruns.",
 		"pt-BR": "Um jogo curto feito para speedrun.",
 		"ru": "Короткая игра для спидранов."
+	},
+	"pitch": {
+		"en": "A short game made with Claude Fable 5.2 to be played against the clock. Its creator keeps chasing faster runs and asks players to share their times.",
+		"zh-CN": "用 Claude Fable 5.2 做的计时小游戏。作者自己一直在刷速通成绩，也邀请玩家分享各自的用时。",
+		"zh-TW": "用 Claude Fable 5.2 做的計時小遊戲。作者自己一直在挑戰速通紀錄，也邀請玩家分享各自的成績。",
+		"ja": "Claude Fable 5.2で作った、タイムを競う短いゲーム。作者自身も何度もスピードランに挑んでいて、プレイヤーにもタイムの報告を呼びかけている。",
+		"ko": "Claude Fable 5.2로 만든, 기록을 겨루는 짧은 게임입니다. 제작자도 계속 스피드런에 도전하고 있으며 플레이어들에게 각자의 기록을 공유해 달라고 합니다.",
+		"es": "Un juego corto hecho con Claude Fable 5.2 para jugar contra el reloj. Su creador sigue intentando bajar su marca y pide a los jugadores que compartan sus tiempos.",
+		"fr": "Un petit jeu fait avec Claude Fable 5.2, à jouer contre la montre. Son créateur continue de chercher de meilleurs temps et invite les joueurs à partager les leurs.",
+		"de": "Ein kurzes Spiel, mit Claude Fable 5.2 gebaut und auf Zeit gespielt. Der Ersteller versucht selbst immer wieder schnellere Runs und bittet Spieler, ihre Zeiten zu teilen.",
+		"pt-BR": "Um jogo curto feito com o Claude Fable 5.2 para jogar contra o relógio. O criador segue tentando baixar o próprio tempo e pede que os jogadores compartilhem os seus.",
+		"ru": "Короткая игра на время, сделанная с Claude Fable 5.2. Автор сам раз за разом пытается пройти её быстрее и просит игроков делиться своими результатами."
 	}
 }

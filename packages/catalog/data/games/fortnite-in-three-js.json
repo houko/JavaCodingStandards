@@ -24,6 +24,18 @@
 		"pt-BR": "Um clone de battle royale em Three.js.",
 		"ru": "Клон королевской битвы на Three.js."
 	},
+	"pitch": {
+		"en": "A browser battle royale: skydive in, loot, drive, ride a jet ski and outlast 23 bots and a closing storm. Claude Fable 5.2 wrote its 30,000 lines without a game engine and had it live the same evening.",
+		"zh-CN": "一款浏览器大逃杀：跳伞落地、搜刮物资、开车、骑水上摩托，在 23 个机器人和不断缩小的风暴圈中活到最后。Claude Fable 5.2 不用游戏引擎写了 3 万行代码，当天晚上就上线了。",
+		"zh-TW": "一款瀏覽器大逃殺：跳傘落地、搜刮物資、開車、騎水上摩托車，在 23 個機器人和不斷縮小的風暴圈中撐到最後。Claude Fable 5.2 不靠遊戲引擎寫了 3 萬行程式碼，當天晚上就上線了。",
+		"ja": "ブラウザで遊べるバトロワ。スカイダイブで降下し、物資を漁り、車や水上バイクに乗って、23体のボットと迫るストームを生き延びる。Claude Fable 5.2がゲームエンジンなしで3万行を書き、その日の夜には公開された。",
+		"ko": "브라우저 배틀로열입니다. 스카이다이빙으로 내려와 아이템을 줍고, 차를 몰고, 제트스키를 타며 봇 23명과 좁혀 오는 폭풍 속에서 살아남으세요. Claude Fable 5.2가 게임 엔진 없이 3만 줄을 작성했고, 그날 저녁 바로 공개됐습니다.",
+		"es": "Un battle royale en el navegador: lánzate en paracaídas, saquea, conduce, súbete a una moto acuática y sobrevive a 23 bots y a una tormenta que se cierra. Claude Fable 5.2 escribió sus 30.000 líneas sin motor de juego y estaba en línea esa misma noche.",
+		"fr": "Un battle royale dans le navigateur : sautez en parachute, récupérez du butin, conduisez, pilotez un jet-ski et survivez à 23 bots et à une tempête qui se resserre. Claude Fable 5.2 en a écrit les 30 000 lignes sans moteur de jeu, en ligne le soir même.",
+		"de": "Ein Battle Royale im Browser: abspringen, plündern, Auto und Jetski fahren und 23 Bots sowie einen sich schließenden Sturm überleben. Claude Fable 5.2 schrieb die 30.000 Zeilen ohne Game-Engine, noch am selben Abend war es online.",
+		"pt-BR": "Um battle royale no navegador: salte de paraquedas, saqueie, dirija, pilote um jet ski e sobreviva a 23 bots e a uma tempestade que se fecha. O Claude Fable 5.2 escreveu as 30.000 linhas sem motor de jogo, e o jogo estava no ar na mesma noite.",
+		"ru": "Королевская битва в браузере: прыгайте с парашютом, собирайте добычу, водите машину, катайтесь на гидроцикле и переживите 23 бота и сжимающийся шторм. Claude Fable 5.2 написал 30 000 строк без игрового движка, и тем же вечером игра была онлайн."
+	},
 	"notes": {
 		"lines": "30,000"
 	}

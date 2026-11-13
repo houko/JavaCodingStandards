@@ -18,10 +18,22 @@
 		"zh-TW": "跟著梵谷騎行穿越他的《星夜》。",
 		"ja": "ゴッホと一緒に彼の「星月夜」の中を駆け抜ける。",
 		"ko": "반 고흐와 함께 그의 「별이 빛나는 밤」 속을 달린다.",
-		"es": "Cabalga con Van Gogh a través de su propia Noche estrellada.",
-		"fr": "Chevauchez avec Van Gogh à travers sa propre Nuit étoilée.",
-		"de": "Reite mit Van Gogh durch seine eigene Sternennacht.",
-		"pt-BR": "Cavalgue com Van Gogh pela sua própria Noite Estrelada.",
-		"ru": "Скачите вместе с Ван Гогом сквозь его «Звёздную ночь»."
+		"es": "Pedalea con Van Gogh a través de su propia Noche estrellada.",
+		"fr": "Roulez à vélo avec Van Gogh à travers sa propre Nuit étoilée.",
+		"de": "Radle mit Van Gogh durch seine eigene Sternennacht.",
+		"pt-BR": "Pedale com Van Gogh pela sua própria Noite Estrelada.",
+		"ru": "Прокатитесь на велосипеде с Ван Гогом сквозь его «Звёздную ночь»."
+	},
+	"pitch": {
+		"en": "Van Gogh rides a bicycle through his own painting The Starry Night in this game made with Fable 5.2.",
+		"zh-CN": "在这款用 Fable 5.2 做的游戏里，梵高骑着自行车穿过他自己的画作《星月夜》。",
+		"zh-TW": "在這款用 Fable 5.2 做的遊戲裡，梵谷騎著腳踏車穿越他自己的畫作《星夜》。",
+		"ja": "Fable 5.2で作られたゲームで、ゴッホが自転車に乗って自らの絵画「星月夜」の中を駆け抜ける。",
+		"ko": "Fable 5.2로 만든 게임으로, 반 고흐가 자전거를 타고 자신의 그림 「별이 빛나는 밤」 속을 달립니다.",
+		"es": "Van Gogh pedalea en bicicleta a través de su propio cuadro, La noche estrellada, en este juego hecho con Fable 5.2.",
+		"fr": "Van Gogh traverse à vélo son propre tableau, La Nuit étoilée, dans ce jeu créé avec Fable 5.2.",
+		"de": "In diesem mit Fable 5.2 gebauten Spiel radelt Van Gogh durch sein eigenes Gemälde, die Sternennacht.",
+		"pt-BR": "Van Gogh pedala de bicicleta pela sua própria pintura, A Noite Estrelada, neste jogo feito com o Fable 5.2.",
+		"ru": "Ван Гог едет на велосипеде сквозь собственную картину «Звёздная ночь» в этой игре, сделанной с Fable 5.2."
 	}
 }

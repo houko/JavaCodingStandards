@@ -24,6 +24,18 @@
 		"pt-BR": "Um jogo open source de 220 KB feito com Claude Code.",
 		"ru": "Игра с открытым кодом на 220 КБ, сделанная в Claude Code."
 	},
+	"pitch": {
+		"en": "Claude Fable 5.2 made this game fully in code over 10 prompts: 3,400 lines in 220 KB, with every model built from scratch in Claude Code. The source is on GitHub.",
+		"zh-CN": "Claude Fable 5.2 用 10 次提示完全以代码做出了这款游戏：3,400 行代码、220 KB，每个模型都在 Claude Code 里从零构建。源码已在 GitHub 公开。",
+		"zh-TW": "Claude Fable 5.2 用 10 次提示完全以程式碼做出了這款遊戲：3,400 行程式碼、220 KB，每個模型都在 Claude Code 裡從零打造。原始碼已在 GitHub 公開。",
+		"ja": "Claude Fable 5.2が10回のプロンプトで、すべてコードだけで作ったゲーム。3,400行・220KBで、モデルはすべてClaude Codeでゼロから作成。ソースはGitHubで公開。",
+		"ko": "Claude Fable 5.2가 프롬프트 10번으로 전부 코드만으로 만든 게임입니다. 3,400줄, 220KB이며 모든 모델을 Claude Code에서 처음부터 만들었습니다. 소스는 GitHub에 공개되어 있습니다.",
+		"es": "Claude Fable 5.2 hizo este juego íntegramente en código con 10 prompts: 3.400 líneas en 220 KB, con cada modelo creado desde cero en Claude Code. El código está en GitHub.",
+		"fr": "Claude Fable 5.2 a créé ce jeu entièrement en code en 10 prompts : 3 400 lignes pour 220 Ko, chaque modèle étant construit de zéro dans Claude Code. Le code source est sur GitHub.",
+		"de": "Claude Fable 5.2 schuf dieses Spiel komplett im Code mit 10 Prompts: 3.400 Zeilen in 220 KB, jedes Modell von Grund auf in Claude Code gebaut. Der Quellcode liegt auf GitHub.",
+		"pt-BR": "O Claude Fable 5.2 fez este jogo inteiramente em código com 10 prompts: 3.400 linhas em 220 KB, com cada modelo criado do zero no Claude Code. O código está no GitHub.",
+		"ru": "Claude Fable 5.2 сделал эту игру полностью в коде за 10 промптов: 3400 строк и 220 КБ, каждая модель построена с нуля в Claude Code. Исходный код выложен на GitHub."
+	},
 	"notes": {
 		"prompts": "10",
 		"lines": "3,400",

@@ -23,5 +23,17 @@
 		"de": "Spiel das Monster und fang Menschen, die sich in den Backrooms verirrt haben.",
 		"pt-BR": "Seja o monstro e capture quem se perde nos Backrooms.",
 		"ru": "Станьте монстром и ловите тех, кто заблудился в Закулисье."
+	},
+	"pitch": {
+		"en": "The Backrooms turned around: instead of trying to escape, you are the monster, and your task is to catch the people lost inside. Made with Claude Fable 5.2.",
+		"zh-CN": "反过来的后室：你不再试图逃出去，而是扮演怪物，任务是抓住迷失其中的人。由 Claude Fable 5.2 制作。",
+		"zh-TW": "反過來的後室：你不再設法逃出去，而是扮演怪物，任務是抓住迷失其中的人。由 Claude Fable 5.2 製作。",
+		"ja": "立場が逆のバックルーム。脱出を目指すのではなく、怪物になって迷い込んだ人々を捕まえるのが目的。Claude Fable 5.2で制作。",
+		"ko": "입장이 뒤바뀐 백룸입니다. 탈출하는 대신 괴물이 되어 길 잃은 사람들을 잡는 것이 목표입니다. Claude Fable 5.2로 만들었습니다.",
+		"es": "Los Backrooms al revés: en lugar de intentar escapar, eres el monstruo y tu tarea es atrapar a quienes se pierden dentro. Hecho con Claude Fable 5.2.",
+		"fr": "Les Backrooms à l’envers : au lieu de chercher à fuir, vous êtes le monstre, et votre tâche est d’attraper ceux qui s’y perdent. Créé avec Claude Fable 5.2.",
+		"de": "Die Backrooms andersherum: Statt zu fliehen, bist du das Monster und musst die Menschen fangen, die sich darin verirrt haben. Gebaut mit Claude Fable 5.2.",
+		"pt-BR": "Os Backrooms ao contrário: em vez de tentar escapar, você é o monstro e sua tarefa é capturar quem se perde lá dentro. Feito com o Claude Fable 5.2.",
+		"ru": "Закулисье наоборот: вместо того чтобы пытаться сбежать, вы монстр, и ваша задача — ловить заблудившихся там людей. Сделано с Claude Fable 5.2."
 	}
 }

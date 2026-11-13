@@ -24,6 +24,18 @@
 		"pt-BR": "O jogo do T-Rex do Chrome, transformado em jogo de ação.",
 		"ru": "Игра с динозавром из Chrome, переделанная в экшен."
 	},
+	"pitch": {
+		"en": "The Chrome T-Rex game with the dino turned into Rambo, made for the creator's T-Rex test of AI models. Fable 5.2 took 45 minutes 30 seconds and $14.77 to build it.",
+		"zh-CN": "把 Chrome 小恐龙变成兰博的动作游戏，出自作者用多个 AI 模型做的小恐龙测试。Fable 5.2 用了 45 分 30 秒、花费 14.77 美元做出它。",
+		"zh-TW": "把 Chrome 小恐龍變成藍波的動作遊戲，出自作者用多個 AI 模型做的小恐龍測試。Fable 5.2 花了 45 分 30 秒、14.77 美元做出來。",
+		"ja": "ChromeのT-Rexをランボーに変えたアクションゲーム。作者が複数のAIモデルで行っているT-Rexテストから生まれた。Fable 5.2の制作時間は45分30秒、費用は14.77ドル。",
+		"ko": "크롬 공룡을 람보로 바꾼 액션 게임으로, 제작자가 여러 AI 모델로 진행하는 T-Rex 테스트에서 나왔습니다. Fable 5.2는 45분 30초, 14.77달러를 들여 만들었습니다.",
+		"es": "El juego del T-Rex de Chrome con el dinosaurio convertido en Rambo, hecho para la prueba del T-Rex con la que su creador compara modelos de IA. Fable 5.2 tardó 45 min 30 s y costó 14,77 dólares.",
+		"fr": "Le jeu du T-Rex de Chrome, avec un dinosaure devenu Rambo, issu du test T-Rex où son créateur compare des modèles d’IA. Fable 5.2 l’a construit en 45 min 30 s pour 14,77 dollars.",
+		"de": "Das Chrome-T-Rex-Spiel, in dem der Dino zu Rambo wird, entstanden für den T-Rex-Test, mit dem der Ersteller KI-Modelle vergleicht. Fable 5.2 brauchte 45 Min. 30 Sek. und 14,77 Dollar.",
+		"pt-BR": "O jogo do T-Rex do Chrome com o dinossauro transformado em Rambo, feito para o teste do T-Rex em que o criador compara modelos de IA. O Fable 5.2 levou 45 min 30 s e custou US$ 14,77.",
+		"ru": "Игра с динозавром из Chrome, где динозавр превращён в Рэмбо, из T-Rex-теста, на котором автор сравнивает ИИ-модели. Fable 5.2 потратил на неё 45 мин 30 с и 14,77 доллара."
+	},
 	"notes": {
 		"time": "45m 30s",
 		"cost": "$14.77"

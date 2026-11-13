@@ -24,6 +24,18 @@
 		"pt-BR": "Corrida de motocross com rivais de IA, nitro e câmera no guidão.",
 		"ru": "Мотокросс с ИИ-соперниками, нитро и камерой на руле."
 	},
+	"pitch": {
+		"en": "A 3D dirt-bike racing game built in one chat with Fable 5.2 from 5 prompts in 15 minutes. Physics, three tracks, AI rivals, nitro, a handlebar camera and music were all generated.",
+		"zh-CN": "一款 3D 越野摩托赛车游戏，用 Fable 5.2 在一次对话中通过 5 条提示、15 分钟做成。物理效果、3 条赛道、AI 对手、氮气加速、车把视角和音乐全部由它生成。",
+		"zh-TW": "一款 3D 越野機車賽車遊戲，用 Fable 5.2 在一次對話中以 5 則提示、15 分鐘完成。物理效果、3 條賽道、AI 對手、氮氣加速、車把視角和音樂全都是生成的。",
+		"ja": "Fable 5.2との1回のチャットで、5つのプロンプトと15分で作られた3Dダートバイクレースゲーム。物理、3つのコース、AIライバル、ニトロ、ハンドル視点、音楽まですべて生成。",
+		"ko": "Fable 5.2와 한 번의 대화에서 프롬프트 5개, 15분 만에 만든 3D 오프로드 바이크 레이싱 게임. 물리, 트랙 3개, AI 라이벌, 니트로, 핸들바 카메라, 음악까지 모두 생성했습니다.",
+		"es": "Un juego 3D de carreras de motocross creado en un solo chat con Fable 5.2, con 5 prompts y en 15 minutos. Física, 3 circuitos, rivales IA, nitro, cámara en el manillar y música, todo generado.",
+		"fr": "Un jeu de moto-cross en 3D créé en une seule conversation avec Fable 5.2, en 5 prompts et 15 minutes. Physique, 3 circuits, rivaux IA, nitro, caméra sur le guidon et musique, tout est généré.",
+		"de": "Ein 3D-Dirtbike-Rennspiel, in einem einzigen Chat mit Fable 5.2 aus 5 Prompts in 15 Minuten gebaut. Physik, 3 Strecken, KI-Gegner, Nitro, Lenkerkamera und Musik sind komplett generiert.",
+		"pt-BR": "Um jogo de motocross em 3D criado num único chat com o Fable 5.2, com 5 prompts e em 15 minutos. Física, 3 pistas, rivais de IA, nitro, câmera no guidão e música, tudo gerado.",
+		"ru": "3D-мотокросс, собранный в одном чате с Fable 5.2 за 5 промптов и 15 минут. Физика, 3 трассы, ИИ-соперники, нитро, камера на руле и музыка сгенерированы целиком."
+	},
 	"notes": {
 		"prompts": "5",
 		"time": "15m"

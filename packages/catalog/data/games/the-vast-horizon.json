@@ -23,5 +23,17 @@
 		"de": "Multiplayer-Surfen auf einem gemeinsamen See. Tippe ein Wort und die Welt verändert sich.",
 		"pt-BR": "Surfe multijogador num mesmo lago. Digite uma palavra e o mundo muda.",
 		"ru": "Мультиплеерный сёрфинг на одном общем озере. Введите слово — и мир изменится."
+	},
+	"pitch": {
+		"en": "A multiplayer surfing game where the world is made of words. Everyone surfs the same lake, and a word typed by any player changes the world for all of them. Made with fal and Claude Fable 5.2.",
+		"zh-CN": "一款多人冲浪游戏，世界由文字构成。所有人在同一片湖上冲浪，任何玩家输入的词都会为所有人改变世界。用 fal 和 Claude Fable 5.2 制作。",
+		"zh-TW": "一款多人衝浪遊戲，世界由文字構成。所有人在同一片湖上衝浪，任何玩家輸入的詞都會為所有人改變世界。使用 fal 和 Claude Fable 5.2 製作。",
+		"ja": "世界が言葉でできたマルチプレイのサーフィンゲーム。全員が同じ湖でサーフィンし、誰かが入力した言葉がみんなの世界を変える。falとClaude Fable 5.2で制作。",
+		"ko": "세계가 단어로 이루어진 멀티플레이 서핑 게임입니다. 모두가 같은 호수에서 서핑하고, 누군가 입력한 단어가 모두의 세계를 바꿉니다. fal과 Claude Fable 5.2로 만들었습니다.",
+		"es": "Un juego de surf multijugador cuyo mundo está hecho de palabras. Todos surfean el mismo lago y la palabra que escribe cualquier jugador cambia el mundo para todos. Hecho con fal y Claude Fable 5.2.",
+		"fr": "Un jeu de surf multijoueur dont le monde est fait de mots. Tout le monde surfe sur le même lac, et un mot tapé par n’importe quel joueur change le monde pour tous. Créé avec fal et Claude Fable 5.2.",
+		"de": "Ein Multiplayer-Surfspiel, dessen Welt aus Wörtern besteht. Alle surfen auf demselben See, und ein Wort, das irgendein Spieler tippt, verändert die Welt für alle. Gebaut mit fal und Claude Fable 5.2.",
+		"pt-BR": "Um jogo de surfe multijogador em que o mundo é feito de palavras. Todos surfam no mesmo lago, e a palavra que qualquer jogador digita muda o mundo para todos. Feito com fal e Claude Fable 5.2.",
+		"ru": "Мультиплеерная игра про сёрфинг, где мир состоит из слов. Все катаются по одному озеру, и слово, введённое любым игроком, меняет мир для всех. Сделано с fal и Claude Fable 5.2."
 	}
 }

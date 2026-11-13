@@ -23,5 +23,17 @@
 		"de": "Ein Kampfspiel mit vier Figuren und 39 Sprach- und Soundclips.",
 		"pt-BR": "Um jogo de luta com quatro personagens e 39 clipes de voz e som.",
 		"ru": "Файтинг на четырёх персонажей с 39 голосовыми и звуковыми клипами."
+	},
+	"pitch": {
+		"en": "A fighting game built by Claude Fable 5.2, with its audio made through the ElevenLabs MCP: an announcer, music and a sound for every punch, where Fable alone had produced only beeps.",
+		"zh-CN": "由 Claude Fable 5.2 制作的格斗游戏，音频通过 ElevenLabs MCP 生成：有播报员、配乐，每一拳都有音效；只靠 Fable 时则只有哔哔声。",
+		"zh-TW": "由 Claude Fable 5.2 製作的格鬥遊戲，音訊透過 ElevenLabs MCP 生成：有播報員、配樂，每一拳都有音效；只靠 Fable 時則只有嗶嗶聲。",
+		"ja": "Claude Fable 5.2が作った格闘ゲームで、音声はElevenLabs MCPで生成。Fableだけではビープ音しかなかったが、実況アナウンス、音楽、パンチ一発ごとの効果音が付いた。",
+		"ko": "Claude Fable 5.2가 만든 격투 게임으로, 오디오는 ElevenLabs MCP로 만들었습니다. Fable만으로는 삑 소리뿐이었지만, 이제 아나운서와 음악, 펀치마다 효과음이 들어갑니다.",
+		"es": "Un juego de lucha creado por Claude Fable 5.2, con el audio hecho mediante el MCP de ElevenLabs: locutor, música y un sonido para cada golpe, donde Fable sin ayuda solo producía pitidos.",
+		"fr": "Un jeu de combat créé par Claude Fable 5.2, dont le son passe par le MCP d’ElevenLabs : un annonceur, de la musique et un bruitage pour chaque coup, là où Fable seul ne produisait que des bips.",
+		"de": "Ein Kampfspiel von Claude Fable 5.2, dessen Ton über den ElevenLabs-MCP entstand: ein Ansager, Musik und ein Sound für jeden Schlag, wo Fable allein nur Pieptöne lieferte.",
+		"pt-BR": "Um jogo de luta feito pelo Claude Fable 5.2, com o áudio criado pelo MCP da ElevenLabs: locutor, música e um som para cada soco, onde o Fable sozinho só fazia bipes.",
+		"ru": "Файтинг от Claude Fable 5.2, звук для которого сделан через ElevenLabs MCP: комментатор, музыка и звук каждого удара, тогда как один Fable выдавал лишь писк."
 	}
 }

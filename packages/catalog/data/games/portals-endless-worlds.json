@@ -24,6 +24,18 @@
 		"pt-BR": "Mais de 450 mundos 3D só em código, ligados por portais e criados por 25.000 agentes.",
 		"ru": "Более 450 3D-миров из чистого кода, связанных порталами и созданных 25 000 агентов."
 	},
+	"pitch": {
+		"en": "An endless, hands-off journey through 3D worlds linked by portals. 25,000 agents built more than 450 of them in code, inspired by books, art and places, and the source is on GitHub.",
+		"zh-CN": "一段无需操作、没有尽头的旅程，穿行于由传送门相连的 3D 世界。25,000 个智能体用代码建造了 450 多个世界，灵感来自书籍、艺术和地点，源代码放在 GitHub 上。",
+		"zh-TW": "一段不必操作、沒有終點的旅程，穿梭在由傳送門相連的 3D 世界。25,000 個代理用程式碼建造了 450 多個世界，靈感來自書籍、藝術和地點，原始碼放在 GitHub 上。",
+		"ja": "ポータルでつながる3D世界を、操作なしでどこまでも旅する作品。本や芸術、場所から着想した450以上の世界を、25,000のエージェントがコードだけで構築。ソースはGitHubで公開。",
+		"ko": "포털로 이어진 3D 세계를 조작 없이 끝없이 여행하는 작품. 25,000개 에이전트가 책, 예술, 장소에서 영감을 받은 450개 이상의 세계를 코드로 만들었고, 소스는 GitHub에 공개되어 있습니다.",
+		"es": "Un viaje infinito y sin intervención por mundos 3D unidos por portales. 25.000 agentes crearon más de 450 en código, inspirados en libros, arte y lugares, y el código fuente está en GitHub.",
+		"fr": "Un voyage sans fin et sans intervention à travers des mondes 3D reliés par des portails. 25 000 agents en ont bâti plus de 450 en code, inspirés de livres, d’œuvres d’art et de lieux, et le code source est sur GitHub.",
+		"de": "Eine endlose Reise ohne eigenes Zutun durch 3D-Welten, verbunden durch Portale. 25.000 Agenten bauten über 450 davon in Code, inspiriert von Büchern, Kunst und Orten, und der Quellcode liegt auf GitHub.",
+		"pt-BR": "Uma jornada sem fim e sem interação por mundos 3D ligados por portais. 25.000 agentes criaram mais de 450 deles em código, inspirados em livros, arte e lugares, e o código-fonte está no GitHub.",
+		"ru": "Бесконечное путешествие без участия игрока по 3D-мирам, связанным порталами. 25 000 агентов создали кодом более 450 миров по мотивам книг, искусства и мест, а исходники лежат на GitHub."
+	},
 	"notes": {
 		"agents": "25,000"
 	}

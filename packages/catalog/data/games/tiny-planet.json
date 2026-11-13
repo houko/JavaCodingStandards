@@ -24,6 +24,18 @@
 		"pt-BR": "Um planetinha para você explorar a pé. Código aberto.",
 		"ru": "Крошечная планета, по которой можно гулять. Открытый исходный код."
 	},
+	"pitch": {
+		"en": "Fable 5.2 built this tiny planet from scratch from one prompt and no further help, then filmed its own trailer. You walk around on it, and the code is open source.",
+		"zh-CN": "Fable 5.2 只凭一句提示、没有任何额外帮助，从零做出了这颗小星球，还自己拍了预告片。你可以在上面四处走动，代码开源。",
+		"zh-TW": "Fable 5.2 只憑一句提示、沒有任何額外協助，從零做出了這顆小星球，還自己拍了預告片。你可以在上面四處走動，程式碼開源。",
+		"ja": "Fable 5.2が1つのプロンプトだけで、手助けなしにゼロから作った小さな惑星。トレーラーも自分で撮影した。惑星の上を歩き回れて、コードはオープンソース。",
+		"ko": "Fable 5.2가 프롬프트 하나만으로, 다른 도움 없이 처음부터 만든 작은 행성입니다. 트레일러도 직접 촬영했습니다. 행성 위를 걸어 다닐 수 있고 코드는 오픈 소스입니다.",
+		"es": "Fable 5.2 creó este planeta diminuto desde cero con un solo prompt y sin más ayuda, y además grabó su propio tráiler. Puedes caminar por él, y el código es abierto.",
+		"fr": "Fable 5.2 a construit cette minuscule planète de zéro à partir d’un seul prompt, sans autre aide, puis a filmé lui-même la bande-annonce. On s’y promène à pied, et le code est open source.",
+		"de": "Fable 5.2 baute diesen winzigen Planeten aus einem einzigen Prompt und ohne weitere Hilfe von Grund auf und filmte den Trailer selbst. Man läuft darauf herum, der Code ist Open Source.",
+		"pt-BR": "O Fable 5.2 criou este planetinha do zero com um único prompt e nenhuma outra ajuda, e ainda gravou o próprio trailer. Você caminha por ele, e o código é aberto.",
+		"ru": "Fable 5.2 создал эту крошечную планету с нуля по одному промпту без какой-либо помощи и сам снял к ней трейлер. По планете можно гулять, исходный код открыт."
+	},
 	"notes": {
 		"prompts": "1"
 	}
