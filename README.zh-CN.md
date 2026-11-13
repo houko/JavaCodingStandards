@@ -65,7 +65,7 @@ Vibe Arcade 是 AI 游戏的街机厅：一份人工整理的浏览器游戏索�
 | [**Stonehenge Solstice**](https://vibe.wiz.games/games/stonehenge-solstice?lang=zh-CN)<br>一个 HTML 文件里的巨石阵：草地、阴影与夏至太阳轨迹。 | [@MeltTheManual](https://x.com/MeltTheManual) | 解谜与玩具 | Claude Fable 5.2 | [游玩](https://meltthemanual.github.io/stonehenge-solstice/) · [原帖](https://x.com/i/status/2119926820963532984) |
 | [**Fortnite in Three.js**](https://vibe.wiz.games/games/fortnite-in-three-js?lang=zh-CN)<br>用 Three.js 复刻的大逃杀。 | [@aabyzov](https://x.com/aabyzov) | 动作 | Claude Fable 5.2 | [游玩](https://anton-abyzov.github.io/fortnite-3js/) · [原帖](https://x.com/i/status/2120702690845933702) |
 | [**Vippi**](https://vibe.wiz.games/games/vippi?lang=zh-CN)<br>快节奏街机风格第一人称射击。 | [@Shrit1401](https://x.com/Shrit1401) | 射击 | Claude Fable 5.2 | [游玩](https://vippi.vercel.app/) · [原帖](https://x.com/i/status/2120060593763926314) |
-| [**Wave Rider Nusantara**](https://vibe.wiz.games/games/wave-rider-nusantara?lang=zh-CN)<br>Arcade-style game inspired by the culture and visual identity of the Indonesian archipelago. | [@abusofianid](https://x.com/abusofianid) | 探索 | Gemini + ChatGPT | [源码](https://github.com/abusofianid/game-wave-rider-nusantara) · [原帖](https://x.com/i/status/2121088313658572857) |
+| [**Wave Rider Nusantara**](https://vibe.wiz.games/games/wave-rider-nusantara?lang=zh-CN)<br>受印度尼西亚群岛的文化与视觉风格启发的街机风格游戏。 | [@abusofianid](https://x.com/abusofianid) | 探索 | Gemini + ChatGPT | [源码](https://github.com/abusofianid/game-wave-rider-nusantara) · [原帖](https://x.com/i/status/2121088313658572857) |
 <!-- games:end -->
 
 ## 收录标准
