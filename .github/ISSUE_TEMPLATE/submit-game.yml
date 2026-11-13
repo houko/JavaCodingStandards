@@ -67,7 +67,7 @@ body:
     id: model
     attributes:
       label: AI model
-      description: The model the game was built with, as the creator names it.
+      description: The model the game was built with, as the creator names it. Separate several with +.
       placeholder: Claude Fable 5.2
     validations:
       required: true

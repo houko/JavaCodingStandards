@@ -65,7 +65,7 @@ Vibe Arcade は AI でつくったゲームのアーケードです。主に AI 
 | [**Stonehenge Solstice**](https://vibe.wiz.games/games/stonehenge-solstice?lang=ja)<br>HTML1枚のストーンヘンジ。草、影、夏至の太陽の軌道。 | [@MeltTheManual](https://x.com/MeltTheManual) | パズル・おもちゃ | Claude Fable 5.2 | [プレイ](https://meltthemanual.github.io/stonehenge-solstice/) · [投稿](https://x.com/i/status/2119926820963532984) |
 | [**Fortnite in Three.js**](https://vibe.wiz.games/games/fortnite-in-three-js?lang=ja)<br>Three.jsで作ったバトロワのクローン。 | [@aabyzov](https://x.com/aabyzov) | アクション | Claude Fable 5.2 | [プレイ](https://anton-abyzov.github.io/fortnite-3js/) · [投稿](https://x.com/i/status/2120702690845933702) |
 | [**Vippi**](https://vibe.wiz.games/games/vippi?lang=ja)<br>テンポの速いアーケード風FPS。 | [@Shrit1401](https://x.com/Shrit1401) | シューター | Claude Fable 5.2 | [プレイ](https://vippi.vercel.app/) · [投稿](https://x.com/i/status/2120060593763926314) |
-| [**Wave Rider Nusantara**](https://vibe.wiz.games/games/wave-rider-nusantara?lang=ja)<br>Arcade-style game inspired by the culture and visual identity of the Indonesian archipelago. | [@abusofianid](https://x.com/abusofianid) | 探索 | Gemini and chat gpt | [ソース](https://github.com/abusofianid/game-wave-rider-nusantara) · [投稿](https://x.com/i/status/2121088313658572857) |
+| [**Wave Rider Nusantara**](https://vibe.wiz.games/games/wave-rider-nusantara?lang=ja)<br>Arcade-style game inspired by the culture and visual identity of the Indonesian archipelago. | [@abusofianid](https://x.com/abusofianid) | 探索 | Gemini + ChatGPT | [ソース](https://github.com/abusofianid/game-wave-rider-nusantara) · [投稿](https://x.com/i/status/2121088313658572857) |
 <!-- games:end -->
 
 ## 掲載の基準
@@ -83,7 +83,7 @@ Vibe Arcade は AI でつくったゲームのアーケードです。主に AI 
 - [Submit a game](https://github.com/yldm-tech/awesome-vibe-games/issues/new?template=submit-game.yml) の issue フォームを開いてください。ゲーム名、作者の X ハンドル、投稿、リンク、ジャンル、モデル、英語での一行説明を入力します。作者本人でなくてもかまいません。
 - または、遊べるリンクを付けてゲームを X に投稿し、[@suzukaze_haduki](https://x.com/suzukaze_haduki) をタグ付けしてください。
 
-[投稿ワークフロー](.github/workflows/submissions.yml)が、人の手を介さず数分でゲームを掲載します。投稿が存在し作者本人のものか、プレイ用またはソースのリンクが応答するか、まだ掲載されていないかを確かめたうえで、投稿からカバー、クリップ、作者のアバターを取り、issue を閉じるプルリクエストを開き、CI が通ればマージしてサイトをデプロイします。問題があれば issue にその旨を書き込み、issue を編集すると再試行します。概要はまず英語で載り、翻訳されるまで他の言語でも英語が表示されます。ゲームのファイルを自分で追加する pull request も歓迎します。
+[投稿ワークフロー](.github/workflows/submissions.yml)が、人の手を介さず数分でゲームを掲載します。投稿が存在し作者本人のものか、プレイ用またはソースのリンクが応答するか、まだ掲載されていないかを確かめたうえで、投稿からカバー、クリップ、作者のアバターを取り、issue を閉じるプルリクエストを開き、CI が通ればマージしてサイトをデプロイします。問題があれば issue にその旨を書き込み、issue を編集すると再試行します。概要はまず英語で載り、翻訳されるまで他の言語でも英語が表示されます。ゲームのファイルを自分で追加する pull request も歓迎します。作成から 7 日未満の GitHub アカウント、すでに 3 件の投稿が保留中の投稿者、[ブロックリスト](.github/submission-blocklist.txt)に載っている人は自動では掲載されません。リポジトリにモデル API のキー（`EVERYAPI_API_KEY`）が設定されていれば、ボットは概要をほかの 9 言語に翻訳し、明らかなスパムや悪質な投稿を断ります。
 
 ## ゲームファイルの形式
 

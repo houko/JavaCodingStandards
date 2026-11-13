@@ -1,0 +1,1 @@
+# Accounts whose submissions the bot does not list automatically: GitHub logins or X handles, one per line, with or without the @. Lines starting with # are comments.

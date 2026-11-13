@@ -65,7 +65,7 @@ Vibe Arcade는 AI로 만든 게임의 오락실입니다. 주로 AI 모델에 �
 | [**Stonehenge Solstice**](https://vibe.wiz.games/games/stonehenge-solstice?lang=ko)<br>HTML 파일 하나에 담은 스톤헨지: 풀, 그림자, 하지 태양의 궤적. | [@MeltTheManual](https://x.com/MeltTheManual) | 퍼즐·장난감 | Claude Fable 5.2 | [플레이](https://meltthemanual.github.io/stonehenge-solstice/) · [게시물](https://x.com/i/status/2119926820963532984) |
 | [**Fortnite in Three.js**](https://vibe.wiz.games/games/fortnite-in-three-js?lang=ko)<br>Three.js로 만든 배틀로열 클론. | [@aabyzov](https://x.com/aabyzov) | 액션 | Claude Fable 5.2 | [플레이](https://anton-abyzov.github.io/fortnite-3js/) · [게시물](https://x.com/i/status/2120702690845933702) |
 | [**Vippi**](https://vibe.wiz.games/games/vippi?lang=ko)<br>빠른 아케이드 스타일 1인칭 슈터. | [@Shrit1401](https://x.com/Shrit1401) | 슈터 | Claude Fable 5.2 | [플레이](https://vippi.vercel.app/) · [게시물](https://x.com/i/status/2120060593763926314) |
-| [**Wave Rider Nusantara**](https://vibe.wiz.games/games/wave-rider-nusantara?lang=ko)<br>Arcade-style game inspired by the culture and visual identity of the Indonesian archipelago. | [@abusofianid](https://x.com/abusofianid) | 탐험 | Gemini and chat gpt | [소스](https://github.com/abusofianid/game-wave-rider-nusantara) · [게시물](https://x.com/i/status/2121088313658572857) |
+| [**Wave Rider Nusantara**](https://vibe.wiz.games/games/wave-rider-nusantara?lang=ko)<br>Arcade-style game inspired by the culture and visual identity of the Indonesian archipelago. | [@abusofianid](https://x.com/abusofianid) | 탐험 | Gemini + ChatGPT | [소스](https://github.com/abusofianid/game-wave-rider-nusantara) · [게시물](https://x.com/i/status/2121088313658572857) |
 <!-- games:end -->
 
 ## 등재 기준
@@ -83,7 +83,7 @@ Vibe Arcade는 AI로 만든 게임의 오락실입니다. 주로 AI 모델에 �
 - [Submit a game](https://github.com/yldm-tech/awesome-vibe-games/issues/new?template=submit-game.yml) 이슈 양식을 여세요. 게임 이름, 제작자의 X 핸들, 게시물, 링크, 장르, 모델, 영어로 쓴 한 줄 설명을 입력합니다. 제작자 본인이 아니어도 됩니다.
 - 또는 플레이할 수 있는 링크와 함께 게임을 X에 올리고 [@suzukaze_haduki](https://x.com/suzukaze_haduki)를 태그하세요.
 
-[제출 워크플로](.github/workflows/submissions.yml)가 사람의 개입 없이 몇 분 안에 게임을 등재합니다. 게시물이 존재하고 제작자 본인이 올린 것인지, 플레이 또는 소스 링크가 응답하는지, 아직 등재되지 않은 게임인지 확인한 뒤 게시물에서 커버, 클립, 제작자 아바타를 가져오고, 이슈를 닫는 풀 리퀘스트를 열어 CI가 통과하면 병합하고 사이트를 배포합니다. 문제가 있으면 이슈에 알리고, 이슈를 수정하면 다시 시도합니다. 요약은 먼저 영어로 올라가며, 번역되기 전까지 다른 언어에서도 영어가 표시됩니다. 게임 파일을 직접 추가하는 pull request도 환영합니다.
+[제출 워크플로](.github/workflows/submissions.yml)가 사람의 개입 없이 몇 분 안에 게임을 등재합니다. 게시물이 존재하고 제작자 본인이 올린 것인지, 플레이 또는 소스 링크가 응답하는지, 아직 등재되지 않은 게임인지 확인한 뒤 게시물에서 커버, 클립, 제작자 아바타를 가져오고, 이슈를 닫는 풀 리퀘스트를 열어 CI가 통과하면 병합하고 사이트를 배포합니다. 문제가 있으면 이슈에 알리고, 이슈를 수정하면 다시 시도합니다. 요약은 먼저 영어로 올라가며, 번역되기 전까지 다른 언어에서도 영어가 표시됩니다. 게임 파일을 직접 추가하는 pull request도 환영합니다.만든 지 7일이 안 된 GitHub 계정, 이미 제출 세 건이 대기 중인 제출자, [차단 목록](.github/submission-blocklist.txt)에 있는 사람은 자동으로 등재되지 않습니다. 저장소에 모델 API 키(`EVERYAPI_API_KEY`)가 설정되어 있으면 봇이 요약을 나머지 9개 언어로 번역하고, 명백한 스팸이나 악의적인 제출은 거절합니다.
 
 ## 게임 파일 형식
 
