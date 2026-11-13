@@ -1,6 +1,6 @@
 name: Likes
 
-# Refreshes the like count of every game from its post on X once a week, and lands the new counts through one pull request from bot/likes, which merges itself once CI passes and deploys the site (.github/scripts/merge-when-green.sh). The counts are a snapshot shown as such ("likes on X"); this keeps the snapshot from going stale without anyone remembering to. When a count changes, the site's "last updated" day moves to the day of the run.
+# Refreshes the like count of every game from its post on X once a week, rotates the week's picks to the games that gained the most likes (apps/web/scripts/rotate-picks.ts), and lands the new counts through one pull request from bot/likes, which merges itself once CI passes and deploys the site (.github/scripts/merge-when-green.sh). The counts are a snapshot shown as such ("likes on X"); this keeps the snapshot from going stale without anyone remembering to. When a count changes, the site's "last updated" day moves to the day of the run.
 on:
   schedule:
     - cron: '41 4 * * 1'
@@ -33,8 +33,10 @@ jobs:
           node-version: 24
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      # A post X does not answer for keeps its count; the run's log says which.
-      - run: node scripts/fetch-covers.ts --likes | tee "$RUNNER_TEMP/likes.log"
+      # A post X does not answer for keeps its count; the run's log says which. Then the week's picks rotate to the games that gained the most likes, once a week at most.
+      - run: |
+          node scripts/fetch-covers.ts --likes | tee "$RUNNER_TEMP/likes.log"
+          node scripts/rotate-picks.ts | tee -a "$RUNNER_TEMP/likes.log"
         working-directory: apps/web
       - id: diff
         run: |
@@ -51,7 +53,7 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git switch --create "$BRANCH"
           git add packages/catalog/data README*.md
-          git commit --message 'chore: refresh like counts from X'
+          git commit --message 'chore: refresh like counts from X and rotate the picks'
           git push --force origin "$BRANCH"
           {
             echo "## Summary"
@@ -60,6 +62,7 @@ jobs:
             echo
             echo '```text'
             sed -n '/^likes changed in/,$p' "$RUNNER_TEMP/likes.log"
+            grep '^picks' "$RUNNER_TEMP/likes.log" || true
             echo '```'
             echo
             echo "It merges itself once CI passes."

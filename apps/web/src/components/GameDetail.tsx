@@ -1,4 +1,4 @@
-import { GENRE_COLORS, GENRE_KEYS, type Game, type LangCode, fill, formatCount, formatDay, pick, relatedGames, t } from '@vibe-arcade/catalog';
+import { GENRE_COLORS, GENRE_KEYS, type Game, type LangCode, fill, formatCount, formatDay, isNew, pick, relatedGames, t } from '@vibe-arcade/catalog';
 import { type MouseEvent, useEffect, useState } from 'react';
 import { gamePath, pagePath } from '../lib/seo';
 import { BTN_LIME, BTN_LINE, KICKER, NEW_TAB } from '../lib/ui';
@@ -75,8 +75,11 @@ export function GameDetail({ game, lang, heading: Heading, headingId, onClose, o
 			<div className='relative aspect-[16/9] overflow-hidden bg-ink'>
 				<Cover game={game} alt={`${game.name} — ${tr.coverAlt}`} eager={!onClose} className='avg-kb absolute inset-0 size-full text-[36px]' />
 				{(game.heroVideo ?? game.video) && <Clip src={(game.heroVideo ?? game.video) as string} />}
-				<span className='absolute top-4 left-4 rounded-md px-2.5 py-1.5 font-mono text-[12px] font-semibold tracking-[0.06em] text-bg uppercase' style={{ backgroundColor: GENRE_COLORS[game.genre] }}>
-					{genre}
+				<span className='absolute top-4 left-4 flex gap-2'>
+					<span className='rounded-md px-2.5 py-1.5 font-mono text-[12px] font-semibold tracking-[0.06em] text-bg uppercase' style={{ backgroundColor: GENRE_COLORS[game.genre] }}>
+						{genre}
+					</span>
+					{isNew(game) && <span className='rounded-md bg-lime px-2.5 py-1.5 font-mono text-[12px] font-semibold tracking-[0.06em] text-bg uppercase'>{tr.newBadge}</span>}
 				</span>
 				{onClose && (
 					<button type='button' onClick={onClose} aria-label={tr.close} className='avg-btn absolute top-3 right-3 flex size-11 cursor-pointer items-center justify-center rounded-full bg-bg text-fg'>

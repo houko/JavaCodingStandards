@@ -122,5 +122,6 @@
 	"nowPlaying": "재생 중",
 	"oneGame": "게임 1개",
 	"linkDown": "링크 끊김",
-	"linkDownNote": "게임 링크가 {date}부터 응답하지 않아 제작자의 게시물로 연결합니다."
+	"linkDownNote": "게임 링크가 {date}부터 응답하지 않아 제작자의 게시물로 연결합니다.",
+	"newBadge": "NEW"
 }

@@ -122,5 +122,6 @@
 	"nowPlaying": "Tocando agora",
 	"oneGame": "1 jogo",
 	"linkDown": "Link fora do ar",
-	"linkDownNote": "O link do jogo parou de responder em {date}, então isto leva à publicação do criador."
+	"linkDownNote": "O link do jogo parou de responder em {date}, então isto leva à publicação do criador.",
+	"newBadge": "Novo"
 }

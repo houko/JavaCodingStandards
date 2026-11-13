@@ -8,6 +8,7 @@ import { fileURLToPath } from 'node:url';
 import { classify } from './link-health.mjs';
 
 const GAMES_DIR = fileURLToPath(new URL('../../packages/catalog/data/games/', import.meta.url));
+const META_FILE = fileURLToPath(new URL('../../packages/catalog/data/meta.json', import.meta.url));
 const SCHEMA = JSON.parse(readFileSync(new URL('../../packages/catalog/data/schema/game.schema.json', import.meta.url), 'utf8'));
 const GENRES = SCHEMA.properties.genre.enum;
 const LINK_TYPES = SCHEMA.properties.link.properties.type.enum;
@@ -120,9 +121,14 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
 		if (problem) output({ problem });
 		else {
 			game.likes = found.likes;
+			// The day it joins, which marks it as new for a while; the site's "last updated" day moves with it.
+			const today = new Date().toISOString().slice(0, 10);
+			game.added = today;
 			const file = `${GAMES_DIR}${game.slug}.json`;
 			if (existsSync(file)) throw new Error(`${file} exists`);
 			writeFileSync(file, `${JSON.stringify(game, null, '\t')}\n`);
+			const meta = JSON.parse(readFileSync(META_FILE, 'utf8'));
+			writeFileSync(META_FILE, `${JSON.stringify({ ...meta, updated: today }, null, '\t')}\n`);
 			output({ slug: game.slug, name: game.name });
 		}
 	}

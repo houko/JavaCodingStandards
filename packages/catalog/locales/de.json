@@ -122,5 +122,6 @@
 	"nowPlaying": "Läuft gerade",
 	"oneGame": "1 Spiel",
 	"linkDown": "Link offline",
-	"linkDownNote": "Der Link zum Spiel antwortet seit dem {date} nicht mehr, deshalb führt dies zum Post des Creators."
+	"linkDownNote": "Der Link zum Spiel antwortet seit dem {date} nicht mehr, deshalb führt dies zum Post des Creators.",
+	"newBadge": "Neu"
 }

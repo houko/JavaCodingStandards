@@ -122,5 +122,6 @@
 	"nowPlaying": "プレイ中",
 	"oneGame": "1 本",
 	"linkDown": "リンク切れ",
-	"linkDownNote": "ゲームのリンクは {date} から応答していないため、作者の投稿へ案内しています。"
+	"linkDownNote": "ゲームのリンクは {date} から応答していないため、作者の投稿へ案内しています。",
+	"newBadge": "NEW"
 }

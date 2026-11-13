@@ -122,5 +122,6 @@
 	"nowPlaying": "正在播放",
 	"oneGame": "1 款遊戲",
 	"linkDown": "連結失效",
-	"linkDownNote": "遊戲連結自 {date} 起無法存取，這裡改為指向作者的原始貼文。"
+	"linkDownNote": "遊戲連結自 {date} 起無法存取，這裡改為指向作者的原始貼文。",
+	"newBadge": "新"
 }
