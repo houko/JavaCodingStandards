@@ -173,9 +173,9 @@ Vibe Arcade는 AI로 만든 게임의 오락실입니다. 주로 AI 모델에 �
 apps/web/                  @vibe-arcade/web: 사이트. TanStack Start(React 19)를 Cloudflare Workers에서 렌더링
   src/                     라우트, 컴포넌트, 스타일
   public/covers/           게임 커버, <slug>.webp
-  public/videos/           게임의 무음 짧은 클립, <slug>.mp4. hero/<slug>.mp4는 히어로 화면용
   public/avatars/          크리에이터 아바타, <handle>.webp
   public/fonts/            직접 호스팅하는 웹 폰트
+  .media/                  fetch-media.ts가 잘라 낸 클립. 로컬에만 두며(git 무시), 사이트는 R2 버킷 vibe-arcade-media에서 제공
   og/                      빌드할 때 공유 이미지를 그리는 Vite 플러그인
   scripts/                 fetch-covers.ts, fetch-media.ts, readme-games.ts, site-icons.ts, banner.ts
   wrangler.jsonc           Cloudflare Workers 설정
@@ -217,7 +217,7 @@ pnpm --filter @vibe-arcade/web banner   # 이 파일 맨 위의 .github/assets/b
 pnpm --filter @vibe-arcade/web readme   # 데이터로 각 README의 게임 목록을 다시 생성
 ```
 
-`covers`는 `--force`를 주지 않는 한 이미 있는 커버를 그대로 둡니다. slug를 넘기면 대상을 좁힐 수 있고, `--likes`를 주면 게임 파일의 좋아요 수도 갱신합니다. 좋아요 수가 바뀌면 `packages/catalog/data/meta.json`의 날짜(사이트에 "최근 업데이트"로 표시됩니다)를 오늘로 바꿉니다. 게임을 추가할 때는 이 날짜를 직접 고치세요.`media`는 각 게임 게시물의 영상에서 6초짜리 무음 클립을 잘라 `public/videos/`에 저장하고, 좋아요가 가장 많은 여섯 게임에는 히어로 화면용으로 더 큰 클립도 만듭니다. 직접 게시한 크리에이터의 아바타는 `public/avatars/`에 저장합니다. 결과는 `packages/catalog/data/media.json`에 기록하므로 미디어와 함께 커밋하세요. 이 명령도 `--force`를 주지 않는 한 이미 있는 파일을 그대로 두고, slug로 대상을 좁힐 수 있습니다. 이번 주 추천은 `meta.json`의 `picks`에 적은 slug이며 직접 편집합니다.`readme`는 이 파일과 각 언어판의 게임 목록을 다시 씁니다. README가 데이터보다 뒤처져 있으면 테스트가 실패하므로, 게임을 추가하거나 이름을 바꾸거나 삭제한 뒤에 실행하세요.
+`covers`는 `--force`를 주지 않는 한 이미 있는 커버를 그대로 둡니다. slug를 넘기면 대상을 좁힐 수 있고, `--likes`를 주면 게임 파일의 좋아요 수도 갱신합니다. 좋아요 수가 바뀌면 `packages/catalog/data/meta.json`의 날짜(사이트에 "최근 업데이트"로 표시됩니다)를 오늘로 바꿉니다. 게임을 추가할 때는 이 날짜를 직접 고치세요.`media`는 각 게임 게시물의 영상에서 6초짜리 무음 클립을, 좋아요가 가장 많은 여섯 게임에는 히어로 화면용으로 더 큰 클립도 잘라 내어, 사이트가 제공하는 R2 버킷 `vibe-arcade-media`에 업로드합니다(Cloudflare 로그인이나 `CLOUDFLARE_API_TOKEN` 필요). 클립은 저장소에 넣지 않습니다. 직접 게시한 크리에이터의 아바타는 `public/avatars/`에 저장합니다. 결과는 `packages/catalog/data/media.json`에 기록하므로 미디어와 함께 커밋하세요. 이 명령도 `--force`를 주지 않는 한 이미 있는 파일을 그대로 두고, slug로 대상을 좁힐 수 있습니다. 이번 주 추천은 `meta.json`의 `picks`에 적은 slug이며 직접 편집합니다.`readme`는 이 파일과 각 언어판의 게임 목록을 다시 씁니다. README가 데이터보다 뒤처져 있으면 테스트가 실패하므로, 게임을 추가하거나 이름을 바꾸거나 삭제한 뒤에 실행하세요.
 
 ## 배포
 

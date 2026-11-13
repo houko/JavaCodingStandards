@@ -145,10 +145,12 @@ describe('the games', () => {
 	});
 
 	// The clips and avatars are not part of this package: scripts/fetch-media.ts of the site writes them into its public directory and lists them in data/media.json. A failure here means the list and the files have come apart; run the script again.
-	it('have the clip files data/media.json lists, and the hero plays the most liked of them', () => {
+	// The clips themselves are in the site's R2 bucket, not here; media.json is the list of them, and only games list clips.
+	it('list their clips in data/media.json, and the hero plays the most liked of them', () => {
+		const media: { videos: string[]; heroVideos: string[] } = JSON.parse(readFileSync(new URL('../data/media.json', import.meta.url), 'utf8'));
+		for (const slug of [...media.videos, ...media.heroVideos]) expect(gameBySlug(slug), slug).toBeDefined();
 		for (const g of GAMES) {
-			if (g.video) expect(existsSync(new URL(`public${g.video}`, PUBLIC)), g.video).toBe(true);
-			if (g.heroVideo) expect(existsSync(new URL(`public${g.heroVideo}`, PUBLIC)), g.heroVideo).toBe(true);
+			expect(g.video, g.slug).toBe(media.videos.includes(g.slug) ? `/videos/${g.slug}.mp4` : undefined);
 			if (g.heroVideo) expect(g.video, g.slug).toBeDefined();
 		}
 		expect(HERO_GAMES.length).toBeGreaterThan(0);
