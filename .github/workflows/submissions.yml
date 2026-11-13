@@ -16,6 +16,7 @@ permissions:
   contents: write
   issues: write
   pull-requests: write
+  statuses: write
 
 # One run per issue at a time; an edit made while a run is going waits for it, so a fix is never lost.
 concurrency:

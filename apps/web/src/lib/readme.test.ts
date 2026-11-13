@@ -13,7 +13,10 @@ describe('the list of games in the READMEs', () => {
 
 	it('has a row for every game, linking to its page in the README language', () => {
 		const zh = gamesSection('zh-CN');
-		expect(zh.split('\n').filter((line) => /^\| \d+ \|/.test(line))).toHaveLength(GAMES.length);
+		expect(zh.split('\n').filter((line) => line.startsWith('| [**'))).toHaveLength(GAMES.length);
+		// No counts and no row numbers: they would change with every game.
+		expect(zh).not.toMatch(/^\*\*\d+\*\*/m);
+		expect(zh).not.toMatch(/^\| \d+ \|/m);
 		for (const g of GAMES) {
 			expect(zh, g.slug).toContain(`/games/${g.slug}?lang=zh-CN)`);
 			expect(zh, g.slug).toContain(pick(g.summary, 'zh-CN').replaceAll('|', '\\|'));
