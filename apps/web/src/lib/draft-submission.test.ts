@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 // @ts-expect-error The workflow's script is plain JavaScript with no type declarations.
-import { gameFromForm, readForm, slugOf } from '../../../../.github/scripts/draft-submission.mjs';
+import { gameFromForm, readForm, sentence, slugOf } from '../../../../.github/scripts/draft-submission.mjs';
 
 // An issue body as GitHub writes a filled-in "Submit a game" form.
 const form = (answers: Record<string, string>) => Object.entries(answers).map(([label, value]) => `### ${label}\n\n${value || '_No response_'}`).join('\n\n');
@@ -18,6 +18,17 @@ const GOOD = {
 const taken = { slugs: new Set(['kit-racer-old']), posts: new Map([['2119925633564463609', 'saltline']]) };
 type Result = { game?: Record<string, unknown> & { link: unknown; summary: unknown }; problem?: string };
 const draft = (changes: Record<string, string> = {}, used = taken): Result => gameFromForm(readForm(form({ ...GOOD, ...changes })), used);
+
+describe('a description', () => {
+	it('becomes one sentence with a capital and a full stop, the rest as written', () => {
+		expect(sentence('arcade-style game inspired by the Indonesian archipelago')).toBe('Arcade-style game inspired by the Indonesian archipelago.');
+		expect(sentence('  A kart\nracer!  ')).toBe('A kart racer!');
+		expect(sentence('Ends with a full stop.')).toBe('Ends with a full stop.');
+		expect(sentence('雾锁山门')).toBe('雾锁山门');
+		expect(sentence('Version 2')).toBe('Version 2.');
+		expect(sentence('')).toBe('');
+	});
+});
 
 describe('reading the submit form', () => {
 	it('reads each answer by its question, empty for no response', () => {
@@ -48,6 +59,6 @@ describe('reading the submit form', () => {
 		expect(draft({ "Creator's X handle": 'not a handle!' }).problem).toMatch(/not an X handle/);
 		expect(draft({ 'Play, source or watch URL': 'http://kit.example' }).problem).toMatch(/https/);
 		expect(draft({ 'Game name': '' }).problem).toMatch(/missing/);
-		expect(draft({ 'One-line description in English': 'x'.repeat(161) }).problem).toMatch(/161 characters long/);
+		expect(draft({ 'One-line description in English': 'x'.repeat(161) }).problem).toMatch(/162 characters long/);
 	});
 });
