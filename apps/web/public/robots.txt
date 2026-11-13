@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /api/
 
-Sitemap: https://awesomensgo.dev/sitemap.xml
+Sitemap: https://vibe.wiz.games/sitemap.xml

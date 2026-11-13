@@ -1,22 +1,22 @@
 {
-	"name": "awesome-nsgo",
+	"name": "vibe-arcade",
 	"version": "0.0.0",
 	"private": true,
 	"type": "module",
-	"description": "Awesome NSGo: the NSGo ecosystem site, served from Cloudflare Workers",
+	"description": "Vibe Arcade: a curated index of games vibe-coded with AI and shared on X, served from Cloudflare Workers",
 	"license": "MIT",
-	"homepage": "https://awesomensgo.dev",
+	"homepage": "https://vibe.wiz.games",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/yldm-tech/awesome-nsgo.git"
+		"url": "git+https://github.com/yldm-tech/awesome-vibe-games.git"
 	},
-	"bugs": "https://github.com/yldm-tech/awesome-nsgo/issues",
+	"bugs": "https://github.com/yldm-tech/awesome-vibe-games/issues",
 	"packageManager": "pnpm@12.3.4",
 	"scripts": {
-		"dev": "pnpm --filter @awesome-nsgo/web dev",
-		"build": "pnpm --filter @awesome-nsgo/web build",
-		"preview": "pnpm --filter @awesome-nsgo/web preview",
-		"deploy": "pnpm --filter @awesome-nsgo/web deploy",
+		"dev": "pnpm --filter @vibe-arcade/web dev",
+		"build": "pnpm --filter @vibe-arcade/web build",
+		"preview": "pnpm --filter @vibe-arcade/web preview",
+		"deploy": "pnpm --filter @vibe-arcade/web deploy",
 		"typecheck": "pnpm -r typecheck",
 		"test": "pnpm -r test"
 	},

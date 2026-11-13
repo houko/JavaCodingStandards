@@ -1,0 +1,27 @@
+{
+	"$schema": "../schema/game.schema.json",
+	"slug": "dread-and-district",
+	"name": "Dread and District",
+	"creator": "emollick",
+	"genre": "Story & sim",
+	"link": {
+		"type": "play",
+		"url": "https://dread-and-district.netlify.app"
+	},
+	"post": "2120248525254742318",
+	"likes": 299,
+	"model": "Claude Fable 5.2",
+	"cover": "dread-and-district.webp",
+	"summary": {
+		"en": "A fantasy logistics sim where good supply chains defeat evil. Built with a swarm of agents.",
+		"zh-CN": "奇幻物流模拟：好的供应链打败邪恶。由一群智能体协作完成。",
+		"zh-TW": "奇幻物流模擬：好的供應鏈打敗邪惡。由一群代理協作完成。",
+		"ja": "ファンタジー物流シム。優れたサプライチェーンが悪を倒す。エージェント群で制作。",
+		"ko": "판타지 물류 시뮬레이션: 좋은 공급망이 악을 이긴다. 에이전트 군단이 제작.",
+		"es": "Simulador de logística fantástica donde las buenas cadenas de suministro vencen al mal. Hecho con un enjambre de agentes.",
+		"fr": "Une simulation de logistique fantastique où une bonne chaîne d’approvisionnement terrasse le mal. Créée par un essaim d’agents.",
+		"de": "Eine Fantasy-Logistiksimulation, in der gute Lieferketten das Böse besiegen. Gebaut von einem Agentenschwarm.",
+		"pt-BR": "Simulador de logística de fantasia em que boas cadeias de suprimentos derrotam o mal. Feito por um enxame de agentes.",
+		"ru": "Фэнтези-симулятор логистики, где хорошие цепочки поставок побеждают зло. Создан роем агентов."
+	}
+}

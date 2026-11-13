@@ -1,0 +1,27 @@
+{
+	"$schema": "../schema/game.schema.json",
+	"slug": "tiny-planet",
+	"name": "Tiny Planet",
+	"creator": "prasenx",
+	"genre": "Exploration",
+	"link": {
+		"type": "source",
+		"url": "https://github.com/StarKnightt/tiny-planet"
+	},
+	"post": "2120188077855613174",
+	"likes": 31,
+	"model": "Claude Fable 5.2",
+	"cover": "tiny-planet.webp",
+	"summary": {
+		"en": "A tiny planet you can walk around. Open source.",
+		"zh-CN": "一颗可以四处走动的小星球。开源。",
+		"zh-TW": "一顆可以四處走動的小星球。開源。",
+		"ja": "歩き回れる小さな惑星。オープンソース。",
+		"ko": "걸어 다닐 수 있는 작은 행성. 오픈 소스.",
+		"es": "Un planeta diminuto por el que puedes caminar. Código abierto.",
+		"fr": "Une minuscule planète à parcourir à pied. Open source.",
+		"de": "Ein winziger Planet zum Herumlaufen. Open Source.",
+		"pt-BR": "Um planetinha para você explorar a pé. Código aberto.",
+		"ru": "Крошечная планета, по которой можно гулять. Открытый исходный код."
+	}
+}

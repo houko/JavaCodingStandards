@@ -1,0 +1,27 @@
+{
+	"$schema": "../schema/game.schema.json",
+	"slug": "i-would-have-gotten-away-with-it",
+	"name": "I Would Have Gotten Away With It",
+	"creator": "emollick",
+	"genre": "Story & sim",
+	"link": {
+		"type": "play",
+		"url": "https://i-would-have-gotten-away-with-it.netlify.app/"
+	},
+	"post": "2119876449494540554",
+	"likes": 507,
+	"model": "Claude Fable 5.2",
+	"cover": "i-would-have-gotten-away-with-it.webp",
+	"summary": {
+		"en": "A reverse Scooby-Doo: you are the villain scaring off the meddling kids.",
+		"zh-CN": "反向《史酷比》：你是反派，负责吓跑那群多管闲事的孩子。",
+		"zh-TW": "反向《史酷比》：你是反派，負責嚇跑那群多管閒事的孩子。",
+		"ja": "逆スクービー・ドゥー。悪役になって子どもたちを怖がらせて追い払う。",
+		"ko": "거꾸로 된 스쿠비 두: 당신은 악당, 참견쟁이 아이들을 겁줘서 쫓아낸다.",
+		"es": "Un Scooby-Doo al revés: eres el villano que asusta a los chicos entrometidos.",
+		"fr": "Un Scooby-Doo inversé : vous êtes le méchant qui fait fuir les enfants trop curieux.",
+		"de": "Ein umgekehrtes Scooby-Doo: Du bist der Bösewicht und verscheuchst die neugierigen Kids.",
+		"pt-BR": "Um Scooby-Doo ao contrário: você é o vilão que assusta as crianças intrometidas.",
+		"ru": "Скуби-Ду наоборот: вы злодей, который распугивает любопытных детей."
+	}
+}

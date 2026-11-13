@@ -1,0 +1,27 @@
+{
+	"$schema": "../schema/game.schema.json",
+	"slug": "starry-night-rider",
+	"name": "Starry Night Rider",
+	"creator": "ebbyamir",
+	"genre": "Exploration",
+	"link": {
+		"type": "play",
+		"url": "https://starrynightrider.com"
+	},
+	"post": "2120284261089673376",
+	"likes": 10331,
+	"model": "Claude Fable 5.2",
+	"cover": "starry-night-rider.webp",
+	"summary": {
+		"en": "Ride with Van Gogh through his own Starry Night.",
+		"zh-CN": "跟着梵高骑行穿过他的《星月夜》。",
+		"zh-TW": "跟著梵谷騎行穿越他的《星夜》。",
+		"ja": "ゴッホと一緒に彼の「星月夜」の中を駆け抜ける。",
+		"ko": "반 고흐와 함께 그의 「별이 빛나는 밤」 속을 달린다.",
+		"es": "Cabalga con Van Gogh a través de su propia Noche estrellada.",
+		"fr": "Chevauchez avec Van Gogh à travers sa propre Nuit étoilée.",
+		"de": "Reite mit Van Gogh durch seine eigene Sternennacht.",
+		"pt-BR": "Cavalgue com Van Gogh pela sua própria Noite Estrelada.",
+		"ru": "Скачите вместе с Ван Гогом сквозь его «Звёздную ночь»."
+	}
+}

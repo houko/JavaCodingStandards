@@ -1,0 +1,27 @@
+{
+	"$schema": "../schema/game.schema.json",
+	"slug": "voxel-engine",
+	"name": "Voxel Engine",
+	"creator": "mattshumer_",
+	"genre": "Sandbox",
+	"link": {
+		"type": "play",
+		"url": "https://www.spawn.co/@mattshumer/voxel-engine"
+	},
+	"post": "2119870965106483384",
+	"likes": 731,
+	"model": "Claude Fable 5.2",
+	"cover": "voxel-engine.webp",
+	"summary": {
+		"en": "A voxel engine with sound, from a single prompt.",
+		"zh-CN": "带音效的体素引擎，一句提示生成。",
+		"zh-TW": "帶音效的體素引擎，一句提示生成。",
+		"ja": "1つのプロンプトから作られたサウンド付きボクセルエンジン。",
+		"ko": "프롬프트 하나로 만든 사운드 있는 복셀 엔진.",
+		"es": "Un motor de vóxeles con sonido, a partir de un solo prompt.",
+		"fr": "Un moteur voxel avec du son, à partir d’un seul prompt.",
+		"de": "Eine Voxel-Engine mit Sound, aus einem einzigen Prompt.",
+		"pt-BR": "Um motor de voxels com som, a partir de um único prompt.",
+		"ru": "Воксельный движок со звуком из одного промпта."
+	}
+}

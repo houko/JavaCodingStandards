@@ -1,60 +1,39 @@
-// The share card of an app's page: a 1200×630 PNG with the site's mark, the app's icon, name, author, platforms and screenshot, which link previews (X, Slack, Discord, Telegram, Facebook, LinkedIn…) show in place of the raw screenshot, whose height they would crop. One card serves all five languages, so it carries no copy of its own: the localized title and description sit next to it in the preview. renderSiteCard draws the site's own card, the default share image of every other page.
+// The share images, drawn with satori and rasterised with sharp. renderCard is a game's card: a 1200x630 PNG with the site's mark, the game's cover, name, creator, genre, model and like count, which link previews (X, Slack, Discord, Telegram…) show for the game's page. renderSiteCard is the site's own card, the share image of every other page, and renderBanner is the same scene at the README banner's size (scripts/banner.ts). One image serves all ten languages, so the cards carry no translated copy: the localized title and description sit next to them in the preview.
 //
-// Both cards wear the home page's decoration (src/styles/backdrop.css): the blue, violet and cyan aurora, the dot field, the skewed speed lanes, the gradient ring and halo around the featured surface and the platform chips floating on its edges.
+// Everything a card needs is on disk (the covers in public/covers, the mark in public/favicon.svg, the fonts in og/fonts), so a build makes no network request. The fonts cover Latin, as the games' names and their creators' handles do.
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { APPS, APP_PLATFORMS, type App, SITE_URL, byAdded, t } from '@awesome-nsgo/catalog';
+import { GAMES, GENRE_COLORS, type Game, SITE_NAME, SITE_URL, formatCount, t, topLiked } from '@vibe-arcade/catalog';
 import { type CSSProperties, type ReactNode, createElement } from 'react';
-import satori, { type Font, type FontWeight } from 'satori';
+import satori, { type Font } from 'satori';
 import sharp from 'sharp';
-import { type NotoIndex, WEIGHTS, fetchRetry, googleFace, notoFamily } from './noto';
 
 export const CARD_WIDTH = 1200;
 export const CARD_HEIGHT = 630;
+export const BANNER_WIDTH = 1280;
+export const BANNER_HEIGHT = 420;
 
-type Platform = (typeof APP_PLATFORMS)[number];
-
-// The original look's light tokens (src/styles/base.css); keep in step with them.
-const C = { bg: '#f7f9fe', line: '#e1e3e8', fg: '#0c0d10', fg2: '#5b606a', fg3: '#6b707a', blueInk: '#0062cc' };
-// The brand gradient of the lane under the home headline (--lane-a/b/c) and of the ring around the featured surface.
-const LANE = 'linear-gradient(90deg, #4da3ff, #8b6cff 55%, #22d3ee)';
-const RING = 'linear-gradient(135deg, #4da3ff, #8b6cff 50%, #22d3ee)';
-// The aurora (--aurora-1/2/3 of the light theme), a little stronger than the page's, as a share card is seen small.
-const AURORA = [
-	'radial-gradient(circle at 4% 0%, rgba(77, 163, 255, 0.34), rgba(77, 163, 255, 0) 46%)',
-	'radial-gradient(circle at 100% 14%, rgba(139, 108, 255, 0.26), rgba(139, 108, 255, 0) 44%)',
-	'radial-gradient(circle at 58% 118%, rgba(34, 211, 238, 0.24), rgba(34, 211, 238, 0) 48%)',
-].join(', ');
-// The short platform names the cards' chips use: one card serves every language, so these stay in English.
-const PLATFORM_LABEL: Record<Platform, string> = { mac: 'macOS', win: 'Windows', linux: 'Linux', ios: 'iOS', android: 'Android', web: 'Web', miniprogram: 'Mini' };
+// The site's dark tokens (src/styles.css); keep in step with them.
+const C = { bg: '#101012', surface: '#18181D', line: '#2A2A31', fg: '#F2F0E9', muted: '#A3A1AA', lime: '#D4FF3A' };
+// The page colour as an rgba() stem, for the gradients that fade a cover into it.
+const BG = '16, 16, 18';
 const HOST = new URL(SITE_URL).hostname;
+const DISPLAY = 'Bricolage Grotesque, Inter';
+const MONO = 'JetBrains Mono';
 
-// The device glyphs of src/styles/primitives.css (.pglyph), stroked in the link blue; keep in step with them.
-const GLYPH_PATHS: Record<Platform, string> = {
-	ios: "<rect x='7' y='2.5' width='10' height='19' rx='2.5'/><path d='M11 18.5h2'/>",
-	android: "<rect x='7' y='2.5' width='10' height='19' rx='2.5'/><path d='M11 18.5h2'/>",
-	mac: "<rect x='3' y='4.5' width='18' height='15' rx='2.5'/><path d='M3 9h18'/><circle cx='6' cy='6.8' r='.6'/>",
-	win: "<rect x='3' y='4.5' width='18' height='15' rx='2.5'/><path d='M3 9h18'/><circle cx='18' cy='6.8' r='.6'/>",
-	linux: "<rect x='3' y='4.5' width='18' height='15' rx='2.5'/><path d='M3 9h18'/><circle cx='18' cy='6.8' r='.6'/>",
-	web: "<circle cx='12' cy='12' r='9'/><path d='M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z'/>",
-	miniprogram: "<rect x='2.5' y='8' width='19' height='8' rx='4'/><circle cx='8' cy='12' r='1'/><path d='M12 9.5v5'/><circle cx='16' cy='12' r='1'/>",
-};
-const glyphUri = (p: Platform) => `data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='#0062cc' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'>${GLYPH_PATHS[p]}</svg>`)}`;
-
-const PAD = 72;
-// The app card's screenshot, at the 1.6 aspect most screenshots have, so cropping removes little. It runs off the card's right edge, so the card's right margin is the screenshot's.
-const SHOT_W = 680;
-const SHOT_H = 425;
-// The site card's fanned screenshots.
-const FAN_W = 400;
-const FAN_H = 250;
-const ICON = 104;
-// The icon on the featured tile of an app without a screenshot. The icons are 128 px (public/icons, the ai-logo avatars), so a larger icon would blur; the letter tile, drawn as shapes, takes the larger size.
-const TILE_ICON = 160;
-const TILE_LETTER = 230;
+const PAD = 64;
+// A game's cover on its card: the card's full height at the covers' 16:10, against the right edge.
+const COVER_H = CARD_HEIGHT;
+const COVER_W = (COVER_H * 16) / 10;
+// The site card's wall of covers: three columns of five, tilted, running off the right edge.
+const TILE_W = 264;
+const TILE_H = 165;
+const TILE_GAP = 14;
+const WALL_COLS = 3;
+const WALL_ROWS = 5;
 
 export interface Paths {
-	// The site's public/ directory, which holds /shots/, /icons/ and the site's mark (favicon.svg).
+	// The site's public/ directory, which holds /covers/ and the site's mark (favicon.svg).
 	publicDir: string;
 	// apps/web/og/fonts.
 	fontDir: string;
@@ -62,272 +41,165 @@ export interface Paths {
 
 const h = (type: string, style: CSSProperties, ...children: ReactNode[]) => createElement(type, { style }, ...children);
 const img = (src: string, width: number, height: number, style: CSSProperties = {}) => createElement('img', { src, width, height, style });
+// An absolutely placed box.
+const at = (left: number, top: number, style: CSSProperties, ...children: ReactNode[]) => h('div', { display: 'flex', position: 'absolute', left, top, ...style }, ...children);
 
-const dataUri = (png: Buffer) => `data:image/png;base64,${png.toString('base64')}`;
+// ---- images ----
 
-// Satori only reads PNG, JPEG and GIF, while the screenshots and icons are WebP (and one screenshot SVG), so every image goes through sharp first, at twice its displayed size for sharpness.
-export async function asPng(input: Buffer, width: number, height: number): Promise<string> {
-	return dataUri(await sharp(input, { density: 144 }).resize(width * 2, height * 2, { fit: 'cover', position: 'top' }).png().toBuffer());
-}
-
-// The site's mark (public/favicon.svg) as a PNG data URI at size, rasterised from the vector at the density that size needs (the SVG is drawn on a 32 unit grid), so it stays sharp at any size.
-export async function siteMark(publicDir: string, size: number): Promise<string> {
+// The site's mark (public/favicon.svg, drawn on a 64 unit grid) as a PNG data URI, rasterised from the vector at twice the size it is shown at. Its tile is the page colour, so on a card only the lime mark shows.
+async function siteMark(publicDir: string, size: number): Promise<string> {
 	const svg = await readFile(join(publicDir, 'favicon.svg'));
-	return dataUri(await sharp(svg, { density: Math.ceil((72 * size * 2) / 32) }).resize(size * 2, size * 2).png().toBuffer());
+	const png = await sharp(svg, { density: (72 * size * 2) / 64 }).resize(size * 2, size * 2).png().toBuffer();
+	return `data:image/png;base64,${png.toString('base64')}`;
 }
 
-// An image under public/ (a path such as /shots/x.webp) or on the ai-logo CDN.
-async function imageBytes(src: string, publicDir: string, slug: string): Promise<Buffer> {
-	if (src.startsWith('/')) return readFile(join(publicDir, src));
-	const res = await fetchRetry(src);
-	if (!res.ok) throw new Error(`share card for ${slug}: ${src} answered ${res.status}`);
-	return Buffer.from(await res.arrayBuffer());
+// A game's cover as a JPEG data URI at the given size: satori reads PNG and JPEG but not the covers' WebP. A game without a cover file gets none, and its card is drawn on the plain page colour.
+async function cover(game: Game, publicDir: string, width: number, height: number): Promise<string | undefined> {
+	const file = await readFile(join(publicDir, game.cover)).catch((err: NodeJS.ErrnoException) => {
+		if (err.code === 'ENOENT') return undefined;
+		throw err;
+	});
+	if (!file) return undefined;
+	const jpeg = await sharp(file).resize(Math.round(width), Math.round(height), { fit: 'cover' }).jpeg({ quality: 86 }).toBuffer();
+	return `data:image/jpeg;base64,${jpeg.toString('base64')}`;
 }
 
 // ---- fonts ----
 
-// Inter at 800 and 500 (SIL OFL, og/fonts/OFL-inter.txt). To fetch them again, ask Google Fonts' css2 API for `family=Inter:wght@500;800` with `curl -fsSL -A 'curl/8'` (the URL form googleFont in noto.ts builds): a client that is not a browser gets TrueType, which satori reads, and the two `src: url(…ttf)` entries it lists download as og/fonts/inter-500.ttf and inter-800.ttf.
-let latin: Promise<Font[]> | undefined;
-export function latinFonts(fontDir: string): Promise<Font[]> {
-	latin ??= Promise.all([
-		readFile(join(fontDir, 'inter-800.ttf')).then((data): Font => ({ name: 'Inter', data, weight: 800 })),
-		readFile(join(fontDir, 'inter-500.ttf')).then((data): Font => ({ name: 'Inter', data, weight: 500 })),
-	]);
-	return latin;
-}
-
-// The bundled fonts cover Latin only. Text in another script (an app named 留白, an author with a Korean name) is set in the matching Noto family (noto.ts), which the full CJK fonts, about 10 MB a weight, make too large to bundle whole: scripts/og-fonts.ts subsets the families to the characters the catalog holds, into og/fonts with noto.json. A character no subset holds yet, as in an app added since, is fetched from Google Fonts subset to just that text, and the build says to run the script again.
-let index: Promise<NotoIndex> | undefined;
-const notoIndex = (fontDir: string) => (index ??= readFile(join(fontDir, 'noto.json'), 'utf8').then((t) => JSON.parse(t) as NotoIndex));
-
-const extra = new Map<string, Promise<Font[]>>();
-function extraFonts(fontDir: string, code: string, segment: string): Promise<Font[]> {
-	const key = `${code}\n${segment}`;
-	let fonts = extra.get(key);
-	if (!fonts) extra.set(key, (fonts = loadExtraFonts(fontDir, code, segment)));
+// Bricolage Grotesque 800 for names and headlines, Inter 500 for text (and 800 where a name has a glyph Bricolage lacks) and JetBrains Mono 600 for the chips and figures, all SIL OFL (the OFL-*.txt files beside them). To fetch them again, ask Google Fonts' css2 API for `family=Bricolage+Grotesque:wght@800&family=Inter:wght@500;800&family=JetBrains+Mono:wght@600` with `curl -fsSL -A 'curl/8'`: a client that is not a browser gets static TrueType instances, which satori reads, where a browser gets the variable woff2 it cannot.
+const FONT_FILES: [string, string, 500 | 600 | 800][] = [
+	['Bricolage Grotesque', 'bricolage-grotesque-800.ttf', 800],
+	['Inter', 'inter-800.ttf', 800],
+	['Inter', 'inter-500.ttf', 500],
+	['JetBrains Mono', 'jetbrains-mono-600.ttf', 600],
+];
+let fonts: Promise<Font[]> | undefined;
+function loadFonts(fontDir: string): Promise<Font[]> {
+	fonts ??= Promise.all(FONT_FILES.map(async ([name, file, weight]): Promise<Font> => ({ name, data: await readFile(join(fontDir, file)), weight })));
 	return fonts;
 }
 
-async function loadExtraFonts(fontDir: string, code: string, segment: string): Promise<Font[]> {
-	// Colour emoji need SVG glyph images rather than a font; an emoji in a name is left out of the card.
-	if (code === 'emoji') return [];
-	const family = notoFamily(code, segment);
-	const local = (await notoIndex(fontDir))[family];
-	if (local && [...segment].every((ch) => !ch.trim() || local.text.includes(ch))) {
-		return Promise.all(WEIGHTS.map(async (weight): Promise<Font> => ({ name: family, data: await readFile(join(fontDir, local.files[String(weight)])), weight: weight as FontWeight })));
-	}
-	console.warn(`share card: og/fonts has no ${family} for ${JSON.stringify(segment)}, so it comes from Google Fonts; run node apps/web/scripts/og-fonts.ts to add it.`);
-	return Promise.all(WEIGHTS.map(async (weight): Promise<Font> => ({ name: family, data: await googleFace(family, weight, segment), weight: weight as FontWeight })));
-}
-
-async function draw(node: ReactNode, fontDir: string): Promise<Buffer> {
-	const svg = await satori(node, { width: CARD_WIDTH, height: CARD_HEIGHT, fonts: await latinFonts(fontDir), loadAdditionalAsset: (code, segment) => extraFonts(fontDir, code, segment) });
-	return sharp(Buffer.from(svg)).png().toBuffer();
+// The drawing as a PNG, scale times its drawn size. A palette PNG: at full quality it shows no banding on these dark scenes and is a quarter of the truecolour file (about 250 KB a card instead of 600 KB to 1.3 MB).
+async function draw(node: ReactNode, fontDir: string, width: number, height: number, scale = 1): Promise<Buffer> {
+	const svg = await satori(node, { width, height, fonts: await loadFonts(fontDir) });
+	return sharp(Buffer.from(svg), { density: 72 * scale }).png({ palette: true, quality: 100, effort: 7 }).toBuffer();
 }
 
 // ---- pieces ----
 
+// The mark and the site's name, as the page's header sets them.
+function brandRow(mark: string, size: number): ReactNode {
+	return h('div', { display: 'flex', alignItems: 'center' }, img(mark, size * 1.6, size * 1.6, { marginLeft: -size * 0.2, marginRight: size * 0.2 }), h('div', { display: 'flex', fontFamily: DISPLAY, fontSize: size, fontWeight: 800, letterSpacing: '-0.02em', color: C.fg }, SITE_NAME));
+}
+
+function chip(label: string, color: string, size: number): ReactNode {
+	return h('div', { display: 'flex', alignItems: 'center', height: size * 1.9, padding: `0 ${size * 0.8}px`, marginRight: size * 0.6, borderRadius: size, border: `2px solid ${color}`, backgroundColor: `rgba(${BG}, 0.72)`, color, fontFamily: MONO, fontSize: size, fontWeight: 600 }, label);
+}
+
+const HEART = `data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='${C.lime}'><path d='M12 21s-7.5-4.6-10-9.3C.3 8.300 2 4.500 5.800 4.500c2.200 0 3.600 1.200 4.400 2.400h3.600c.8-1.200 2.200-2.400 4.400-2.400 3.800 0 5.500 3.800 3.800 7.200C19.500 16.400 12 21 12 21z'/></svg>`)}`;
+
 // Long names step down so that two lines hold any name in the catalog.
 function nameSize(name: string): number {
-	// A CJK character is about twice as wide as a Latin one.
-	const len = [...name].reduce((n, ch) => n + (/[⺀-￯]/u.test(ch) ? 2 : 1), 0);
-	if (len <= 8) return 92;
-	if (len <= 12) return 76;
-	if (len <= 16) return 62;
-	return 52;
+	if (name.length <= 9) return 112;
+	if (name.length <= 14) return 92;
+	if (name.length <= 22) return 76;
+	return 62;
 }
 
-function letterTile(name: string, size: number): ReactNode {
-	return h('div', { display: 'flex', alignItems: 'center', justifyContent: 'center', width: size, height: size, borderRadius: size * 0.225, background: 'linear-gradient(135deg, #4da3ff, #0062cc)', color: '#ffffff', fontSize: size * 0.5, fontWeight: 800 }, name.charAt(0).toUpperCase());
-}
+// ---- a game's card ----
 
-function iconNode(icon: string | undefined, name: string, size: number): ReactNode {
-	return icon ? img(icon, size, size, { borderRadius: size * 0.225 }) : letterTile(name, size);
-}
-
-// An absolutely placed box.
-const at = (left: number, top: number, style: CSSProperties, ...children: ReactNode[]) => h('div', { display: 'flex', position: 'absolute', left, top, ...style }, ...children);
-
-// The page's backdrop: the aurora on the pale page colour, then the dot field, faded out towards the left where the text sits.
-function backdrop(): ReactNode[] {
-	return [
-		at(0, 0, { width: CARD_WIDTH, height: CARD_HEIGHT, backgroundColor: C.bg, backgroundImage: AURORA }),
-		at(0, 0, {
-			width: CARD_WIDTH,
-			height: CARD_HEIGHT,
-			backgroundImage: 'radial-gradient(circle, rgba(12, 13, 16, 0.13) 1.4px, rgba(12, 13, 16, 0) 1.7px)',
-			backgroundSize: '26px 26px',
-			maskImage: 'linear-gradient(100deg, rgba(0, 0, 0, 0) 28%, rgba(0, 0, 0, 1) 78%)',
-		}),
-	];
-}
-
-// The speed lanes (.streak, .backdrop-lane): skewed pills that brighten towards their head.
-function lane(left: number, top: number, width: number, height: number, opacity = 1): ReactNode {
-	return at(left, top, { width, height, borderRadius: height / 2, opacity, transform: 'skewX(-14deg)', backgroundImage: 'linear-gradient(90deg, rgba(77, 163, 255, 0), rgba(77, 163, 255, 0.6) 55%, rgba(139, 108, 255, 0.85))' });
-}
-
-// The soft light behind the featured surface (.glow-frame::after).
-function halo(left: number, top: number, width: number, height: number): ReactNode {
-	return at(left, top, { width, height, backgroundImage: 'radial-gradient(ellipse at center, rgba(110, 120, 255, 0.36) 0%, rgba(110, 120, 255, 0) 70%)' });
-}
-
-// A surface inside the brand gradient ring, with a deep, tinted shadow.
-function ringed(width: number, height: number, radius: number, ring: number, child: ReactNode, style: CSSProperties = {}): ReactNode {
+function card(game: Game, mark: string, shot: string | undefined): ReactNode {
 	return h(
 		'div',
-		{ display: 'flex', padding: ring, borderRadius: radius + ring, backgroundImage: RING, boxShadow: '0 40px 80px -28px rgba(46, 58, 160, 0.45)', ...style },
-		h('div', { display: 'flex', width, height, borderRadius: radius, overflow: 'hidden', backgroundColor: '#ffffff' }, child),
-	);
-}
-
-// A platform chip floating on the featured surface's edge (.float-chip).
-function chip(p: Platform, size = 1): ReactNode {
-	return h(
-		'div',
-		{ display: 'flex', alignItems: 'center', height: 46 * size, padding: `0 ${18 * size}px 0 ${14 * size}px`, borderRadius: 23 * size, backgroundColor: '#ffffff', border: '1px solid rgba(0, 98, 204, 0.16)', boxShadow: '0 14px 30px -12px rgba(30, 60, 140, 0.38)', color: C.fg, fontSize: 21 * size, fontWeight: 500 },
-		img(glyphUri(p), 22 * size, 22 * size, { marginRight: 9 * size }),
-		PLATFORM_LABEL[p],
-	);
-}
-
-// "Awesome NSGo" with NSGo in the link blue. Satori drops the space at the end of a text run, so the gap is a margin.
-function wordmark(size: number): ReactNode {
-	return h('div', { display: 'flex', fontSize: size, fontWeight: 800, letterSpacing: '-0.02em', color: C.fg }, 'Awesome', h('span', { marginLeft: size * 0.26, color: C.blueInk }, 'NSGo'));
-}
-
-function brandRow(mark: string): ReactNode {
-	return h('div', { display: 'flex', alignItems: 'center' }, img(mark, 42, 42, { borderRadius: 12, marginRight: 14 }), wordmark(27));
-}
-
-// The address with the lane before it.
-function hostRow(): ReactNode {
-	return h(
-		'div',
-		{ display: 'flex', alignItems: 'center', fontSize: 24, fontWeight: 800, color: C.blueInk },
-		h('div', { display: 'flex', width: 30, height: 10, marginRight: 14, borderRadius: 5, backgroundImage: LANE, transform: 'skewX(-14deg)' }),
-		HOST,
-	);
-}
-
-// ---- an app's card ----
-
-interface CardImages {
-	icon?: string;
-	shot?: string;
-	site: string;
-}
-
-// The chips' places around the featured surface: its top left corner, its bottom edge and its top right.
-const APP_CHIPS: [number, number][] = [
-	[500, 112],
-	[610, 548],
-	[960, 100],
-];
-
-function card(app: App, im: CardImages): ReactNode {
-	const platforms = app.platforms.slice(0, 3);
-	// With a screenshot, it runs off the card's right edge, tilted a little; without one, the icon (or letter tile) sits on a ringed, tilted tile.
-	const feature = im.shot
-		? [halo(500, 60, 760, 600), at(560, 130, { transform: 'rotate(-3deg)' }, ringed(SHOT_W, SHOT_H, 22, 3, img(im.shot, SHOT_W, SHOT_H + 40)))]
-		: [halo(560, 40, 600, 560), at(690, 135, { transform: 'rotate(-6deg)' }, ringed(340, 340, 64, 3, h('div', { display: 'flex', width: 340, height: 340, alignItems: 'center', justifyContent: 'center', backgroundImage: 'linear-gradient(160deg, #ffffff, #eef3ff)' }, iconNode(im.icon, app.name, im.icon ? TILE_ICON : TILE_LETTER))))];
-	const chips = im.shot ? APP_CHIPS : ([[600, 110], [640, 470], [960, 520]] as [number, number][]);
-	return h(
-		'div',
-		{ display: 'flex', position: 'relative', width: CARD_WIDTH, height: CARD_HEIGHT, overflow: 'hidden', fontFamily: 'Inter', color: C.fg },
-		...backdrop(),
-		lane(840, 52, 280, 12),
-		lane(930, 78, 150, 8, 0.6),
-		...feature,
-		...platforms.map((p, i) => at(chips[i][0], chips[i][1], {}, chip(p))),
+		{ display: 'flex', position: 'relative', width: CARD_WIDTH, height: CARD_HEIGHT, overflow: 'hidden', backgroundColor: C.bg, fontFamily: 'Inter', fontWeight: 500, color: C.fg },
+		shot ? at(CARD_WIDTH - COVER_W, 0, {}, img(shot, COVER_W, COVER_H)) : null,
+		// The cover fades into the page colour towards the left, where the text sits, and a little towards the bottom.
+		at(0, 0, { width: CARD_WIDTH, height: CARD_HEIGHT, backgroundImage: `linear-gradient(90deg, rgba(${BG}, 1) 0%, rgba(${BG}, 1) 22%, rgba(${BG}, 0.86) 44%, rgba(${BG}, 0.3) 74%, rgba(${BG}, 0.1) 100%)` }),
+		at(0, CARD_HEIGHT / 2, { width: CARD_WIDTH, height: CARD_HEIGHT / 2, backgroundImage: `linear-gradient(180deg, rgba(${BG}, 0) 0%, rgba(${BG}, 0.7) 100%)` }),
+		at(0, 0, { width: 10, height: CARD_HEIGHT, backgroundColor: C.lime }),
 		at(
 			PAD,
-			60,
-			{ flexDirection: 'column', width: 440, height: CARD_HEIGHT - 60 - 64 },
-			brandRow(im.site),
+			52,
+			{ flexDirection: 'column', width: 760, height: CARD_HEIGHT - 52 - 56 },
+			brandRow(mark, 30),
 			h('div', { display: 'flex', flexGrow: 1 }),
-			// The icon is shown here only beside a screenshot; without one it is the featured surface already.
-			im.shot ? h('div', { display: 'flex', padding: 5, marginBottom: 26, borderRadius: ICON * 0.225 + 5, backgroundColor: '#ffffff', boxShadow: '0 18px 36px -16px rgba(30, 60, 140, 0.45)', alignSelf: 'flex-start' }, iconNode(im.icon, app.name, ICON)) : null,
-			h('div', { display: 'flex', fontSize: nameSize(app.name), fontWeight: 800, lineHeight: 1.04, letterSpacing: '-0.04em' }, app.name),
-			h('div', { display: 'flex', marginTop: 18, width: 120, height: 12, borderRadius: 6, backgroundImage: LANE, transform: 'skewX(-14deg)' }),
-			h('div', { display: 'flex', marginTop: 18, fontSize: 30, fontWeight: 500, color: C.fg2 }, `by ${app.author}`),
-			h('div', { display: 'flex', flexGrow: 1 }),
-			hostRow(),
-		),
-	);
-}
-
-export async function renderCard(app: App, paths: Paths): Promise<Buffer> {
-	const [icon, shot, site] = await Promise.all([
-		app.icon ? imageBytes(app.icon, paths.publicDir, app.slug).then((b) => asPng(b, TILE_ICON, TILE_ICON)) : undefined,
-		app.image ? imageBytes(app.image, paths.publicDir, app.slug).then((b) => asPng(b, SHOT_W, SHOT_H + 40)) : undefined,
-		siteMark(paths.publicDir, 42),
-	]);
-	return draw(card(app, { icon, shot, site }), paths.fontDir);
-}
-
-// ---- the site's card ----
-
-// The fanned screenshots' places, back to front, and the chips around them.
-const FAN: { left: number; top: number; rotate: number }[] = [
-	{ left: 650, top: 70, rotate: -10 },
-	{ left: 880, top: 280, rotate: 9 },
-	{ left: 700, top: 170, rotate: -2 },
-];
-const SITE_CHIPS: [Platform, number, number][] = [
-	['mac', 600, 44],
-	['ios', 1030, 128],
-	['web', 640, 440],
-	['win', 1000, 552],
-];
-
-// The site's own share card, the default image of every page but an app's: the home headline with its lane, the English lead and the address on the left, and the newest apps' screenshots fanned on the right.
-function siteCard(site: string, shots: string[]): ReactNode {
-	const en = t('en');
-	// The newest screenshot is drawn last, at the front.
-	const fan = shots.map((s, i) => {
-		const f = FAN[FAN.length - shots.length + i];
-		const front = i === shots.length - 1;
-		const surface = img(s, FAN_W, FAN_H + 30);
-		return at(f.left, f.top, { transform: `rotate(${f.rotate}deg)` }, front ? ringed(FAN_W, FAN_H, 18, 3, surface) : h('div', { display: 'flex', width: FAN_W + 8, height: FAN_H + 8, padding: 4, borderRadius: 22, backgroundColor: '#ffffff', boxShadow: '0 30px 60px -26px rgba(46, 58, 160, 0.4)' }, h('div', { display: 'flex', width: FAN_W, height: FAN_H, borderRadius: 18, overflow: 'hidden' }, surface)));
-	});
-	return h(
-		'div',
-		{ display: 'flex', position: 'relative', width: CARD_WIDTH, height: CARD_HEIGHT, overflow: 'hidden', fontFamily: 'Inter', color: C.fg },
-		...backdrop(),
-		lane(880, 34, 300, 12),
-		lane(960, 60, 170, 8, 0.6),
-		halo(600, 40, 640, 600),
-		...fan,
-		...SITE_CHIPS.map(([p, left, top]) => at(left, top, {}, chip(p, 0.92))),
-		at(
-			PAD,
-			60,
-			{ flexDirection: 'column', width: 560, height: CARD_HEIGHT - 60 - 64 },
-			brandRow(site),
-			h('div', { display: 'flex', flexGrow: 1 }),
-			h('div', { display: 'flex', fontSize: 64, fontWeight: 800, lineHeight: 1.06, letterSpacing: '-0.045em' }, en.h1_1),
-			// The second phrase over its lane, as the home headline sets it (.lane-under).
+			h('div', { display: 'flex' }, chip(game.genre, GENRE_COLORS[game.genre], 20), chip(game.model, C.fg, 20)),
+			h('div', { display: 'flex', marginTop: 22, fontFamily: DISPLAY, fontSize: nameSize(game.name), fontWeight: 800, lineHeight: 1, letterSpacing: '-0.035em' }, game.name),
 			h(
 				'div',
-				{ display: 'flex', position: 'relative', alignSelf: 'flex-start', marginTop: 4, fontSize: 64, fontWeight: 800, lineHeight: 1.06, letterSpacing: '-0.045em' },
-				at(-4, 46, { width: '104%', height: 20, borderRadius: 10, opacity: 0.55, backgroundImage: LANE, transform: 'skewX(-14deg)' }),
-				h('div', { display: 'flex' }, en.h1_2),
+				{ display: 'flex', alignItems: 'center', marginTop: 24, fontSize: 32 },
+				h('div', { display: 'flex', color: C.muted }, `@${game.creator}`),
+				game.likes ? h('div', { display: 'flex', alignItems: 'center', marginLeft: 28, fontFamily: MONO, fontWeight: 600, fontSize: 30, color: C.lime }, img(HEART, 30, 30, { marginRight: 10 }), formatCount(game.likes, 'en')) : null,
 			),
-			h('div', { display: 'flex', marginTop: 26, fontSize: 24, fontWeight: 500, lineHeight: 1.45, color: C.fg2 }, en.hero_p),
-			h('div', { display: 'flex', flexGrow: 1 }),
-			hostRow(),
 		),
 	);
 }
 
-// The newest apps with a raster screenshot, up to the fan's three, oldest first.
-const fanApps = () =>
-	APPS.filter((a) => a.image && !a.image.endsWith('.svg'))
-		.toSorted(byAdded)
-		.slice(-FAN.length);
+export async function renderCard(game: Game, paths: Paths): Promise<Buffer> {
+	const [mark, shot] = await Promise.all([siteMark(paths.publicDir, 48), cover(game, paths.publicDir, COVER_W, COVER_H)]);
+	return draw(card(game, mark, shot), paths.fontDir, CARD_WIDTH, CARD_HEIGHT);
+}
+
+// ---- the site's card and the README banner ----
+
+// The most-liked games' covers as a tilted wall, its top left corner at left, top before the tilt. The middle column hangs lower, as a wall of posters would.
+function wall(left: number, top: number, shots: string[]): ReactNode {
+	const columns = Array.from({ length: WALL_COLS }, (_, c) => shots.filter((_, i) => i % WALL_COLS === c));
+	return at(
+		left,
+		top,
+		{ transform: 'rotate(-9deg)' },
+		...columns.map((column, c) =>
+			h(
+				'div',
+				{ display: 'flex', flexDirection: 'column', marginRight: TILE_GAP, marginTop: c % 2 ? TILE_H / 2 : 0 },
+				...column.map((s) => h('div', { display: 'flex', width: TILE_W, height: TILE_H, marginBottom: TILE_GAP, borderRadius: 14, overflow: 'hidden', border: `1px solid ${C.line}`, backgroundColor: C.surface }, img(s, TILE_W, TILE_H))),
+			),
+		),
+	);
+}
+
+// The scene both share: the mark, the site's name, the English headline with its lime caret and the address on the left, the wall of covers on the right, fading into the page colour under the text.
+function scene(width: number, height: number, mark: string, shots: string[], headline: number): ReactNode {
+	const wallHeight = WALL_ROWS * (TILE_H + TILE_GAP) + TILE_H / 2;
+	const words = t('en').h1.split(' ');
+	return h(
+		'div',
+		{ display: 'flex', position: 'relative', width, height, overflow: 'hidden', backgroundColor: C.bg, fontFamily: 'Inter', fontWeight: 500, color: C.fg },
+		wall(width * 0.5, (height - wallHeight) / 2, shots),
+		at(0, 0, { width, height, backgroundImage: `linear-gradient(90deg, rgba(${BG}, 1) 0%, rgba(${BG}, 1) 40%, rgba(${BG}, 0.74) 54%, rgba(${BG}, 0.16) 76%, rgba(${BG}, 0.1) 100%)` }),
+		at(0, 0, { width: 10, height, backgroundColor: C.lime }),
+		at(
+			PAD,
+			height * 0.085,
+			{ flexDirection: 'column', width: width * 0.6, height: height * 0.83 },
+			brandRow(mark, 30),
+			h('div', { display: 'flex', flexGrow: 1 }),
+			// The headline with the page's lime caret after it. Satori lays a text run and a box beside it out as two blocks, which would put the caret on a line of its own, so each word is a box and the caret sits in the last one; the gaps are margins, as satori drops the space at the end of a run.
+			h(
+				'div',
+				{ display: 'flex', flexWrap: 'wrap', maxWidth: headline * 7.2, fontFamily: DISPLAY, fontSize: headline, fontWeight: 800, lineHeight: 0.98, letterSpacing: '-0.04em' },
+				...words.map((word, i) => h('div', { display: 'flex', marginRight: headline * 0.22 }, word, i === words.length - 1 ? h('span', { color: C.lime }, '_') : null)),
+			),
+			h('div', { display: 'flex', flexGrow: 1 }),
+			h('div', { display: 'flex', alignItems: 'center', fontFamily: MONO, fontWeight: 600, fontSize: 24 }, h('div', { display: 'flex', color: C.lime }, HOST), h('div', { display: 'flex', marginLeft: 22, color: C.muted }, `${GAMES.length} ${t('en').statGames}`)),
+		),
+	);
+}
+
+async function sceneImages(paths: Paths): Promise<[string, string[]]> {
+	// Twice the tiles' drawn size, as the banner is rasterised at 2x.
+	const shots = await Promise.all(topLiked(GAMES.length).map((g) => cover(g, paths.publicDir, TILE_W * 2, TILE_H * 2)));
+	return [await siteMark(paths.publicDir, 48), shots.filter((s) => s !== undefined).slice(0, WALL_COLS * WALL_ROWS)];
+}
 
 export async function renderSiteCard(paths: Paths): Promise<Buffer> {
-	const [site, shots] = await Promise.all([siteMark(paths.publicDir, 42), Promise.all(fanApps().map((a) => imageBytes(a.image as string, paths.publicDir, a.slug).then((b) => asPng(b, FAN_W, FAN_H + 30))))]);
-	return draw(siteCard(site, shots), paths.fontDir);
+	const [mark, shots] = await sceneImages(paths);
+	return draw(scene(CARD_WIDTH, CARD_HEIGHT, mark, shots, 100), paths.fontDir, CARD_WIDTH, CARD_HEIGHT);
+}
+
+// The repository's banner (.github/assets/banner.png), at twice its drawn size for sharp display in the README.
+export async function renderBanner(paths: Paths): Promise<Buffer> {
+	const [mark, shots] = await sceneImages(paths);
+	return draw(scene(BANNER_WIDTH, BANNER_HEIGHT, mark, shots, 84), paths.fontDir, BANNER_WIDTH, BANNER_HEIGHT, 2);
 }

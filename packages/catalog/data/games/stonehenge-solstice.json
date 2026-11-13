@@ -1,0 +1,27 @@
+{
+	"$schema": "../schema/game.schema.json",
+	"slug": "stonehenge-solstice",
+	"name": "Stonehenge Solstice",
+	"creator": "MeltTheManual",
+	"genre": "Puzzle & toys",
+	"link": {
+		"type": "play",
+		"url": "https://meltthemanual.github.io/stonehenge-solstice/"
+	},
+	"post": "2119926820963532984",
+	"likes": 3,
+	"model": "Claude Fable 5.2",
+	"cover": "stonehenge-solstice.webp",
+	"summary": {
+		"en": "Stonehenge in one HTML file: grass, shadows and the solstice sun path.",
+		"zh-CN": "一个 HTML 文件里的巨石阵：草地、阴影与夏至太阳轨迹。",
+		"zh-TW": "一個 HTML 檔裡的巨石陣：草地、陰影與夏至太陽軌跡。",
+		"ja": "HTML1枚のストーンヘンジ。草、影、夏至の太陽の軌道。",
+		"ko": "HTML 파일 하나에 담은 스톤헨지: 풀, 그림자, 하지 태양의 궤적.",
+		"es": "Stonehenge en un solo HTML: hierba, sombras y la trayectoria del sol en el solsticio.",
+		"fr": "Stonehenge dans un seul HTML : herbe, ombres et course du soleil au solstice.",
+		"de": "Stonehenge in einer HTML-Datei: Gras, Schatten und der Sonnenlauf zur Sonnenwende.",
+		"pt-BR": "Stonehenge num único HTML: grama, sombras e o caminho do sol no solstício.",
+		"ru": "Стоунхендж в одном HTML: трава, тени и путь солнца в день солнцестояния."
+	}
+}

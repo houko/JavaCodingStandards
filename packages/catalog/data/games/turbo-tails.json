@@ -1,0 +1,27 @@
+{
+	"$schema": "../schema/game.schema.json",
+	"slug": "turbo-tails",
+	"name": "Turbo Tails",
+	"creator": "petergyang",
+	"genre": "Racing",
+	"link": {
+		"type": "play",
+		"url": "https://turbo-tails.vercel.app"
+	},
+	"post": "2119901658394358005",
+	"likes": 138,
+	"model": "Claude Fable 5.2",
+	"cover": "turbo-tails.webp",
+	"summary": {
+		"en": "3D kart racer with six racers, drifting, ramps, items and multiplayer.",
+		"zh-CN": "3D 卡丁车：六名车手、漂移、跳台、道具，支持多人。",
+		"zh-TW": "3D 卡丁車：六名車手、甩尾、跳台、道具，支援多人。",
+		"ja": "6人のレーサー、ドリフト、ジャンプ台、アイテム、マルチプレイ対応の3Dカートレース。",
+		"ko": "레이서 6명, 드리프트, 점프대, 아이템, 멀티플레이를 갖춘 3D 카트 레이싱.",
+		"es": "Karts en 3D con seis pilotos, derrapes, rampas, objetos y multijugador.",
+		"fr": "Course de karts en 3D : six pilotes, dérapages, tremplins, objets et multijoueur.",
+		"de": "3D-Kartrennen mit sechs Fahrern, Drifts, Rampen, Items und Multiplayer.",
+		"pt-BR": "Kart 3D com seis pilotos, drift, rampas, itens e multijogador.",
+		"ru": "3D-картинг: шесть гонщиков, дрифт, трамплины, предметы и мультиплеер."
+	}
+}

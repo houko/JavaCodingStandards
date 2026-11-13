@@ -1,0 +1,27 @@
+{
+	"$schema": "../schema/game.schema.json",
+	"slug": "childhood-rug-racer",
+	"name": "Childhood Rug Racer",
+	"creator": "noclipepe",
+	"genre": "Racing",
+	"link": {
+		"type": "play",
+		"url": "https://noclipepe.pages.dev/rug/"
+	},
+	"post": "2119728047754547326",
+	"likes": 410,
+	"model": "Claude Fable 5.2",
+	"cover": "childhood-rug-racer.webp",
+	"summary": {
+		"en": "Race toy cars across a childhood play rug.",
+		"zh-CN": "在童年的游戏地毯上开玩具车赛跑。",
+		"zh-TW": "在童年的遊戲地毯上開玩具車賽跑。",
+		"ja": "子どもの頃の遊びマットの上でおもちゃの車レース。",
+		"ko": "어린 시절 놀이 매트 위에서 장난감 자동차 레이스.",
+		"es": "Carreras de coches de juguete sobre una alfombra infantil.",
+		"fr": "Course de petites voitures sur un tapis de jeu d’enfance.",
+		"de": "Spielzeugautorennen auf einem Kinderspielteppich.",
+		"pt-BR": "Corrida de carrinhos sobre um tapete de brincar da infância.",
+		"ru": "Гонки игрушечных машинок по детскому игровому коврику."
+	}
+}

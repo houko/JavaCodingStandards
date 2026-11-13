@@ -1,0 +1,27 @@
+{
+	"$schema": "../schema/game.schema.json",
+	"slug": "dead-headway",
+	"name": "Dead Headway",
+	"creator": "AugustCastilIo",
+	"genre": "Action",
+	"link": {
+		"type": "play",
+		"url": "https://dead-headway.vercel.app"
+	},
+	"post": "2120628693420904489",
+	"likes": 22,
+	"model": "Claude Fable 5.2",
+	"cover": "dead-headway.webp",
+	"summary": {
+		"en": "A short game built for speedrunning.",
+		"zh-CN": "专为速通打造的小游戏。",
+		"zh-TW": "專為速通打造的小遊戲。",
+		"ja": "スピードラン向けの短いゲーム。",
+		"ko": "스피드런용으로 만든 짧은 게임.",
+		"es": "Un juego corto pensado para speedruns.",
+		"fr": "Un petit jeu pensé pour le speedrun.",
+		"de": "Ein kurzes Spiel für Speedruns.",
+		"pt-BR": "Um jogo curto feito para speedrun.",
+		"ru": "Короткая игра для спидранов."
+	}
+}

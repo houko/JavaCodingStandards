@@ -1,0 +1,27 @@
+{
+	"$schema": "../schema/game.schema.json",
+	"slug": "skyflare",
+	"name": "Skyflare",
+	"creator": "AugustCastilIo",
+	"genre": "Shooter",
+	"link": {
+		"type": "play",
+		"url": "https://skyflare-game.vercel.app"
+	},
+	"post": "2120290751502581879",
+	"likes": 129,
+	"model": "Claude Fable 5.2",
+	"cover": "skyflare.webp",
+	"summary": {
+		"en": "A fighter-jet game made in three hours.",
+		"zh-CN": "三小时做出来的战斗机游戏。",
+		"zh-TW": "三小時做出來的戰鬥機遊戲。",
+		"ja": "3時間で作った戦闘機ゲーム。",
+		"ko": "3시간 만에 만든 전투기 게임.",
+		"es": "Un juego de cazas hecho en tres horas.",
+		"fr": "Un jeu d’avion de chasse fait en trois heures.",
+		"de": "Ein Kampfjet-Spiel, gebaut in drei Stunden.",
+		"pt-BR": "Um jogo de caça feito em três horas.",
+		"ru": "Игра про истребитель, сделанная за три часа."
+	}
+}

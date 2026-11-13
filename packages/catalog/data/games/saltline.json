@@ -1,0 +1,44 @@
+{
+	"$schema": "../schema/game.schema.json",
+	"slug": "saltline",
+	"name": "Saltline",
+	"creator": "felixrieseberg",
+	"genre": "Shooter",
+	"link": {
+		"type": "play",
+		"url": "https://claude.ai/artifact/BGY1SztrAYcJQHSsnHHGmp"
+	},
+	"post": "2119925633564463609",
+	"likes": 14391,
+	"model": "Claude Fable 5.2",
+	"cover": "saltline.webp",
+	"summary": {
+		"en": "One-shot FPS. Models, sounds and textures all generated in code, no human feedback.",
+		"zh-CN": "一次性提示生成的 FPS。模型、音效、纹理全部用代码生成，无人工反馈。",
+		"zh-TW": "一次性提示生成的 FPS。模型、音效、材質全部用程式碼生成，無人工回饋。",
+		"ja": "ワンショットで作られたFPS。モデル・音・テクスチャはすべてコード生成、人の手直しなし。",
+		"ko": "원샷 프롬프트로 만든 FPS. 모델, 사운드, 텍스처 모두 코드로 생성, 사람 피드백 없음.",
+		"es": "FPS hecho con prompts de una sola vez. Modelos, sonidos y texturas generados en código, sin feedback humano.",
+		"fr": "Un FPS fait en prompts uniques. Modèles, sons et textures générés en code, sans retour humain.",
+		"de": "Ein One-Shot-Shooter. Modelle, Sounds und Texturen komplett im Code erzeugt, ohne menschliches Feedback.",
+		"pt-BR": "Um FPS feito com prompts únicos. Modelos, sons e texturas gerados em código, sem feedback humano.",
+		"ru": "FPS из одноразовых промптов. Модели, звуки и текстуры сгенерированы кодом, без участия человека."
+	},
+	"pitch": {
+		"en": "A first-person shooter built from one-shot prompts with no human feedback. Models, sounds and textures are all generated in code.",
+		"zh-CN": "一款由一次性提示、无人工反馈做出的第一人称射击游戏。模型、音效和纹理全部由代码生成。",
+		"zh-TW": "一款由一次性提示、無人工回饋做出的第一人稱射擊遊戲。模型、音效和材質全部由程式碼生成。",
+		"ja": "人のフィードバックなし、ワンショットのプロンプトで作られたFPS。モデル・サウンド・テクスチャはすべてコードで生成。",
+		"ko": "사람의 피드백 없이 원샷 프롬프트로 만든 1인칭 슈터. 모델, 사운드, 텍스처 모두 코드로 생성했습니다.",
+		"es": "Un shooter en primera persona creado con prompts únicos, sin feedback humano. Modelos, sonidos y texturas generados en código.",
+		"fr": "Un FPS construit à partir de prompts uniques, sans retour humain. Modèles, sons et textures sont tous générés en code.",
+		"de": "Ein Ego-Shooter aus One-Shot-Prompts, ohne menschliches Feedback. Modelle, Sounds und Texturen sind komplett im Code erzeugt.",
+		"pt-BR": "Um FPS criado com prompts únicos, sem feedback humano. Modelos, sons e texturas foram todos gerados em código.",
+		"ru": "Шутер от первого лица, созданный одноразовыми промптами без участия человека. Модели, звуки и текстуры сгенерированы кодом."
+	},
+	"featured": {
+		"apiCost": "~$550",
+		"buildTime": "8h",
+		"outputTokens": 2700000
+	}
+}

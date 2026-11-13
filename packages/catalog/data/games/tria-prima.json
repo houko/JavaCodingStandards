@@ -1,0 +1,27 @@
+{
+	"$schema": "../schema/game.schema.json",
+	"slug": "tria-prima",
+	"name": "Tria Prima",
+	"creator": "winchxyz",
+	"genre": "Story & sim",
+	"link": {
+		"type": "play",
+		"url": "https://winchxyz.github.io/tria-prima/"
+	},
+	"post": "2120078399482020160",
+	"likes": 4,
+	"model": "Claude Fable 5.2",
+	"cover": "tria-prima.webp",
+	"summary": {
+		"en": "Dark-fantasy alchemy: five missions on an open-world island.",
+		"zh-CN": "黑暗奇幻炼金术：开放世界岛屿上的五个任务。",
+		"zh-TW": "黑暗奇幻鍊金術：開放世界島嶼上的五個任務。",
+		"ja": "ダークファンタジーの錬金術。オープンワールドの島で5つのミッション。",
+		"ko": "다크 판타지 연금술: 오픈월드 섬에서 다섯 개의 미션.",
+		"es": "Alquimia de fantasía oscura: cinco misiones en una isla de mundo abierto.",
+		"fr": "Alchimie dark fantasy : cinq missions sur une île en monde ouvert.",
+		"de": "Dark-Fantasy-Alchemie: fünf Missionen auf einer Open-World-Insel.",
+		"pt-BR": "Alquimia de fantasia sombria: cinco missões numa ilha de mundo aberto.",
+		"ru": "Алхимия в стиле тёмного фэнтези: пять миссий на острове с открытым миром."
+	}
+}

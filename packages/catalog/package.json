@@ -1,9 +1,9 @@
 {
-	"name": "@awesome-nsgo/catalog",
+	"name": "@vibe-arcade/catalog",
 	"version": "0.0.0",
 	"private": true,
 	"type": "module",
-	"description": "Ecosystem data, UI copy and search shared by the site",
+	"description": "The games, the UI copy in ten languages and the site constants shared by the site",
 	"exports": {
 		".": "./src/index.ts"
 	},

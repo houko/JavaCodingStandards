@@ -1,0 +1,27 @@
+{
+	"$schema": "../schema/game.schema.json",
+	"slug": "hogwarts-royale",
+	"name": "Hogwarts Royale",
+	"creator": "mattshumer_",
+	"genre": "Action",
+	"link": {
+		"type": "play",
+		"url": "https://www.spawn.co/@mattshumer/hogwarts-royale"
+	},
+	"post": "2119872098306810226",
+	"likes": 310,
+	"model": "Claude Fable 5.2",
+	"cover": "hogwarts-royale.webp",
+	"summary": {
+		"en": "A wizard-school battle royale from a one-line prompt.",
+		"zh-CN": "一句提示生成的魔法学院大逃杀。",
+		"zh-TW": "一句提示生成的魔法學院大逃殺。",
+		"ja": "1行のプロンプトから生まれた魔法学校バトロワ。",
+		"ko": "한 줄 프롬프트로 만든 마법 학교 배틀로열.",
+		"es": "Un battle royale en una escuela de magia, a partir de un prompt de una línea.",
+		"fr": "Un battle royale dans une école de sorciers, à partir d’un prompt d’une ligne.",
+		"de": "Ein Battle Royale an einer Zauberschule, aus einem Einzeiler-Prompt.",
+		"pt-BR": "Um battle royale numa escola de magia, a partir de um prompt de uma linha.",
+		"ru": "Королевская битва в школе магии из однострочного промпта."
+	}
+}

@@ -5,6 +5,13 @@ on:
   push:
     branches: [main]
 
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   check:
     runs-on: ubuntu-latest
@@ -16,11 +23,6 @@ jobs:
           node-version: 24
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - name: Install image tools
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq --no-install-recommends imagemagick webp fonts-dejavu-core
-          convert -list format | grep -qi '^ *WEBP' || { echo "::error::ImageMagick has no WebP support"; exit 1; }
       - run: pnpm typecheck
       - run: pnpm test
       - run: pnpm build

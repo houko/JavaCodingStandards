@@ -1,0 +1,27 @@
+{
+	"$schema": "../schema/game.schema.json",
+	"slug": "roost",
+	"name": "Roost",
+	"creator": "tejas3732",
+	"genre": "Racing",
+	"link": {
+		"type": "play",
+		"url": "https://claude.ai/artifact/DLnFodkTwvawCNwurDmSZK"
+	},
+	"post": "2120091513657139549",
+	"likes": 6,
+	"model": "Claude Fable 5.2",
+	"cover": "roost.webp",
+	"summary": {
+		"en": "Dirt-bike racing with AI rivals, nitro and a handlebar camera.",
+		"zh-CN": "越野摩托赛车：AI 对手、氮气加速、车把视角。",
+		"zh-TW": "越野機車賽車：AI 對手、氮氣加速、車把視角。",
+		"ja": "AIライバル、ニトロ、ハンドル視点のダートバイクレース。",
+		"ko": "AI 라이벌, 니트로, 핸들바 카메라가 있는 오프로드 바이크 레이싱.",
+		"es": "Carreras de motocross con rivales IA, nitro y cámara en el manillar.",
+		"fr": "Course de moto-cross avec rivaux IA, nitro et caméra sur le guidon.",
+		"de": "Dirtbike-Rennen mit KI-Gegnern, Nitro und Lenkerkamera.",
+		"pt-BR": "Corrida de motocross com rivais de IA, nitro e câmera no guidão.",
+		"ru": "Мотокросс с ИИ-соперниками, нитро и камерой на руле."
+	}
+}

@@ -1,0 +1,27 @@
+{
+	"$schema": "../schema/game.schema.json",
+	"slug": "mirror-earth",
+	"name": "Mirror Earth",
+	"creator": "mattshumer_",
+	"genre": "Sandbox",
+	"link": {
+		"type": "play",
+		"url": "https://www.spawn.co/@mattshumer/earth"
+	},
+	"post": "2119877065701036047",
+	"likes": 2372,
+	"model": "Claude Fable 5.2",
+	"cover": "mirror-earth.webp",
+	"summary": {
+		"en": "A destructible game world of the whole planet, with weather that matches real Earth.",
+		"zh-CN": "整个地球都是可破坏的游戏世界，天气与真实地球同步。",
+		"zh-TW": "整個地球都是可破壞的遊戲世界，天氣與真實地球同步。",
+		"ja": "地球まるごと破壊できるゲーム世界。天気は現実の地球と連動。",
+		"ko": "지구 전체가 부술 수 있는 게임 세계. 날씨는 실제 지구와 동기화.",
+		"es": "Un mundo de juego destructible del planeta entero, con el clima real de la Tierra.",
+		"fr": "Un monde de jeu destructible à l’échelle de la planète, avec la météo réelle de la Terre.",
+		"de": "Eine zerstörbare Spielwelt des ganzen Planeten, mit dem echten Wetter der Erde.",
+		"pt-BR": "Um mundo de jogo destrutível do planeta inteiro, com o clima real da Terra.",
+		"ru": "Разрушаемый игровой мир размером с планету, с реальной погодой Земли."
+	}
+}

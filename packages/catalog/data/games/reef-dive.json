@@ -1,0 +1,27 @@
+{
+	"$schema": "../schema/game.schema.json",
+	"slug": "reef-dive",
+	"name": "Reef Dive",
+	"creator": "boona11",
+	"genre": "Exploration",
+	"link": {
+		"type": "play",
+		"url": "https://wavedash.com/games/reef-dive"
+	},
+	"post": "2120482516733702472",
+	"likes": 9,
+	"model": "Claude Fable 5.2",
+	"cover": "reef-dive.webp",
+	"summary": {
+		"en": "Dive a coral reef, built with Three.js.",
+		"zh-CN": "潜入珊瑚礁，用 Three.js 打造。",
+		"zh-TW": "潛入珊瑚礁，用 Three.js 打造。",
+		"ja": "Three.jsで作ったサンゴ礁ダイビング。",
+		"ko": "Three.js로 만든 산호초 다이빙.",
+		"es": "Bucea en un arrecife de coral, hecho con Three.js.",
+		"fr": "Plongez dans un récif corallien, fait avec Three.js.",
+		"de": "Tauche durch ein Korallenriff, gebaut mit Three.js.",
+		"pt-BR": "Mergulhe num recife de coral, feito com Three.js.",
+		"ru": "Погружение к коралловому рифу, сделано на Three.js."
+	}
+}

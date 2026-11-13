@@ -1,0 +1,27 @@
+{
+	"$schema": "../schema/game.schema.json",
+	"slug": "feed-the-backrooms",
+	"name": "Feed the Backrooms",
+	"creator": "LexnLin",
+	"genre": "Story & sim",
+	"link": {
+		"type": "play",
+		"url": "https://feed-backrooms.vercel.app"
+	},
+	"post": "2119966127149429093",
+	"likes": 93,
+	"model": "Claude Fable 5.2",
+	"cover": "feed-the-backrooms.webp",
+	"summary": {
+		"en": "Play the monster and catch people lost in the Backrooms.",
+		"zh-CN": "扮演怪物，抓捕迷失在后室的人。",
+		"zh-TW": "扮演怪物，抓捕迷失在後室的人。",
+		"ja": "怪物になって、バックルームに迷い込んだ人を捕まえる。",
+		"ko": "괴물이 되어 백룸에서 길 잃은 사람들을 잡아라.",
+		"es": "Sé el monstruo y atrapa a quienes se pierden en los Backrooms.",
+		"fr": "Incarnez le monstre et attrapez ceux qui se perdent dans les Backrooms.",
+		"de": "Spiel das Monster und fang Menschen, die sich in den Backrooms verirrt haben.",
+		"pt-BR": "Seja o monstro e capture quem se perde nos Backrooms.",
+		"ru": "Станьте монстром и ловите тех, кто заблудился в Закулисье."
+	}
+}

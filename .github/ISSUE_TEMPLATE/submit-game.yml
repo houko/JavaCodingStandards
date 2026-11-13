@@ -1,0 +1,90 @@
+name: Submit a game
+description: Suggest a game that was built mostly with an AI model and shared on X.
+title: 'Game: '
+labels: [submission]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for the suggestion. You do not have to be the creator. A curator checks each submission, picks the cover from the post and writes the entry in every site language.
+  - type: input
+    id: name
+    attributes:
+      label: Game name
+      description: As its creator writes it.
+      placeholder: Saltline
+    validations:
+      required: true
+  - type: input
+    id: creator
+    attributes:
+      label: Creator's X handle
+      description: The account that posted the game, with or without the @.
+      placeholder: '@felixrieseberg'
+    validations:
+      required: true
+  - type: input
+    id: post
+    attributes:
+      label: X post URL
+      description: The creator's original post about the game. Likes are counted from it and the cover is a frame from it.
+      placeholder: https://x.com/felixrieseberg/status/2119925633564463609
+    validations:
+      required: true
+  - type: input
+    id: link
+    attributes:
+      label: Play, source or watch URL
+      description: Where the game can be played in a browser, or its repository. Leave empty when the game can only be seen in the post's video.
+      placeholder: https://example.com/my-game
+    validations:
+      required: false
+  - type: dropdown
+    id: link-type
+    attributes:
+      label: Link type
+      description: play runs in a browser with one click, source is a repository, watch is a video only.
+      options:
+        - play
+        - source
+        - watch
+    validations:
+      required: true
+  - type: dropdown
+    id: genre
+    attributes:
+      label: Genre
+      options:
+        - Shooter
+        - Racing
+        - Action
+        - Exploration
+        - Sandbox
+        - Story & sim
+        - Puzzle & toys
+    validations:
+      required: true
+  - type: input
+    id: model
+    attributes:
+      label: AI model
+      description: The model the game was built with, as the creator names it.
+      placeholder: Claude Fable 5.2
+    validations:
+      required: true
+  - type: input
+    id: summary
+    attributes:
+      label: One-line description in English
+      description: What the game is, in one plain sentence.
+      placeholder: One-shot FPS. Models, sounds and textures all generated in code, no human feedback.
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Before you submit
+      options:
+        - label: The game runs in a browser, or I chose source or watch as its link type.
+          required: true
+        - label: The game was built mostly with an AI model.
+          required: true

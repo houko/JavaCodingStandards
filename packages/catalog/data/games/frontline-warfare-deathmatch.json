@@ -1,0 +1,27 @@
+{
+	"$schema": "../schema/game.schema.json",
+	"slug": "frontline-warfare-deathmatch",
+	"name": "Frontline Warfare Deathmatch",
+	"creator": "alightinastorm",
+	"genre": "Shooter",
+	"link": {
+		"type": "play",
+		"url": "https://spawn.co/@robot/frontline-warfare-deathmatch"
+	},
+	"post": "2120020469487440210",
+	"likes": 163,
+	"model": "Claude Fable 5.2",
+	"cover": "frontline-warfare-deathmatch.webp",
+	"summary": {
+		"en": "A military shooter deathmatch in the browser.",
+		"zh-CN": "浏览器里的军事射击死斗。",
+		"zh-TW": "瀏覽器裡的軍事射擊死鬥。",
+		"ja": "ブラウザで遊べるミリタリーシューターのデスマッチ。",
+		"ko": "브라우저에서 즐기는 밀리터리 슈터 데스매치.",
+		"es": "Un deathmatch de disparos militar en el navegador.",
+		"fr": "Un deathmatch de tir militaire dans le navigateur.",
+		"de": "Ein Militär-Shooter-Deathmatch im Browser.",
+		"pt-BR": "Um deathmatch de tiro militar no navegador.",
+		"ru": "Военный шутер-десматч в браузере."
+	}
+}
