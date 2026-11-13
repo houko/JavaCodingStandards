@@ -65,7 +65,7 @@ Vibe Arcade 是 AI 游戏的街机厅：一份人工整理的浏览器游戏索�
 | [**Stonehenge Solstice**](https://vibe.wiz.games/games/stonehenge-solstice?lang=zh-CN)<br>一个 HTML 文件里的巨石阵：草地、阴影与夏至太阳轨迹。 | [@MeltTheManual](https://x.com/MeltTheManual) | 解谜与玩具 | Claude Fable 5.2 | [游玩](https://meltthemanual.github.io/stonehenge-solstice/) · [原帖](https://x.com/i/status/2119926820963532984) |
 | [**Fortnite in Three.js**](https://vibe.wiz.games/games/fortnite-in-three-js?lang=zh-CN)<br>用 Three.js 复刻的大逃杀。 | [@aabyzov](https://x.com/aabyzov) | 动作 | Claude Fable 5.2 | [游玩](https://anton-abyzov.github.io/fortnite-3js/) · [原帖](https://x.com/i/status/2120702690845933702) |
 | [**Vippi**](https://vibe.wiz.games/games/vippi?lang=zh-CN)<br>快节奏街机风格第一人称射击。 | [@Shrit1401](https://x.com/Shrit1401) | 射击 | Claude Fable 5.2 | [游玩](https://vippi.vercel.app/) · [原帖](https://x.com/i/status/2120060593763926314) |
-| [**Wave Rider Nusantara**](https://vibe.wiz.games/games/wave-rider-nusantara?lang=zh-CN)<br>Arcade-style game inspired by the culture and visual identity of the Indonesian archipelago. | [@abusofianid](https://x.com/abusofianid) | 探索 | Gemini and chat gpt | [源码](https://github.com/abusofianid/game-wave-rider-nusantara) · [原帖](https://x.com/i/status/2121088313658572857) |
+| [**Wave Rider Nusantara**](https://vibe.wiz.games/games/wave-rider-nusantara?lang=zh-CN)<br>Arcade-style game inspired by the culture and visual identity of the Indonesian archipelago. | [@abusofianid](https://x.com/abusofianid) | 探索 | Gemini + ChatGPT | [源码](https://github.com/abusofianid/game-wave-rider-nusantara) · [原帖](https://x.com/i/status/2121088313658572857) |
 <!-- games:end -->
 
 ## 收录标准
@@ -83,7 +83,7 @@ Vibe Arcade 是 AI 游戏的街机厅：一份人工整理的浏览器游戏索�
 - 填写 [Submit a game](https://github.com/yldm-tech/awesome-vibe-games/issues/new?template=submit-game.yml) issue 表单。表单需要游戏名、作者的 X 账号、帖子、链接、类型、模型和一句英文简介。提交者不必是作者本人。
 - 或者把游戏连同可玩的链接发到 X 上，并 @ [@suzukaze_haduki](https://x.com/suzukaze_haduki)。
 
-[投稿工作流](.github/workflows/submissions.yml)会在几分钟内自动上架游戏，全程无人值守。它会检查帖子是否存在、是否由作者本人发布，游玩或源码链接能否打开，游戏是否已收录；然后从帖子取封面、短片和作者头像，开一个关闭该 issue 的 PR，CI 通过后自动合并并部署网站。如果有问题，它会在 issue 里说明，编辑 issue 就会重试。简介先以英文上线，其他语言在翻译前显示英文。也欢迎直接提 pull request 添加游戏文件。
+[投稿工作流](.github/workflows/submissions.yml)会在几分钟内自动上架游戏，全程无人值守。它会检查帖子是否存在、是否由作者本人发布，游玩或源码链接能否打开，游戏是否已收录；然后从帖子取封面、短片和作者头像，开一个关闭该 issue 的 PR，CI 通过后自动合并并部署网站。如果有问题，它会在 issue 里说明，编辑 issue 就会重试。简介先以英文上线，其他语言在翻译前显示英文。也欢迎直接提 pull request 添加游戏文件。注册不满七天的 GitHub 账号、已有三份投稿待处理的提交者，以及[屏蔽名单](.github/submission-blocklist.txt)上的人，都不会被自动收录。仓库配置了模型 API key（`EVERYAPI_API_KEY`）时，机器人还会把简介翻译成另外九种语言，并拒绝明显是垃圾或恶意内容的投稿。
 
 ## 游戏文件格式
 

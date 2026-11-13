@@ -48,6 +48,8 @@ jobs:
         run: node .github/scripts/draft-submission.mjs
         env:
           ISSUE_BODY: ${{ github.event.issue.body }}
+          # Optional: with a key the bot translates the summary and checks the text for spam (.github/scripts/submission-guards.mjs).
+          EVERYAPI_API_KEY: ${{ secrets.EVERYAPI_API_KEY }}
           ISSUE_BODY_FILE: ${{ github.event_name == 'workflow_dispatch' && format('{0}/issue.md', runner.temp) || '' }}
       - if: steps.draft.outputs.problem
         run: gh issue comment "$ISSUE" --body "This could not be listed yet. $PROBLEM Edit the issue to try again."
@@ -92,7 +94,8 @@ jobs:
             echo
             echo "Adds **$NAME** from #$ISSUE. Closes #$ISSUE."
             echo
-            echo "Written by the submissions workflow from the issue's answers, after checking that the post is the creator's and the link answers; the cover, clip and avatar come from the post. It merges itself once CI passes."
+            echo "Written by the submissions workflow from the issue's answers, after checking the submitter, that the post is the creator's and the link answers; the cover, clip and avatar come from the post. It merges itself once CI passes."
+            if [ "$TRANSLATED" = yes ]; then echo; echo "The summary was translated into the other nine languages by $MODEL_NAME."; else echo; echo "The summary is in English only; the other languages show it until it is translated."; fi
             echo
             echo "## Screenshots"
             echo
@@ -106,6 +109,8 @@ jobs:
         env:
           SLUG: ${{ steps.draft.outputs.slug }}
           NAME: ${{ steps.draft.outputs.name }}
+          TRANSLATED: ${{ steps.draft.outputs.translated }}
+          MODEL_NAME: claude-haiku-5-5
       # Whatever failed on the bot's side, the submitter hears about it rather than waiting on silence.
       - if: failure()
         run: gh issue comment "$ISSUE" --body "The bot failed on its side while listing this ($RUN_URL). It is not a problem with the submission; it will be retried."

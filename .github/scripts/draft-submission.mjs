@@ -6,9 +6,14 @@
 import { appendFileSync, existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { classify } from './link-health.mjs';
+import { guardProblem, normalizeModel, readBlocklist, readVerdict, translationPrompt } from './submission-guards.mjs';
 
 const GAMES_DIR = fileURLToPath(new URL('../../packages/catalog/data/games/', import.meta.url));
 const META_FILE = fileURLToPath(new URL('../../packages/catalog/data/meta.json', import.meta.url));
+const BLOCKLIST_FILE = fileURLToPath(new URL('../submission-blocklist.txt', import.meta.url));
+// The model API that translates and checks a submission (EveryAPI, Anthropic's Messages format), used only when EVERYAPI_API_KEY is set.
+const MODEL_API = 'https://api.everyapi.ai/v1/messages';
+const MODEL = 'claude-haiku-5-5';
 const SCHEMA = JSON.parse(readFileSync(new URL('../../packages/catalog/data/schema/game.schema.json', import.meta.url), 'utf8'));
 const GENRES = SCHEMA.properties.genre.enum;
 const LINK_TYPES = SCHEMA.properties.link.properties.type.enum;
@@ -100,6 +105,44 @@ async function deadLink(link) {
 	return state === 'dead' ? `The link ${link.url} does not answer (${detail}). Fix it in the issue.` : undefined;
 }
 
+// GitHub's REST API with the workflow's token.
+async function github(path) {
+	const res = await fetch(`https://api.github.com${path}`, { headers: { Authorization: `Bearer ${process.env.GH_TOKEN}`, Accept: 'application/vnd.github+json' }, signal: AbortSignal.timeout(20_000) });
+	if (!res.ok) throw new Error(`GitHub ${path}: HTTP ${res.status}`);
+	return res.json();
+}
+
+// Who opened the issue, how old their account is and how many other submissions of theirs are open, checked against the guards. Without a token (a run by hand on a laptop) there is nothing to check against.
+async function submitterProblem(creator) {
+	const { GH_TOKEN, GH_REPO, ISSUE } = process.env;
+	if (!GH_TOKEN || !GH_REPO || !ISSUE) return undefined;
+	const issue = await github(`/repos/${GH_REPO}/issues/${ISSUE}`);
+	const login = issue.user.login;
+	const user = await github(`/users/${encodeURIComponent(login)}`);
+	const open = await github(`/repos/${GH_REPO}/issues?state=open&labels=submission&creator=${encodeURIComponent(login)}&per_page=100`);
+	const blocklist = readBlocklist(existsSync(BLOCKLIST_FILE) ? readFileSync(BLOCKLIST_FILE, 'utf8') : '');
+	return guardProblem({ login, createdAt: user.created_at, openOthers: open.filter((i) => String(i.number) !== String(ISSUE)).length, creator, blocklist, now: new Date().toISOString() });
+}
+
+// The summary in the other nine languages and a look at whether the submission is spam, from the model, when a key is set. Returns undefined to keep the summary in English: no key, no answer, or an answer that is not what was asked for.
+async function review(game) {
+	const key = process.env.EVERYAPI_API_KEY;
+	if (!key) return undefined;
+	try {
+		const res = await fetch(MODEL_API, {
+			method: 'POST',
+			headers: { 'x-api-key': key, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
+			body: JSON.stringify({ model: MODEL, max_tokens: 2000, messages: [{ role: 'user', content: translationPrompt(game) }] }),
+			signal: AbortSignal.timeout(60_000),
+		});
+		if (!res.ok) return undefined;
+		const answer = await res.json();
+		return readVerdict(answer.content?.find((c) => c.type === 'text')?.text ?? '', game.summary.en);
+	} catch {
+		return undefined;
+	}
+}
+
 function output(values) {
 	const lines = Object.entries(values).map(([key, value]) => `${key}<<EOF_${key}\n${value}\nEOF_${key}`);
 	if (process.env.GITHUB_OUTPUT) appendFileSync(process.env.GITHUB_OUTPUT, `${lines.join('\n')}\n`);
@@ -112,14 +155,19 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
 	// The workflow passes the body of the issue that started it, or a file holding the body of the issue it was asked to retry.
 	const body = process.env.ISSUE_BODY || (process.env.ISSUE_BODY_FILE ? readFileSync(process.env.ISSUE_BODY_FILE, 'utf8') : '');
 	const result = gameFromForm(readForm(body), taken);
-	if (result.problem) output({ problem: result.problem });
+	const guard = result.problem ? undefined : await submitterProblem(result.game.creator);
+	if (result.problem || guard) output({ problem: result.problem ?? guard });
 	else {
 		const { game } = result;
+		game.model = normalizeModel(game.model, [...new Set(games.map((g) => g.model))]);
 		const found = await lookUp(game.post);
 		if (!found) throw new Error('X did not answer for the post; edit the issue later to try again');
 		const problem = found.author?.toLowerCase() !== game.creator.toLowerCase() ? `The post was made by @${found.author}, not @${game.creator}. The creator's handle must be the account that posted the game.` : await deadLink(game.link);
+		const verdict = problem ? undefined : await review(game);
 		if (problem) output({ problem });
+		else if (verdict?.ok === false) output({ problem: `It was not listed: ${verdict.reason}. If that is wrong, edit the issue to try again.` });
 		else {
+			if (verdict?.ok) game.summary = { en: game.summary.en, ...verdict.summary };
 			game.likes = found.likes;
 			// The day it joins, which marks it as new for a while; the site's "last updated" day moves with it.
 			const today = new Date().toISOString().slice(0, 10);
@@ -129,7 +177,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
 			writeFileSync(file, `${JSON.stringify(game, null, '\t')}\n`);
 			const meta = JSON.parse(readFileSync(META_FILE, 'utf8'));
 			writeFileSync(META_FILE, `${JSON.stringify({ ...meta, updated: today }, null, '\t')}\n`);
-			output({ slug: game.slug, name: game.name });
+			output({ slug: game.slug, name: game.name, translated: verdict?.ok ? 'yes' : 'no' });
 		}
 	}
 }
