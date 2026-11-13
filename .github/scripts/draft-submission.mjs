@@ -33,6 +33,15 @@ export function readForm(body) {
 // The site's slug rule (slugOf in packages/catalog/src/games.ts).
 export const slugOf = (name) => name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-/, '').replace(/-$/, '');
 
+// A description as one sentence on a card: one line, a capital first letter and a full stop at the end where it has none, the rest as written.
+export function sentence(text) {
+	const line = text.trim().replace(/\s+/g, ' ');
+	if (!line) return '';
+	const capital = line[0].toUpperCase() + line.slice(1);
+	// Only a sentence ending in a Latin letter or digit gets a full stop; one in another script keeps its own punctuation.
+	return /[A-Za-z0-9]$/.test(capital) ? `${capital}.` : capital;
+}
+
 // The game a form describes, or a problem saying what is wrong with it. `taken` holds the slugs and posts already listed.
 export function gameFromForm(answers, taken) {
 	const name = answers['Game name']?.trim();
@@ -42,7 +51,7 @@ export function gameFromForm(answers, taken) {
 	const type = answers['Link type']?.trim();
 	const genre = answers['Genre']?.trim();
 	const model = answers['AI model']?.trim();
-	const summary = answers['One-line description in English']?.trim().replace(/\s+/g, ' ');
+	const summary = sentence(answers['One-line description in English'] ?? '');
 	if (!name || !creator || !postUrl || !type || !genre || !model || !summary) return { problem: 'Some required answers are missing. Edit the issue to fill them in.' };
 	if (!HANDLE.test(creator)) return { problem: `"${creator}" is not an X handle.` };
 	if (summary.length > SUMMARY_MAX) return { problem: `The description is ${summary.length} characters long; keep it to ${SUMMARY_MAX}, one line on a card.` };
@@ -99,7 +108,9 @@ function output(values) {
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
 	const games = readdirSync(GAMES_DIR).filter((f) => f.endsWith('.json')).map((f) => JSON.parse(readFileSync(GAMES_DIR + f, 'utf8')));
 	const taken = { slugs: new Set(games.map((g) => g.slug)), posts: new Map(games.map((g) => [g.post, g.slug])) };
-	const result = gameFromForm(readForm(process.env.ISSUE_BODY ?? ''), taken);
+	// The workflow passes the body of the issue that started it, or a file holding the body of the issue it was asked to retry.
+	const body = process.env.ISSUE_BODY || (process.env.ISSUE_BODY_FILE ? readFileSync(process.env.ISSUE_BODY_FILE, 'utf8') : '');
+	const result = gameFromForm(readForm(body), taken);
 	if (result.problem) output({ problem: result.problem });
 	else {
 		const { game } = result;

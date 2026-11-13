@@ -243,6 +243,12 @@ describe("a game's file", () => {
 		expect(read({ link: { type: 'watch', url: 'https://video.example/kit' } })()[0].link).toEqual({ type: 'watch', url: 'https://video.example/kit' });
 	});
 
+	// Submissions arrive with an English summary only (.github/scripts/draft-submission.mjs), so every rule about the games must hold for such a game too.
+	it('reads a game summarised in English only, and finds it in every language', () => {
+		const [english] = readGames({ 'kit.json': { ...KIT, summary: { en: 'A kit racer on a rug.' } } });
+		for (const lang of LANGS) expect(pick(english.summary, lang), lang).toBe('A kit racer on a rug.');
+	});
+
 	it('must be summarised in English, and may leave other languages to fall back to it', () => {
 		const { en: _english, ...rest } = TEXT;
 		expect(read({ summary: rest })).toThrow(/summary.en is required/);
@@ -390,8 +396,11 @@ describe('filterGames', () => {
 		for (const g of GAMES) {
 			expect(filterGames({ q: g.summary.en }, 'en'), g.slug).toContain(g);
 			expect(filterGames({ q: g.summary.en }, 'ja'), g.slug).toContain(g);
-			expect(filterGames({ q: g.summary.ja }, 'ja'), g.slug).toContain(g);
-			expect(filterGames({ q: g.summary.ja }, 'en'), g.slug).not.toContain(g);
+			// A summary not yet translated shows the English, which is searched in every language.
+			if (g.summary.ja !== undefined) {
+				expect(filterGames({ q: g.summary.ja }, 'ja'), g.slug).toContain(g);
+				expect(filterGames({ q: g.summary.ja }, 'en'), g.slug).not.toContain(g);
+			}
 			expect(filterGames({ q: g.model.toLowerCase() }, 'ko'), g.slug).toContain(g);
 			for (const lang of LANGS) expect(filterGames({ q: t(lang)[GENRE_KEYS[g.genre]] }, lang), `${g.slug} ${lang}`).toContain(g);
 		}

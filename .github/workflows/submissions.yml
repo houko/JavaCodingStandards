@@ -4,6 +4,12 @@ name: Submissions
 on:
   issues:
     types: [opened, edited, reopened]
+  # Retries an issue by hand, after the bot itself failed on it.
+  workflow_dispatch:
+    inputs:
+      issue:
+        description: The number of the submission issue
+        required: true
 
 permissions:
   actions: write
@@ -13,18 +19,18 @@ permissions:
 
 # One run per issue at a time; an edit made while a run is going waits for it, so a fix is never lost.
 concurrency:
-  group: submission-${{ github.event.issue.number }}
+  group: submission-${{ github.event.issue.number || inputs.issue }}
   cancel-in-progress: false
 
 env:
   GH_TOKEN: ${{ github.token }}
   GH_REPO: ${{ github.repository }}
-  ISSUE: ${{ github.event.issue.number }}
-  BRANCH: submission/${{ github.event.issue.number }}
+  ISSUE: ${{ github.event.issue.number || inputs.issue }}
+  BRANCH: submission/${{ github.event.issue.number || inputs.issue }}
 
 jobs:
   list:
-    if: github.event.issue.state == 'open' && contains(github.event.issue.labels.*.name, 'submission')
+    if: github.event_name == 'workflow_dispatch' || (github.event.issue.state == 'open' && contains(github.event.issue.labels.*.name, 'submission'))
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -34,11 +40,14 @@ jobs:
         with:
           node-version: 24
           cache: pnpm
-      # The issue's text reaches the script through the environment, never through the shell.
+      # The issue's text reaches the script through the environment or a file, never through the shell.
+      - if: github.event_name == 'workflow_dispatch'
+        run: gh issue view "$ISSUE" --json body --jq .body > "$RUNNER_TEMP/issue.md"
       - id: draft
         run: node .github/scripts/draft-submission.mjs
         env:
           ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_BODY_FILE: ${{ github.event_name == 'workflow_dispatch' && format('{0}/issue.md', runner.temp) || '' }}
       - if: steps.draft.outputs.problem
         run: gh issue comment "$ISSUE" --body "This could not be listed yet. $PROBLEM Edit the issue to try again."
         env:
@@ -96,3 +105,8 @@ jobs:
         env:
           SLUG: ${{ steps.draft.outputs.slug }}
           NAME: ${{ steps.draft.outputs.name }}
+      # Whatever failed on the bot's side, the submitter hears about it rather than waiting on silence.
+      - if: failure()
+        run: gh issue comment "$ISSUE" --body "The bot failed on its side while listing this ($RUN_URL). It is not a problem with the submission; it will be retried."
+        env:
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
