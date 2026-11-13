@@ -3,7 +3,7 @@ import { SITE_URL, movedSlug } from '@vibe-arcade/catalog';
 import type { Register } from '@tanstack/react-router';
 import { createServerEntry, createStartHandler, defaultStreamHandler } from '@tanstack/react-start/server';
 import { env } from 'cloudflare:workers';
-import { gameCardPath } from '../og/paths';
+import { OLD_SITE_CARD_PATHS, SITE_CARD_PATH, gameCardPath } from '../og/paths';
 import { serveMedia } from './lib/media';
 import { contentSecurityPolicy, makeNonce, securityHeaders } from './lib/security';
 
@@ -59,6 +59,7 @@ export default createServerEntry<Register>({
 		// A link preview made before the cards moved to /og/v2/ still asks for the old address; it gets the current card.
 		const oldCard = url.pathname.match(OLD_CARD)?.[1];
 		if (oldCard !== undefined) return Response.redirect(`${url.origin}${gameCardPath(oldCard)}`, 301);
+		if (OLD_SITE_CARD_PATHS.includes(url.pathname)) return Response.redirect(`${url.origin}${SITE_CARD_PATH}`, 301);
 		if (url.pathname.startsWith('/videos/') && (request.method === 'GET' || request.method === 'HEAD')) {
 			// A clip that does not exist gets the site's own 404 page below.
 			const clip = await serveMedia(request, env.MEDIA, url.pathname.slice(1));
