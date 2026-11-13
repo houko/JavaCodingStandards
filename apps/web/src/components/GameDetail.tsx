@@ -109,6 +109,12 @@ export function GameDetail({ game, lang, heading: Heading, headingId, onClose, o
 					· {tr.builtWith} {game.model} · {tr.posted} <time dateTime={game.postedAt}>{formatDay(game.postedAt, lang)}</time>
 				</p>
 				<p className='max-w-[680px] text-[17px] text-soft-2 sm:text-[18px]'>{pick(game.pitch ?? game.summary, lang)}</p>
+				{game.down && (
+					<p className='max-w-[680px] rounded-[10px] border border-line bg-bg px-3.5 py-3 text-[14px] text-soft'>
+						<strong className='mr-2 font-mono text-[12px] font-semibold tracking-[0.06em] text-heart uppercase'>{tr.linkDown}</strong>
+						{fill(tr.linkDownNote, { date: formatDay(game.down, lang) })}
+					</p>
+				)}
 				{game.notes && <Notes notes={game.notes} tr={tr} heading={SubHeading} />}
 				<div className='flex flex-wrap items-center gap-3'>
 					<a href={game.link.url} {...NEW_TAB} className={`${BTN_LIME} min-h-12 px-5`}>

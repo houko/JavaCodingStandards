@@ -120,5 +120,7 @@
 	"heroSub": "The best browser games people built with AI and shared on X — credited to their creators, tagged by model, one click to play.",
 	"startPlaying": "Start playing",
 	"nowPlaying": "Now playing",
-	"oneGame": "1 game"
+	"oneGame": "1 game",
+	"linkDown": "Link down",
+	"linkDownNote": "The game's link stopped answering on {date}, so this goes to the creator's post instead."
 }

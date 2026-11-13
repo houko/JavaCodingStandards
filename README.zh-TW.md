@@ -159,6 +159,7 @@ Vibe Arcade 是 AI 遊戲的街機廳：一份人工整理的瀏覽器遊戲索�
 | `summary` | 是 | 卡片上的一句話簡介，十種語言齊全。 |
 | `pitch` | 否 | 遊戲詳情頁和入選精選時顯示的較長介紹，十種語言齊全。 |
 | `notes` | 否 | 作者公布的製作數據，原樣照錄：可以有 `time`、`cost`、`tokens`、`prompts`、`lines`、`size`、`agents`，以及生成遊戲所用的提示詞 `prompt`。顯示為遊戲的「製作數據」。 |
+| `down` | 否 | 遊戲被標記為連結失效的日期（`YYYY-MM-DD`）。由每日連結檢查透過它的 PR 寫入和移除；帶這個欄位時遊戲仍會顯示，但會註明連結失效，並改為指向作者的原始貼文。 |
 
 ## 語言
 
@@ -188,10 +189,10 @@ packages/catalog/          @vibe-arcade/catalog：資料以及由它衍生的一
 .github/
   ISSUE_TEMPLATE/          Submit a game 表單
   workflows/ci.yml         在每個 pull request 和 main 上做型別檢查、測試和建置
-  workflows/links.yml      每週檢查所有遊戲連結
+  workflows/links.yml      每天檢查所有遊戲連結，連結持續失效的遊戲會收到一個標記用的 PR
 ```
 
-每週的[連結檢查](.github/workflows/links.yml)會請求每款遊戲的遊玩或原始碼連結，並維護一個標題為「Dead game links」的 issue，列出不再回應的連結。它從不修改資料。
+每天的[連結檢查](.github/workflows/links.yml)會請求每款遊戲的遊玩或原始碼連結。不再回應的連結會列在一個標題為「Dead game links」的 issue 裡，issue 同時記錄它連續多少次檢查都失效。連續三次之後，檢查會開一個 PR 把遊戲標記為連結失效（遊戲檔案裡的 `down`），所以主機只當機一天不會觸發標記；被標記的遊戲連結恢復回應後，會再開一個 PR 移除標記。檢查只提出建議：有人合併 PR 之前，`main` 上什麼都不會變；如果遊戲只是換了位址，更好的做法是改正它的 `link.url`。
 
 ## 開發
 
