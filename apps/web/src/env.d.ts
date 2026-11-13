@@ -1,4 +1,4 @@
-// The Worker's bindings, as wrangler.jsonc defines them: the site has none, so the module is declared with an empty env rather than generating the whole runtime's types.
+// The Worker's bindings, as wrangler.jsonc defines them: only the static assets, so the module is declared here rather than generating the whole runtime's types.
 declare module 'cloudflare:workers' {
-	export const env: Record<string, never>;
+	export const env: { ASSETS: { fetch(request: Request): Promise<Response> } };
 }
