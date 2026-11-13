@@ -5,7 +5,7 @@
 	"type": "module",
 	"description": "Vibe Arcade: a curated index of games vibe-coded with AI and shared on X, served from Cloudflare Workers",
 	"license": "MIT",
-	"homepage": "https://arcade.wiz.games",
+	"homepage": "https://vibe.wiz.games",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/yldm-tech/awesome-vibe-games.git"

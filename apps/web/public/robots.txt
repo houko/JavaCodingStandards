@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://arcade.wiz.games/sitemap.xml
+Sitemap: https://vibe.wiz.games/sitemap.xml

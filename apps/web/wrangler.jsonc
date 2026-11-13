@@ -6,7 +6,8 @@
 	"compatibility_flags": ["nodejs_compat"],
 	// The Worker entry (src/server.ts): TanStack Start's handler, which server-renders every route. The client bundle and public/ are served as static assets.
 	"main": "src/server.ts",
-	// No custom domain yet: the Worker serves on its workers.dev address until the owner adds a route here for the site's host (SITE_URL in packages/catalog/src/site.ts), whose zone must be on this Cloudflare account. The site has no bindings: no database, no rate limiters and no secrets.
+	// The site's host, the same one as SITE_URL in packages/catalog/src/site.ts; its zone (wiz.games) is on this Cloudflare account. The site has no bindings: no database, no rate limiters and no secrets.
+	"routes": [{ "pattern": "vibe.wiz.games", "custom_domain": true }],
 	"observability": { "enabled": true },
 	// Keep Preview URLs on (wrangler disables them when this is missing) so each pull request gets its own preview link.
 	"preview_urls": true

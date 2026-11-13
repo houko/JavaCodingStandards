@@ -1,6 +1,6 @@
-// The site's own names and links. SITE_URL is provisional and the single source of truth for the host: everything that needs an absolute URL (canonical links, the sitemap, Open Graph tags) builds it from here.
+// The site's own names and links. SITE_URL is the single source of truth for the host: everything that needs an absolute URL (canonical links, the sitemap, Open Graph tags) builds it from here.
 export const SITE_NAME = 'Vibe Arcade';
-export const SITE_URL = 'https://arcade.wiz.games';
+export const SITE_URL = 'https://vibe.wiz.games';
 // The repository the site is built from, where submissions arrive.
 export const SITE_REPO = 'yldm-tech/awesome-vibe-games';
 export const REPO_URL = `https://github.com/${SITE_REPO}`;
