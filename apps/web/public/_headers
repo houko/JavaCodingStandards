@@ -22,7 +22,7 @@
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 /og/*
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
-/og-site-1200x630.png
+/og-site-v2-1200x630.png
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 /favicon.ico
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800

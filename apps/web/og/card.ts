@@ -13,6 +13,9 @@ export const CARD_WIDTH = 1200;
 export const CARD_HEIGHT = 630;
 export const BANNER_WIDTH = 1280;
 export const BANNER_HEIGHT = 420;
+// GitHub's social preview of the repository: 2:1, the size GitHub recommends.
+export const PREVIEW_WIDTH = 1280;
+export const PREVIEW_HEIGHT = 640;
 
 // The site's dark tokens (src/styles.css); keep in step with them.
 const C = { bg: '#101012', surface: '#18181D', line: '#2A2A31', fg: '#F2F0E9', muted: '#A3A1AA', lime: '#D4FF3A' };
@@ -164,10 +167,11 @@ function wall(left: number, top: number, shots: string[]): ReactNode {
 	);
 }
 
-// The scene both share: the mark, the site's name, the English headline with its lime caret and the address on the left, the wall of covers on the right, fading into the page colour under the text.
+// The scene the site card, the banner and the social preview share: the mark, the site's name, the home page's two-line English headline (the second line lime, with its caret) and the address on the left, the wall of covers on the right, fading into the page colour under the text. It carries no counts, which would date the image the day a game is added.
 function scene(width: number, height: number, mark: string, shots: string[], headline: number): ReactNode {
 	const wallHeight = WALL_ROWS * (TILE_H + TILE_GAP) + TILE_H / 2;
-	const words = t('en').h1.split(' ');
+	const tr = t('en');
+	const lines = [tr.heroL1, tr.heroL2].map((line) => line.split(' '));
 	return h(
 		'div',
 		{ display: 'flex', position: 'relative', width, height, overflow: 'hidden', backgroundColor: C.bg, fontFamily: 'Inter', fontWeight: 500, color: C.fg },
@@ -180,14 +184,20 @@ function scene(width: number, height: number, mark: string, shots: string[], hea
 			{ flexDirection: 'column', width: width * 0.6, height: height * 0.83 },
 			brandRow(mark, 30),
 			h('div', { display: 'flex', flexGrow: 1 }),
-			// The headline with the page's lime caret after it. Satori lays a text run and a box beside it out as two blocks, which would put the caret on a line of its own, so each word is a box and the caret sits in the last one; the gaps are margins, as satori drops the space at the end of a run.
+			// The headline, one line each, with the page's lime caret after the second. Satori lays a text run and a box beside it out as two blocks, which would put the caret on a line of its own, so each word is a box and the caret sits in the last one; the gaps are margins, as satori drops the space at the end of a run.
 			h(
 				'div',
-				{ display: 'flex', flexWrap: 'wrap', maxWidth: headline * 7.2, fontFamily: DISPLAY, fontSize: headline, fontWeight: 800, lineHeight: 0.98, letterSpacing: '-0.04em' },
-				...words.map((word, i) => h('div', { display: 'flex', marginRight: headline * 0.22 }, word, i === words.length - 1 ? h('span', { color: C.lime }, '_') : null)),
+				{ display: 'flex', flexDirection: 'column', fontFamily: DISPLAY, fontSize: headline, fontWeight: 800, lineHeight: 1, letterSpacing: '-0.045em' },
+				...lines.map((words, l) =>
+					h(
+						'div',
+						{ display: 'flex', color: l === 1 ? C.lime : C.fg },
+						...words.map((word, i) => h('div', { display: 'flex', marginRight: headline * 0.22 }, word, l === 1 && i === words.length - 1 ? h('span', {}, '_') : null)),
+					),
+				),
 			),
 			h('div', { display: 'flex', flexGrow: 1 }),
-			h('div', { display: 'flex', alignItems: 'center', fontFamily: MONO, fontWeight: 600, fontSize: 24 }, h('div', { display: 'flex', color: C.lime }, HOST), h('div', { display: 'flex', marginLeft: 22, color: C.muted }, `${GAMES.length} ${t('en').statGames}`)),
+			h('div', { display: 'flex', alignItems: 'center', fontFamily: MONO, fontWeight: 600, fontSize: 24, color: C.lime }, HOST),
 		),
 	);
 }
@@ -201,6 +211,12 @@ async function sceneImages(paths: Paths): Promise<[string, string[]]> {
 export async function renderSiteCard(paths: Paths): Promise<Buffer> {
 	const [mark, shots] = await sceneImages(paths);
 	return draw(scene(CARD_WIDTH, CARD_HEIGHT, mark, shots, 100), paths.fontDir, CARD_WIDTH, CARD_HEIGHT);
+}
+
+// The repository's social preview (.github/assets/social-preview.png), at twice its drawn size; GitHub's settings take it as an upload.
+export async function renderSocialPreview(paths: Paths): Promise<Buffer> {
+	const [mark, shots] = await sceneImages(paths);
+	return draw(scene(PREVIEW_WIDTH, PREVIEW_HEIGHT, mark, shots, 104), paths.fontDir, PREVIEW_WIDTH, PREVIEW_HEIGHT, 2);
 }
 
 // The repository's banner (.github/assets/banner.png), at twice its drawn size for sharp display in the README.

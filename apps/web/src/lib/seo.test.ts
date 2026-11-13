@@ -23,9 +23,9 @@ describe('homeHead', () => {
 		expect(metaOf(head, 'name', 'description')).toMatch(/^A curated index of games/);
 		expect(metaOf(head, 'property', 'og:url')).toBe(`${SITE_URL}/`);
 		expect(metaOf(head, 'property', 'og:locale')).toBe('en_US');
-		expect(metaOf(head, 'property', 'og:image')).toBe(`${SITE_URL}/og-site-1200x630.png`);
+		expect(metaOf(head, 'property', 'og:image')).toBe(`${SITE_URL}/og-site-v2-1200x630.png`);
 		expect(metaOf(head, 'name', 'twitter:card')).toBe('summary_large_image');
-		expect(metaOf(head, 'name', 'twitter:image')).toBe(`${SITE_URL}/og-site-1200x630.png`);
+		expect(metaOf(head, 'name', 'twitter:image')).toBe(`${SITE_URL}/og-site-v2-1200x630.png`);
 		expect(head.links[0]).toEqual({ rel: 'canonical', href: `${SITE_URL}/` });
 	});
 
