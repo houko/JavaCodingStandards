@@ -2,7 +2,7 @@ import { LANGS, LANG_LABELS, type LangCode, MAKER_NAME, MAKER_URL, fill } from '
 import { useEffect, useRef, useState } from 'react';
 import { useLang, useSetLang, useT } from '../lib/lang';
 import { BTN_LIME } from '../lib/ui';
-import { Globe, Menu } from './Icons';
+import { ChevronDown, Globe, Menu } from './Icons';
 import { Logo } from './Logo';
 import { SectionLink } from './SectionLink';
 
@@ -54,13 +54,14 @@ export function Nav({ home }: { home: boolean }) {
 							<Globe />
 							<span className='sr-only'>{tr.language}</span>
 						</label>
-						<select id='lang-select' value={lang} onChange={(e) => setLang(e.target.value as LangCode)} className='avg-field min-h-11 cursor-pointer rounded-lg border border-line-2 bg-panel px-3 text-[14px] text-fg max-sm:absolute max-sm:inset-0 max-sm:size-full max-sm:opacity-0'>
+						<select id='lang-select' value={lang} onChange={(e) => setLang(e.target.value as LangCode)} className='avg-field avg-select min-h-11 cursor-pointer rounded-lg border border-line-2 bg-panel py-0 pr-9 pl-3 text-[14px] text-fg max-sm:absolute max-sm:inset-0 max-sm:size-full max-sm:opacity-0'>
 							{LANGS.map((code) => (
 								<option key={code} value={code} lang={code}>
 									{LANG_LABELS[code]}
 								</option>
 							))}
 						</select>
+						<ChevronDown className='pointer-events-none absolute right-3 text-muted max-sm:hidden' />
 					</div>
 					<SectionLink home={home} id='submit' className={`${BTN_LIME} px-3 py-2.5 whitespace-nowrap min-[360px]:px-4`} onClick={close}>
 						<span className='md:hidden'>{tr.submit}</span>
