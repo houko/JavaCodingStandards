@@ -22,5 +22,17 @@
 		"de": "Ein Dark-Fantasy-Bosskampf, im Browser spielbar.",
 		"pt-BR": "Uma luta de chefe de fantasia sombria, jogável no navegador.",
 		"ru": "Битва с боссом в стиле тёмного фэнтези, играбельна в браузере."
+	},
+	"pitch": {
+		"en": "A souls-like boss fight in a dark-fantasy setting, made by Claude Fable 5.2 as a game demo that runs in the browser.",
+		"zh-CN": "一场黑暗奇幻风格的类魂 Boss 战，是 Claude Fable 5.2 做的游戏试玩版，可在浏览器中运行。",
+		"zh-TW": "一場黑暗奇幻風格的類魂 Boss 戰，是 Claude Fable 5.2 做的遊戲試玩版，可在瀏覽器中執行。",
+		"ja": "Claude Fable 5.2が作った、ダークファンタジーのソウルライクなボス戦。ブラウザで動くゲームデモ。",
+		"ko": "Claude Fable 5.2가 만든 다크 판타지 소울라이크 보스전 게임 데모로, 브라우저에서 실행됩니다.",
+		"es": "Un combate contra un jefe al estilo souls-like y de fantasía oscura, hecho por Claude Fable 5.2 como demo jugable en el navegador.",
+		"fr": "Un combat de boss façon souls-like dans un univers dark fantasy, une démo créée par Claude Fable 5.2 et jouable dans le navigateur.",
+		"de": "Ein Soulslike-Bosskampf in einer Dark-Fantasy-Welt, eine Spieldemo von Claude Fable 5.2, die im Browser läuft.",
+		"pt-BR": "Uma luta de chefe no estilo soulslike e de fantasia sombria, feita pelo Claude Fable 5.2 como demo jogável no navegador.",
+		"ru": "Битва с боссом в духе soulslike в мире тёмного фэнтези — демо, созданное Claude Fable 5.2 и работающее в браузере."
 	}
 }

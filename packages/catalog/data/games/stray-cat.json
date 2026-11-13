@@ -23,5 +23,17 @@
 		"de": "Rette Kätzchen, erschrecke Hunde, stell dich dem alten Kater. Sound im Code synthetisiert.",
 		"pt-BR": "Resgate gatinhos, assuste cachorros e enfrente o velho gato. Som sintetizado em código.",
 		"ru": "Спасайте котят, пугайте собак, сразитесь со старым котом. Звук синтезирован кодом."
+	},
+	"pitch": {
+		"en": "You play a stray cat who rescues kittens, hisses at dogs and gets into yowling duels with an old tomcat. Every sound is synthesised in code. Made with Claude Fable 5.2 and CHIMERA.",
+		"zh-CN": "你扮演一只流浪猫，救小猫、冲狗哈气，还要和一只老公猫嚎叫对决。所有音效都由代码合成。用 Claude Fable 5.2 和 CHIMERA 制作。",
+		"zh-TW": "你扮演一隻流浪貓，救小貓、對狗哈氣，還要和一隻老公貓嚎叫對決。所有音效都由程式碼合成。使用 Claude Fable 5.2 和 CHIMERA 製作。",
+		"ja": "野良猫になって子猫を救い、犬に威嚇し、老いたボス猫と鳴き声で決闘する。音はすべてコードで合成。Claude Fable 5.2とCHIMERAで制作。",
+		"ko": "길고양이가 되어 새끼 고양이를 구하고, 개에게 하악질하고, 늙은 수고양이와 울음소리 대결을 벌입니다. 모든 사운드는 코드로 합성했습니다. Claude Fable 5.2와 CHIMERA로 만들었습니다.",
+		"es": "Eres un gato callejero que rescata gatitos, bufa a los perros y se enzarza en duelos de maullidos con un viejo gato. Todo el sonido está sintetizado en código. Hecho con Claude Fable 5.2 y CHIMERA.",
+		"fr": "Vous incarnez un chat errant qui sauve des chatons, feule face aux chiens et se lance dans des duels de miaulements avec un vieux matou. Tous les sons sont synthétisés en code. Créé avec Claude Fable 5.2 et CHIMERA.",
+		"de": "Du spielst eine streunende Katze, rettest Kätzchen, fauchst Hunde an und lieferst dir Jaul-Duelle mit einem alten Kater. Jeder Sound ist im Code synthetisiert. Gebaut mit Claude Fable 5.2 und CHIMERA.",
+		"pt-BR": "Você é um gato de rua que resgata gatinhos, bufa para cachorros e trava duelos de miados com um velho gato. Todo o som é sintetizado em código. Feito com Claude Fable 5.2 e CHIMERA.",
+		"ru": "Вы — бездомный кот: спасаете котят, шипите на собак и устраиваете дуэли воплей со старым котом. Все звуки синтезированы кодом. Сделано с Claude Fable 5.2 и CHIMERA."
 	}
 }

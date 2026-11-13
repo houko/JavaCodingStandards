@@ -23,5 +23,17 @@
 		"de": "Speerfischen, Haien ausweichen, U-Boot steuern und 140 m tief ins Blue Hole tauchen.",
 		"pt-BR": "Pesque com arpão, fuja de tubarões, pilote um submarino e mergulhe 140 m no Blue Hole.",
 		"ru": "Подводная охота, акулы, подлодка и погружение на 140 м в Голубую дыру."
+	},
+	"pitch": {
+		"en": "Claude Fable 5.2 took the creator's earlier browser game further: spear fish, dodge sharks, pilot a submarine and descend 140 m into the Blue Hole. Built with Three.js and free to play in the browser on Wavedash.",
+		"zh-CN": "Claude Fable 5.2 把作者原有的网页游戏又推进了一步：用鱼叉捕鱼、躲避鲨鱼、驾驶潜艇，一路下潜 140 米进入蓝洞。基于 Three.js 制作，可在 Wavedash 上用浏览器免费游玩。",
+		"zh-TW": "Claude Fable 5.2 把作者原本的網頁遊戲再升級：用魚叉捕魚、閃避鯊魚、駕駛潛艇，一路下潛 140 公尺進入藍洞。以 Three.js 製作，可在 Wavedash 上用瀏覽器免費遊玩。",
+		"ja": "作者の既存のブラウザゲームをClaude Fable 5.2がさらに発展させた作品。銛で魚を突き、サメをかわし、潜水艇を操って水深140mのブルーホールへ潜る。Three.js製で、Wavedashにてブラウザで無料プレイできる。",
+		"ko": "Claude Fable 5.2가 제작자의 기존 브라우저 게임을 한 단계 끌어올렸습니다. 작살로 물고기를 잡고 상어를 피하며 잠수정을 몰아 140m 블루홀까지 내려갑니다. Three.js로 만들었고 Wavedash에서 브라우저로 무료로 플레이할 수 있습니다.",
+		"es": "Claude Fable 5.2 llevó más lejos un juego de navegador de su creador: pesca con arpón, esquiva tiburones, pilota un submarino y baja 140 m al Blue Hole. Hecho con Three.js y gratis en el navegador en Wavedash.",
+		"fr": "Claude Fable 5.2 a fait évoluer un jeu web de son créateur : pêche au harpon, requins à éviter, sous-marin à piloter et plongée à 140 m dans le Blue Hole. Fait avec Three.js, gratuit dans le navigateur sur Wavedash.",
+		"de": "Claude Fable 5.2 hat ein Browserspiel des Erstellers weiterentwickelt: Speerfischen, Haien ausweichen, U-Boot steuern und 140 m tief ins Blue Hole tauchen. Gebaut mit Three.js, kostenlos im Browser auf Wavedash.",
+		"pt-BR": "O Claude Fable 5.2 levou adiante um jogo de navegador do criador: pesque com arpão, fuja de tubarões, pilote um submarino e mergulhe 140 m no Blue Hole. Feito com Three.js e grátis no navegador no Wavedash.",
+		"ru": "Claude Fable 5.2 развил браузерную игру автора: подводная охота, акулы, подлодка и погружение на 140 м в Голубую дыру. Сделано на Three.js, играть можно бесплатно в браузере на Wavedash."
 	}
 }

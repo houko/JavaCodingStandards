@@ -23,5 +23,17 @@
 		"de": "Ein Militär-Shooter-Deathmatch im Browser.",
 		"pt-BR": "Um deathmatch de tiro militar no navegador.",
 		"ru": "Военный шутер-десматч в браузере."
+	},
+	"pitch": {
+		"en": "A Call of Duty-style military deathmatch shooter that runs in the browser, built with Claude Fable 5.2.",
+		"zh-CN": "一款类《使命召唤》的军事死斗射击游戏，在浏览器中运行，用 Claude Fable 5.2 制作。",
+		"zh-TW": "一款類《決勝時刻》的軍事死鬥射擊遊戲，在瀏覽器中執行，用 Claude Fable 5.2 製作。",
+		"ja": "Claude Fable 5.2で作った、コール オブ デューティ風のミリタリーデスマッチシューター。ブラウザで動く。",
+		"ko": "Claude Fable 5.2로 만든 콜 오브 듀티 스타일의 밀리터리 데스매치 슈터로, 브라우저에서 실행됩니다.",
+		"es": "Un shooter militar de deathmatch al estilo de Call of Duty que funciona en el navegador, hecho con Claude Fable 5.2.",
+		"fr": "Un jeu de tir militaire en deathmatch à la Call of Duty, qui tourne dans le navigateur, créé avec Claude Fable 5.2.",
+		"de": "Ein Militär-Shooter im Stil von Call of Duty mit Deathmatch-Modus, der im Browser läuft, gebaut mit Claude Fable 5.2.",
+		"pt-BR": "Um jogo de tiro militar de deathmatch no estilo Call of Duty que roda no navegador, feito com o Claude Fable 5.2.",
+		"ru": "Военный шутер-десматч в духе Call of Duty, работающий в браузере и созданный с помощью Claude Fable 5.2."
 	}
 }

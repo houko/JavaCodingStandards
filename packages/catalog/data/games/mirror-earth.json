@@ -23,5 +23,17 @@
 		"de": "Eine zerstörbare Spielwelt des ganzen Planeten, mit dem echten Wetter der Erde.",
 		"pt-BR": "Um mundo de jogo destrutível do planeta inteiro, com o clima real da Terra.",
 		"ru": "Разрушаемый игровой мир размером с планету, с реальной погодой Земли."
+	},
+	"pitch": {
+		"en": "A game built by Fable 5.2 that mirrors the whole Earth: go anywhere and destroy anything, while the weather and other conditions follow the real planet in real time.",
+		"zh-CN": "Fable 5.2 打造的“镜像地球”游戏：可以去任何地方、摧毁任何东西，天气等状况与真实地球实时同步。",
+		"zh-TW": "Fable 5.2 打造的「鏡像地球」遊戲：可以去任何地方、摧毀任何東西，天氣等狀況與真實地球即時同步。",
+		"ja": "Fable 5.2が作った「鏡の地球」ゲーム。どこへでも行けて何でも壊せ、天気なども現実の地球とリアルタイムで連動する。",
+		"ko": "Fable 5.2가 만든 '거울 지구' 게임. 어디든 가고 무엇이든 부술 수 있으며, 날씨 등은 실제 지구와 실시간으로 동기화됩니다.",
+		"es": "Un juego de Fable 5.2 que replica la Tierra entera: ve a cualquier parte y destruye lo que quieras, con el clima y otras condiciones sincronizados en tiempo real con el planeta real.",
+		"fr": "Un jeu créé par Fable 5.2 qui reproduit la Terre entière : allez partout, détruisez tout, avec une météo et d’autres conditions calquées en temps réel sur la vraie planète.",
+		"de": "Ein von Fable 5.2 gebautes Spiel, das die ganze Erde spiegelt: Geh überallhin und zerstöre alles, während Wetter und mehr in Echtzeit der echten Erde folgen.",
+		"pt-BR": "Um jogo do Fable 5.2 que espelha a Terra inteira: vá a qualquer lugar e destrua qualquer coisa, com o clima e outras condições seguindo o planeta real em tempo real.",
+		"ru": "Игра от Fable 5.2, повторяющая всю Землю: идите куда угодно и разрушайте что угодно, а погода и не только совпадают с реальной Землёй в реальном времени."
 	}
 }

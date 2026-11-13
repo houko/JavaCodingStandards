@@ -24,6 +24,18 @@
 		"pt-BR": "Stonehenge num único HTML: grama, sombras e o caminho do sol no solstício.",
 		"ru": "Стоунхендж в одном HTML: трава, тени и путь солнца в день солнцестояния."
 	},
+	"pitch": {
+		"en": "An interactive Stonehenge scene built by Claude Fable 5.2 at high effort from one prompt, as a single Three.js HTML file. It has lichen-covered sarsen stones and trilithons, bluestones, the Heel Stone and moving grass on a chalk field.",
+		"zh-CN": "Claude Fable 5.2 以 high 强度从一条提示生成的互动巨石阵场景，是一个使用 Three.js 的单个 HTML 文件。场景里有长着地衣的砂岩巨石和三石塔、青石、踵石，以及白垩地上会摆动的草。",
+		"zh-TW": "Claude Fable 5.2 以 high 強度從一則提示生成的互動巨石陣場景，是一個使用 Three.js 的單一 HTML 檔。裡面有長著地衣的砂岩巨石與三石塔、青石、踵石，以及白堊地上會擺動的草。",
+		"ja": "Claude Fable 5.2がhighのエフォートで1つのプロンプトから作った、インタラクティブなストーンヘンジ。Three.jsを使った1枚のHTMLファイルで動く。地衣類に覆われたサーセン石とトリリトン、ブルーストーン、ヒールストーン、白亜の野で揺れる草を再現。",
+		"ko": "Claude Fable 5.2가 high 설정에서 프롬프트 하나로 만든 인터랙티브 스톤헨지 장면으로, Three.js를 쓴 HTML 파일 하나로 돌아갑니다. 지의류가 덮인 사르센석과 트릴리톤, 블루스톤, 힐 스톤, 백악질 들판에서 움직이는 풀이 담겼습니다.",
+		"es": "Una escena interactiva de Stonehenge que Claude Fable 5.2 creó en el nivel high a partir de un solo prompt, en un único HTML con Three.js. Incluye sarsens y trilitos con líquenes, piedras azules, la Heel Stone y hierba que se mueve sobre un campo de creta.",
+		"fr": "Une scène interactive de Stonehenge générée par Claude Fable 5.2 au niveau high à partir d’un seul prompt, dans un unique fichier HTML avec Three.js. On y trouve sarsens et trilithes couverts de lichen, pierres bleues, la Heel Stone et de l’herbe mouvante sur un sol de craie.",
+		"de": "Eine interaktive Stonehenge-Szene, die Claude Fable 5.2 auf der Stufe high aus einem einzigen Prompt baute, als eine HTML-Datei mit Three.js. Mit flechtenbewachsenen Sarsensteinen und Trilithen, Blausteinen, dem Heel Stone und bewegtem Gras auf Kreideboden.",
+		"pt-BR": "Uma cena interativa de Stonehenge que o Claude Fable 5.2 criou no nível high a partir de um único prompt, num único HTML com Three.js. Tem sarsens e trílitos com líquen, pedras azuis, a Heel Stone e grama que se move sobre um campo de giz.",
+		"ru": "Интерактивная сцена Стоунхенджа, которую Claude Fable 5.2 на уровне high собрал из одного промпта в одном HTML-файле на Three.js. В ней сарсены и трилиты с лишайником, голубые камни, Пяточный камень и колышущаяся трава на меловом поле."
+	},
 	"notes": {
 		"prompts": "1"
 	}

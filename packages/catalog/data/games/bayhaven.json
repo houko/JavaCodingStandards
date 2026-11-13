@@ -23,5 +23,17 @@
 		"de": "Fahr und drifte 3,2 km an der Strandpromenade mit 14 Fahrzeugen, vom Stadtbus bis zum hüpfenden Lowrider.",
 		"pt-BR": "Dirija e drifte por 3,2 km de orla com 14 veículos, do ônibus ao lowrider que pula.",
 		"ru": "Катайтесь и дрифтуйте по 3,2 км набережной на 14 машинах — от автобуса до прыгающего лоурайдера."
+	},
+	"pitch": {
+		"en": "An early skeleton build of a beachfront driving sandbox, playable in the browser and on phones. Claude Fable 5.2 built it in a day: 3.2 km of coast and 14 vehicles, among them a scooter, a motorcycle and a golf cart.",
+		"zh-CN": "一个海滨驾驶沙盒的早期骨架版本，可在浏览器和手机上游玩。Claude Fable 5.2 一天内做出了 3.2 公里的海岸线和 14 种载具，其中包括踏板车、摩托车和高尔夫球车。",
+		"zh-TW": "一款海濱駕駛沙盒的早期骨架版本，可在瀏覽器和手機上遊玩。Claude Fable 5.2 一天內做出了 3.2 公里的海岸線和 14 種載具，包括速克達、摩托車和高爾夫球車。",
+		"ja": "海岸沿いを走るドライブ系サンドボックスの初期スケルトン版で、ブラウザでもスマホでも遊べる。Claude Fable 5.2が1日で、3.2kmの海岸線と、スクーター・バイク・ゴルフカートを含む14台の乗り物を作り上げた。",
+		"ko": "해변 드라이브 샌드박스의 초기 스켈레톤 빌드로, 브라우저와 휴대폰에서 플레이할 수 있습니다. Claude Fable 5.2가 하루 만에 3.2km 해안과 스쿠터, 오토바이, 골프 카트를 포함한 14대의 탈것을 만들었습니다.",
+		"es": "Una versión esqueleto temprana de un sandbox de conducción en la costa, jugable en el navegador y en el móvil. Claude Fable 5.2 creó en un día 3,2 km de litoral y 14 vehículos, entre ellos un scooter, una moto y un carrito de golf.",
+		"fr": "Une première version squelette d’un bac à sable de conduite en bord de mer, jouable dans le navigateur et sur téléphone. Claude Fable 5.2 a construit en une journée 3,2 km de côte et 14 véhicules, dont un scooter, une moto et une voiturette de golf.",
+		"de": "Eine frühe Rohfassung einer Fahr-Sandbox an der Küste, spielbar im Browser und auf dem Handy. Claude Fable 5.2 baute an einem Tag 3,2 km Strandpromenade und 14 Fahrzeuge, darunter einen Roller, ein Motorrad und ein Golfcart.",
+		"pt-BR": "Uma versão esqueleto inicial de um sandbox de direção à beira-mar, jogável no navegador e no celular. O Claude Fable 5.2 criou em um dia 3,2 km de orla e 14 veículos, entre eles uma scooter, uma moto e um carrinho de golfe.",
+		"ru": "Ранняя черновая сборка песочницы с ездой по побережью, играбельная в браузере и на телефоне. Claude Fable 5.2 за один день построил 3,2 км набережной и 14 машин, среди них скутер, мотоцикл и гольф-кар."
 	}
 }

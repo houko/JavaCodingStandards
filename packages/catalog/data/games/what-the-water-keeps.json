@@ -23,5 +23,17 @@
 		"de": "Eine ruhige Bootsfahrt durch acht traumartige Welten.",
 		"pt-BR": "Um passeio tranquilo de barco por oito mundos oníricos.",
 		"ru": "Спокойная прогулка на лодке через восемь сказочных миров."
+	},
+	"pitch": {
+		"en": "A game demo made by Claude Fable 5.2 and playable in the browser: you take a calm boat ride through eight dreamlike worlds.",
+		"zh-CN": "一款由 Claude Fable 5.2 制作、可在浏览器中游玩的游戏演示：乘着小船，平静地穿过八个梦境般的世界。",
+		"zh-TW": "一款由 Claude Fable 5.2 製作、可在瀏覽器中遊玩的遊戲試玩版：乘著小船，平靜地穿越八個夢境般的世界。",
+		"ja": "Claude Fable 5.2が作った、ブラウザで遊べるゲームデモ。ボートに乗って、8つの夢のような世界を穏やかに進む。",
+		"ko": "Claude Fable 5.2가 만든, 브라우저에서 플레이할 수 있는 게임 데모입니다. 보트를 타고 꿈같은 여덟 개의 세계를 잔잔하게 지나갑니다.",
+		"es": "Una demo de juego hecha por Claude Fable 5.2 que se juega en el navegador: un tranquilo paseo en barca por ocho mundos oníricos.",
+		"fr": "Une démo de jeu créée par Claude Fable 5.2 et jouable dans le navigateur : une balade en barque paisible à travers huit mondes oniriques.",
+		"de": "Eine Spieldemo von Claude Fable 5.2, spielbar im Browser: eine ruhige Bootsfahrt durch acht traumartige Welten.",
+		"pt-BR": "Uma demo de jogo feita pelo Claude Fable 5.2 e jogável no navegador: um passeio tranquilo de barco por oito mundos oníricos.",
+		"ru": "Игровое демо от Claude Fable 5.2, в которое можно играть в браузере: спокойная прогулка на лодке через восемь сказочных миров."
 	}
 }

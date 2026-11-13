@@ -23,5 +23,17 @@
 		"de": "100 % Code, keine Assets. Three.js + WebGPU, die ersten 3 Level sind spielbar.",
 		"pt-BR": "100% código, sem assets. Three.js + WebGPU, as 3 primeiras fases são jogáveis.",
 		"ru": "100% код, без ассетов. Three.js + WebGPU, первые 3 этапа играбельны."
+	},
+	"pitch": {
+		"en": "A racing game made entirely in code with no assets, running on Three.js and WebGPU. The first three stages are playable with seven more to follow, and the audio was made with ElevenLabs.",
+		"zh-CN": "一款完全用代码写成、不用任何素材的赛车游戏，基于 Three.js 和 WebGPU。前 3 关已经可玩，后续还有 7 关，音频由 ElevenLabs 制作。",
+		"zh-TW": "一款完全用程式碼寫成、不用任何素材的賽車遊戲，基於 Three.js 與 WebGPU。前 3 關已經可玩，之後還有 7 關，音訊由 ElevenLabs 製作。",
+		"ja": "アセットを一切使わず、すべてコードで作られたレースゲーム。Three.jsとWebGPUで動作。最初の3ステージがプレイ可能で、残り7ステージも続く予定。音声はElevenLabsで制作。",
+		"ko": "에셋 없이 100% 코드로 만든 레이싱 게임으로, Three.js와 WebGPU로 동작합니다. 첫 3 스테이지를 플레이할 수 있고 7개 스테이지가 더 나올 예정이며, 오디오는 ElevenLabs로 만들었습니다.",
+		"es": "Un juego de carreras hecho por completo en código, sin assets, con Three.js y WebGPU. Las 3 primeras fases son jugables, vendrán 7 más y el audio está hecho con ElevenLabs.",
+		"fr": "Un jeu de course entièrement écrit en code, sans aucun asset, avec Three.js et WebGPU. Les 3 premiers niveaux sont jouables, 7 autres suivront, et le son a été créé avec ElevenLabs.",
+		"de": "Ein Rennspiel komplett aus Code, ohne Assets, mit Three.js und WebGPU. Die ersten 3 Level sind spielbar, 7 weitere sollen folgen, und der Sound stammt von ElevenLabs.",
+		"pt-BR": "Um jogo de corrida feito todo em código, sem assets, com Three.js e WebGPU. As 3 primeiras fases são jogáveis, outras 7 estão por vir e o áudio foi feito com ElevenLabs.",
+		"ru": "Гоночная игра, целиком написанная кодом без ассетов, на Three.js и WebGPU. Первые 3 этапа уже играбельны, ещё 7 обещаны, а звук сделан в ElevenLabs."
 	}
 }

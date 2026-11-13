@@ -24,6 +24,18 @@
 		"pt-BR": "Um jogo de caça feito em três horas.",
 		"ru": "Игра про истребитель, сделанная за три часа."
 	},
+	"pitch": {
+		"en": "A detailed fighter-jet game aiming for realism, built with Fable 5.2 in only three hours.",
+		"zh-CN": "一款注重细节、追求写实的战斗机游戏，用 Fable 5.2 只花了三小时就做出来。",
+		"zh-TW": "一款講究細節、追求擬真的戰鬥機遊戲，用 Fable 5.2 只花三小時就做出來。",
+		"ja": "細部まで作り込まれたリアル志向の戦闘機ゲーム。Fable 5.2でわずか3時間で作られた。",
+		"ko": "디테일을 살린 사실적인 전투기 게임으로, Fable 5.2로 단 3시간 만에 만들었습니다.",
+		"es": "Un juego de cazas detallado y de estilo realista, creado con Fable 5.2 en solo tres horas.",
+		"fr": "Un jeu d’avion de chasse détaillé et réaliste, construit avec Fable 5.2 en seulement trois heures.",
+		"de": "Ein detailreiches, realistisches Kampfjet-Spiel, mit Fable 5.2 in nur drei Stunden gebaut.",
+		"pt-BR": "Um jogo de caça detalhado e realista, criado com o Fable 5.2 em apenas três horas.",
+		"ru": "Детализированная реалистичная игра про истребитель, созданная с Fable 5.2 всего за три часа."
+	},
 	"notes": {
 		"time": "3h"
 	}

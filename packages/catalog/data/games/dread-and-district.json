@@ -23,5 +23,17 @@
 		"de": "Eine Fantasy-Logistiksimulation, in der gute Lieferketten das Böse besiegen. Gebaut von einem Agentenschwarm.",
 		"pt-BR": "Simulador de logística de fantasia em que boas cadeias de suprimentos derrotam o mal. Feito por um enxame de agentes.",
 		"ru": "Фэнтези-симулятор логистики, где хорошие цепочки поставок побеждают зло. Создан роем агентов."
+	},
+	"pitch": {
+		"en": "A fantasy transport sim in which good logistics defeat evil. It began as one vague paragraph to Claude Fable 5.2 asking for a sim with heart, then a group of agents argued out its art, lore and jokes.",
+		"zh-CN": "一款奇幻运输模拟游戏，好的物流能打败邪恶。起点只是给 Claude Fable 5.2 的一段含糊描述，要一款有温度的运输模拟，之后由一群智能体争论出美术、世界观和笑点。",
+		"zh-TW": "一款奇幻運輸模擬遊戲，好的物流能打敗邪惡。起點只是給 Claude Fable 5.2 的一段模糊描述，要一款有溫度的運輸模擬，之後由一群代理爭論出美術、世界觀和笑點。",
+		"ja": "優れた物流が悪を倒す、ファンタジーの輸送シム。Claude Fable 5.2に「心のある」輸送シムを頼む曖昧な一段落から始まり、アート、世界観、ジョークはエージェントたちが議論して決めた。",
+		"ko": "좋은 물류가 악을 이기는 판타지 운송 시뮬레이션입니다. Claude Fable 5.2에게 마음이 담긴 운송 시뮬레이션을 부탁한 모호한 한 문단에서 시작해, 아트와 설정, 농담은 에이전트들이 논쟁하며 정했습니다.",
+		"es": "Un simulador de transporte fantástico donde la buena logística vence al mal. Empezó con un párrafo vago pidiéndole a Claude Fable 5.2 un simulador con corazón, y luego un grupo de agentes discutió el arte, el lore y los chistes.",
+		"fr": "Une simulation de transport fantastique où une bonne logistique terrasse le mal. Tout est parti d’un paragraphe vague demandant à Claude Fable 5.2 une simulation avec du cœur, puis des agents ont débattu de l’art, de l’univers et des blagues.",
+		"de": "Eine Fantasy-Transportsimulation, in der gute Logistik das Böse besiegt. Am Anfang stand ein vager Absatz an Claude Fable 5.2 mit dem Wunsch nach einer Simulation mit Herz, danach stritten Agenten über Grafik, Lore und Witze.",
+		"pt-BR": "Um simulador de transporte de fantasia em que a boa logística derrota o mal. Começou com um parágrafo vago pedindo ao Claude Fable 5.2 um simulador com coração, e depois um grupo de agentes discutiu a arte, o lore e as piadas.",
+		"ru": "Фэнтези-симулятор перевозок, где хорошая логистика побеждает зло. Всё началось с расплывчатого абзаца для Claude Fable 5.2 с просьбой о симуляторе с душой, а потом группа агентов спорила об арте, лоре и шутках."
 	}
 }

@@ -23,5 +23,17 @@
 		"de": "Eine Spielzeugwelt im Patchwork-Stop-Motion-Stil.",
 		"pt-BR": "Um mundo de brinquedo em estilo stop-motion de retalhos.",
 		"ru": "Игрушечный мир в стиле лоскутной стоп-моушн анимации."
+	},
+	"pitch": {
+		"en": "A game slice in a patchwork, stop-motion style, where the whole map is made in code. It is playable and open source on patch.",
+		"zh-CN": "一段拼布定格动画风格的游戏片段，整张地图都由代码构成。可以直接玩，并在 patch 上开源。",
+		"zh-TW": "一段拼布定格動畫風格的遊戲片段，整張地圖都由程式碼構成。可以直接玩，並在 patch 上開源。",
+		"ja": "パッチワークのコマ撮り風で作られたゲームスライス。マップ全体がコードでできている。プレイ可能で、patchでオープンソース公開されている。",
+		"ko": "퀼트 스톱모션 스타일의 게임 슬라이스로, 맵 전체가 코드로 만들어졌습니다. 플레이할 수 있고 patch에 오픈소스로 공개되어 있습니다.",
+		"es": "Un fragmento de juego con estilo de stop-motion y retazos, en el que todo el mapa está hecho con código. Es jugable y de código abierto en patch.",
+		"fr": "Une tranche de jeu façon patchwork et stop-motion, dont toute la carte est faite en code. Elle est jouable et open source sur patch.",
+		"de": "Ein Spielausschnitt im Patchwork-Stop-Motion-Stil, dessen gesamte Karte aus Code besteht. Spielbar und Open Source auf patch.",
+		"pt-BR": "Um trecho de jogo em estilo stop-motion de retalhos, com o mapa inteiro feito em código. É jogável e de código aberto no patch.",
+		"ru": "Фрагмент игры в стиле лоскутной стоп-моушн анимации, где вся карта сделана кодом. В него можно сыграть, а исходники открыты на patch."
 	}
 }

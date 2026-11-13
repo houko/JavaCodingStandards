@@ -24,6 +24,18 @@
 		"pt-BR": "Um motor de voxels com som, a partir de um único prompt.",
 		"ru": "Воксельный движок со звуком из одного промпта."
 	},
+	"pitch": {
+		"en": "Claude Fable 5.2 built this voxel engine, sound included, from a single prompt. It is meant to be tried with sound on.",
+		"zh-CN": "Claude Fable 5.2 只用一句提示就做出了这个体素引擎，连音效也包括在内。建议打开声音体验。",
+		"zh-TW": "Claude Fable 5.2 只用一句提示就做出了這個體素引擎，連音效也包含在內。建議開啟聲音體驗。",
+		"ja": "Claude Fable 5.2が1つのプロンプトからサウンドまで含めて作ったボクセルエンジン。音をオンにして試すのがおすすめ。",
+		"ko": "Claude Fable 5.2가 프롬프트 하나로 사운드까지 포함해 만든 복셀 엔진입니다. 소리를 켜고 체험해 보세요.",
+		"es": "Claude Fable 5.2 creó este motor de vóxeles, sonido incluido, a partir de un solo prompt. Conviene probarlo con el sonido activado.",
+		"fr": "Claude Fable 5.2 a construit ce moteur voxel, son compris, à partir d’un seul prompt. À essayer avec le son activé.",
+		"de": "Claude Fable 5.2 baute diese Voxel-Engine samt Sound aus einem einzigen Prompt. Am besten mit eingeschaltetem Ton ausprobieren.",
+		"pt-BR": "O Claude Fable 5.2 criou este motor de voxels, com som e tudo, a partir de um único prompt. Vale testar com o som ligado.",
+		"ru": "Claude Fable 5.2 создал этот воксельный движок вместе со звуком по одному промпту. Пробовать лучше со включённым звуком."
+	},
 	"notes": {
 		"prompts": "1"
 	}

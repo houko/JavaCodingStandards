@@ -23,5 +23,17 @@
 		"de": "3D-Kartrennen mit sechs Fahrern, Drifts, Rampen, Items und Multiplayer.",
 		"pt-BR": "Kart 3D com seis pilotos, drift, rampas, itens e multijogador.",
 		"ru": "3D-картинг: шесть гонщиков, дрифт, трамплины, предметы и мультиплеер."
+	},
+	"pitch": {
+		"en": "A 3D kart racer that runs in the browser and is free to play, solo or in multiplayer. Six racers drift, take ramps and use items. It was one of five tasks its creator used to compare Fable 5.2 with Opus 5.5.",
+		"zh-CN": "一款在浏览器里直接运行、免费游玩的 3D 卡丁车游戏，支持单人和多人。六名车手可以漂移、飞跃跳台、使用道具。它是作者对比 Fable 5.2 与 Opus 5.5 的五项测试之一。",
+		"zh-TW": "一款在瀏覽器裡直接執行、免費遊玩的 3D 卡丁車遊戲，支援單人和多人。六名車手可以甩尾、飛越跳台、使用道具。它是作者比較 Fable 5.2 與 Opus 5.5 的五項測試之一。",
+		"ja": "ブラウザで直接動き、無料で遊べる3Dカートレース。シングルプレイとマルチプレイに対応。6人のレーサーがドリフトし、ジャンプ台を越え、アイテムを使う。作者がFable 5.2とOpus 5.5を比べた5つのテストのひとつ。",
+		"ko": "브라우저에서 바로 실행되고 무료로 즐길 수 있는 3D 카트 레이싱으로, 싱글플레이와 멀티플레이를 모두 지원합니다. 레이서 6명이 드리프트하고 점프대를 넘고 아이템을 씁니다. 제작자가 Fable 5.2와 Opus 5.5를 비교한 다섯 가지 테스트 중 하나입니다.",
+		"es": "Un juego de karts en 3D que funciona en el navegador y es gratis, en solitario o multijugador. Seis pilotos derrapan, saltan rampas y usan objetos. Fue una de las cinco pruebas con las que su creador comparó Fable 5.2 y Opus 5.5.",
+		"fr": "Un jeu de karts en 3D qui tourne dans le navigateur et se joue gratuitement, en solo ou en multijoueur. Six pilotes dérapent, prennent des tremplins et utilisent des objets. C’était l’un des cinq tests de son créateur pour comparer Fable 5.2 et Opus 5.5.",
+		"de": "Ein 3D-Kartrennen, das direkt im Browser läuft und kostenlos spielbar ist, allein oder im Multiplayer. Sechs Fahrer driften, nehmen Rampen und setzen Items ein. Es war einer von fünf Tests, mit denen sein Macher Fable 5.2 und Opus 5.5 verglich.",
+		"pt-BR": "Um jogo de kart 3D que roda direto no navegador e é gratuito, para um jogador ou multijogador. Seis pilotos fazem drift, saltam rampas e usam itens. Foi um dos cinco testes em que o criador comparou o Fable 5.2 com o Opus 5.5.",
+		"ru": "3D-картинг, который запускается прямо в браузере и бесплатен, в одиночной игре или мультиплеере. Шесть гонщиков дрифтуют, прыгают с трамплинов и используют предметы. Это одно из пяти заданий, на которых автор сравнивал Fable 5.2 с Opus 5.5."
 	}
 }

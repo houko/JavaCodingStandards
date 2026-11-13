@@ -23,5 +23,17 @@
 		"de": "Spielzeugautorennen auf einem Kinderspielteppich.",
 		"pt-BR": "Corrida de carrinhos sobre um tapete de brincar da infância.",
 		"ru": "Гонки игрушечных машинок по детскому игровому коврику."
+	},
+	"pitch": {
+		"en": "A toy-car race across a childhood play rug, built from the same prompt by GPT-6.2 Sol and Fable 5.5. Its creator found the GPT-6.2 Sol race harder and more fun, and the Fable 5.5 one cleaner-looking with better physics.",
+		"zh-CN": "在童年游戏地毯上开玩具车赛跑，GPT-6.2 Sol 和 Fable 5.5 用同一段提示各做了一版。作者觉得 GPT-6.2 Sol 版比赛更难也更好玩，Fable 5.5 版画面更干净、物理效果更好。",
+		"zh-TW": "在童年遊戲地毯上開玩具車賽跑，GPT-6.2 Sol 和 Fable 5.5 用同一段提示各做了一版。作者覺得 GPT-6.2 Sol 版比賽更難也更好玩，Fable 5.5 版畫面更乾淨、物理效果更好。",
+		"ja": "子どもの頃の遊びマットの上を走るおもちゃの車レース。同じプロンプトでGPT-6.2 SolとFable 5.5がそれぞれ制作した。作者の評価では、GPT-6.2 Sol版はレースが手ごわく遊んで楽しく、Fable 5.5版はグラフィックがきれいで物理挙動も優れている。",
+		"ko": "어린 시절 놀이 매트 위를 달리는 장난감 자동차 레이스로, 같은 프롬프트로 GPT-6.2 Sol과 Fable 5.5가 각각 만들었습니다. 제작자는 GPT-6.2 Sol 버전이 더 어렵고 재미있으며, Fable 5.5 버전은 그래픽이 더 깔끔하고 물리 효과가 낫다고 평가했습니다.",
+		"es": "Una carrera de coches de juguete sobre una alfombra infantil, hecha con el mismo prompt por GPT-6.2 Sol y por Fable 5.5. Según su creador, la de GPT-6.2 Sol es más difícil y divertida, y la de Fable 5.5 se ve más limpia y tiene mejor física.",
+		"fr": "Une course de petites voitures sur un tapis de jeu d’enfance, créée avec le même prompt par GPT-6.2 Sol et par Fable 5.5. Selon son créateur, la version GPT-6.2 Sol est plus difficile et plus amusante, la version Fable 5.5 plus soignée visuellement, avec une meilleure physique.",
+		"de": "Ein Spielzeugautorennen auf einem Kinderspielteppich, mit demselben Prompt von GPT-6.2 Sol und Fable 5.5 gebaut. Laut dem Ersteller ist die GPT-6.2-Sol-Version schwerer und macht mehr Spaß, die Fable-5.5-Version sieht sauberer aus und hat die bessere Physik.",
+		"pt-BR": "Uma corrida de carrinhos sobre um tapete de brincar da infância, feita com o mesmo prompt pelo GPT-6.2 Sol e pelo Fable 5.5. Para o criador, a versão do GPT-6.2 Sol é mais difícil e divertida, e a do Fable 5.5 tem visual mais limpo e física melhor.",
+		"ru": "Гонки игрушечных машинок по детскому игровому коврику, сделанные по одному и тому же промпту в GPT-6.2 Sol и Fable 5.5. По словам автора, версия GPT-6.2 Sol сложнее и интереснее, а у версии Fable 5.5 чище графика и лучше физика."
 	}
 }

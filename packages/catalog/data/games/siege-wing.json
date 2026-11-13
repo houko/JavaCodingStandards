@@ -23,5 +23,17 @@
 		"de": "Flieg einen Helikopter in einen mittelalterlichen Krieg. Kanonen, Raketen und Lenkwaffen gegen Ballisten und Burgen.",
 		"pt-BR": "Pilote um helicóptero numa guerra medieval. Canhões, foguetes e mísseis contra balistas e castelos.",
 		"ru": "Ведите вертолёт в средневековую войну. Пушки, ракеты и снаряды против баллист и замков."
+	},
+	"pitch": {
+		"en": "A browser game that asks whether a helicopter can win a medieval war. You fly a chopper armed with a cannon, rockets and missiles, survive Roman ballistas and take down the castle and its knights.",
+		"zh-CN": "一款浏览器游戏，抛出一个问题：直升机能打赢中世纪战争吗？你驾驶装有加农炮、火箭和导弹的直升机，在罗马弩炮的攻击下生存，并摧毁城堡、击败骑士。",
+		"zh-TW": "一款瀏覽器遊戲，問的是：直升機能打贏中世紀戰爭嗎？你駕駛配備加農砲、火箭和飛彈的直升機，在羅馬弩砲的攻擊下存活，並摧毀城堡、擊敗騎士。",
+		"ja": "ヘリコプターは中世の戦争に勝てるのか、を問うブラウザゲーム。大砲・ロケット・ミサイルを積んだヘリを操り、ローマのバリスタを生き延びながら城と騎士を打ち倒す。",
+		"ko": "헬기가 중세 전쟁에서 이길 수 있을지 묻는 브라우저 게임. 대포·로켓·미사일을 갖춘 헬기를 몰고 로마 발리스타를 버티며 성과 기사들을 무너뜨립니다.",
+		"es": "Un juego de navegador que plantea si un helicóptero puede ganar una guerra medieval. Pilotas uno armado con cañón, cohetes y misiles, sobrevives a las balistas romanas y derribas el castillo y a sus caballeros.",
+		"fr": "Un jeu web qui se demande si un hélicoptère peut gagner une guerre médiévale. Armé d’un canon, de roquettes et de missiles, vous survivez aux balistes romaines et abattez le château et ses chevaliers.",
+		"de": "Ein Browserspiel über die Frage, ob ein Helikopter einen mittelalterlichen Krieg gewinnen kann. Mit Kanone, Raketen und Lenkwaffen überstehst du römische Ballisten und bezwingst Burg und Ritter.",
+		"pt-BR": "Um jogo de navegador que pergunta se um helicóptero consegue vencer uma guerra medieval. Você pilota um armado com canhão, foguetes e mísseis, sobrevive às balistas romanas e derruba o castelo e seus cavaleiros.",
+		"ru": "Браузерная игра о том, может ли вертолёт выиграть средневековую войну. Вы летите на вертолёте с пушкой, ракетами и снарядами, уходите от римских баллист и берёте замок, одолевая рыцарей."
 	}
 }

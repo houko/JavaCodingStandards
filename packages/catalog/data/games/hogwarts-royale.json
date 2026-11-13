@@ -24,6 +24,18 @@
 		"pt-BR": "Um battle royale numa escola de magia, a partir de um prompt de uma linha.",
 		"ru": "Королевская битва в школе магии из однострочного промпта."
 	},
+	"pitch": {
+		"en": "A mashup of Harry Potter and Fortnite: a battle royale at a wizard school, made by Claude Fable 5.2 from a one-line prompt asking for exactly that.",
+		"zh-CN": "《哈利·波特》与《堡垒之夜》的混搭，一场魔法学院大逃杀。Claude Fable 5.2 只凭一句要求混搭这两部作品的提示就把它做了出来。",
+		"zh-TW": "《哈利波特》與《要塞英雄》的混搭，一場魔法學院大逃殺。Claude Fable 5.2 只憑一句要求混搭這兩部作品的提示就把它做了出來。",
+		"ja": "ハリー・ポッターとフォートナイトのマッシュアップで、魔法学校が舞台のバトロワ。Claude Fable 5.2が、まさにそれを頼む1行のプロンプトだけで作った。",
+		"ko": "해리 포터와 포트나이트를 섞은 마법 학교 배틀로열입니다. Claude Fable 5.2가 바로 그 조합을 요청한 한 줄 프롬프트만으로 만들었습니다.",
+		"es": "Una mezcla de Harry Potter y Fortnite: un battle royale en una escuela de magia, hecho por Claude Fable 5.2 a partir de un prompt de una línea que pedía justo eso.",
+		"fr": "Un mélange de Harry Potter et de Fortnite : un battle royale dans une école de sorciers, créé par Claude Fable 5.2 à partir d’un prompt d’une ligne qui demandait exactement cela.",
+		"de": "Ein Mashup aus Harry Potter und Fortnite: ein Battle Royale an einer Zauberschule, von Claude Fable 5.2 aus einem Einzeiler-Prompt gebaut, der genau das verlangte.",
+		"pt-BR": "Uma mistura de Harry Potter e Fortnite: um battle royale numa escola de magia, feito pelo Claude Fable 5.2 a partir de um prompt de uma linha que pedia exatamente isso.",
+		"ru": "Смесь «Гарри Поттера» и Fortnite: королевская битва в школе магии, которую Claude Fable 5.2 сделал по однострочному промпту, просившему именно это."
+	},
 	"notes": {
 		"prompts": "1",
 		"prompt": "Fable 5.2, create a mashup of Harry Potter and Fortnite"
