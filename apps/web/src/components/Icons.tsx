@@ -134,3 +134,47 @@ export function LinkIcon({ size = 16, className }: IconProps) {
 		</Icon>
 	);
 }
+
+export function ChevronRight({ size = 20, className }: IconProps) {
+	return (
+		<Icon size={size} stroke={2.2} className={className}>
+			<path d='M9 6l6 6-6 6' />
+		</Icon>
+	);
+}
+
+export function ChevronLeft({ size = 20, className }: IconProps) {
+	return (
+		<Icon size={size} stroke={2.2} className={className}>
+			<path d='M15 6l-6 6 6 6' />
+		</Icon>
+	);
+}
+
+export function Search({ size = 18, className }: IconProps) {
+	return (
+		<Icon size={size} className={className}>
+			<circle cx='11' cy='11' r='7' />
+			<path d='M20 20l-3.5-3.5' />
+		</Icon>
+	);
+}
+
+// The counter-clockwise arrow of the button that clears the filters.
+export function Reset({ size = 15, className }: IconProps) {
+	return (
+		<Icon size={size} stroke={2.2} className={className}>
+			<path d='M3 12a9 9 0 1 0 3-6.7' />
+			<path d='M3 4v5h5' />
+		</Icon>
+	);
+}
+
+// A speech bubble: the creator's post.
+export function Bubble({ size = 16, className }: IconProps) {
+	return (
+		<Icon size={size} className={className}>
+			<path d='M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z' />
+		</Icon>
+	);
+}

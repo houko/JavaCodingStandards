@@ -23,5 +23,9 @@
 		"de": "Das Chrome-T-Rex-Spiel als Actionspiel neu gedacht.",
 		"pt-BR": "O jogo do T-Rex do Chrome, transformado em jogo de ação.",
 		"ru": "Игра с динозавром из Chrome, переделанная в экшен."
+	},
+	"notes": {
+		"time": "45m 30s",
+		"cost": "$14.77"
 	}
 }

@@ -23,5 +23,8 @@
 		"de": "Stonehenge in einer HTML-Datei: Gras, Schatten und der Sonnenlauf zur Sonnenwende.",
 		"pt-BR": "Stonehenge num único HTML: grama, sombras e o caminho do sol no solstício.",
 		"ru": "Стоунхендж в одном HTML: трава, тени и путь солнца в день солнцестояния."
+	},
+	"notes": {
+		"prompts": "1"
 	}
 }

@@ -1,22 +1,6 @@
 /* The design's motion and interaction rules, under the reference's avg-* names: keyframes, hover choreography, the marquees, the scroll-driven reveals, and the type fixes for scripts the display face does not cover. Unlayered on purpose, so these rules win over Tailwind's utilities. */
 
 /* ---- keyframes ---- */
-@keyframes avg-left {
-	from {
-		transform: translate3d(0, 0, 0);
-	}
-	to {
-		transform: translate3d(-50%, 0, 0);
-	}
-}
-@keyframes avg-right {
-	from {
-		transform: translate3d(-50%, 0, 0);
-	}
-	to {
-		transform: translate3d(0, 0, 0);
-	}
-}
 @keyframes avg-blink {
 	0%,
 	49% {
@@ -77,6 +61,35 @@
 	}
 	to {
 		transform: scale(1.14) translate(-2%, -1%);
+	}
+}
+@keyframes avg-settle {
+	from {
+		opacity: 0;
+		scale: 0.97;
+	}
+	to {
+		opacity: 1;
+		scale: 1;
+	}
+}
+@keyframes avg-pulse {
+	0%,
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+	50% {
+		opacity: 0.35;
+		transform: scale(0.75);
+	}
+}
+@keyframes avg-gridmove {
+	from {
+		background-position: 0 0;
+	}
+	to {
+		background-position: 0 64px;
 	}
 }
 @keyframes avg-ticker {
@@ -155,18 +168,6 @@
 }
 
 /* ---- hero ---- */
-.avg-track {
-	display: flex;
-	gap: 16px;
-	width: max-content;
-	will-change: transform;
-}
-.avg-left {
-	animation: avg-left linear infinite;
-}
-.avg-right {
-	animation: avg-right linear infinite;
-}
 .avg-caret {
 	animation: avg-blink 1.1s steps(1) infinite;
 }
@@ -192,22 +193,45 @@
 .avg-d5 {
 	animation-delay: 0.58s;
 }
-/* The wall of covers fades out to the left behind the text; on a phone the text covers the whole width, so the wall is dimmed evenly. In between, the percentages would let the wall show through under the end of the paragraph's lines (it is 640px wide, from the gutter), so the dark part is held to 700px before it fades. */
-.avg-shade {
-	background: linear-gradient(90deg, var(--color-bg) 0%, var(--color-bg) 30%, color-mix(in srgb, var(--color-bg) 78%, transparent) 52%, color-mix(in srgb, var(--color-bg) 28%, transparent) 78%, color-mix(in srgb, var(--color-bg) 12%, transparent) 100%);
+/* The floor: a lime grid lying back in perspective and sliding towards the viewer, one cell per loop. */
+.avg-grid {
+	transform: rotateX(64deg);
+	transform-origin: 50% 0%;
+	background-image: linear-gradient(color-mix(in srgb, var(--color-lime) 30%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in srgb, var(--color-lime) 30%, transparent) 1px, transparent 1px);
+	background-size: 64px 64px;
+	animation: avg-gridmove 2.8s linear infinite;
 }
-@media (max-width: 1140px) {
-	.avg-shade {
-		background: linear-gradient(90deg, var(--color-bg) 0, color-mix(in srgb, var(--color-bg) 86%, transparent) 700px, color-mix(in srgb, var(--color-bg) 30%, transparent) 100%);
-	}
+.avg-pill {
+	transition:
+		border-color 0.2s,
+		color 0.2s;
 }
-@media (max-width: 760px) {
-	.avg-shade {
-		background: color-mix(in srgb, var(--color-bg) 84%, transparent);
-	}
+.avg-pill:hover {
+	border-color: var(--color-lime);
 }
-/* The pause button of the hero stops what scrolls across the page: the wall of covers and the ticker. */
-[data-motion-paused] :is(.avg-track, .avg-ticker) {
+/* The screen: a lime glow under its bezel, scan lines over its picture, a pulsing dot beside "now playing", and dots that widen for the game on show. */
+.avg-screen {
+	box-shadow:
+		0 60px 140px -50px color-mix(in srgb, var(--color-lime) 38%, transparent),
+		0 30px 60px -30px rgb(0 0 0 / 0.9);
+}
+.avg-scan {
+	background: repeating-linear-gradient(180deg, rgb(0 0 0 / 0.16) 0, rgb(0 0 0 / 0.16) 1px, transparent 1px, transparent 3px);
+}
+.avg-live {
+	animation: avg-pulse 1.6s ease-in-out infinite;
+}
+.avg-dot {
+	transition:
+		width 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
+		background-color 0.35s;
+}
+/* A clip fades in over its cover once it is there to play. */
+.avg-clip {
+	animation: avg-fade 0.6s ease both;
+}
+/* The pause button of the hero stops what moves by itself across the page. The clips and the screen's rotation are stopped by the components. */
+[data-motion-paused] :is(.avg-ticker, .avg-grid, .avg-glow, .avg-kb, .avg-live, .avg-caret) {
 	animation-play-state: paused;
 }
 
@@ -215,11 +239,13 @@
 section[id] {
 	scroll-margin-top: 88px;
 }
+/* A section fades in and settles as it enters the screen. It grows from its top edge rather than rising, so the edge an in-page link scrolls to is where the section ends up; a section that moved would be left short of its heading. */
 @supports (animation-timeline: view()) {
 	.avg-reveal {
-		animation: avg-rise linear both;
+		transform-origin: 50% 0;
+		animation: avg-settle linear both;
 		animation-timeline: view();
-		animation-range: entry 0% cover 20%;
+		animation-range: entry 0% entry 35%;
 	}
 }
 
@@ -246,6 +272,35 @@ section[id] {
 }
 .avg-card:hover img {
 	transform: scale(1.08);
+}
+/* A card's clip fades in over the cover while the pointer is on the card, and its action button turns lime. */
+.avg-vid {
+	transition: opacity 0.35s ease;
+}
+.avg-card:hover .avg-play {
+	background-color: var(--color-lime);
+}
+.avg-title {
+	transition: color 0.2s;
+}
+.avg-navbtn {
+	transition:
+		background-color 0.2s,
+		color 0.2s;
+}
+.avg-navbtn:hover {
+	background-color: var(--color-lime);
+	color: var(--color-bg);
+}
+.avg-chiprow {
+	scrollbar-width: none;
+}
+.avg-chiprow::-webkit-scrollbar {
+	display: none;
+}
+/* The browser's own clear button would sit under the field's. */
+.avg-search::-webkit-search-cancel-button {
+	display: none;
 }
 .avg-heart {
 	transform-origin: center;
@@ -535,30 +590,22 @@ section[id] {
 :is(h1, h2):is(:lang(zh), :lang(ja), :lang(ko)) {
 	line-height: 1.25;
 }
-/* The hero line is measured in ch, the width of a digit; a full-width glyph is two, so the size comes down a step and Korean's measure is given in em. */
-.avg-h1:is(:lang(zh), :lang(ja), :lang(ko)) {
-	font-size: clamp(38px, 6.4vw, 88px);
+/* The hero's two lines are each set whole. Full-width glyphs are twice as wide as Latin ones and the Japanese first line has ten of them, so these scripts come down in size to keep a line on a phone; Cyrillic falls back to Inter, which is wider than the display face. */
+.avg-h1 {
+	text-wrap: balance;
+}
+.avg-h1:is(:lang(zh), :lang(ko)) {
+	font-size: clamp(34px, 6.4vw, 88px);
 	line-height: 1.14;
 }
-.avg-h1:lang(ko) {
-	max-width: 9em;
-}
-/* Chinese and Japanese have no spaces to break at, so a measure cuts the line inside a word. The line is instead set as its two halves (Hero splits it at the comma), one per line, the caret staying with the second. The Japanese halves are longer, ten glyphs at most, and are sized to fit a phone. */
-.avg-h1:is(:lang(zh), :lang(ja)) {
-	max-width: none;
-}
-.avg-h1:is(:lang(zh), :lang(ja)) > span {
-	display: block;
-}
 .avg-h1:lang(ja) {
-	font-size: clamp(28px, 7.6vw, 88px);
+	font-size: clamp(26px, 6.2vw, 84px);
+	line-height: 1.14;
 }
-/* Cyrillic falls back to Inter, which is wider than the display face. */
 .avg-h1:lang(ru) {
-	max-width: 13ch;
-	font-size: clamp(40px, 7vw, 96px);
+	font-size: clamp(30px, 6.2vw, 88px);
 	letter-spacing: -0.03em;
-	line-height: 1;
+	line-height: 1.02;
 }
 :lang(ko) {
 	word-break: keep-all;
@@ -580,5 +627,6 @@ section[id] {
 	.avg-reveal {
 		opacity: 1 !important;
 		translate: none !important;
+		scale: none !important;
 	}
 }

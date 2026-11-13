@@ -1,7 +1,7 @@
 {
 	"$schema": "../schema/game.schema.json",
-	"slug": "souls-like-boss-fight",
-	"name": "Souls-like boss fight",
+	"slug": "evensong",
+	"name": "Evensong",
 	"creator": "kevin_t_ngo",
 	"genre": "Action",
 	"link": {
@@ -10,7 +10,7 @@
 	"post": "2120238844754923874",
 	"likes": 1721,
 	"model": "Claude Fable 5.2",
-	"cover": "souls-like-boss-fight.webp",
+	"cover": "evensong.webp",
 	"summary": {
 		"en": "A dark-fantasy boss fight, playable in the browser.",
 		"zh-CN": "黑暗奇幻 Boss 战，可在浏览器中游玩。",

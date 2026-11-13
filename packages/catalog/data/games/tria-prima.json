@@ -23,5 +23,8 @@
 		"de": "Dark-Fantasy-Alchemie: fünf Missionen auf einer Open-World-Insel.",
 		"pt-BR": "Alquimia de fantasia sombria: cinco missões numa ilha de mundo aberto.",
 		"ru": "Алхимия в стиле тёмного фэнтези: пять миссий на острове с открытым миром."
+	},
+	"notes": {
+		"prompts": "1"
 	}
 }

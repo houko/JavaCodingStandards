@@ -23,5 +23,8 @@
 		"de": "Ein Kampfjet-Spiel, gebaut in drei Stunden.",
 		"pt-BR": "Um jogo de caça feito em três horas.",
 		"ru": "Игра про истребитель, сделанная за три часа."
+	},
+	"notes": {
+		"time": "3h"
 	}
 }

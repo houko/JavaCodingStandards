@@ -68,6 +68,13 @@ export class Reader {
 		return v;
 	}
 
+	// A list of non-empty strings.
+	strs(field: string): string[] {
+		const v = this.raw[field];
+		if (!Array.isArray(v) || v.some((s) => typeof s !== 'string' || !s.trim())) this.fail(field, 'must be a list of non-empty strings');
+		return v as string[];
+	}
+
 	text(field: string): Text {
 		const v = this.raw[field];
 		if (!v || typeof v !== 'object' || Array.isArray(v)) this.fail(field, 'must be an object of texts by language, e.g. { "en": "…", "ja": "…" }');

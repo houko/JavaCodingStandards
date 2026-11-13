@@ -66,10 +66,10 @@ Vibe Arcade 是一份人工整理的遊戲索引，收錄大家主要靠向 AI �
     "pt-BR": "Um FPS criado com prompts únicos, sem feedback humano. Modelos, sons e texturas foram todos gerados em código.",
     "ru": "Шутер от первого лица, созданный одноразовыми промптами без участия человека. Модели, звуки и текстуры сгенерированы кодом."
   },
-  "featured": {
-    "apiCost": "~$550",
-    "buildTime": "8h",
-    "outputTokens": 2700000
+  "notes": {
+    "time": "8h",
+    "cost": "~$550",
+    "tokens": "2.7M out · 445M in"
   }
 }
 ```
@@ -89,8 +89,8 @@ Vibe Arcade 是一份人工整理的遊戲索引，收錄大家主要靠向 AI �
 | `model` | 是 | 製作遊戲所用的 AI 模型，依作者的稱呼。 |
 | `cover` | 是 | 封面檔名 `<slug>.webp`：一張 960x600 的圖片，放在 `apps/web/public/covers/`。 |
 | `summary` | 是 | 卡片上的一句話簡介，十種語言齊全。 |
-| `pitch` | 否 | 遊戲被精選時顯示的較長介紹，十種語言齊全。 |
-| `featured` | 否 | 作者公布的 `apiCost`、`buildTime` 和 `outputTokens`。帶這個欄位的遊戲就是首頁的精選遊戲，所以有且只有一款遊戲帶它。 |
+| `pitch` | 否 | 遊戲詳情頁和入選精選時顯示的較長介紹，十種語言齊全。 |
+| `notes` | 否 | 作者公布的製作數據，原樣照錄：可以有 `time`、`cost`、`tokens`、`prompts`、`lines`、`size`、`agents`，以及生成遊戲所用的提示詞 `prompt`。顯示為遊戲的「製作數據」。 |
 
 ## 語言
 
@@ -104,14 +104,17 @@ Vibe Arcade 是一份人工整理的遊戲索引，收錄大家主要靠向 AI �
 apps/web/                  @vibe-arcade/web：網站，TanStack Start（React 19），在 Cloudflare Workers 上算繪
   src/                     路由、元件和樣式
   public/covers/           遊戲封面，<slug>.webp
+  public/videos/           遊戲的無聲短片，<slug>.mp4；hero/<slug>.mp4 供首屏播放
+  public/avatars/          創作者頭像，<handle>.webp
   public/fonts/            自行託管的網頁字型
   og/                      在建置時繪製分享圖的 Vite 外掛
-  scripts/                 fetch-covers.ts、site-icons.ts、banner.ts
+  scripts/                 fetch-covers.ts、fetch-media.ts、site-icons.ts、banner.ts
   wrangler.jsonc           Cloudflare Workers 設定
 packages/catalog/          @vibe-arcade/catalog：資料以及由它衍生的一切
   data/games/              每款遊戲一個 JSON 檔案
   data/schema/             game.schema.json
-  data/meta.json           資料最後變更的日期，即網站上的「最近更新」
+  data/meta.json           資料最後變更的日期，即網站上的「最近更新」，以及本週精選
+  data/media.json          哪些遊戲有短片、哪些創作者有頭像，由 fetch-media.ts 寫入
   locales/                 介面文案，每種語言一個檔案
   src/                     載入與驗證、篩選、語言、網站常數
 .github/
@@ -138,11 +141,12 @@ pnpm build       # 建置網站，包含分享圖
 
 ```sh
 pnpm --filter @vibe-arcade/web covers   # 從每款遊戲的 X 貼文抓取封面到 public/covers/
+pnpm --filter @vibe-arcade/web media    # 從每款遊戲的 X 貼文剪出短片並抓取創作者頭像（需要 ffmpeg）
 pnpm --filter @vibe-arcade/web icons    # 依 public/favicon.svg 重新產生圖示
 pnpm --filter @vibe-arcade/web banner   # 重新產生本檔案頂端的 .github/assets/banner.png
 ```
 
-`covers` 會保留已存在的封面，除非加上 `--force`；可以傳入 slug 來限定範圍；加上 `--likes` 還會更新遊戲檔案裡的按讚數；只要有按讚數變動，它就把 `packages/catalog/data/meta.json` 裡的日期（網站上顯示的「最近更新」）改成當天。新增遊戲時，這個日期需要手動修改。
+`covers` 會保留已存在的封面，除非加上 `--force`；可以傳入 slug 來限定範圍；加上 `--likes` 還會更新遊戲檔案裡的按讚數；只要有按讚數變動，它就把 `packages/catalog/data/meta.json` 裡的日期（網站上顯示的「最近更新」）改成當天。新增遊戲時，這個日期需要手動修改。`media` 從每款遊戲貼文的影片裡剪出六秒無聲短片存入 `public/videos/`，為按讚最多的六款再剪一段更大的供首屏播放，並把親自發文的創作者的頭像存入 `public/avatars/`。它把結果列在 `packages/catalog/data/media.json` 裡，這個檔案要和媒體檔案一起提交。它同樣會保留已存在的檔案，除非加上 `--force`，也可以傳入 slug。本週精選是 `meta.json` 裡 `picks` 下的 slug，手動維護。
 
 ## 部署
 
@@ -156,10 +160,10 @@ pnpm run deploy
 
 ## 致謝
 
-遊戲、名稱、封面和商標歸各自的作者所有。封面是作者在 X 上所發貼文裡的畫面。Vibe Arcade 是一份社群索引，與 Anthropic 或其他任何模型廠商均無關聯。
+遊戲、名稱、封面、短片和商標歸各自的作者所有。封面和短片取自作者在 X 上發布的貼文，頭像是他們的 X 頭像。作者如需修改或下架條目，可以在 X 上聯絡 [@suzukaze_haduki](https://x.com/suzukaze_haduki)，或開一個 issue。Vibe Arcade 是一份社群索引，與 Anthropic 或其他任何模型廠商均無關聯。
 
 Vibe Arcade 是 [Wiz Games](https://wiz.games) 的專案，由 [@suzukaze_haduki](https://x.com/suzukaze_haduki) 策展。
 
 ## 授權
 
-程式碼以 [MIT 授權條款](LICENSE)釋出。該授權不涵蓋遊戲及其封面。
+程式碼以 [MIT 授權條款](LICENSE)釋出。該授權不涵蓋遊戲及其封面、短片，也不涵蓋創作者的頭像。

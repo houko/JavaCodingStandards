@@ -1,3 +1,4 @@
+import media from '../data/media.json';
 import meta from '../data/meta.json';
 import { type LangCode, type Text, pick } from './lang';
 import type { StringKey } from './strings';
@@ -38,11 +39,14 @@ export const GENRE_KEYS = {
 export const LINK_TYPES = ['play', 'source', 'watch'] as const;
 export type LinkType = (typeof LINK_TYPES)[number];
 
-// What the creator reported about building the featured game.
-export interface Featured {
-	apiCost: string;
-	buildTime: string;
-	outputTokens: number;
+// What the creator reported about building the game, each as they wrote it ("8h", "~$550", "2.7M out · 445M in"). The order here is the order the site lists them in.
+export const NOTE_FIELDS = ['time', 'cost', 'tokens', 'prompts', 'lines', 'size', 'agents'] as const;
+export type NoteField = (typeof NOTE_FIELDS)[number];
+
+export interface Notes {
+	facts: { field: NoteField; value: string }[];
+	// The prompt the game was made from, where the creator shared it.
+	prompt?: string;
 }
 
 export interface Game {
@@ -68,9 +72,12 @@ export interface Game {
 	cover: string;
 	// The one-line description on the game's card.
 	summary: Text;
-	// A longer description, shown where the game is featured.
+	// A longer description, shown on the game's page and where it is a pick.
 	pitch?: Text;
-	featured?: Featured;
+	notes?: Notes;
+	// A short silent clip of the post's video, /videos/<slug>.mp4, for the games that have one (data/media.json), and the larger one the hero screen plays, /videos/hero/<slug>.mp4.
+	video?: string;
+	heroVideo?: string;
 }
 
 // The slug a game's name gives: lowercase, every run of other characters than a-z and 0-9 turned into one hyphen, none at either end.
@@ -87,16 +94,28 @@ const COVER = /^[a-z0-9-]+\.webp$/;
 // An X post's id: 18 to 20 digits. A shorter number is some other id (a user's, a cut-off paste) and would decode to a day in 2010; a longer one decodes to no date at all.
 const POST_ID = /^[1-9][0-9]{17,19}$/;
 
-// The fields of a game's file, of its link and of its featured block: the reader rejects any other, and the tests hold the schema to the same lists.
-export const GAME_FIELDS = ['$schema', 'slug', 'name', 'creator', 'creatorUrl', 'genre', 'link', 'post', 'likes', 'model', 'cover', 'summary', 'pitch', 'featured'] as const;
+// The fields of a game's file, of its link and of its notes block: the reader rejects any other, and the tests hold the schema to the same lists.
+export const GAME_FIELDS = ['$schema', 'slug', 'name', 'creator', 'creatorUrl', 'genre', 'link', 'post', 'likes', 'model', 'cover', 'summary', 'pitch', 'notes'] as const;
 export const GAME_REQUIRED = ['$schema', 'slug', 'name', 'creator', 'genre', 'link', 'post', 'likes', 'model', 'cover', 'summary'] as const;
 export const LINK_FIELDS = ['type', 'url'] as const;
-export const FEATURED_FIELDS = ['apiCost', 'buildTime', 'outputTokens'] as const;
+export const NOTES_FIELDS = [...NOTE_FIELDS, 'prompt'] as const;
 
 // X ids are snowflakes: the bits above the low 22 are milliseconds since X's epoch, 2010-11-04T01:42:54.657Z. They exceed 2^53, hence BigInt.
 const X_EPOCH_MS = 1288834974657n;
 function postTime(post: string): string {
 	return new Date(Number((BigInt(post) >> 22n) + X_EPOCH_MS)).toISOString();
+}
+
+// What scripts/fetch-media.ts found for the games: which have a clip, which a hero clip, and which creators (handles in lowercase) an avatar.
+const mediaReader = new Reader('media.json', media);
+const VIDEOS = new Set(mediaReader.strs('videos'));
+const HERO_VIDEOS = new Set(mediaReader.strs('heroVideos'));
+const AVATARS = new Set(mediaReader.strs('avatars'));
+
+function readNotes(n: Reader): Notes {
+	n.only(NOTES_FIELDS);
+	const facts = NOTE_FIELDS.filter((field) => n.raw[field] !== undefined).map((field) => ({ field, value: n.str(field) }));
+	return { facts, prompt: n.raw.prompt === undefined ? undefined : n.str('prompt') };
 }
 
 function readGame(r: Reader): Game {
@@ -116,8 +135,8 @@ function readGame(r: Reader): Game {
 	const url = type === 'watch' ? (l.optUrl('url') ?? postUrl) : l.url('url');
 	const cover = r.match('cover', COVER, 'a .webp file name');
 	if (cover !== `${slug}.webp`) r.fail('cover', `must be "${slug}.webp", the file in apps/web/public/covers named after the slug`);
-	const f = r.optObj('featured');
-	f?.only(FEATURED_FIELDS);
+	const n = r.optObj('notes');
+	if (n && Object.keys(n.raw).length === 0) r.fail('notes', 'must hold at least one note');
 	return {
 		slug,
 		name,
@@ -133,7 +152,9 @@ function readGame(r: Reader): Game {
 		cover: `/covers/${cover}`,
 		summary: r.text('summary'),
 		pitch: r.optText('pitch'),
-		featured: f && { apiCost: f.str('apiCost'), buildTime: f.str('buildTime'), outputTokens: f.int('outputTokens', 1) },
+		notes: n && readNotes(n),
+		video: VIDEOS.has(slug) ? `/videos/${slug}.mp4` : undefined,
+		heroVideo: HERO_VIDEOS.has(slug) ? `/videos/hero/${slug}.mp4` : undefined,
 	};
 }
 
@@ -179,13 +200,20 @@ export function gameBySlug(slug: string): Game | undefined {
 
 // ---- derived from the games ----
 
-// The featured game: the one whose file has a featured block. The home page is built around it, so the data must name exactly one.
-function featuredGame(): Game & { featured: Featured } {
-	const featured = GAMES.filter((g): g is Game & { featured: Featured } => g.featured !== undefined);
-	if (featured.length !== 1) throw new CatalogError(`${GAMES_DIR}/: exactly one game must have a featured block, found ${featured.length}`);
-	return featured[0];
+// This week's picks, in the order data/meta.json lists their slugs. The home page builds a block around them, so there must be at least one and each must be a game.
+function readPicks(): Game[] {
+	const picks = new Reader('meta.json', meta).strs('picks').map((slug) => BY_SLUG.get(slug) ?? fail(`meta.json: picks names "${slug}", which is not a game`));
+	if (picks.length === 0) fail('meta.json: picks must name at least one game');
+	unique('meta.json picks', picks, 'slug', (g) => g.slug);
+	return picks;
 }
-export const FEATURED = featuredGame();
+function fail(message: string): never {
+	throw new CatalogError(message);
+}
+export const PICKS = readPicks();
+
+// The games the hero screen rotates through: the most liked ones with a hero clip.
+export const HERO_GAMES = GAMES.filter((g) => g.heroVideo !== undefined);
 
 // Each model games were built with and how many, the most used first.
 export const MODELS: { name: string; count: number }[] = [...new Set(GAMES.map((g) => g.model))].map((name) => ({ name, count: GAMES.filter((g) => g.model === name).length })).sort((a, b) => b.count - a.count || (a.name < b.name ? -1 : a.name > b.name ? 1 : 0));
@@ -193,8 +221,37 @@ export const MODELS: { name: string; count: number }[] = [...new Set(GAMES.map((
 // How many games each genre has.
 export const GENRE_COUNTS = Object.fromEntries(GENRES.map((genre) => [genre, GAMES.filter((g) => g.genre === genre).length])) as Record<Genre, number>;
 
-// How many creators are credited. X handles are not case-sensitive.
-export const creatorsCount = new Set(GAMES.map((g) => g.creator.toLowerCase())).size;
+// A creator and what they have listed. X handles are not case-sensitive: key is the handle in lowercase, which the URL's ?creator= and the avatar's file name use, while handle keeps the spelling of their most liked game's file.
+export interface Creator {
+	key: string;
+	handle: string;
+	url: string;
+	// /avatars/<key>.webp, for the creators whose avatar was fetched (data/media.json).
+	avatar?: string;
+	games: number;
+	likes: number;
+}
+
+function readCreators(): Creator[] {
+	const byKey = new Map<string, Creator>();
+	for (const g of GAMES) {
+		const key = g.creator.toLowerCase();
+		const c = byKey.get(key) ?? { key, handle: g.creator, url: g.creatorUrl, avatar: AVATARS.has(key) ? `/avatars/${key}.webp` : undefined, games: 0, likes: 0 };
+		c.games++;
+		c.likes += g.likes;
+		byKey.set(key, c);
+	}
+	return [...byKey.values()].sort((a, b) => b.likes - a.likes || (a.key < b.key ? -1 : 1));
+}
+
+// Every creator, the one whose games have the most likes first.
+export const CREATORS = readCreators();
+export const creatorsCount = CREATORS.length;
+
+const CREATOR_BY_KEY = new Map(CREATORS.map((c) => [c.key, c]));
+export function creatorByHandle(handle: string): Creator | undefined {
+	return CREATOR_BY_KEY.get(handle.toLowerCase());
+}
 
 // The day (UTC) the data last changed, e.g. 2026-11-12: a game added or the like counts refreshed. It is written in data/meta.json rather than derived, since neither change shows in the games' post dates.
 export const LAST_UPDATED = new Reader('meta.json', meta).match('updated', /^\d{4}-\d{2}-\d{2}$/, 'a day, YYYY-MM-DD');
@@ -208,14 +265,18 @@ export interface GameFilter {
 	q?: string;
 	genre?: Genre;
 	model?: string;
+	// A creator's handle, in any case.
+	creator?: string;
 	// Most liked first (the default) or newest post first.
 	sort?: 'liked' | 'new';
 }
 
-export function filterGames({ q, genre, model, sort = 'liked' }: GameFilter, lang: LangCode): Game[] {
+export function filterGames({ q, genre, model, creator, sort = 'liked' }: GameFilter, lang: LangCode): Game[] {
 	const needle = (q ?? '').toLowerCase().trim();
 	const labels = t(lang);
+	const by = creator?.toLowerCase();
 	const found = GAMES.filter((g) => {
+		if (by !== undefined && g.creator.toLowerCase() !== by) return false;
 		if (genre && g.genre !== genre) return false;
 		if (model && g.model !== model) return false;
 		if (!needle) return true;

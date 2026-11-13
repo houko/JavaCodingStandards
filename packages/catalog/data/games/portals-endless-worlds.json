@@ -23,5 +23,8 @@
 		"de": "Über 450 reine Code-3D-Welten, verbunden durch Portale, gebaut von 25.000 Agenten.",
 		"pt-BR": "Mais de 450 mundos 3D só em código, ligados por portais e criados por 25.000 agentes.",
 		"ru": "Более 450 3D-миров из чистого кода, связанных порталами и созданных 25 000 агентов."
+	},
+	"notes": {
+		"agents": "25,000"
 	}
 }

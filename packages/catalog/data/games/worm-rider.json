@@ -23,5 +23,10 @@
 		"de": "Ein 220 KB großes Open-Source-Spiel, gebaut mit Claude Code.",
 		"pt-BR": "Um jogo open source de 220 KB feito com Claude Code.",
 		"ru": "Игра с открытым кодом на 220 КБ, сделанная в Claude Code."
+	},
+	"notes": {
+		"prompts": "10",
+		"lines": "3,400",
+		"size": "220 KB"
 	}
 }

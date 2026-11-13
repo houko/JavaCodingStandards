@@ -50,6 +50,9 @@ export function Footer({ lang, home }: { lang: LangCode; home: boolean }) {
 						<a href={MAKER_URL} rel='noopener noreferrer' className={COLUMN_LINK}>
 							{MAKER_NAME}
 						</a>
+						<a href={CURATOR_URL} rel='noopener noreferrer' className={COLUMN_LINK}>
+							{tr.removal}
+						</a>
 					</nav>
 				</div>
 				<div className='flex flex-col gap-2 border-t border-line pt-6 text-[14px] text-muted'>

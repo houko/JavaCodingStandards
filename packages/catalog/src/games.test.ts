@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import schema from '../data/schema/game.schema.json';
-import { FEATURED, FEATURED_FIELDS, GAMES, GAME_FIELDS, GAME_REQUIRED, GAME_SCHEMA, GENRES, GENRE_COLORS, GENRE_COUNTS, GENRE_KEYS, LAST_UPDATED, LINK_FIELDS, LINK_TYPES, MODELS, creatorsCount, filterGames, formatCount, formatDay, gameBySlug, readGames, relatedGames, slugOf, topLiked } from './games';
+import { CREATORS, GAMES, GAME_FIELDS, GAME_REQUIRED, GAME_SCHEMA, GENRES, GENRE_COLORS, GENRE_COUNTS, GENRE_KEYS, HERO_GAMES, LAST_UPDATED, LINK_FIELDS, LINK_TYPES, MODELS, NOTES_FIELDS, NOTE_FIELDS, PICKS, creatorByHandle, creatorsCount, filterGames, formatCount, formatDay, gameBySlug, readGames, relatedGames, slugOf, topLiked } from './games';
 import { LANGS, type Text } from './lang';
 import { LOCALES } from './strings';
 import { t } from './translate';
@@ -12,6 +12,7 @@ const { existsSync, readdirSync, readFileSync } = process.getBuiltinModule('node
 
 const DATA = new URL('../data/games/', import.meta.url);
 const COVERS = new URL('../../../apps/web/public/covers/', import.meta.url);
+const PUBLIC = new URL('../../../apps/web/public', import.meta.url);
 const names = (games: readonly { name: string }[]) => games.map((g) => g.name);
 
 const TEXT = Object.fromEntries(LANGS.map((lang) => [lang, `A kit (${lang}).`])) as Text;
@@ -25,10 +26,10 @@ describe('the games', () => {
 		expect(readdirSync(DATA).sort()).toEqual(GAMES.map((g) => `${g.slug}.json`).sort());
 	});
 
-	it('have unique slugs, each the slug of the name, found by gameBySlug', () => {
+	it('have unique slugs, each the slug of the name where the name has Latin letters or digits to make one from, found by gameBySlug', () => {
 		expect(new Set(GAMES.map((g) => g.slug)).size).toBe(GAMES.length);
 		for (const g of GAMES) {
-			expect(g.slug, g.name).toBe(slugOf(g.name));
+			if (slugOf(g.name)) expect(g.slug, g.name).toBe(slugOf(g.name));
 			expect(gameBySlug(g.slug)).toBe(g);
 		}
 		expect(gameBySlug('not-a-game')).toBeUndefined();
@@ -119,14 +120,43 @@ describe('the games', () => {
 		expect(missing, `${missing.length} of ${GAMES.length} covers are missing from apps/web/public/covers; each game needs a 960x600 <slug>.webp there`).toEqual([]);
 	});
 
-	it('feature exactly one game, with what its creator reported', () => {
-		expect(GAMES.filter((g) => g.featured)).toEqual([FEATURED]);
-		expect(FEATURED).toBe(gameBySlug(FEATURED.slug));
-		expect(Object.keys(FEATURED.featured)).toEqual([...FEATURED_FIELDS]);
+	it('list what their creators reported in the order of NOTE_FIELDS', () => {
+		for (const g of GAMES.filter((g) => g.notes)) {
+			const fields = g.notes!.facts.map((f) => f.field);
+			expect(fields, g.slug).toEqual(NOTE_FIELDS.filter((f) => fields.includes(f)));
+			expect(fields.length > 0 || g.notes!.prompt !== undefined, g.slug).toBe(true);
+		}
 	});
 
-	it('count each creator once, whatever the case of the handle', () => {
+	it('name at least one pick of the week, each a game and none twice', () => {
+		expect(PICKS.length).toBeGreaterThan(0);
+		expect(new Set(PICKS).size).toBe(PICKS.length);
+		for (const g of PICKS) expect(gameBySlug(g.slug)).toBe(g);
+	});
+
+	// The clips and avatars are not part of this package: scripts/fetch-media.ts of the site writes them into its public directory and lists them in data/media.json. A failure here means the list and the files have come apart; run the script again.
+	it('have the clip files data/media.json lists, and the hero plays the most liked of them', () => {
+		for (const g of GAMES) {
+			if (g.video) expect(existsSync(new URL(`public${g.video}`, PUBLIC)), g.video).toBe(true);
+			if (g.heroVideo) expect(existsSync(new URL(`public${g.heroVideo}`, PUBLIC)), g.heroVideo).toBe(true);
+			if (g.heroVideo) expect(g.video, g.slug).toBeDefined();
+		}
+		expect(HERO_GAMES.length).toBeGreaterThan(0);
+		expect(HERO_GAMES).toEqual(GAMES.filter((g) => g.video).slice(0, HERO_GAMES.length));
+	});
+
+	it('count each creator once, whatever the case of the handle, with their games and likes', () => {
 		expect(creatorsCount).toBe(new Set(GAMES.map((g) => g.creator.toLowerCase())).size);
+		expect(CREATORS.length).toBe(creatorsCount);
+		for (const c of CREATORS) {
+			const theirs = GAMES.filter((g) => g.creator.toLowerCase() === c.key);
+			expect(c.games, c.key).toBe(theirs.length);
+			expect(c.likes, c.key).toBe(theirs.reduce((sum, g) => sum + g.likes, 0));
+			expect(creatorByHandle(c.handle.toUpperCase())).toBe(c);
+			if (c.avatar) expect(existsSync(new URL(`public${c.avatar}`, PUBLIC)), c.avatar).toBe(true);
+		}
+		for (let i = 1; i < CREATORS.length; i++) expect(CREATORS[i - 1].likes, CREATORS[i].key).toBeGreaterThanOrEqual(CREATORS[i].likes);
+		expect(creatorByHandle('no_such_creator')).toBeUndefined();
 	});
 
 	it('were last updated on the day data/meta.json names, no earlier than the newest post', () => {
@@ -152,12 +182,12 @@ describe('the genres', () => {
 describe("a game's file", () => {
 	it('is read with its derived fields', () => {
 		expect(readGames({ 'kit.json': KIT })).toEqual([
-			{ slug: 'kit', name: 'Kit', creator: 'someone', creatorUrl: 'https://x.com/someone', genre: 'Action', link: { type: 'play', url: 'https://kit.example' }, post: '2119925633564463609', postUrl: 'https://x.com/i/status/2119925633564463609', postedAt: KIT_POSTED_AT, likes: 12, model: 'Some Model 1', cover: '/covers/kit.webp', summary: TEXT, pitch: undefined, featured: undefined },
+			{ slug: 'kit', name: 'Kit', creator: 'someone', creatorUrl: 'https://x.com/someone', genre: 'Action', link: { type: 'play', url: 'https://kit.example' }, post: '2119925633564463609', postUrl: 'https://x.com/i/status/2119925633564463609', postedAt: KIT_POSTED_AT, likes: 12, model: 'Some Model 1', cover: '/covers/kit.webp', summary: TEXT, pitch: undefined, notes: undefined, video: undefined, heroVideo: undefined },
 		]);
-		const [full] = read({ creatorUrl: 'https://github.com/someone', pitch: TEXT, featured: { apiCost: '~$5', buildTime: '1h', outputTokens: 1000 } })();
+		const [full] = read({ creatorUrl: 'https://github.com/someone', pitch: TEXT, notes: { prompt: 'Make a kit', cost: '~$5', time: '1h' } })();
 		expect(full.creatorUrl).toBe('https://github.com/someone');
 		expect(full.pitch).toBe(TEXT);
-		expect(full.featured).toEqual({ apiCost: '~$5', buildTime: '1h', outputTokens: 1000 });
+		expect(full.notes).toEqual({ facts: [{ field: 'time', value: '1h' }, { field: 'cost', value: '~$5' }], prompt: 'Make a kit' });
 	});
 
 	it('must be named after its slug and point at the schema', () => {
@@ -208,12 +238,13 @@ describe("a game's file", () => {
 		expect(read({ summary: undefined })).toThrow(/summary must be an object of texts by language/);
 	});
 
-	it('must have a whole featured block or none', () => {
-		expect(read({ featured: { apiCost: '~$5', buildTime: '1h' } })).toThrow(/^games\/kit.json \(Kit\): featured.outputTokens must be a whole number of at least 1$/);
-		expect(read({ featured: { apiCost: '~$5', buildTime: '1h', outputTokens: '2.7M' } })).toThrow(/featured.outputTokens must be a whole number/);
-		expect(read({ featured: { apiCost: 550, buildTime: '1h', outputTokens: 1 } })).toThrow(/featured.apiCost must be a non-empty string/);
-		expect(read({ featured: { apiCost: '~$5', buildTime: '1h', outputTokens: 1, likes: 3 } })).toThrow(/featured.likes is not a known field/);
-		expect(read({ featured: true })).toThrow(/featured must be an object/);
+	it('must have notes that say something, in the words of the creator, or none', () => {
+		expect(read({ notes: {} })).toThrow(/^games\/kit.json \(Kit\): notes must hold at least one note$/);
+		expect(read({ notes: { cost: 550 } })).toThrow(/notes.cost must be a non-empty string/);
+		expect(read({ notes: { prompt: ' ' } })).toThrow(/notes.prompt must be a non-empty string/);
+		expect(read({ notes: { time: '1h', likes: '3' } })).toThrow(/notes.likes is not a known field/);
+		expect(read({ notes: true })).toThrow(/notes must be an object/);
+		expect(read({ notes: { prompt: 'Make a kit' } })()[0].notes).toEqual({ facts: [], prompt: 'Make a kit' });
 	});
 
 	it('must not share its slug or its post with another', () => {
@@ -232,7 +263,7 @@ describe("a game's file", () => {
 
 describe('game.schema.json', () => {
 	const link = schema.properties.link;
-	const featured = schema.properties.featured;
+	const notes = schema.properties.notes;
 	const text = schema.$defs.text;
 
 	it('is the schema every file points at', () => {
@@ -249,9 +280,9 @@ describe('game.schema.json', () => {
 		expect(link.else.required).toEqual([...LINK_FIELDS]);
 		expect(link.if.properties.type.const).toBe('watch');
 		expect(link.additionalProperties).toBe(false);
-		expect(Object.keys(featured.properties)).toEqual([...FEATURED_FIELDS]);
-		expect(featured.required).toEqual([...FEATURED_FIELDS]);
-		expect(featured.additionalProperties).toBe(false);
+		expect(Object.keys(notes.properties)).toEqual([...NOTES_FIELDS]);
+		expect(notes.minProperties).toBe(1);
+		expect(notes.additionalProperties).toBe(false);
 	});
 
 	it('lists the genres, the kinds of link and the languages', () => {
@@ -278,13 +309,12 @@ describe('game.schema.json', () => {
 			expect(url.test(g.link.url), g.slug).toBe(true);
 		}
 		for (const bad of ['Kit', 'kit_one', '-kit', 'kit-', 'kit--one', 'kit one', '']) expect(slug.test(bad), bad).toBe(false);
-		for (const good of ['kit', 'kit-one', '3d-action-game', 'a', '2048']) expect(slug.test(good), good).toBe(true);
+		for (const good of ['kit', 'kit-one', '3d-kit', 'a', '2048']) expect(slug.test(good), good).toBe(true);
 		expect(creator.test('@someone')).toBe(false);
 		for (const bad of ['12a', '1', '12345678901234567', '0119925633564463609', '2'.repeat(21)]) expect(post.test(bad), bad).toBe(false);
 		expect(cover.test('kit.png')).toBe(false);
 		expect(url.test('http://kit.example')).toBe(false);
 		expect(schema.properties.likes).toMatchObject({ type: 'integer', minimum: 0 });
-		expect(featured.properties.outputTokens).toMatchObject({ type: 'integer', minimum: 1 });
 	});
 });
 
@@ -293,6 +323,15 @@ describe('filterGames', () => {
 		for (const lang of LANGS) expect(filterGames({}, lang)).toEqual(GAMES);
 		expect(filterGames({ q: '   ', sort: 'liked' }, 'en')).toEqual(GAMES);
 		expect(filterGames({}, 'en')).not.toBe(GAMES);
+	});
+
+	it('keeps to a creator, whatever the case of the handle', () => {
+		for (const c of CREATORS) {
+			const theirs = filterGames({ creator: c.handle.toUpperCase() }, 'en');
+			expect(theirs.length, c.key).toBe(c.games);
+			for (const g of theirs) expect(g.creator.toLowerCase(), g.slug).toBe(c.key);
+		}
+		expect(filterGames({ creator: 'no_such_creator' }, 'en')).toEqual([]);
 	});
 
 	it('keeps to a genre and a model', () => {

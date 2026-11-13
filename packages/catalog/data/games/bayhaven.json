@@ -3,7 +3,7 @@
 	"slug": "bayhaven",
 	"name": "Bayhaven",
 	"creator": "FablestarGames",
-	"genre": "Story & sim",
+	"genre": "Sandbox",
 	"link": {
 		"type": "play",
 		"url": "https://fablestar.games/play/"
@@ -13,15 +13,15 @@
 	"model": "Claude Fable 5.2",
 	"cover": "bayhaven.webp",
 	"summary": {
-		"en": "An early skeleton build, playable in the browser.",
-		"zh-CN": "早期骨架版本，可在浏览器中游玩。",
-		"zh-TW": "早期骨架版本，可在瀏覽器中遊玩。",
-		"ja": "初期のスケルトン版。ブラウザでプレイ可能。",
-		"ko": "초기 스켈레톤 빌드, 브라우저에서 플레이 가능.",
-		"es": "Una primera versión esqueleto, jugable en el navegador.",
-		"fr": "Une première version squelette, jouable dans le navigateur.",
-		"de": "Ein früher Skelett-Build, im Browser spielbar.",
-		"pt-BR": "Uma versão esqueleto inicial, jogável no navegador.",
-		"ru": "Ранняя черновая сборка, играбельна в браузере."
+		"en": "Drive and drift 3.2 km of beachfront in 14 vehicles, from a city bus to a hopping lowrider.",
+		"zh-CN": "在 3.2 公里的海滨开车漂移，14 种载具，从城市公交到会跳的低底盘车。",
+		"zh-TW": "在 3.2 公里的海濱開車甩尾，14 種載具，從市區公車到會跳的低底盤車。",
+		"ja": "全長3.2kmの海岸線をドライブ＆ドリフト。市バスから跳ねるローライダーまで14台。",
+		"ko": "3.2km 해변 도로를 달리고 드리프트. 시내버스부터 점프하는 로라이더까지 14대의 탈것.",
+		"es": "Conduce y derrapa por 3,2 km de costa con 14 vehículos, del autobús urbano a un lowrider que salta.",
+		"fr": "Conduisez et driftez sur 3,2 km de front de mer avec 14 véhicules, du bus au lowrider sauteur.",
+		"de": "Fahr und drifte 3,2 km an der Strandpromenade mit 14 Fahrzeugen, vom Stadtbus bis zum hüpfenden Lowrider.",
+		"pt-BR": "Dirija e drifte por 3,2 km de orla com 14 veículos, do ônibus ao lowrider que pula.",
+		"ru": "Катайтесь и дрифтуйте по 3,2 км набережной на 14 машинах — от автобуса до прыгающего лоурайдера."
 	}
 }

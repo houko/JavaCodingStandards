@@ -1,20 +1,21 @@
-import { GAMES, gameBySlug } from '@vibe-arcade/catalog';
+import { GAMES, filterGames, gameBySlug } from '@vibe-arcade/catalog';
 import { createFileRoute, useRouter } from '@tanstack/react-router';
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { BackToTop } from '../components/BackToTop';
+import { Creators } from '../components/Creators';
 import { Faq } from '../components/Faq';
-import { Featured } from '../components/Featured';
 import { Footer } from '../components/Footer';
 import { GameDialog } from '../components/GameDialog';
 import { GamesSection } from '../components/GamesSection';
 import { Hero } from '../components/Hero';
 import { HowItWorks } from '../components/HowItWorks';
 import { Nav } from '../components/Nav';
+import { Picks } from '../components/Picks';
 import { SubmitCta } from '../components/SubmitCta';
 import { Ticker } from '../components/Ticker';
 import { TopLiked } from '../components/TopLiked';
 import { useLang, useT } from '../lib/lang';
-import { type HomeSearch, validateHomeSearch } from '../lib/search';
+import { type HomeSearch, filterOf, validateHomeSearch } from '../lib/search';
 import { homeHead } from '../lib/seo';
 
 export const Route = createFileRoute('/')({
@@ -31,6 +32,7 @@ function Home() {
 	const tr = useT();
 	const open = search.game === undefined ? undefined : gameBySlug(search.game);
 	const isOpen = open !== undefined;
+	const list = useMemo(() => filterGames(filterOf(search), lang), [search, lang]);
 
 	// A filter change replaces the current history entry, so Back leaves the page rather than stepping through every keystroke and chip.
 	const setFilter = useCallback((patch: HomeSearch) => void navigate({ search: (prev) => ({ ...prev, ...patch }), replace: true, resetScroll: false }), [navigate]);
@@ -56,22 +58,29 @@ function Home() {
 		openGame(pool[Math.floor(Math.random() * pool.length)].slug);
 	}, [search.game, openGame]);
 
+	// The dialog steps through the list as filtered and ordered, or through every game when the open one is not in it (a pick, a surprise, a link), wrapping at either end.
+	const around = open && list.includes(open) ? list : GAMES;
+	const at = open ? around.indexOf(open) : 0;
+	const step = useCallback((by: number) => openGame(around[(at + by + around.length) % around.length].slug), [openGame, around, at]);
+	const nav = useMemo(() => ({ position: at + 1, total: around.length, onPrev: () => step(-1), onNext: () => step(1) }), [at, around.length, step]);
+
 	return (
 		<>
 			<Nav home />
 			<main id='main' tabIndex={-1} className='outline-none'>
-				<Hero lang={lang} onSurprise={surprise} />
+				<Hero lang={lang} onOpen={openGame} onSurprise={surprise} />
 				<Ticker />
-				<Featured lang={lang} onOpen={openGame} />
+				<Picks lang={lang} onOpen={openGame} />
+				<GamesSection lang={lang} search={search} list={list} onFilter={setFilter} onOpen={openGame} onSurprise={surprise} />
 				<TopLiked lang={lang} onOpen={openGame} />
-				<GamesSection lang={lang} search={search} onFilter={setFilter} onOpen={openGame} onSurprise={surprise} />
+				<Creators lang={lang} />
 				<HowItWorks lang={lang} />
 				<Faq lang={lang} />
 				<SubmitCta lang={lang} />
 			</main>
 			<Footer lang={lang} home />
 			<BackToTop label={tr.backTop} />
-			{open && <GameDialog game={open} lang={lang} onClose={closeGame} onOpen={openGame} />}
+			{open && <GameDialog game={open} lang={lang} onClose={closeGame} onOpen={openGame} nav={nav} />}
 		</>
 	);
 }

@@ -1,12 +1,14 @@
-import { GENRES, type GameFilter, type Genre, MODELS, gameBySlug, slugOf } from '@vibe-arcade/catalog';
+import { GENRES, type GameFilter, type Genre, MODELS, creatorByHandle, gameBySlug, slugOf } from '@vibe-arcade/catalog';
 
-// What the home page shows beyond its path lives in its query string, so a link reproduces the view: the search text, the order, the model and genre filters, and the open game. A default is left out (the plain path shows it) and an unknown value is dropped. Genres and models are written as slugs (story-sim, claude-fable-5-2) rather than their display names, which have spaces, ampersands and dots.
+// What the home page shows beyond its path lives in its query string, so a link reproduces the view: the search text, the order, the model, genre and creator filters, and the open game. A default is left out (the plain path shows it) and an unknown value is dropped. Genres and models are written as slugs (story-sim, claude-fable-5-2) rather than their display names, which have spaces, ampersands and dots.
 export interface HomeSearch {
 	q?: string;
 	// Most liked first is the default and is never written.
 	sort?: 'new';
 	model?: string;
 	genre?: string;
+	// A creator's handle in lowercase, to show their games alone.
+	creator?: string;
 	// The slug of the game whose dialog is open.
 	game?: string;
 }
@@ -32,12 +34,15 @@ export function validateHomeSearch(search: Record<string, unknown>): HomeSearch 
 	const genre = text(search.genre);
 	const model = text(search.model);
 	const game = text(search.game);
+	const creator = text(search.creator);
 	return {
 		// Cut by code point, so a hand-written URL never ends on half an emoji.
 		q: q === undefined ? undefined : Array.from(q).slice(0, Q_MAX).join(''),
 		sort: search.sort === 'new' ? 'new' : undefined,
 		model: model !== undefined && MODEL_BY_SLUG.has(model) ? model : undefined,
 		genre: genre !== undefined && GENRE_BY_SLUG.has(genre) ? genre : undefined,
+		// Written in any case, kept in the one the site writes.
+		creator: creator === undefined ? undefined : creatorByHandle(creator)?.key,
 		game: game !== undefined && gameBySlug(game) ? game : undefined,
 	};
 }
@@ -49,7 +54,11 @@ export function filterOf(search: HomeSearch): GameFilter {
 		sort: search.sort === 'new' ? 'new' : 'liked',
 		model: search.model === undefined ? undefined : MODEL_BY_SLUG.get(search.model),
 		genre: search.genre === undefined ? undefined : GENRE_BY_SLUG.get(search.genre),
+		creator: search.creator,
 	};
 }
 
-export const hasFilter = (search: HomeSearch): boolean => search.q !== undefined || search.model !== undefined || search.genre !== undefined;
+export const hasFilter = (search: HomeSearch): boolean => search.q !== undefined || search.model !== undefined || search.genre !== undefined || search.creator !== undefined;
+
+// The patch that clears every filter and keeps the order.
+export const NO_FILTER: HomeSearch = { q: undefined, model: undefined, genre: undefined, creator: undefined };

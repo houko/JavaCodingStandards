@@ -66,10 +66,10 @@ Each game is one JSON file at `packages/catalog/data/games/<slug>.json`, checked
     "pt-BR": "Um FPS criado com prompts únicos, sem feedback humano. Modelos, sons e texturas foram todos gerados em código.",
     "ru": "Шутер от первого лица, созданный одноразовыми промптами без участия человека. Модели, звуки и текстуры сгенерированы кодом."
   },
-  "featured": {
-    "apiCost": "~$550",
-    "buildTime": "8h",
-    "outputTokens": 2700000
+  "notes": {
+    "time": "8h",
+    "cost": "~$550",
+    "tokens": "2.7M out · 445M in"
   }
 }
 ```
@@ -89,8 +89,8 @@ Each game is one JSON file at `packages/catalog/data/games/<slug>.json`, checked
 | `model` | yes | The AI model the game was built with, as the creator names it. |
 | `cover` | yes | The cover's file name, `<slug>.webp`: a 960x600 image in `apps/web/public/covers/`. |
 | `summary` | yes | One line about the game for its card, in all ten languages. |
-| `pitch` | no | A longer description shown where the game is featured, in all ten languages. |
-| `featured` | no | `apiCost`, `buildTime` and `outputTokens` as the creator reports them. It makes the game the featured one on the home page, so exactly one game has it. |
+| `pitch` | no | A longer description shown on the game's page and where it is a pick, in all ten languages. |
+| `notes` | no | What the creator reported about building the game, each as they wrote it: any of `time`, `cost`, `tokens`, `prompts`, `lines`, `size` and `agents`, and `prompt`, the prompt it was made from. Shown as the game's build notes. |
 
 ## Languages
 
@@ -104,14 +104,17 @@ A pnpm monorepo with two packages:
 apps/web/                  @vibe-arcade/web: the site, TanStack Start (React 19) rendered on Cloudflare Workers
   src/                     routes, components and styles
   public/covers/           game covers, <slug>.webp
+  public/videos/           short silent clips of the games, <slug>.mp4, and hero/<slug>.mp4 for the hero screen
+  public/avatars/          creators' avatars, <handle>.webp
   public/fonts/            self-hosted web fonts
   og/                      Vite plugin that draws the share images at build time
-  scripts/                 fetch-covers.ts, site-icons.ts, banner.ts
+  scripts/                 fetch-covers.ts, fetch-media.ts, site-icons.ts, banner.ts
   wrangler.jsonc           Cloudflare Workers configuration
 packages/catalog/          @vibe-arcade/catalog: the data and everything derived from it
   data/games/              one JSON file per game
   data/schema/             game.schema.json
-  data/meta.json           the day the data last changed, the site's "last updated"
+  data/meta.json           the day the data last changed, the site's "last updated", and this week's picks
+  data/media.json          which games have a clip and which creators an avatar, written by fetch-media.ts
   locales/                 interface copy, one file per language
   src/                     loading and validation, filters, languages, site constants
 .github/
@@ -138,11 +141,12 @@ Three scripts in `apps/web` write files that are committed:
 
 ```sh
 pnpm --filter @vibe-arcade/web covers   # fetch each game's cover from its X post into public/covers/
+pnpm --filter @vibe-arcade/web media    # cut each game's clip and fetch its creator's avatar from its X post (needs ffmpeg)
 pnpm --filter @vibe-arcade/web icons    # redraw the icons from public/favicon.svg
 pnpm --filter @vibe-arcade/web banner   # redraw .github/assets/banner.png, the image at the top of this file
 ```
 
-`covers` keeps a cover that already exists unless `--force` is given, takes slugs to limit the run, and with `--likes` also refreshes the like counts in the game files; when a count changes it moves the day in `packages/catalog/data/meta.json`, which the site shows as "last updated", to today. Set that day by hand when you add a game.
+`covers` keeps a cover that already exists unless `--force` is given, takes slugs to limit the run, and with `--likes` also refreshes the like counts in the game files; when a count changes it moves the day in `packages/catalog/data/meta.json`, which the site shows as "last updated", to today. Set that day by hand when you add a game. `media` cuts a six-second silent clip from the video of each game's post into `public/videos/`, a larger one for the six most liked games, which the hero screen plays, and saves the avatar of each creator who posted their game themselves into `public/avatars/`. It lists what it found in `packages/catalog/data/media.json`; commit that file with the media. It also keeps what exists unless `--force` is given, and takes slugs. The picks of the week are the slugs under `picks` in `meta.json`, edited by hand.
 
 ## Deployment
 
@@ -156,10 +160,10 @@ This builds the site and runs `wrangler deploy` with [`apps/web/wrangler.jsonc`]
 
 ## Credits
 
-Games, names, covers and trademarks belong to their creators. The covers are frames from the creators' posts on X. Vibe Arcade is a community index and is not affiliated with Anthropic or any other model maker.
+Games, names, covers, clips and trademarks belong to their creators. The covers and clips are taken from the creators' posts on X, and the avatars are their X profile pictures. A creator who wants an entry changed or taken down can message [@suzukaze_haduki](https://x.com/suzukaze_haduki) or open an issue. Vibe Arcade is a community index and is not affiliated with Anthropic or any other model maker.
 
 Vibe Arcade is a [Wiz Games](https://wiz.games) project, curated by [@suzukaze_haduki](https://x.com/suzukaze_haduki).
 
 ## License
 
-The code is released under the [MIT License](LICENSE). The license does not cover the games or their covers.
+The code is released under the [MIT License](LICENSE). The license does not cover the games, their covers and clips, or the creators' avatars.

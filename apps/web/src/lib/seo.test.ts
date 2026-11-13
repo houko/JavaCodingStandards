@@ -1,4 +1,4 @@
-import { FEATURED, GAMES, LANGS, SITE_URL } from '@vibe-arcade/catalog';
+import { GAMES, LANGS, SITE_URL } from '@vibe-arcade/catalog';
 import { describe, expect, it } from 'vitest';
 import { OG_LOCALE, gameHead, homeHead, ogLocaleAlternates, pagePath, pageUrl } from './seo';
 
@@ -52,6 +52,8 @@ describe('homeHead', () => {
 		expect(items[0]).toMatchObject({ position: 1, url: `${SITE_URL}/games/${GAMES[0].slug}?lang=ko` });
 	});
 });
+
+const FEATURED = GAMES.find((g) => g.slug === 'saltline')!;
 
 describe('gameHead', () => {
 	it('builds a game page head in English', () => {

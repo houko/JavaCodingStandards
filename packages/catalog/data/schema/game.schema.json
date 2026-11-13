@@ -78,16 +78,21 @@
 			"$ref": "#/$defs/text",
 			"description": "A longer description, shown where the game is featured, in every site language."
 		},
-		"featured": {
+		"notes": {
 			"type": "object",
 			"additionalProperties": false,
-			"required": ["apiCost", "buildTime", "outputTokens"],
+			"minProperties": 1,
 			"properties": {
-				"apiCost": { "type": "string", "minLength": 1, "description": "What building the game cost, as the creator reports it, e.g. ~$550." },
-				"buildTime": { "type": "string", "minLength": 1, "description": "How long it took, e.g. 8h." },
-				"outputTokens": { "type": "integer", "minimum": 1, "description": "Tokens the model wrote, as a number, e.g. 2700000." }
+				"time": { "$ref": "#/$defs/line", "description": "How long it took to build, e.g. 8h." },
+				"cost": { "$ref": "#/$defs/line", "description": "What building it cost, e.g. ~$550." },
+				"tokens": { "$ref": "#/$defs/line", "description": "Tokens used, e.g. 2.7M out · 445M in." },
+				"prompts": { "$ref": "#/$defs/line", "description": "How many prompts it took, e.g. 1." },
+				"lines": { "$ref": "#/$defs/line", "description": "Lines of code, e.g. 3,400." },
+				"size": { "$ref": "#/$defs/line", "description": "The size of the game's files, e.g. 220 KB." },
+				"agents": { "$ref": "#/$defs/line", "description": "How many agents built it, e.g. 25,000." },
+				"prompt": { "$ref": "#/$defs/line", "description": "The prompt the game was made from, where the creator shared it." }
 			},
-			"description": "Makes this the featured game of the home page. Exactly one game has it."
+			"description": "What the creator reported about building the game, each value as they wrote it. Shown as the game's build notes."
 		}
 	},
 	"$defs": {

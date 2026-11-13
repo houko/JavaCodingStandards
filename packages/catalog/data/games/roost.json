@@ -23,5 +23,9 @@
 		"de": "Dirtbike-Rennen mit KI-Gegnern, Nitro und Lenkerkamera.",
 		"pt-BR": "Corrida de motocross com rivais de IA, nitro e câmera no guidão.",
 		"ru": "Мотокросс с ИИ-соперниками, нитро и камерой на руле."
+	},
+	"notes": {
+		"prompts": "5",
+		"time": "15m"
 	}
 }

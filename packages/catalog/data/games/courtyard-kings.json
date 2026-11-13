@@ -1,7 +1,7 @@
 {
 	"$schema": "../schema/game.schema.json",
-	"slug": "four-fighter-brawler",
-	"name": "Four-fighter brawler",
+	"slug": "courtyard-kings",
+	"name": "Courtyard Kings",
 	"creator": "promodenstudio",
 	"genre": "Action",
 	"link": {
@@ -11,7 +11,7 @@
 	"post": "2120085977079107788",
 	"likes": 4,
 	"model": "Claude Fable 5.2",
-	"cover": "four-fighter-brawler.webp",
+	"cover": "courtyard-kings.webp",
 	"summary": {
 		"en": "A four-character fighting game with 39 voice and sound clips.",
 		"zh-CN": "四角色格斗游戏，含 39 段语音与音效。",

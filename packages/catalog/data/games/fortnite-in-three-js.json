@@ -23,5 +23,8 @@
 		"de": "Ein Battle-Royale-Klon in Three.js.",
 		"pt-BR": "Um clone de battle royale em Three.js.",
 		"ru": "Клон королевской битвы на Three.js."
+	},
+	"notes": {
+		"lines": "30,000"
 	}
 }
