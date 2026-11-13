@@ -182,7 +182,7 @@ describe('the genres', () => {
 describe("a game's file", () => {
 	it('is read with its derived fields', () => {
 		expect(readGames({ 'kit.json': KIT })).toEqual([
-			{ slug: 'kit', name: 'Kit', creator: 'someone', creatorUrl: 'https://x.com/someone', genre: 'Action', link: { type: 'play', url: 'https://kit.example' }, post: '2119925633564463609', postUrl: 'https://x.com/i/status/2119925633564463609', postedAt: KIT_POSTED_AT, likes: 12, model: 'Some Model 1', cover: '/covers/kit.webp', summary: TEXT, pitch: undefined, notes: undefined, video: undefined, heroVideo: undefined },
+			{ slug: 'kit', name: 'Kit', creator: 'someone', creatorUrl: 'https://x.com/someone', genre: 'Action', link: { type: 'play', url: 'https://kit.example' }, post: '2119925633564463609', postUrl: 'https://x.com/i/status/2119925633564463609', postedAt: KIT_POSTED_AT, likes: 12, model: 'Some Model 1', cover: '/covers/kit.webp', summary: TEXT, pitch: undefined, notes: undefined, video: undefined, heroVideo: undefined, down: undefined },
 		]);
 		const [full] = read({ creatorUrl: 'https://github.com/someone', pitch: TEXT, notes: { prompt: 'Make a kit', cost: '~$5', time: '1h' } })();
 		expect(full.creatorUrl).toBe('https://github.com/someone');
@@ -236,6 +236,14 @@ describe("a game's file", () => {
 		expect(read({ summary: rest })).toThrow(/summary.ko is required/);
 		expect(read({ pitch: rest })).toThrow(/pitch.ko is required/);
 		expect(read({ summary: undefined })).toThrow(/summary must be an object of texts by language/);
+	});
+
+	it('points at its post instead of its link while it is marked as down', () => {
+		const [down] = read({ down: '2026-11-13' })();
+		expect(down.down).toBe('2026-11-13');
+		expect(down.link).toEqual({ type: 'watch', url: down.postUrl });
+		expect(read({ down: 'yesterday' })).toThrow(/down must be a day, YYYY-MM-DD, got "yesterday"/);
+		expect(read({ down: true })).toThrow(/down must be a non-empty string/);
 	});
 
 	it('must have notes that say something, in the words of the creator, or none', () => {
@@ -315,6 +323,8 @@ describe('game.schema.json', () => {
 		expect(cover.test('kit.png')).toBe(false);
 		expect(url.test('http://kit.example')).toBe(false);
 		expect(schema.properties.likes).toMatchObject({ type: 'integer', minimum: 0 });
+		expect(new RegExp(schema.properties.down.pattern).test('2026-11-13')).toBe(true);
+		expect(new RegExp(schema.properties.down.pattern).test('13/11/2026')).toBe(false);
 	});
 });
 

@@ -120,5 +120,7 @@
 	"heroSub": "Die besten Browserspiele, die mit KI gebaut und auf X geteilt wurden – mit Ersteller, Modell und einem Klick zum Spielen.",
 	"startPlaying": "Jetzt spielen",
 	"nowPlaying": "Läuft gerade",
-	"oneGame": "1 Spiel"
+	"oneGame": "1 Spiel",
+	"linkDown": "Link offline",
+	"linkDownNote": "Der Link zum Spiel antwortet seit dem {date} nicht mehr, deshalb führt dies zum Post des Creators."
 }

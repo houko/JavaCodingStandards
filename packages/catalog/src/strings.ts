@@ -19,6 +19,7 @@ import type { LangCode } from './lang';
 // - showing takes {a} (games shown) and {b} (games in all); moreIn takes {g}, a genre's label; madeBy takes {maker}. nGames takes {n}, a creator's count of games, and oneGame is its form for a single game; gamesBy takes {c}, a creator's @handle.
 // - heroL1 and heroL2 are the two lines of the hero's headline. nowPlaying labels the hero's screen and its row of dots.
 // - buildNotes heads what a creator reported about building a game: buildTime, apiCost, tokens, prompts, lines, fileSize and agents label its figures, promptLabel the prompt, and featuredStatsNote says whose figures they are.
+// - linkDown is the badge of a game marked as down, and linkDownNote, which takes {date}, the sentence on its page.
 // - a5 names the curator's handle; removal is the footer's link to them.
 // - a2 takes {models}, the names of the models the listed games were built with.
 // - gShooter … gPuzzle are the genres' labels (GENRE_KEYS in games.ts). play, source and watch are a card's short action labels; playLabel, sourceLabel and watchLabel are the long forms on a game's page.

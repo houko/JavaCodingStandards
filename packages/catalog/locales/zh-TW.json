@@ -120,5 +120,7 @@
 	"heroSub": "收錄大家用 AI 做出來、發在 X 上的優秀網頁遊戲——註明作者和模型，點一下就能玩。",
 	"startPlaying": "開始玩",
 	"nowPlaying": "正在播放",
-	"oneGame": "1 款遊戲"
+	"oneGame": "1 款遊戲",
+	"linkDown": "連結失效",
+	"linkDownNote": "遊戲連結自 {date} 起無法存取，這裡改為指向作者的原始貼文。"
 }

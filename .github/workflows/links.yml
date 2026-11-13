@@ -1,30 +1,70 @@
 name: Links
 
-# Requests every game's play or source link once a week. It reports in the run summary and in one issue titled "Dead game links"; it never edits the data and never runs on pull requests.
+# Requests every game's play or source link once a day. A link that does not answer is reported in the run summary and in one issue titled "Dead game links", which counts the checks in a row that found it dead. After three, the run opens a pull request that marks the game as down ("down" in its file), and later one that takes the mark off when the link answers again. Nothing reaches main without that pull request being merged by a person. It never runs on pull requests.
 on:
   schedule:
-    - cron: '17 5 * * 1'
+    - cron: '17 5 * * *'
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   issues: write
+  pull-requests: write
 
 concurrency:
   group: links
   cancel-in-progress: false
 
+env:
+  # The one branch and pull request the check keeps: every run rebuilds the branch from main, so the pull request always holds exactly what the latest check wants changed.
+  BRANCH: bot/link-status
+  GH_TOKEN: ${{ github.token }}
+  GH_REPO: ${{ github.repository }}
+
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-      - run: node .github/scripts/check-links.mjs
+          cache: pnpm
+      - id: check
+        run: node .github/scripts/check-links.mjs
         env:
-          GH_TOKEN: ${{ github.token }}
-          GH_REPO: ${{ github.repository }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          PR_BODY_FILE: ${{ runner.temp }}/link-status.md
+
+      # A pull request opened with the workflow's own token does not start the CI workflow, so the checks CI would run on it run here first: the READMEs' list of games follows the marks, and the catalog's tests read the changed files.
+      - if: steps.check.outputs.changed == 'true'
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm --filter @vibe-arcade/web readme
+          pnpm typecheck
+          pnpm test
+      - if: steps.check.outputs.changed == 'true'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git switch --create "$BRANCH"
+          git add packages/catalog/data README*.md
+          git commit --message 'chore: update the marks of games whose links are down'
+          git push --force origin "$BRANCH"
+          if [ -n "$(gh pr list --head "$BRANCH" --state open --json number --jq '.[].number')" ]; then
+            gh pr edit "$BRANCH" --body-file "$PR_BODY_FILE"
+          else
+            gh pr create --head "$BRANCH" --base "$GITHUB_REF_NAME" --title 'chore: update the marks of games whose links are down' --body-file "$PR_BODY_FILE"
+          fi
+        env:
+          PR_BODY_FILE: ${{ runner.temp }}/link-status.md
+
+      # Nothing to change any more (the links recovered, or the marks were merged): a pull request left open from an earlier run would now mark the wrong games.
+      - if: steps.check.outputs.changed == 'false'
+        run: |
+          number=$(gh pr list --head "$BRANCH" --state open --json number --jq '.[].number')
+          if [ -n "$number" ]; then
+            gh pr close "$number" --delete-branch --comment 'The latest check wants nothing changed any more.'
+          fi

@@ -159,6 +159,7 @@ Each game is one JSON file at `packages/catalog/data/games/<slug>.json`, checked
 | `summary` | yes | One line about the game for its card, in all ten languages. |
 | `pitch` | no | A longer description shown on the game's page and where it is a pick, in all ten languages. |
 | `notes` | no | What the creator reported about building the game, each as they wrote it: any of `time`, `cost`, `tokens`, `prompts`, `lines`, `size` and `agents`, and `prompt`, the prompt it was made from. Shown as the game's build notes. |
+| `down` | no | The day (`YYYY-MM-DD`) the game was marked as down. The daily link check writes and removes it through its pull requests; while it is set the game stays listed, says its link is down and points at the creator's post. |
 
 ## Languages
 
@@ -188,10 +189,10 @@ packages/catalog/          @vibe-arcade/catalog: the data and everything derived
 .github/
   ISSUE_TEMPLATE/          the Submit a game form
   workflows/ci.yml         typecheck, test and build on every pull request and on main
-  workflows/links.yml      weekly check of every game link
+  workflows/links.yml      daily check of every game link, with a pull request to mark a game whose link stays dead
 ```
 
-The weekly [link check](.github/workflows/links.yml) requests each game's play or source link and keeps one issue titled "Dead game links" up to date with the ones that no longer answer. It never edits the data.
+The daily [link check](.github/workflows/links.yml) requests each game's play or source link. A link that does not answer is listed in one issue titled "Dead game links", which counts the checks in a row that found it dead. After three, the check opens a pull request that marks the game as down (`down` in its file), so a host that is out for a day never marks anything; when a marked game's link answers again, a pull request takes the mark off. The check only ever proposes: nothing reaches `main` until someone merges the pull request, and a game that has moved is better fixed by correcting its `link.url`.
 
 ## Development
 

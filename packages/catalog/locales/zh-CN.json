@@ -120,5 +120,7 @@
 	"heroSub": "收录大家用 AI 做出来、发在 X 上的优秀网页游戏——注明作者和模型，点一下就能玩。",
 	"startPlaying": "开始玩",
 	"nowPlaying": "正在播放",
-	"oneGame": "1 款游戏"
+	"oneGame": "1 款游戏",
+	"linkDown": "链接失效",
+	"linkDownNote": "游戏链接自 {date} 起无法访问，这里改为指向作者的原帖。"
 }

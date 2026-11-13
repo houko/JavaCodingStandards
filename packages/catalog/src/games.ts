@@ -57,8 +57,10 @@ export interface Game {
 	// The creator's page: the file's creatorUrl, or their X profile.
 	creatorUrl: string;
 	genre: Genre;
-	// url is the file's link, or the X post for a game that can only be watched there.
+	// url is the file's link, or the X post for a game that can only be watched there. A game marked as down is one of those for as long as the mark stands, whatever its file's link says.
 	link: { type: LinkType; url: string };
+	// The day (UTC, YYYY-MM-DD) the game was marked as down: its link had stopped answering the daily check (.github/workflows/links.yml). The game stays listed and points at its post.
+	down?: string;
 	// The id of the creator's post on X, a string of digits (too large for a JSON number).
 	post: string;
 	postUrl: string;
@@ -93,9 +95,10 @@ const HANDLE = /^[A-Za-z0-9_]{1,15}$/;
 const COVER = /^[a-z0-9-]+\.webp$/;
 // An X post's id: 18 to 20 digits. A shorter number is some other id (a user's, a cut-off paste) and would decode to a day in 2010; a longer one decodes to no date at all.
 const POST_ID = /^[1-9][0-9]{17,19}$/;
+const DAY = /^\d{4}-\d{2}-\d{2}$/;
 
 // The fields of a game's file, of its link and of its notes block: the reader rejects any other, and the tests hold the schema to the same lists.
-export const GAME_FIELDS = ['$schema', 'slug', 'name', 'creator', 'creatorUrl', 'genre', 'link', 'post', 'likes', 'model', 'cover', 'summary', 'pitch', 'notes'] as const;
+export const GAME_FIELDS = ['$schema', 'slug', 'name', 'creator', 'creatorUrl', 'genre', 'link', 'post', 'likes', 'model', 'cover', 'summary', 'pitch', 'notes', 'down'] as const;
 export const GAME_REQUIRED = ['$schema', 'slug', 'name', 'creator', 'genre', 'link', 'post', 'likes', 'model', 'cover', 'summary'] as const;
 export const LINK_FIELDS = ['type', 'url'] as const;
 export const NOTES_FIELDS = [...NOTE_FIELDS, 'prompt'] as const;
@@ -133,6 +136,7 @@ function readGame(r: Reader): Game {
 	const type = l.oneOf('type', LINK_TYPES);
 	// Only a game that can just be watched may leave the link out: its post is where the video is.
 	const url = type === 'watch' ? (l.optUrl('url') ?? postUrl) : l.url('url');
+	const down = r.raw.down === undefined ? undefined : r.match('down', DAY, 'a day, YYYY-MM-DD');
 	const cover = r.match('cover', COVER, 'a .webp file name');
 	if (cover !== `${slug}.webp`) r.fail('cover', `must be "${slug}.webp", the file in apps/web/public/covers named after the slug`);
 	const n = r.optObj('notes');
@@ -143,7 +147,8 @@ function readGame(r: Reader): Game {
 		creator,
 		creatorUrl,
 		genre,
-		link: { type, url },
+		link: down === undefined ? { type, url } : { type: 'watch', url: postUrl },
+		down,
 		post,
 		postUrl,
 		postedAt: postTime(post),
@@ -254,7 +259,7 @@ export function creatorByHandle(handle: string): Creator | undefined {
 }
 
 // The day (UTC) the data last changed, e.g. 2026-11-12: a game added or the like counts refreshed. It is written in data/meta.json rather than derived, since neither change shows in the games' post dates.
-export const LAST_UPDATED = new Reader('meta.json', meta).match('updated', /^\d{4}-\d{2}-\d{2}$/, 'a day, YYYY-MM-DD');
+export const LAST_UPDATED = new Reader('meta.json', meta).match('updated', DAY, 'a day, YYYY-MM-DD');
 
 export function topLiked(n: number): Game[] {
 	return GAMES.slice(0, n);

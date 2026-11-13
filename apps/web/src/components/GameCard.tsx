@@ -50,6 +50,7 @@ export function GameCard({ game, index, lang, pop, onOpen }: GameCardProps) {
 					{tr[GENRE_KEYS[game.genre]]}
 				</span>
 				<span className={`${BADGE} right-3 bg-bg text-fg`}>#{String(index + 1).padStart(2, '0')}</span>
+				{game.down && <span className={`${BADGE} top-auto bottom-3 left-3 bg-bg tracking-[0.06em] text-heart uppercase`}>{tr.linkDown}</span>}
 			</button>
 			<div className='flex flex-1 flex-col gap-2 p-[18px]'>
 				<h3 className='font-display text-[20px] leading-[1.2] font-bold'>
@@ -63,7 +64,11 @@ export function GameCard({ game, index, lang, pop, onOpen }: GameCardProps) {
 					</CreatorLink>{' '}
 					· {game.model}
 				</p>
-				<p className='flex-1 text-[14px] text-soft'>{pick(game.summary, lang)}</p>
+				<p className='flex-1 text-[14px] text-soft'>
+					{/* The cover's badge is hidden from a screen reader with the cover, so the mark is said here. */}
+					{game.down && <span className='sr-only'>{tr.linkDown}. </span>}
+					{pick(game.summary, lang)}
+				</p>
 				<div className='mt-1.5 flex flex-wrap items-center justify-between gap-2 border-t border-line pt-2.5'>
 					{/* The likes, then the day of the post where the row has room for it: this group is one line high and takes only the width the buttons leave, so a day that does not fit wraps out of sight instead of pushing the buttons down. */}
 					<span className='flex h-5 min-w-16 flex-[1_1_0] flex-wrap items-center gap-x-1.5 overflow-hidden font-mono text-[13px] leading-5 text-muted'>

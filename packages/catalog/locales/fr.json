@@ -120,5 +120,7 @@
 	"heroSub": "Les meilleurs jeux web créés avec l’IA et partagés sur X — crédités à leurs créateurs, avec le modèle utilisé, jouables en un clic.",
 	"startPlaying": "Commencer à jouer",
 	"nowPlaying": "En lecture",
-	"oneGame": "1 jeu"
+	"oneGame": "1 jeu",
+	"linkDown": "Lien hors service",
+	"linkDownNote": "Le lien du jeu ne répond plus depuis le {date} ; ceci mène donc à la publication du créateur."
 }

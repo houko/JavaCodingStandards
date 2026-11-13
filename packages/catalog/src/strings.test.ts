@@ -32,7 +32,7 @@ describe('UI copy', () => {
 
 	it('uses the placeholders the site fills', () => {
 		const withHoles = Object.fromEntries(KEYS.filter((key) => holes(LOCALES.en[key])).map((key) => [key, holes(LOCALES.en[key])]));
-		expect(withHoles).toEqual({ a2: '{models}', gameDescription: '{genre},{model},{summary}', gameTitle: '{creator},{name}', madeBy: '{maker}', gamesBy: '{c}', moreIn: '{g}', nGames: '{n}', showing: '{a},{b}' });
+		expect(withHoles).toEqual({ a2: '{models}', gameDescription: '{genre},{model},{summary}', gameTitle: '{creator},{name}', madeBy: '{maker}', gamesBy: '{c}', linkDownNote: '{date}', moreIn: '{g}', nGames: '{n}', showing: '{a},{b}' });
 	});
 
 	it('is free of manual line breaks and invisible wrap hints', () => {
