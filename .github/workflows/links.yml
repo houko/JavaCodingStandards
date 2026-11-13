@@ -7,6 +7,7 @@ on:
   workflow_dispatch:
 
 permissions:
+  actions: write
   contents: write
   issues: write
   pull-requests: write
@@ -22,7 +23,7 @@ env:
   GH_REPO: ${{ github.repository }}
 
 jobs:
-  check:
+  links:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -38,7 +39,7 @@ jobs:
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           PR_BODY_FILE: ${{ runner.temp }}/link-status.md
 
-      # A pull request opened with the workflow's own token does not start the CI workflow, so the checks CI would run on it run here first: the READMEs' list of games follows the marks, and the catalog's tests read the changed files.
+      # A pull request opened with the workflow's own token does not start the CI workflow, so the last step starts it by hand; the checks also run here first, so a failing change never becomes a pull request: the READMEs' list of games follows the marks, and the catalog's tests read the changed files.
       - if: steps.check.outputs.changed == 'true'
         run: |
           pnpm install --frozen-lockfile
@@ -58,6 +59,7 @@ jobs:
           else
             gh pr create --head "$BRANCH" --base "$GITHUB_REF_NAME" --title 'chore: update the marks of games whose links are down' --body-file "$PR_BODY_FILE"
           fi
+          gh workflow run ci.yml --ref "$BRANCH"
         env:
           PR_BODY_FILE: ${{ runner.temp }}/link-status.md
 

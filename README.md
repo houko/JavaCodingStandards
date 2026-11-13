@@ -189,6 +189,7 @@ packages/catalog/          @vibe-arcade/catalog: the data and everything derived
 .github/
   ISSUE_TEMPLATE/          the Submit a game form
   workflows/ci.yml         typecheck, test and build on every pull request and on main
+  workflows/deploy.yml     deploy main to Cloudflare Workers once CI has passed on it
   workflows/links.yml      daily check of every game link, with a pull request to mark a game whose link stays dead
 ```
 
@@ -220,7 +221,7 @@ pnpm --filter @vibe-arcade/web readme   # redraw the list of games in the README
 
 ## Deployment
 
-The site runs on Cloudflare Workers and is deployed with wrangler:
+The site runs on Cloudflare Workers. Every push to `main` that passes CI is deployed by [`deploy.yml`](.github/workflows/deploy.yml), which needs the repository secret `CLOUDFLARE_API_TOKEN` (a Cloudflare API token with the "Edit Cloudflare Workers" permissions). To deploy by hand:
 
 ```sh
 pnpm run deploy

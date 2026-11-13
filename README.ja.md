@@ -189,6 +189,7 @@ packages/catalog/          @vibe-arcade/catalog：データと、そこから導
 .github/
   ISSUE_TEMPLATE/          Submit a game フォーム
   workflows/ci.yml         すべての pull request と main で型チェック、テスト、ビルド
+  workflows/deploy.yml     main で CI が通ったら Cloudflare Workers にデプロイ
   workflows/links.yml      全ゲームのリンクを毎日チェックし、切れたままのゲームをマークするプルリクエストを出す
 ```
 
@@ -220,7 +221,7 @@ pnpm --filter @vibe-arcade/web readme   # 各 README のゲーム一覧をデー
 
 ## デプロイ
 
-サイトは Cloudflare Workers で動き、wrangler でデプロイします。
+サイトは Cloudflare Workers で動いています。`main` へのプッシュは CI が通ると [`deploy.yml`](.github/workflows/deploy.yml) が自動でデプロイします。これにはリポジトリシークレット `CLOUDFLARE_API_TOKEN`（「Cloudflare Workers の編集」権限を持つ Cloudflare API トークン）が必要です。手でデプロイするには:
 
 ```sh
 pnpm run deploy

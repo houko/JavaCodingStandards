@@ -1,5 +1,6 @@
 import media from '../data/media.json';
 import meta from '../data/meta.json';
+import moved from '../data/moved.json';
 import { type LangCode, type Text, pick } from './lang';
 import type { StringKey } from './strings';
 import { t } from './translate';
@@ -201,6 +202,26 @@ const BY_SLUG = new Map(GAMES.map((g) => [g.slug, g]));
 
 export function gameBySlug(slug: string): Game | undefined {
 	return BY_SLUG.get(slug);
+}
+
+// Slugs a game had before it was renamed, each to the game's slug now (data/moved.json), so an old link still finds the game: the site answers /games/<old> with a permanent redirect. An old slug must not be a game's slug, and its target must be one.
+function readMoved(): Map<string, string> {
+	const r = new Reader('moved.json', moved);
+	const map = new Map<string, string>();
+	for (const old of Object.keys(moved)) {
+		const now = r.str(old);
+		if (old !== slugOf(old)) r.fail(old, 'is not a slug');
+		if (BY_SLUG.has(old)) r.fail(old, `is the slug of a game; a game that took it back must leave this list`);
+		if (!BY_SLUG.has(now)) r.fail(old, `points at "${now}", which is not a game`);
+		map.set(old, now);
+	}
+	return map;
+}
+const MOVED = readMoved();
+
+// The game's slug now, for a slug it had before.
+export function movedSlug(slug: string): string | undefined {
+	return MOVED.get(slug);
 }
 
 // ---- derived from the games ----

@@ -189,6 +189,7 @@ packages/catalog/          @vibe-arcade/catalog：資料以及由它衍生的一
 .github/
   ISSUE_TEMPLATE/          Submit a game 表單
   workflows/ci.yml         在每個 pull request 和 main 上做型別檢查、測試和建置
+  workflows/deploy.yml     main 上 CI 通過後部署到 Cloudflare Workers
   workflows/links.yml      每天檢查所有遊戲連結，連結持續失效的遊戲會收到一個標記用的 PR
 ```
 
@@ -220,7 +221,7 @@ pnpm --filter @vibe-arcade/web readme   # 依資料重新產生各 README 裡的
 
 ## 部署
 
-網站執行在 Cloudflare Workers 上，用 wrangler 部署：
+網站執行在 Cloudflare Workers 上。每次推送到 `main` 且 CI 通過後，由 [`deploy.yml`](.github/workflows/deploy.yml) 自動部署，它需要儲存庫 secret `CLOUDFLARE_API_TOKEN`（一個帶「編輯 Cloudflare Workers」權限的 Cloudflare API token）。手動部署：
 
 ```sh
 pnpm run deploy

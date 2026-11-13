@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import schema from '../data/schema/game.schema.json';
-import { CREATORS, GAMES, GAME_FIELDS, GAME_REQUIRED, GAME_SCHEMA, GENRES, GENRE_COLORS, GENRE_COUNTS, GENRE_KEYS, HERO_GAMES, LAST_UPDATED, LINK_FIELDS, LINK_TYPES, MODELS, NOTES_FIELDS, NOTE_FIELDS, PICKS, creatorByHandle, creatorsCount, filterGames, formatCount, formatDay, gameBySlug, readGames, relatedGames, slugOf, topLiked } from './games';
+import { CREATORS, GAMES, GAME_FIELDS, GAME_REQUIRED, GAME_SCHEMA, GENRES, GENRE_COLORS, GENRE_COUNTS, GENRE_KEYS, HERO_GAMES, LAST_UPDATED, LINK_FIELDS, LINK_TYPES, MODELS, NOTES_FIELDS, NOTE_FIELDS, PICKS, creatorByHandle, creatorsCount, filterGames, formatCount, formatDay, gameBySlug, movedSlug, readGames, relatedGames, slugOf, topLiked } from './games';
 import { LANGS, type Text } from './lang';
 import { LOCALES } from './strings';
 import { t } from './translate';
@@ -126,6 +126,16 @@ describe('the games', () => {
 			expect(fields, g.slug).toEqual(NOTE_FIELDS.filter((f) => fields.includes(f)));
 			expect(fields.length > 0 || g.notes!.prompt !== undefined, g.slug).toBe(true);
 		}
+	});
+
+	it('send each old slug in data/moved.json to a game, and no slug of a game', () => {
+		const moved: Record<string, string> = JSON.parse(readFileSync(new URL('../data/moved.json', import.meta.url), 'utf8'));
+		for (const [old, now] of Object.entries(moved)) {
+			expect(gameBySlug(old), old).toBeUndefined();
+			expect(gameBySlug(now), old).toBeDefined();
+			expect(movedSlug(old)).toBe(now);
+		}
+		expect(movedSlug(GAMES[0].slug)).toBeUndefined();
 	});
 
 	it('name at least one pick of the week, each a game and none twice', () => {
