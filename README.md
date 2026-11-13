@@ -232,7 +232,7 @@ This builds the site and runs `wrangler deploy` with [`apps/web/wrangler.jsonc`]
 
 ## Credits
 
-Games, names, covers, clips and trademarks belong to their creators. The covers and clips are taken from the creators' posts on X, and the avatars are their X profile pictures. A creator who wants an entry changed or taken down can message [@suzukaze_haduki](https://x.com/suzukaze_haduki) or open an issue. Vibe Arcade is a community index and is not affiliated with Anthropic or any other model maker.
+Games, names, covers, clips and trademarks belong to their creators. The covers and clips are taken from the creators' posts on X, or for a post with no picture of the game, a screenshot of the game itself; the avatars are their X profile pictures. A creator who wants an entry changed or taken down can message [@suzukaze_haduki](https://x.com/suzukaze_haduki) or open an issue. Vibe Arcade is a community index and is not affiliated with Anthropic or any other model maker.
 
 Vibe Arcade is a [Wiz Games](https://wiz.games) project, curated by [@suzukaze_haduki](https://x.com/suzukaze_haduki).
 
