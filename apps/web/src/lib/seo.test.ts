@@ -75,7 +75,7 @@ describe('gameHead', () => {
 		const head = gameHead(FEATURED, 'en');
 		expect(titleOf(head)).toBe('Saltline by @felixrieseberg — Vibe Arcade');
 		expect(metaOf(head, 'name', 'description')).toBe(`${FEATURED.summary.en} Built with ${FEATURED.model}. Shooter.`);
-		expect(metaOf(head, 'property', 'og:image')).toBe(`${SITE_URL}/og/v1/saltline.png`);
+		expect(metaOf(head, 'property', 'og:image')).toBe(`${SITE_URL}/og/v2/saltline.png`);
 		expect(metaOf(head, 'property', 'og:url')).toBe(`${SITE_URL}/games/saltline`);
 		expect(head.links[0]).toEqual({ rel: 'canonical', href: `${SITE_URL}/games/saltline` });
 		expect(head.links.filter((l) => l.rel === 'alternate')).toHaveLength(LANGS.length + 1);

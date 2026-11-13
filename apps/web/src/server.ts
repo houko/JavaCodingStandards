@@ -3,6 +3,7 @@ import { SITE_URL, movedSlug } from '@vibe-arcade/catalog';
 import type { Register } from '@tanstack/react-router';
 import { createServerEntry, createStartHandler, defaultStreamHandler } from '@tanstack/react-start/server';
 import { env } from 'cloudflare:workers';
+import { gameCardPath } from '../og/paths';
 import { withRange } from './lib/range';
 import { contentSecurityPolicy, makeNonce, securityHeaders } from './lib/security';
 
@@ -14,6 +15,7 @@ const MOVED_HOSTS = new Set([`www.${SITE.hostname}`]);
 // The hosts that are only ever served over HTTPS. Local development is plain HTTP and stays so.
 const HTTPS_HOSTS = new Set([SITE.hostname, ...MOVED_HOSTS]);
 const OLD_GAME = /^\/games\/([a-z0-9-]+)$/;
+const OLD_CARD = /^\/og\/v1\/([a-z0-9-]+)\.png$/;
 
 // The response with the security headers, and for a page the content security policy, with its nonce written on every script element. A handler's response can have immutable headers, so it is re-wrapped first.
 function secured(response: Response, https: boolean): Response {
@@ -54,6 +56,9 @@ export default createServerEntry<Register>({
 			url.pathname = `/games/${now}`;
 			return Response.redirect(url.toString(), 301);
 		}
+		// A link preview made before the cards moved to /og/v2/ still asks for the old address; it gets the current card.
+		const oldCard = url.pathname.match(OLD_CARD)?.[1];
+		if (oldCard !== undefined) return Response.redirect(`${url.origin}${gameCardPath(oldCard)}`, 301);
 		if (url.pathname.startsWith('/videos/')) {
 			const asset = await env.ASSETS.fetch(request);
 			// A clip that does not exist gets the site's own 404 page below.

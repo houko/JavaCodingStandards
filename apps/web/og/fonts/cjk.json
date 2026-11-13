@@ -1,0 +1,15 @@
+{
+	"chars": "山锁门雾",
+	"files": [
+		[
+			"Noto Sans SC",
+			"noto-sans-sc-500.ttf",
+			500
+		],
+		[
+			"Noto Sans SC",
+			"noto-sans-sc-800.ttf",
+			800
+		]
+	]
+}
