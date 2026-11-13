@@ -16,6 +16,7 @@
 		"media": "node scripts/fetch-media.ts",
 		"icons": "node scripts/site-icons.ts",
 		"banner": "node scripts/banner.ts",
+		"og-fonts": "node scripts/og-cjk-fonts.ts",
 		"readme": "node scripts/readme-games.ts"
 	},
 	"dependencies": {

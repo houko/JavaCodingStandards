@@ -1,11 +1,12 @@
 // The share images, drawn with satori and rasterised with sharp. renderCard is a game's card: a 1200x630 PNG with the site's mark, the game's cover, name, creator, genre, model and like count, which link previews (X, Slack, Discord, Telegram…) show for the game's page. renderSiteCard is the site's own card, the share image of every other page, and renderBanner is the same scene at the README banner's size (scripts/banner.ts). One image serves all ten languages, so the cards carry no translated copy: the localized title and description sit next to them in the preview.
 //
-// Everything a card needs is on disk (the covers in public/covers, the mark in public/favicon.svg, the fonts in og/fonts), so a build makes no network request. The fonts cover Latin, as the games' names and their creators' handles do.
+// Everything a card needs is on disk (the covers in public/covers, the mark in public/favicon.svg, the fonts in og/fonts), so a build makes no network request. The Latin fonts are whole; Chinese, Japanese and Korean characters come from Noto Sans subsets holding just the ones the games use (og/cjk.ts).
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { GAMES, GENRE_COLORS, type Game, SITE_NAME, SITE_URL, formatCount, t, topLiked } from '@vibe-arcade/catalog';
 import { type CSSProperties, type ReactNode, createElement } from 'react';
 import satori, { type Font } from 'satori';
+import type { CjkFonts } from './cjk';
 import sharp from 'sharp';
 
 export const CARD_WIDTH = 1200;
@@ -74,8 +75,12 @@ const FONT_FILES: [string, string, 500 | 600 | 800][] = [
 	['JetBrains Mono', 'jetbrains-mono-600.ttf', 600],
 ];
 let fonts: Promise<Font[]> | undefined;
+// The Latin fonts first, then the CJK subsets listed in og/fonts/cjk.json: satori draws a character with the first font that has it, so a name keeps the display face for its Latin letters.
 function loadFonts(fontDir: string): Promise<Font[]> {
-	fonts ??= Promise.all(FONT_FILES.map(async ([name, file, weight]): Promise<Font> => ({ name, data: await readFile(join(fontDir, file)), weight })));
+	fonts ??= (async () => {
+		const cjk: CjkFonts = JSON.parse(await readFile(join(fontDir, 'cjk.json'), 'utf8'));
+		return Promise.all([...FONT_FILES, ...cjk.files].map(async ([name, file, weight]): Promise<Font> => ({ name, data: await readFile(join(fontDir, file)), weight })));
+	})();
 	return fonts;
 }
 
