@@ -74,7 +74,7 @@ export function GameDetail({ game, lang, heading: Heading, headingId, onClose, o
 		<>
 			<div className='relative aspect-[16/9] overflow-hidden bg-ink'>
 				<Cover game={game} alt={`${game.name} — ${tr.coverAlt}`} eager={!onClose} className='avg-kb absolute inset-0 size-full text-[36px]' />
-				{(game.heroVideo ?? game.video) && <Clip src={(game.heroVideo ?? game.video) as string} />}
+				{(game.heroVideo ?? game.video) && <Clip src={(game.heroVideo ?? game.video) as string} small={game.video} />}
 				<span className='absolute top-4 left-4 flex gap-2'>
 					<span className='rounded-md px-2.5 py-1.5 font-mono text-[12px] font-semibold tracking-[0.06em] text-bg uppercase' style={{ backgroundColor: GENRE_COLORS[game.genre] }}>
 						{genre}
