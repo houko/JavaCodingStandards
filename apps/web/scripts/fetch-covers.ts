@@ -107,6 +107,7 @@ async function run(slug: string): Promise<Row> {
 		else post = { ...second, likes: post?.likes ?? second.likes };
 	}
 
+	if (withLikes && typeof post?.likes !== 'number') unanswered.push(slug);
 	if (withLikes && typeof post?.likes === 'number' && post.likes !== game.likes) {
 		await setLikes(file, text, post.likes);
 		row.likes = `${game.likes} -> ${post.likes}`;
@@ -138,6 +139,8 @@ const slugs = wanted.length ? wanted : all;
 
 await mkdir(COVERS_DIR, { recursive: true });
 const rows: Row[] = [];
+// The games whose post gave no like count, from either source.
+const unanswered: string[] = [];
 for (const slug of slugs) {
 	// A network failure on one game (a timeout, a refused connection) is that game's result, not the end of the run.
 	const row = await run(slug).catch((err: Error): Row => ({ slug, cover: existsSync(join(COVERS_DIR, `${slug}.webp`)) ? 'kept' : 'MISSING', source: '', size: '', likes: '', note: `failed: ${err.message}` }));
@@ -151,6 +154,11 @@ const changed = rows.filter((r) => r.likes);
 // Only the day moves; the rest of meta.json (the week's picks) is kept as it is.
 if (changed.length) await writeFile(META_FILE, `${JSON.stringify({ ...JSON.parse(await readFile(META_FILE, 'utf8')), updated: new Date().toISOString().slice(0, 10) }, null, '\t')}\n`);
 if (withLikes) console.log(changed.length ? `likes changed in ${changed.length} games:\n${changed.map((r) => `  ${r.slug}: ${r.likes}`).join('\n')}` : 'likes: no changes');
+// Most posts not answering is X failing, not the posts: the run fails, which raises the bot alert (.github/scripts/alert.sh), instead of quietly keeping old counts.
+if (withLikes && unanswered.length > slugs.length / 2) {
+	console.error(`X gave no like count for ${unanswered.length} of ${slugs.length} posts; its embed endpoint may have changed or be refusing requests`);
+	process.exit(1);
+}
 const missing = rows.filter((r) => r.cover === 'MISSING');
 if (missing.length) {
 	console.error(`${missing.length} of ${rows.length} games have no cover: ${missing.map((r) => r.slug).join(', ')}`);

@@ -190,6 +190,7 @@ packages/catalog/          @vibe-arcade/catalog：数据以及由它派生的一
   workflows/ci.yml         在每个 pull request 和 main 上做类型检查、测试和构建
   workflows/deploy.yml     main 上 CI 通过后部署到 Cloudflare Workers
   workflows/links.yml      每天检查所有游戏链接，链接持续失效的游戏会收到一个标记用的 PR
+  workflows/uptime.yml     每半小时检查线上站点；机器人或检查失败时会保持一个提醒 issue 打开
 ```
 
 每天的[链接检查](.github/workflows/links.yml)会请求每款游戏的游玩或源码链接。不再响应的链接会列在一个标题为“Dead game links”的 issue 里，issue 同时记录它连续多少次检查都失效。连续三次之后，游戏会被标记为链接失效（游戏文件里的 `down`），所以主机只宕机一天不会触发标记；被标记的游戏链接恢复响应后，标记会被去掉。每次变更都通过一个 PR 落地，CI 通过后自动合并并部署网站。如果游戏只是换了地址，改正它的 `link.url` 即可，下次检查时标记会自动去掉。

@@ -116,3 +116,14 @@ jobs:
         run: gh issue comment "$ISSUE" --body "The bot failed on its side while listing this ($RUN_URL). It is not a problem with the submission; it will be retried."
         env:
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+      # One issue stays open while this keeps failing, and closes once it works again (.github/scripts/alert.sh).
+      - if: failure()
+        run: |
+          .github/scripts/alert.sh fail 'Bot failing: submissions' "The submission bot failed on its side; the submitter was told on their issue. Retry it with the workflow's "Run workflow" and the issue number once fixed. [Run]($RUN_URL)"
+        env:
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+      - if: success()
+        run: |
+          .github/scripts/alert.sh ok 'Bot failing: submissions'
+

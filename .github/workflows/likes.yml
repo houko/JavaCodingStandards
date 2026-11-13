@@ -9,6 +9,7 @@ on:
 permissions:
   actions: write
   contents: write
+  issues: write
   pull-requests: write
   statuses: write
 
@@ -77,3 +78,14 @@ jobs:
             gh pr create --head "$BRANCH" --base "$GITHUB_REF_NAME" --title 'chore: refresh like counts from X' --body-file "$RUNNER_TEMP/pr.md"
           fi
           .github/scripts/merge-when-green.sh "$BRANCH"
+
+      # One issue stays open while this keeps failing, and closes once it works again (.github/scripts/alert.sh).
+      - if: failure()
+        run: |
+          .github/scripts/alert.sh fail 'Bot failing: likes refresh' "The weekly likes refresh failed. If X stopped answering, the run log says so; the counts on the site are unchanged until it works again. [Run]($RUN_URL)"
+        env:
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+      - if: success()
+        run: |
+          .github/scripts/alert.sh ok 'Bot failing: likes refresh'
+

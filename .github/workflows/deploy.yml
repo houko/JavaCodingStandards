@@ -10,11 +10,16 @@ on:
 
 permissions:
   contents: read
+  issues: write
 
 # One deploy at a time, the latest winning: a deploy of an older commit that is still waiting is dropped.
 concurrency:
   group: deploy
   cancel-in-progress: false
+
+env:
+  GH_TOKEN: ${{ github.token }}
+  GH_REPO: ${{ github.repository }}
 
 jobs:
   deploy:
@@ -26,6 +31,11 @@ jobs:
       name: production
       url: https://vibe.wiz.games
     steps:
+      # The commit CI passed on, not whatever main is by now.
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+      # After the checkout, so the alert step below has its script even when this fails.
       - name: Check the token is set
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -34,10 +44,6 @@ jobs:
             echo "::error::The repository secret CLOUDFLARE_API_TOKEN is not set; see the comment at the top of .github/workflows/deploy.yml."
             exit 1
           fi
-      # The commit CI passed on, not whatever main is by now.
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
@@ -47,3 +53,14 @@ jobs:
       - run: pnpm run deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+
+      # One issue stays open while this keeps failing, and closes once it works again (.github/scripts/alert.sh).
+      - if: failure()
+        run: |
+          .github/scripts/alert.sh fail 'Deploy failing' "Deploying main to Cloudflare failed, so the site is behind main. [Run]($RUN_URL)"
+        env:
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+      - if: success()
+        run: |
+          .github/scripts/alert.sh ok 'Deploy failing'
+

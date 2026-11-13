@@ -190,6 +190,7 @@ packages/catalog/          @vibe-arcade/catalog：データと、そこから導
   workflows/ci.yml         すべての pull request と main で型チェック、テスト、ビルド
   workflows/deploy.yml     main で CI が通ったら Cloudflare Workers にデプロイ
   workflows/links.yml      全ゲームのリンクを毎日チェックし、切れたままのゲームをマークするプルリクエストを出す
+  workflows/uptime.yml     30 分ごとに公開サイトを確認。ボットや確認が失敗しているあいだはアラートの issue を開いたままにする
 ```
 
 毎日の[リンクチェック](.github/workflows/links.yml)は、各ゲームのプレイ用またはソースのリンクにリクエストを送ります。応答しないリンクは「Dead game links」というタイトルの 1 つの issue に載り、連続して何回切れていたかもそこに記録されます。3 回続くとゲームはリンク切れとしてマークされ（ファイルの `down`）、ホストが 1 日落ちただけではマークされません。マークされたゲームのリンクが再び応答すれば、マークは外れます。どの変更もプルリクエストを通じて反映され、CI が通れば自動でマージされてサイトがデプロイされます。ゲームが移転しただけなら `link.url` を直せば、次のチェックでマークが外れます。

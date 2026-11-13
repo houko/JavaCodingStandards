@@ -71,3 +71,14 @@ jobs:
           if [ -n "$number" ]; then
             gh pr close "$number" --delete-branch --comment 'The latest check wants nothing changed any more.'
           fi
+
+      # One issue stays open while this keeps failing, and closes once it works again (.github/scripts/alert.sh).
+      - if: failure()
+        run: |
+          .github/scripts/alert.sh fail 'Bot failing: link check' "The daily link check failed, so dead links are not being counted or marked. [Run]($RUN_URL)"
+        env:
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+      - if: success()
+        run: |
+          .github/scripts/alert.sh ok 'Bot failing: link check'
+
