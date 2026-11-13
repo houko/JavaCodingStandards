@@ -4,7 +4,8 @@ import { contentSecurityPolicy, makeNonce, securityHeaders } from './security';
 describe('the content security policy', () => {
 	it('allows the site and the nonce for scripts, and frames nothing', () => {
 		const csp = contentSecurityPolicy('abc', true);
-		expect(csp).toContain("script-src 'self' 'nonce-abc'");
+		expect(csp).toContain("script-src 'self' 'nonce-abc' https://static.cloudflareinsights.com");
+		expect(csp).toContain("connect-src 'self' https://cloudflareinsights.com");
 		expect(csp).toContain("frame-ancestors 'none'");
 		expect(csp).toContain("object-src 'none'");
 		expect(csp).not.toContain("'unsafe-inline' 'nonce");

@@ -4,12 +4,13 @@
 export function contentSecurityPolicy(nonce: string, https: boolean): string {
 	return [
 		"default-src 'self'",
-		`script-src 'self' 'nonce-${nonce}'`,
+		// Cloudflare Web Analytics, when its token is set (packages/catalog/src/site.ts): its script, and the address it reports page views to.
+		`script-src 'self' 'nonce-${nonce}' https://static.cloudflareinsights.com`,
 		"style-src 'self' 'unsafe-inline'",
 		"img-src 'self' data:",
 		"media-src 'self'",
 		"font-src 'self'",
-		"connect-src 'self'",
+		"connect-src 'self' https://cloudflareinsights.com",
 		"manifest-src 'self'",
 		"object-src 'none'",
 		"base-uri 'self'",

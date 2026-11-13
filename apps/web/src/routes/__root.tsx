@@ -1,4 +1,4 @@
-import { DEFAULT_LANG, SITE_NAME, langRedirectScript, t, validateRootSearch } from '@vibe-arcade/catalog';
+import { ANALYTICS_TOKEN, DEFAULT_LANG, SITE_NAME, langRedirectScript, t, validateRootSearch } from '@vibe-arcade/catalog';
 import { HeadContent, Link, Outlet, Scripts, createRootRoute } from '@tanstack/react-router';
 import type { ReactNode } from 'react';
 import { LogoMark } from '../components/Logo';
@@ -63,6 +63,8 @@ function RootDocument({ children }: { children: ReactNode }) {
 				</a>
 				{children}
 				<Scripts />
+				{/* Page views for Cloudflare Web Analytics, once its token is set; the Worker gives this script the page's nonce like every other. */}
+				{ANALYTICS_TOKEN && <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon={JSON.stringify({ token: ANALYTICS_TOKEN, spa: true })} />}
 			</body>
 		</html>
 	);
