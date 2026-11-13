@@ -29,8 +29,8 @@ Vibe Arcade는 AI로 만든 게임의 오락실입니다. 주로 AI 모델에 �
 
 | # | 게임 | 제작자 | 장르 | 모델 | |
 | --- | --- | --- | --- | --- | --- |
-| 1 | [**Saltline**](https://vibe.wiz.games/games/saltline?lang=ko)<br>원샷 프롬프트로 만든 FPS. 모델, 사운드, 텍스처 모두 코드로 생성, 사람 피드백 없음. | [@felixrieseberg](https://x.com/felixrieseberg) | 슈터 | Claude Fable 5.2 | [플레이](https://claude.ai/artifact/BGY1SztrAYcJQHSsnHHGmp) · [게시물](https://x.com/i/status/2119925633564463609) |
-| 2 | [**Starry Night Rider**](https://vibe.wiz.games/games/starry-night-rider?lang=ko)<br>반 고흐와 함께 그의 「별이 빛나는 밤」 속을 달린다. | [@ebbyamir](https://x.com/ebbyamir) | 탐험 | Claude Fable 5.2 | [플레이](https://starrynightrider.com) · [게시물](https://x.com/i/status/2120284261089673376) |
+| 1 | [**Starry Night Rider**](https://vibe.wiz.games/games/starry-night-rider?lang=ko)<br>반 고흐와 함께 그의 「별이 빛나는 밤」 속을 달린다. | [@ebbyamir](https://x.com/ebbyamir) | 탐험 | Claude Fable 5.2 | [플레이](https://starrynightrider.com) · [게시물](https://x.com/i/status/2120284261089673376) |
+| 2 | [**Saltline**](https://vibe.wiz.games/games/saltline?lang=ko)<br>원샷 프롬프트로 만든 FPS. 모델, 사운드, 텍스처 모두 코드로 생성, 사람 피드백 없음. | [@felixrieseberg](https://x.com/felixrieseberg) | 슈터 | Claude Fable 5.2 | [플레이](https://claude.ai/artifact/BGY1SztrAYcJQHSsnHHGmp) · [게시물](https://x.com/i/status/2119925633564463609) |
 | 3 | [**What the Water Keeps**](https://vibe.wiz.games/games/what-the-water-keeps?lang=ko)<br>꿈같은 여덟 개의 세계를 지나는 잔잔한 보트 여행. | [@kevin_t_ngo](https://x.com/kevin_t_ngo) | 탐험 | Claude Fable 5.2 | [플레이](https://what-the-water-keeps.vercel.app/) · [게시물](https://x.com/i/status/2119868968307695818) |
 | 4 | [**Mirror Earth**](https://vibe.wiz.games/games/mirror-earth?lang=ko)<br>지구 전체가 부술 수 있는 게임 세계. 날씨는 실제 지구와 동기화. | [@mattshumer_](https://x.com/mattshumer_) | 샌드박스 | Claude Fable 5.2 | [플레이](https://www.spawn.co/@mattshumer/earth) · [게시물](https://x.com/i/status/2119877065701036047) |
 | 5 | [**Portals: Endless Worlds**](https://vibe.wiz.games/games/portals-endless-worlds?lang=ko)<br>포털로 이어진 450개 이상의 코드 전용 3D 세계. 25,000개 에이전트가 제작. | [@emollick](https://x.com/emollick) | 탐험 | Claude Fable 5.2 | [플레이](https://portals-endless-worlds.netlify.app/) · [게시물](https://x.com/i/status/2119918307457577163) |
@@ -39,17 +39,17 @@ Vibe Arcade는 AI로 만든 게임의 오락실입니다. 주로 AI 모델에 �
 | 8 | [**Voxel Engine**](https://vibe.wiz.games/games/voxel-engine?lang=ko)<br>프롬프트 하나로 만든 사운드 있는 복셀 엔진. | [@mattshumer_](https://x.com/mattshumer_) | 샌드박스 | Claude Fable 5.2 | [플레이](https://www.spawn.co/@mattshumer/voxel-engine) · [게시물](https://x.com/i/status/2119870965106483384) |
 | 9 | [**Siege Wing**](https://vibe.wiz.games/games/siege-wing?lang=ko)<br>헬기를 타고 중세 전장으로. 대포·로켓·미사일로 발리스타와 성에 맞선다. | [@builderjaydub](https://x.com/builderjaydub) | 슈터 | Claude Fable 5.2 | [플레이](https://bannerfall.itch.io/siege-wing) · [게시물](https://x.com/i/status/2120223731520040966) |
 | 10 | [**I Would Have Gotten Away With It**](https://vibe.wiz.games/games/i-would-have-gotten-away-with-it?lang=ko)<br>거꾸로 된 스쿠비 두: 당신은 악당, 참견쟁이 아이들을 겁줘서 쫓아낸다. | [@emollick](https://x.com/emollick) | 스토리·시뮬 | Claude Fable 5.2 | [플레이](https://i-would-have-gotten-away-with-it.netlify.app/) · [게시물](https://x.com/i/status/2119876449494540554) |
-| 11 | [**Childhood Rug Racer**](https://vibe.wiz.games/games/childhood-rug-racer?lang=ko)<br>어린 시절 놀이 매트 위에서 장난감 자동차 레이스. | [@noclipepe](https://x.com/noclipepe) | 레이싱 | GPT-6.2 Sol vs Fable | [플레이](https://noclipepe.pages.dev/rug/) · [게시물](https://x.com/i/status/2119728047754547326) |
-| 12 | [**Cloud Stunt 3D**](https://vibe.wiz.games/games/cloud-stunt-3d?lang=ko)<br>30분 만에 생성된 스턴트 게임. | [@jev_chat](https://x.com/jev_chat) | 레이싱 | Claude Fable 5.2 | [플레이](https://finderchangchang.github.io/cloud-stunt-3d/) · [게시물](https://x.com/i/status/2120015641151426838) |
-| 13 | [**Patchwork Quilt**](https://vibe.wiz.games/games/patchwork-quilt?lang=ko)<br>퀼트 스톱모션 스타일의 장난감 세계. | [@BlendiByl](https://x.com/BlendiByl) | 퍼즐·장난감 | Claude Fable 5.2 | [플레이](https://patch.gg/blendi/patchwork-quilt) · [게시물](https://x.com/i/status/2120746541636047347) |
+| 11 | [**Patchwork Quilt**](https://vibe.wiz.games/games/patchwork-quilt?lang=ko)<br>퀼트 스톱모션 스타일의 장난감 세계. | [@BlendiByl](https://x.com/BlendiByl) | 퍼즐·장난감 | Claude Fable 5.2 | [플레이](https://patch.gg/blendi/patchwork-quilt) · [게시물](https://x.com/i/status/2120746541636047347) |
+| 12 | [**Childhood Rug Racer**](https://vibe.wiz.games/games/childhood-rug-racer?lang=ko)<br>어린 시절 놀이 매트 위에서 장난감 자동차 레이스. | [@noclipepe](https://x.com/noclipepe) | 레이싱 | GPT-6.2 Sol vs Fable | [플레이](https://noclipepe.pages.dev/rug/) · [게시물](https://x.com/i/status/2119728047754547326) |
+| 13 | [**Cloud Stunt 3D**](https://vibe.wiz.games/games/cloud-stunt-3d?lang=ko)<br>30분 만에 생성된 스턴트 게임. | [@jev_chat](https://x.com/jev_chat) | 레이싱 | Claude Fable 5.2 | [플레이](https://finderchangchang.github.io/cloud-stunt-3d/) · [게시물](https://x.com/i/status/2120015641151426838) |
 | 14 | [**Hogwarts Royale**](https://vibe.wiz.games/games/hogwarts-royale?lang=ko)<br>한 줄 프롬프트로 만든 마법 학교 배틀로열. | [@mattshumer_](https://x.com/mattshumer_) | 액션 | Claude Fable 5.2 | [플레이](https://www.spawn.co/@mattshumer/hogwarts-royale) · [게시물](https://x.com/i/status/2119872098306810226) |
 | 15 | [**Dread and District**](https://vibe.wiz.games/games/dread-and-district?lang=ko)<br>판타지 물류 시뮬레이션: 좋은 공급망이 악을 이긴다. 에이전트 군단이 제작. | [@emollick](https://x.com/emollick) | 스토리·시뮬 | Claude Fable 5.2 | [플레이](https://dread-and-district.netlify.app) · [게시물](https://x.com/i/status/2120248525254742318) |
 | 16 | [**Worm Rider**](https://vibe.wiz.games/games/worm-rider?lang=ko)<br>Claude Code로 만든 220KB 오픈 소스 게임. | [@AmirMushich](https://x.com/AmirMushich) | 액션 | Claude Fable 5.2 | [소스](https://github.com/amirmushichge/worm-rider) · [게시물](https://x.com/i/status/2119937977426338283) |
 | 17 | [**Maad Maxxing**](https://vibe.wiz.games/games/maad-maxxing?lang=ko)<br>100% 코드, 에셋 없음. Three.js + WebGPU, 첫 3 스테이지 플레이 가능. | [@Andrew_Blumson](https://x.com/Andrew_Blumson) | 레이싱 | Claude Fable 5.2 | [플레이](https://maad-maxxing.vercel.app) · [게시물](https://x.com/i/status/2120599812512833557) |
 | 18 | [**Frontline Warfare Deathmatch**](https://vibe.wiz.games/games/frontline-warfare-deathmatch?lang=ko)<br>브라우저에서 즐기는 밀리터리 슈터 데스매치. | [@alightinastorm](https://x.com/alightinastorm) | 슈터 | Claude Fable 5.2 | [플레이](https://spawn.co/@robot/frontline-warfare-deathmatch) · [게시물](https://x.com/i/status/2120020469487440210) |
 | 19 | [**Lanternfall**](https://vibe.wiz.games/games/lanternfall?lang=ko)<br>모델, 애니메이션, 이펙트 모두 생성. 적의 사망 프레임까지. | [@loktar00](https://github.com/loktar00) | 액션 | Claude Fable 5.2 | [플레이](https://loktar00.github.io/lanternfall/) · [게시물](https://x.com/i/status/2120279060303520034) |
-| 20 | [**Turbo Tails**](https://vibe.wiz.games/games/turbo-tails?lang=ko)<br>레이서 6명, 드리프트, 점프대, 아이템, 멀티플레이를 갖춘 3D 카트 레이싱. | [@petergyang](https://x.com/petergyang) | 레이싱 | Claude Fable 5.2 | [플레이](https://turbo-tails.vercel.app) · [게시물](https://x.com/i/status/2119901658394358005) |
-| 21 | [**Rambo Dino**](https://vibe.wiz.games/games/rambo-dino?lang=ko)<br>크롬 공룡 게임을 액션 게임으로 재탄생. | [@noclipepe](https://x.com/noclipepe) | 액션 | Claude Fable 5.2 | [플레이](https://noclipepe.pages.dev/dino) · [게시물](https://x.com/i/status/2119927838321328577) |
+| 20 | [**Rambo Dino**](https://vibe.wiz.games/games/rambo-dino?lang=ko)<br>크롬 공룡 게임을 액션 게임으로 재탄생. | [@noclipepe](https://x.com/noclipepe) | 액션 | Claude Fable 5.2 | [플레이](https://noclipepe.pages.dev/dino) · [게시물](https://x.com/i/status/2119927838321328577) |
+| 21 | [**Turbo Tails**](https://vibe.wiz.games/games/turbo-tails?lang=ko)<br>레이서 6명, 드리프트, 점프대, 아이템, 멀티플레이를 갖춘 3D 카트 레이싱. | [@petergyang](https://x.com/petergyang) | 레이싱 | Claude Fable 5.2 | [플레이](https://turbo-tails.vercel.app) · [게시물](https://x.com/i/status/2119901658394358005) |
 | 22 | [**Spud Smash**](https://vibe.wiz.games/games/spud-smash?lang=ko)<br>파란 의자를 부수고 불태우는 감자. | [@argofowl](https://x.com/argofowl) | 액션 | Claude Fable 5.2 | [플레이](https://fowllabs.com/fable-5-2/spud-smash) · [게시물](https://x.com/i/status/2119913148929187960) |
 | 23 | [**Skyflare**](https://vibe.wiz.games/games/skyflare?lang=ko)<br>3시간 만에 만든 전투기 게임. | [@AugustCastilIo](https://x.com/AugustCastilIo) | 슈터 | Claude Fable 5.2 | [플레이](https://skyflare-game.vercel.app) · [게시물](https://x.com/i/status/2120290751502581879) |
 | 24 | [**Feed the Backrooms**](https://vibe.wiz.games/games/feed-the-backrooms?lang=ko)<br>괴물이 되어 백룸에서 길 잃은 사람들을 잡아라. | [@LexnLin](https://x.com/LexnLin) | 스토리·시뮬 | Claude Fable 5.2 | [플레이](https://feed-backrooms.vercel.app) · [게시물](https://x.com/i/status/2119966127149429093) |
@@ -84,7 +84,7 @@ Vibe Arcade는 AI로 만든 게임의 오락실입니다. 주로 AI 모델에 �
 - [Submit a game](https://github.com/yldm-tech/awesome-vibe-games/issues/new?template=submit-game.yml) 이슈 양식을 여세요. 게임 이름, 제작자의 X 핸들, 게시물, 링크, 장르, 모델, 영어로 쓴 한 줄 설명을 입력합니다. 제작자 본인이 아니어도 됩니다.
 - 또는 플레이할 수 있는 링크와 함께 게임을 X에 올리고 [@suzukaze_haduki](https://x.com/suzukaze_haduki)를 태그하세요.
 
-제출된 게임은 큐레이터가 하나씩 확인하고, 게시물에서 커버를 가져와 항목을 10개 언어 모두로 작성합니다. 게임 파일을 직접 추가하는 pull request도 환영합니다. 이 경우 요약을 10개 언어 모두로 써야 합니다. 하나라도 빠진 항목은 카탈로그가 받아들이지 않기 때문입니다.
+[제출 워크플로](.github/workflows/submissions.yml)가 사람의 개입 없이 몇 분 안에 게임을 등재합니다. 게시물이 존재하고 제작자 본인이 올린 것인지, 플레이 또는 소스 링크가 응답하는지, 아직 등재되지 않은 게임인지 확인한 뒤 게시물에서 커버, 클립, 제작자 아바타를 가져오고, 이슈를 닫는 풀 리퀘스트를 열어 CI가 통과하면 병합하고 사이트를 배포합니다. 문제가 있으면 이슈에 알리고, 이슈를 수정하면 다시 시도합니다. 요약은 먼저 영어로 올라가며, 번역되기 전까지 다른 언어에서도 영어가 표시됩니다. 게임 파일을 직접 추가하는 pull request도 환영합니다.
 
 ## 게임 파일 형식
 
@@ -156,8 +156,8 @@ Vibe Arcade는 AI로 만든 게임의 오락실입니다. 주로 AI 모델에 �
 | `likes` | 예 | 항목을 마지막으로 갱신한 시점의 게시물 좋아요 수. 정수. |
 | `model` | 예 | 게임 제작에 쓰인 AI 모델. 제작자가 부르는 이름 그대로 씁니다. |
 | `cover` | 예 | 커버 파일 이름 `<slug>.webp`. `apps/web/public/covers/`에 두는 960x600 이미지입니다. |
-| `summary` | 예 | 카드에 쓰이는 게임 한 줄 설명. 10개 언어 모두. |
-| `pitch` | 아니요 | 게임 페이지와 추천작으로 뽑혔을 때 표시되는 더 긴 설명. 10개 언어 모두. |
+| `summary` | 예 | 카드에 쓰이는 게임 한 줄 설명. `en`은 필수이고 다른 언어는 선택이며, 쓰지 않은 언어에서는 영어가 표시됩니다. |
+| `pitch` | 아니요 | 게임 페이지와 추천작으로 뽑혔을 때 표시되는 더 긴 설명. 언어 규칙은 `summary`와 같습니다. |
 | `notes` | 아니요 | 제작자가 밝힌 제작 데이터를 쓰인 그대로. `time`, `cost`, `tokens`, `prompts`, `lines`, `size`, `agents` 중 있는 것과, 게임을 만든 프롬프트 `prompt`. 게임의 "제작 데이터"로 표시됩니다. |
 | `down` | 아니요 | 게임을 링크 끊김으로 표시한 날(`YYYY-MM-DD`). 매일 실행되는 링크 검사가 자신의 풀 리퀘스트로 쓰고 지웁니다. 이 값이 있는 동안에도 게임은 계속 실리며, 링크가 끊겼음을 알리고 제작자의 게시물로 연결합니다. |
 
@@ -193,7 +193,7 @@ packages/catalog/          @vibe-arcade/catalog: 데이터와 거기서 파생�
   workflows/links.yml      모든 게임 링크를 매일 검사하고, 계속 끊겨 있는 게임을 표시하는 풀 리퀘스트를 생성
 ```
 
-매일 실행되는 [링크 검사](.github/workflows/links.yml)는 각 게임의 플레이 또는 소스 링크에 요청을 보냅니다. 응답하지 않는 링크는 "Dead game links"라는 제목의 이슈 하나에 실리고, 몇 번 연속으로 끊겨 있었는지도 그곳에 기록됩니다. 세 번 연속이면 게임을 링크 끊김으로 표시하는(파일의 `down`) 풀 리퀘스트를 엽니다. 호스트가 하루 내려간 정도로는 표시되지 않습니다. 표시된 게임의 링크가 다시 응답하면 표시를 지우는 풀 리퀘스트를 엽니다. 검사는 제안만 합니다. 누군가 풀 리퀘스트를 병합하기 전에는 `main`이 바뀌지 않으며, 게임이 주소만 옮겼다면 `link.url`을 고치는 편이 낫습니다.
+매일 실행되는 [링크 검사](.github/workflows/links.yml)는 각 게임의 플레이 또는 소스 링크에 요청을 보냅니다. 응답하지 않는 링크는 "Dead game links"라는 제목의 이슈 하나에 실리고, 몇 번 연속으로 끊겨 있었는지도 그곳에 기록됩니다. 세 번 연속이면 게임이 링크 끊김으로 표시되며(파일의 `down`), 호스트가 하루 내려간 정도로는 표시되지 않습니다. 표시된 게임의 링크가 다시 응답하면 표시가 지워집니다. 모든 변경은 풀 리퀘스트로 반영되며, CI가 통과하면 자동으로 병합되고 사이트가 배포됩니다. 게임이 주소만 옮겼다면 `link.url`을 고치면 다음 검사에서 표시가 지워집니다.
 
 ## 개발
 

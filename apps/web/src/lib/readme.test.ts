@@ -1,5 +1,5 @@
 import { readFileSync } from 'node:fs';
-import { GAMES } from '@vibe-arcade/catalog';
+import { GAMES, pick } from '@vibe-arcade/catalog';
 import { describe, expect, it } from 'vitest';
 import { READMES, README_END, README_START, gamesSection, withGamesSection } from './readme';
 
@@ -16,7 +16,7 @@ describe('the list of games in the READMEs', () => {
 		expect(zh.split('\n').filter((line) => /^\| \d+ \|/.test(line))).toHaveLength(GAMES.length);
 		for (const g of GAMES) {
 			expect(zh, g.slug).toContain(`/games/${g.slug}?lang=zh-CN)`);
-			expect(zh, g.slug).toContain(g.summary['zh-CN'].replaceAll('|', '\\|'));
+			expect(zh, g.slug).toContain(pick(g.summary, 'zh-CN').replaceAll('|', '\\|'));
 		}
 		expect(gamesSection('en')).toContain(`/games/${GAMES[0].slug})`);
 	});

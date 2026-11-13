@@ -5,7 +5,7 @@ labels: [submission]
 body:
   - type: markdown
     attributes:
-      value: Thanks for the suggestion. You do not have to be the creator. A curator checks each submission, picks the cover from the post and writes the entry in every site language.
+      value: Thanks for the suggestion. You do not have to be the creator. A bot checks the post and the link and lists the game within a few minutes, with its cover and a clip from the post; if something is wrong it says so here, and editing the issue tries again. The post must be the creator's own, with a picture or a video of the game.
   - type: input
     id: name
     attributes:
@@ -75,7 +75,7 @@ body:
     id: summary
     attributes:
       label: One-line description in English
-      description: What the game is, in one plain sentence.
+      description: What the game is, in one plain sentence of at most 160 characters. It is shown on the site as written.
       placeholder: One-shot FPS. Models, sounds and textures all generated in code, no human feedback.
     validations:
       required: true

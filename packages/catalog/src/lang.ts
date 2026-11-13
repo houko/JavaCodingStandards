@@ -17,8 +17,8 @@ export const LANG_LABELS: Record<LangCode, string> = {
 	ru: 'Русский',
 };
 
-// Text written in every site language: a game's summary, say.
-export type Text = Record<LangCode, string>;
+// Text written in English and in any of the other site languages: a game's summary, say. A language it is not written in shows the English.
+export type Text = { en: string } & Partial<Record<LangCode, string>>;
 
 // English lives at the bare URL; every other language is addressed with `?lang=<code>`.
 export const DEFAULT_LANG = 'en' satisfies LangCode;
@@ -40,7 +40,7 @@ export function validateRootSearch(search: Record<string, unknown>): RootSearch 
 }
 
 export function pick(text: Text, lang: LangCode): string {
-	return text[lang];
+	return text[lang] ?? text.en;
 }
 
 // Fills a UI string's `{name}` placeholders from vars; a placeholder with no value is left as written.

@@ -1,6 +1,6 @@
 name: Links
 
-# Requests every game's play or source link once a day. A link that does not answer is reported in the run summary and in one issue titled "Dead game links", which counts the checks in a row that found it dead. After three, the run opens a pull request that marks the game as down ("down" in its file), and later one that takes the mark off when the link answers again. Nothing reaches main without that pull request being merged by a person. It never runs on pull requests.
+# Requests every game's play or source link once a day. A link that does not answer is reported in the run summary and in one issue titled "Dead game links", which counts the checks in a row that found it dead. After three, the run marks the game as down ("down" in its file), and takes the mark off when the link answers again, each through a pull request that merges itself once CI passes and deploys the site (.github/scripts/merge-when-green.sh). It never runs on pull requests.
 on:
   schedule:
     - cron: '17 5 * * *'
@@ -39,7 +39,7 @@ jobs:
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           PR_BODY_FILE: ${{ runner.temp }}/link-status.md
 
-      # A pull request opened with the workflow's own token does not start the CI workflow, so the last step starts it by hand; the checks also run here first, so a failing change never becomes a pull request: the READMEs' list of games follows the marks, and the catalog's tests read the changed files.
+      # The checks CI runs also run here first, so a failing change never becomes a pull request: the READMEs' list of games follows the marks, and the catalog's tests read the changed files.
       - if: steps.check.outputs.changed == 'true'
         run: |
           pnpm install --frozen-lockfile
@@ -59,7 +59,7 @@ jobs:
           else
             gh pr create --head "$BRANCH" --base "$GITHUB_REF_NAME" --title 'chore: update the marks of games whose links are down' --body-file "$PR_BODY_FILE"
           fi
-          gh workflow run ci.yml --ref "$BRANCH"
+          .github/scripts/merge-when-green.sh "$BRANCH"
         env:
           PR_BODY_FILE: ${{ runner.temp }}/link-status.md
 
