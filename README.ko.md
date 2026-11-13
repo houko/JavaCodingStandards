@@ -232,7 +232,7 @@ pnpm run deploy
 
 ## 크레딧
 
-게임, 이름, 커버, 클립, 상표는 각 제작자에게 있습니다. 커버와 클립은 제작자가 X에 올린 게시물에서, 아바타는 X 프로필 사진에서 가져왔습니다. 항목의 수정이나 삭제를 원하는 제작자는 X에서 [@suzukaze_haduki](https://x.com/suzukaze_haduki)에게 연락하거나 issue를 열어 주세요. Vibe Arcade는 커뮤니티 인덱스이며, Anthropic을 비롯한 어떤 모델 제작사와도 제휴 관계가 없습니다.
+게임, 이름, 커버, 클립, 상표는 각 제작자에게 있습니다. 커버와 클립은 제작자가 X에 올린 게시물에서(게시물에 게임 화면이 없으면 커버는 게임 자체의 스크린샷), 아바타는 X 프로필 사진에서 가져왔습니다. 항목의 수정이나 삭제를 원하는 제작자는 X에서 [@suzukaze_haduki](https://x.com/suzukaze_haduki)에게 연락하거나 issue를 열어 주세요. Vibe Arcade는 커뮤니티 인덱스이며, Anthropic을 비롯한 어떤 모델 제작사와도 제휴 관계가 없습니다.
 
 Vibe Arcade는 [Wiz Games](https://wiz.games)의 프로젝트이며 [@suzukaze_haduki](https://x.com/suzukaze_haduki)가 큐레이션합니다.
 

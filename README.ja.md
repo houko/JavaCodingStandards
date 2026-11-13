@@ -232,7 +232,7 @@ pnpm run deploy
 
 ## クレジット
 
-ゲーム、名称、カバー、クリップ、商標は各作者に帰属します。カバーとクリップは作者の X 投稿から、アバターは X のプロフィール画像から取っています。掲載内容の変更や削除を希望する作者は、X で [@suzukaze_haduki](https://x.com/suzukaze_haduki) に連絡するか、issue を立ててください。Vibe Arcade はコミュニティによるインデックスで、Anthropic をはじめとするモデル提供元のいずれとも提携していません。
+ゲーム、名称、カバー、クリップ、商標は各作者に帰属します。カバーとクリップは作者の X 投稿から（投稿にゲームの画面がない場合、カバーはゲーム自体のスクリーンショット）、アバターは X のプロフィール画像から取っています。掲載内容の変更や削除を希望する作者は、X で [@suzukaze_haduki](https://x.com/suzukaze_haduki) に連絡するか、issue を立ててください。Vibe Arcade はコミュニティによるインデックスで、Anthropic をはじめとするモデル提供元のいずれとも提携していません。
 
 Vibe Arcade は [Wiz Games](https://wiz.games) のプロジェクトで、[@suzukaze_haduki](https://x.com/suzukaze_haduki) がキュレーションしています。
 

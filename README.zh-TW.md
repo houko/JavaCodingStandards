@@ -232,7 +232,7 @@ pnpm run deploy
 
 ## 致謝
 
-遊戲、名稱、封面、短片和商標歸各自的作者所有。封面和短片取自作者在 X 上發布的貼文，頭像是他們的 X 頭像。作者如需修改或下架條目，可以在 X 上聯絡 [@suzukaze_haduki](https://x.com/suzukaze_haduki)，或開一個 issue。Vibe Arcade 是一份社群索引，與 Anthropic 或其他任何模型廠商均無關聯。
+遊戲、名稱、封面、短片和商標歸各自的作者所有。封面和短片取自作者在 X 上發布的貼文；貼文裡沒有遊戲畫面的，封面是遊戲本身的截圖。頭像是他們的 X 頭像。作者如需修改或下架條目，可以在 X 上聯絡 [@suzukaze_haduki](https://x.com/suzukaze_haduki)，或開一個 issue。Vibe Arcade 是一份社群索引，與 Anthropic 或其他任何模型廠商均無關聯。
 
 Vibe Arcade 是 [Wiz Games](https://wiz.games) 的專案，由 [@suzukaze_haduki](https://x.com/suzukaze_haduki) 策展。
 
