@@ -1,4 +1,12 @@
-# Cache headers for the static assets (Cloudflare Workers static assets read this file; wrangler never serves it). Rules must not overlap: Cloudflare joins the values of every matching rule. robots.txt keeps the default revalidate-every-time caching so crawlers see changes at once; sitemap.xml is not a file but a route, which sets its own header (src/routes/sitemap[.]xml.ts).
+# Headers for the static assets (Cloudflare Workers static assets read this file; wrangler never serves it). Cloudflare applies every rule that matches and joins the values of a header two rules both set, so no header is set by two rules: /* sets only the security headers, the rules below only Cache-Control. robots.txt keeps the default revalidate-every-time caching so crawlers see changes at once; sitemap.xml is not a file but a route, which sets its own header (src/routes/sitemap[.]xml.ts).
+
+# The security headers of every file, the same as the Worker sends (src/lib/security.ts) apart from the page-only content security policy.
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()
+  Strict-Transport-Security: max-age=31536000
 
 # Vite content-hashes every file name under /assets, so a changed file always gets a new URL.
 /assets/*

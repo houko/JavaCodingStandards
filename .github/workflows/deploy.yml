@@ -1,0 +1,49 @@
+name: Deploy
+
+# Deploys main to Cloudflare Workers (vibe.wiz.games) once CI has passed on it, so a merged pull request, a person's or a bot's, reaches the site without anyone running wrangler. It needs the repository secret CLOUDFLARE_API_TOKEN: a Cloudflare API token with the "Edit Cloudflare Workers" permissions on the account named in apps/web/wrangler.jsonc.
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# One deploy at a time, the latest winning: a deploy of an older commit that is still waiting is dropped.
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    # A CI run that failed, or ran for something other than a push to main (a bot's branch), deploys nothing.
+    if: github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: production
+      url: https://vibe.wiz.games
+    steps:
+      - name: Check the token is set
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ]; then
+            echo "::error::The repository secret CLOUDFLARE_API_TOKEN is not set; see the comment at the top of .github/workflows/deploy.yml."
+            exit 1
+          fi
+      # The commit CI passed on, not whatever main is by now.
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

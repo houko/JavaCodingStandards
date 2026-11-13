@@ -1,4 +1,4 @@
-import { GENRES, type GameFilter, type Genre, MODELS, creatorByHandle, gameBySlug, slugOf } from '@vibe-arcade/catalog';
+import { GENRES, type GameFilter, type Genre, MODELS, creatorByHandle, gameBySlug, movedSlug, slugOf } from '@vibe-arcade/catalog';
 
 // What the home page shows beyond its path lives in its query string, so a link reproduces the view: the search text, the order, the model, genre and creator filters, and the open game. A default is left out (the plain path shows it) and an unknown value is dropped. Genres and models are written as slugs (story-sim, claude-fable-5-2) rather than their display names, which have spaces, ampersands and dots.
 export interface HomeSearch {
@@ -33,7 +33,9 @@ export function validateHomeSearch(search: Record<string, unknown>): HomeSearch 
 	const q = text(search.q);
 	const genre = text(search.genre);
 	const model = text(search.model);
-	const game = text(search.game);
+	// A game's old slug opens the game under its new one.
+	const asked = text(search.game);
+	const game = asked === undefined ? undefined : (movedSlug(asked) ?? asked);
 	const creator = text(search.creator);
 	return {
 		// Cut by code point, so a hand-written URL never ends on half an emoji.

@@ -45,6 +45,7 @@ describe('validateHomeSearch', () => {
 		for (const g of GENRES) expect(validateHomeSearch({ genre: genreSlug(g) }).genre).toBe(genreSlug(g));
 		for (const m of MODELS) expect(validateHomeSearch({ model: modelSlug(m.name) }).model).toBe(modelSlug(m.name));
 		for (const g of GAMES) expect(validateHomeSearch({ game: g.slug }).game).toBe(g.slug);
+		expect(validateHomeSearch({ game: 'souls-like-boss-fight' }).game).toBe('evensong');
 	});
 });
 

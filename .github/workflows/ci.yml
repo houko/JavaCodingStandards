@@ -1,9 +1,11 @@
 name: CI
 
+# A pull request a bot opens with the workflow's token starts no workflow, so the bots' workflows start this one on their branch by hand (workflow_dispatch); its result then shows on their pull request like any other.
 on:
   pull_request:
   push:
     branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read

@@ -7,7 +7,11 @@
 	// The Worker entry (src/server.ts): TanStack Start's handler, which server-renders every route. The client bundle and public/ are served as static assets.
 	"main": "src/server.ts",
 	// The site's host, the same one as SITE_URL in packages/catalog/src/site.ts; its zone (wiz.games) is on this Cloudflare account. The site has no database, no rate limiters and no secrets; its one binding is its own static assets.
-	"routes": [{ "pattern": "vibe.wiz.games", "custom_domain": true }],
+	"routes": [
+		{ "pattern": "vibe.wiz.games", "custom_domain": true },
+		// Only redirects to the site's host (src/server.ts).
+		{ "pattern": "www.vibe.wiz.games", "custom_domain": true },
+	],
 	// The clips go through the Worker, which can serve a byte range of one; the static assets alone answer a Range request with the whole file, and Safari then refuses to play it.
 	"assets": { "binding": "ASSETS", "run_worker_first": ["/videos/*"] },
 	"observability": { "enabled": true },

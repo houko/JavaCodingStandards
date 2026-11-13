@@ -189,6 +189,7 @@ packages/catalog/          @vibe-arcade/catalog: 데이터와 거기서 파생�
 .github/
   ISSUE_TEMPLATE/          Submit a game 양식
   workflows/ci.yml         모든 pull request와 main에서 타입 검사, 테스트, 빌드
+  workflows/deploy.yml     main에서 CI가 통과하면 Cloudflare Workers에 배포
   workflows/links.yml      모든 게임 링크를 매일 검사하고, 계속 끊겨 있는 게임을 표시하는 풀 리퀘스트를 생성
 ```
 
@@ -220,7 +221,7 @@ pnpm --filter @vibe-arcade/web readme   # 데이터로 각 README의 게임 목�
 
 ## 배포
 
-사이트는 Cloudflare Workers에서 실행되며 wrangler로 배포합니다.
+사이트는 Cloudflare Workers에서 실행됩니다. `main`에 푸시하고 CI가 통과하면 [`deploy.yml`](.github/workflows/deploy.yml)이 자동으로 배포하며, 저장소 시크릿 `CLOUDFLARE_API_TOKEN`("Cloudflare Workers 편집" 권한이 있는 Cloudflare API 토큰)이 필요합니다. 직접 배포하려면:
 
 ```sh
 pnpm run deploy
