@@ -1,7 +1,7 @@
 import { GAMES, GENRE_KEYS, type Game, type LangCode, pick, t } from '@vibe-arcade/catalog';
 import { gamePath, pageUrl } from './seo';
 
-// The list of games in the repository's READMEs, drawn from the same data as the site so the two cannot disagree: scripts/readme-games.ts writes it between the markers below, and the tests fail when a README has fallen behind the data. Like counts are left out, so refreshing them does not touch the READMEs; the order, most liked first, is what they show of them.
+// The list of games in the repository's READMEs, drawn from the same data as the site so the two cannot disagree: scripts/readme-games.ts writes it between the markers below, and the tests fail when a README has fallen behind the data. Like counts are left out, but the order is most liked first, so a refresh of the counts that reorders the games redraws the READMEs too (.github/workflows/likes.yml).
 
 export const README_START = '<!-- games:start -->';
 export const README_END = '<!-- games:end -->';
