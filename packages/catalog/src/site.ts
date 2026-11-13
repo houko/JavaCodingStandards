@@ -11,3 +11,5 @@ export const CURATOR_HANDLE = 'suzukaze_haduki';
 export const CURATOR_URL = `https://x.com/${CURATOR_HANDLE}`;
 export const MAKER_NAME = 'Wiz Games';
 export const MAKER_URL = 'https://wiz.games';
+// The site token of Cloudflare Web Analytics for this host (dashboard: Web Analytics, the site's JS snippet), which is public by design: it only lets a browser report a page view. Empty, no analytics script is loaded. The service sets no cookies and keeps no personal data.
+export const ANALYTICS_TOKEN = '';
