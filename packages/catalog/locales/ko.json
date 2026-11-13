@@ -123,5 +123,8 @@
 	"oneGame": "게임 1개",
 	"linkDown": "링크 끊김",
 	"linkDownNote": "게임 링크가 {date}부터 응답하지 않아 제작자의 게시물로 연결합니다.",
-	"newBadge": "NEW"
+	"newBadge": "NEW",
+	"errorTitle": "문제가 생겼습니다",
+	"errorBody": "이 페이지를 표시할 수 없습니다. 사용자 문제는 아닙니다. 잠시 후 다시 시도해 주세요.",
+	"tryAgain": "다시 시도"
 }

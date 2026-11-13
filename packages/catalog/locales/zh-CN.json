@@ -123,5 +123,8 @@
 	"oneGame": "1 款游戏",
 	"linkDown": "链接失效",
 	"linkDownNote": "游戏链接自 {date} 起无法访问，这里改为指向作者的原帖。",
-	"newBadge": "新"
+	"newBadge": "新",
+	"errorTitle": "出了点问题",
+	"errorBody": "这个页面暂时无法显示，不是你的问题，请稍后再试。",
+	"tryAgain": "重试"
 }
