@@ -2,9 +2,72 @@
 
 [English](README.md) · 简体中文 · [繁體中文](README.zh-TW.md) · [日本語](README.ja.md) · [한국어](README.ko.md)
 
+**[vibe.wiz.games](https://vibe.wiz.games/?lang=zh-CN)** · [提交游戏](https://github.com/yldm-tech/awesome-vibe-games/issues/new?template=submit-game.yml) · [游戏列表](#游戏列表) · [收录标准](#收录标准)
+
+[![CI](https://github.com/yldm-tech/awesome-vibe-games/actions/workflows/ci.yml/badge.svg)](https://github.com/yldm-tech/awesome-vibe-games/actions/workflows/ci.yml)
+
 ![Vibe Arcade](.github/assets/banner.png)
 
-Vibe Arcade 是一份人工整理的游戏索引，收录大家主要靠向 AI 模型下提示做出来、并发布在 X 上的游戏。每个条目记录制作游戏的模型、作者、原帖及其点赞数，以及游玩链接。这个仓库存放游戏数据和展示它们的网站；游戏本身仍属于各自的作者，托管在他们自己的地址上。
+Vibe Arcade 是 AI 游戏的街机厅：一份人工整理的浏览器游戏索引，收录大家主要靠向 AI 模型下提示做出来、并发布在 X 上的游戏。每个条目记录制作游戏的模型、作者、原帖及其点赞数，以及游玩链接。这个仓库存放游戏数据和展示它们的网站 [vibe.wiz.games](https://vibe.wiz.games/?lang=zh-CN)；游戏本身仍属于各自的作者，托管在他们自己的地址上。
+
+## 网站上有什么
+
+- **一键开玩。** 每张卡片都直接链接到浏览器里的游戏，以及作者在 X 上的原帖。
+- **看它是怎么做出来的。** 每款游戏都标注了制作模型；作者公布过的话，还有制作时长、花费、token 数和提示词原文。
+- **先看再玩。** 首屏和鼠标悬停的卡片会播放取自作者帖子的无声短片。
+- **按自己的方式找游戏。** 按类型、模型或创作者筛选，按标题搜索，按点赞或日期排序。每个视图都是可以分享的地址，每款游戏也有自己的页面。
+- **十种语言。** 界面和每款游戏的简介都有十种语言，英语在不带参数的地址，其余语言在 `?lang=<code>`。
+
+![Vibe Arcade 首页](.github/assets/screenshot.png)
+
+## 游戏列表
+
+网站上的全部游戏，按点赞数从高到低排列。游戏名链接到它在 Vibe Arcade 上的页面，最后一列链接到游戏本身和作者的原帖。这份列表由 `packages/catalog/data/games/` 里的数据生成，用 `pnpm --filter @vibe-arcade/web readme` 重新生成。
+
+<!-- games:start -->
+**38** 款游戏 · **31** 位作者 · **2** 个 AI 模型
+
+| # | 游戏 | 作者 | 类型 | 模型 | |
+| --- | --- | --- | --- | --- | --- |
+| 1 | [**Saltline**](https://vibe.wiz.games/games/saltline?lang=zh-CN)<br>一次性提示生成的 FPS。模型、音效、纹理全部用代码生成，无人工反馈。 | [@felixrieseberg](https://x.com/felixrieseberg) | 射击 | Claude Fable 5.2 | [游玩](https://claude.ai/artifact/BGY1SztrAYcJQHSsnHHGmp) · [原帖](https://x.com/i/status/2119925633564463609) |
+| 2 | [**Starry Night Rider**](https://vibe.wiz.games/games/starry-night-rider?lang=zh-CN)<br>跟着梵高骑行穿过他的《星月夜》。 | [@ebbyamir](https://x.com/ebbyamir) | 探索 | Claude Fable 5.2 | [游玩](https://starrynightrider.com) · [原帖](https://x.com/i/status/2120284261089673376) |
+| 3 | [**What the Water Keeps**](https://vibe.wiz.games/games/what-the-water-keeps?lang=zh-CN)<br>平静的小船之旅，穿过八个梦境般的世界。 | [@kevin_t_ngo](https://x.com/kevin_t_ngo) | 探索 | Claude Fable 5.2 | [游玩](https://what-the-water-keeps.vercel.app/) · [原帖](https://x.com/i/status/2119868968307695818) |
+| 4 | [**Mirror Earth**](https://vibe.wiz.games/games/mirror-earth?lang=zh-CN)<br>整个地球都是可破坏的游戏世界，天气与真实地球同步。 | [@mattshumer_](https://x.com/mattshumer_) | 沙盒 | Claude Fable 5.2 | [游玩](https://www.spawn.co/@mattshumer/earth) · [原帖](https://x.com/i/status/2119877065701036047) |
+| 5 | [**Portals: Endless Worlds**](https://vibe.wiz.games/games/portals-endless-worlds?lang=zh-CN)<br>450+ 个纯代码 3D 世界由传送门相连，由 25,000 个智能体建造。 | [@emollick](https://x.com/emollick) | 探索 | Claude Fable 5.2 | [游玩](https://portals-endless-worlds.netlify.app/) · [原帖](https://x.com/i/status/2119918307457577163) |
+| 6 | [**Evensong**](https://vibe.wiz.games/games/evensong?lang=zh-CN)<br>黑暗奇幻 Boss 战，可在浏览器中游玩。 | [@kevin_t_ngo](https://x.com/kevin_t_ngo) | 动作 | Claude Fable 5.2 | [观看](https://x.com/i/status/2120238844754923874) |
+| 7 | [**雾锁山门**](https://vibe.wiz.games/games/wu-suo-shan-men?lang=zh-CN)<br>一个下午、45 亿 token：模型、场景、动作和优化全塞进一个 30 MB 的 HTML 文件。 | [@op7418](https://x.com/op7418) | 动作 | Claude Fable 5.2 | [游玩](https://op7418.github.io/guizang-game-skill/) · [原帖](https://x.com/i/status/2120694045299327187) |
+| 8 | [**Voxel Engine**](https://vibe.wiz.games/games/voxel-engine?lang=zh-CN)<br>带音效的体素引擎，一句提示生成。 | [@mattshumer_](https://x.com/mattshumer_) | 沙盒 | Claude Fable 5.2 | [游玩](https://www.spawn.co/@mattshumer/voxel-engine) · [原帖](https://x.com/i/status/2119870965106483384) |
+| 9 | [**Siege Wing**](https://vibe.wiz.games/games/siege-wing?lang=zh-CN)<br>驾驶直升机闯入中世纪战场，用加农炮、火箭和导弹对抗弩炮与城堡。 | [@builderjaydub](https://x.com/builderjaydub) | 射击 | Claude Fable 5.2 | [游玩](https://bannerfall.itch.io/siege-wing) · [原帖](https://x.com/i/status/2120223731520040966) |
+| 10 | [**I Would Have Gotten Away With It**](https://vibe.wiz.games/games/i-would-have-gotten-away-with-it?lang=zh-CN)<br>反向《史酷比》：你是反派，负责吓跑那群多管闲事的孩子。 | [@emollick](https://x.com/emollick) | 剧情与模拟 | Claude Fable 5.2 | [游玩](https://i-would-have-gotten-away-with-it.netlify.app/) · [原帖](https://x.com/i/status/2119876449494540554) |
+| 11 | [**Childhood Rug Racer**](https://vibe.wiz.games/games/childhood-rug-racer?lang=zh-CN)<br>在童年的游戏地毯上开玩具车赛跑。 | [@noclipepe](https://x.com/noclipepe) | 竞速 | GPT-6.2 Sol vs Fable | [游玩](https://noclipepe.pages.dev/rug/) · [原帖](https://x.com/i/status/2119728047754547326) |
+| 12 | [**Cloud Stunt 3D**](https://vibe.wiz.games/games/cloud-stunt-3d?lang=zh-CN)<br>30 分钟生成的特技游戏。 | [@jev_chat](https://x.com/jev_chat) | 竞速 | Claude Fable 5.2 | [游玩](https://finderchangchang.github.io/cloud-stunt-3d/) · [原帖](https://x.com/i/status/2120015641151426838) |
+| 13 | [**Patchwork Quilt**](https://vibe.wiz.games/games/patchwork-quilt?lang=zh-CN)<br>拼布定格动画风格的玩具世界。 | [@BlendiByl](https://x.com/BlendiByl) | 解谜与玩具 | Claude Fable 5.2 | [游玩](https://patch.gg/blendi/patchwork-quilt) · [原帖](https://x.com/i/status/2120746541636047347) |
+| 14 | [**Hogwarts Royale**](https://vibe.wiz.games/games/hogwarts-royale?lang=zh-CN)<br>一句提示生成的魔法学院大逃杀。 | [@mattshumer_](https://x.com/mattshumer_) | 动作 | Claude Fable 5.2 | [游玩](https://www.spawn.co/@mattshumer/hogwarts-royale) · [原帖](https://x.com/i/status/2119872098306810226) |
+| 15 | [**Dread and District**](https://vibe.wiz.games/games/dread-and-district?lang=zh-CN)<br>奇幻物流模拟：好的供应链打败邪恶。由一群智能体协作完成。 | [@emollick](https://x.com/emollick) | 剧情与模拟 | Claude Fable 5.2 | [游玩](https://dread-and-district.netlify.app) · [原帖](https://x.com/i/status/2120248525254742318) |
+| 16 | [**Worm Rider**](https://vibe.wiz.games/games/worm-rider?lang=zh-CN)<br>用 Claude Code 构建的 220 KB 开源游戏。 | [@AmirMushich](https://x.com/AmirMushich) | 动作 | Claude Fable 5.2 | [源码](https://github.com/amirmushichge/worm-rider) · [原帖](https://x.com/i/status/2119937977426338283) |
+| 17 | [**Maad Maxxing**](https://vibe.wiz.games/games/maad-maxxing?lang=zh-CN)<br>100% 代码，零素材。Three.js + WebGPU，前 3 关可玩。 | [@Andrew_Blumson](https://x.com/Andrew_Blumson) | 竞速 | Claude Fable 5.2 | [游玩](https://maad-maxxing.vercel.app) · [原帖](https://x.com/i/status/2120599812512833557) |
+| 18 | [**Frontline Warfare Deathmatch**](https://vibe.wiz.games/games/frontline-warfare-deathmatch?lang=zh-CN)<br>浏览器里的军事射击死斗。 | [@alightinastorm](https://x.com/alightinastorm) | 射击 | Claude Fable 5.2 | [游玩](https://spawn.co/@robot/frontline-warfare-deathmatch) · [原帖](https://x.com/i/status/2120020469487440210) |
+| 19 | [**Lanternfall**](https://vibe.wiz.games/games/lanternfall?lang=zh-CN)<br>模型、动画、特效全部生成，连敌人死亡帧都不放过。 | [@loktar00](https://github.com/loktar00) | 动作 | Claude Fable 5.2 | [游玩](https://loktar00.github.io/lanternfall/) · [原帖](https://x.com/i/status/2120279060303520034) |
+| 20 | [**Turbo Tails**](https://vibe.wiz.games/games/turbo-tails?lang=zh-CN)<br>3D 卡丁车：六名车手、漂移、跳台、道具，支持多人。 | [@petergyang](https://x.com/petergyang) | 竞速 | Claude Fable 5.2 | [游玩](https://turbo-tails.vercel.app) · [原帖](https://x.com/i/status/2119901658394358005) |
+| 21 | [**Rambo Dino**](https://vibe.wiz.games/games/rambo-dino?lang=zh-CN)<br>Chrome 小恐龙游戏，改造成动作游戏。 | [@noclipepe](https://x.com/noclipepe) | 动作 | Claude Fable 5.2 | [游玩](https://noclipepe.pages.dev/dino) · [原帖](https://x.com/i/status/2119927838321328577) |
+| 22 | [**Spud Smash**](https://vibe.wiz.games/games/spud-smash?lang=zh-CN)<br>一颗土豆，砸烂并烧掉蓝色椅子。 | [@argofowl](https://x.com/argofowl) | 动作 | Claude Fable 5.2 | [游玩](https://fowllabs.com/fable-5-2/spud-smash) · [原帖](https://x.com/i/status/2119913148929187960) |
+| 23 | [**Skyflare**](https://vibe.wiz.games/games/skyflare?lang=zh-CN)<br>三小时做出来的战斗机游戏。 | [@AugustCastilIo](https://x.com/AugustCastilIo) | 射击 | Claude Fable 5.2 | [游玩](https://skyflare-game.vercel.app) · [原帖](https://x.com/i/status/2120290751502581879) |
+| 24 | [**Feed the Backrooms**](https://vibe.wiz.games/games/feed-the-backrooms?lang=zh-CN)<br>扮演怪物，抓捕迷失在后室的人。 | [@LexnLin](https://x.com/LexnLin) | 剧情与模拟 | Claude Fable 5.2 | [游玩](https://feed-backrooms.vercel.app) · [原帖](https://x.com/i/status/2119966127149429093) |
+| 25 | [**Stray Cat**](https://vibe.wiz.games/games/stray-cat?lang=zh-CN)<br>救小猫、吓跑狗、直面老公猫。音效由代码合成。 | [@aimikoda](https://x.com/aimikoda) | 剧情与模拟 | Claude Fable 5.2 | [游玩](https://claude.ai/artifact/4nPXUKJjQWNsZEHVNmXXCt) · [原帖](https://x.com/i/status/2120120133712593118) |
+| 26 | [**Tilt Labyrinth**](https://vibe.wiz.games/games/tilt-labyrinth?lang=zh-CN)<br>约 2,000 行 Three.js 写成的木制滚珠迷宫。 | [@mylifcc](https://x.com/mylifcc) | 解谜与玩具 | Claude Fable 5.2 | [游玩](https://blog.silencestar.com/posts/tilt-labyrinth/play/) · [原帖](https://x.com/i/status/2120054646282870910) |
+| 27 | [**Tiny Planet**](https://vibe.wiz.games/games/tiny-planet?lang=zh-CN)<br>一颗可以四处走动的小星球。开源。 | [@prasenx](https://x.com/prasenx) | 探索 | Claude Fable 5.2 | [源码](https://github.com/StarKnightt/tiny-planet) · [原帖](https://x.com/i/status/2120188077855613174) |
+| 28 | [**The Vast Horizon**](https://vibe.wiz.games/games/the-vast-horizon?lang=zh-CN)<br>多人共享一片湖冲浪。输入一个词，世界就随之改变。 | [@OdinLovis](https://x.com/OdinLovis) | 探索 | Claude Fable 5.2 | [游玩](https://the-vast-horizon.vercel.app) · [原帖](https://x.com/i/status/2120198469755503091) |
+| 29 | [**Dead Headway**](https://vibe.wiz.games/games/dead-headway?lang=zh-CN)<br>专为速通打造的小游戏。 | [@AugustCastilIo](https://x.com/AugustCastilIo) | 动作 | Claude Fable 5.2 | [游玩](https://dead-headway.vercel.app) · [原帖](https://x.com/i/status/2120628693420904489) |
+| 30 | [**Silicon Seduction**](https://vibe.wiz.games/games/silicon-seduction?lang=zh-CN)<br>逃出去，别被诱惑。 | [@ZryMiller](https://x.com/ZryMiller) | 剧情与模拟 | Claude Fable 5.2 | [游玩](https://silicon-seduction.vercel.app/) · [原帖](https://x.com/i/status/2119918766691954691) |
+| 31 | [**Reef Dive**](https://vibe.wiz.games/games/reef-dive?lang=zh-CN)<br>用鱼叉捕鱼、躲避鲨鱼、驾驶潜艇，下潜 140 米直达蓝洞。 | [@boona11](https://x.com/boona11) | 探索 | Claude Fable 5.2 | [游玩](https://wavedash.com/games/reef-dive) · [原帖](https://x.com/i/status/2120482516733702472) |
+| 32 | [**Bayhaven**](https://vibe.wiz.games/games/bayhaven?lang=zh-CN)<br>在 3.2 公里的海滨开车漂移，14 种载具，从城市公交到会跳的低底盘车。 | [@FablestarGames](https://x.com/FablestarGames) | 沙盒 | Claude Fable 5.2 | [游玩](https://fablestar.games/play/) · [原帖](https://x.com/i/status/2120641504951603394) |
+| 33 | [**Roost**](https://vibe.wiz.games/games/roost?lang=zh-CN)<br>越野摩托赛车：AI 对手、氮气加速、车把视角。 | [@tejas3732](https://x.com/tejas3732) | 竞速 | Claude Fable 5.2 | [游玩](https://claude.ai/artifact/DLnFodkTwvawCNwurDmSZK) · [原帖](https://x.com/i/status/2120091513657139549) |
+| 34 | [**Courtyard Kings**](https://vibe.wiz.games/games/courtyard-kings?lang=zh-CN)<br>四角色格斗游戏，含 39 段语音与音效。 | [@promodenstudio](https://x.com/promodenstudio) | 动作 | Claude Fable 5.2 | [游玩](https://claude.ai/artifact/1QGGhB68jMCjjjeeKtKNUo) · [原帖](https://x.com/i/status/2120085977079107788) |
+| 35 | [**Tria Prima**](https://vibe.wiz.games/games/tria-prima?lang=zh-CN)<br>黑暗奇幻炼金术：开放世界岛屿上的五个任务。 | [@winchxyz](https://x.com/winchxyz) | 剧情与模拟 | Claude Fable 5.2 | [游玩](https://winchxyz.github.io/tria-prima/) · [原帖](https://x.com/i/status/2120078399482020160) |
+| 36 | [**Stonehenge Solstice**](https://vibe.wiz.games/games/stonehenge-solstice?lang=zh-CN)<br>一个 HTML 文件里的巨石阵：草地、阴影与夏至太阳轨迹。 | [@MeltTheManual](https://x.com/MeltTheManual) | 解谜与玩具 | Claude Fable 5.2 | [游玩](https://meltthemanual.github.io/stonehenge-solstice/) · [原帖](https://x.com/i/status/2119926820963532984) |
+| 37 | [**Fortnite in Three.js**](https://vibe.wiz.games/games/fortnite-in-three-js?lang=zh-CN)<br>用 Three.js 复刻的大逃杀。 | [@aabyzov](https://x.com/aabyzov) | 动作 | Claude Fable 5.2 | [游玩](https://anton-abyzov.github.io/fortnite-3js/) · [原帖](https://x.com/i/status/2120702690845933702) |
+| 38 | [**Vippi**](https://vibe.wiz.games/games/vippi?lang=zh-CN)<br>快节奏街机风格第一人称射击。 | [@Shrit1401](https://x.com/Shrit1401) | 射击 | Claude Fable 5.2 | [游玩](https://vippi.vercel.app/) · [原帖](https://x.com/i/status/2120060593763926314) |
+<!-- games:end -->
 
 ## 收录标准
 
@@ -26,6 +89,9 @@ Vibe Arcade 是一份人工整理的游戏索引，收录大家主要靠向 AI �
 ## 游戏文件格式
 
 每款游戏是一个 JSON 文件，位于 `packages/catalog/data/games/<slug>.json`，由 [`game.schema.json`](packages/catalog/data/schema/game.schema.json) 和目录的测试校验。下面是 [`saltline.json`](packages/catalog/data/games/saltline.json)，它用到了除 `creatorUrl` 之外的全部字段（`creatorUrl` 的用法见 [`lanternfall.json`](packages/catalog/data/games/lanternfall.json)）：
+
+<details>
+<summary><code>saltline.json</code> 的完整内容</summary>
 
 ```json
 {
@@ -74,6 +140,8 @@ Vibe Arcade 是一份人工整理的游戏索引，收录大家主要靠向 AI �
 }
 ```
 
+</details>
+
 | 字段 | 必填 | 含义 |
 | --- | --- | --- |
 | `$schema` | 是 | 固定为 `../schema/game.schema.json`。 |
@@ -108,7 +176,7 @@ apps/web/                  @vibe-arcade/web：网站，TanStack Start（React 19
   public/avatars/          创作者头像，<handle>.webp
   public/fonts/            自托管的网页字体
   og/                      在构建时绘制分享图的 Vite 插件
-  scripts/                 fetch-covers.ts、fetch-media.ts、site-icons.ts、banner.ts
+  scripts/                 fetch-covers.ts、fetch-media.ts、readme-games.ts、site-icons.ts、banner.ts
   wrangler.jsonc           Cloudflare Workers 配置
 packages/catalog/          @vibe-arcade/catalog：数据以及由它派生的一切
   data/games/              每款游戏一个 JSON 文件
@@ -137,16 +205,17 @@ pnpm typecheck   # 对两个包做类型检查
 pnpm build       # 构建网站，包括分享图
 ```
 
-`apps/web` 里有三个脚本，它们写出的文件需要提交：
+`apps/web` 里的这些脚本写出的文件需要提交：
 
 ```sh
 pnpm --filter @vibe-arcade/web covers   # 从每款游戏的 X 帖子抓取封面到 public/covers/
 pnpm --filter @vibe-arcade/web media    # 从每款游戏的 X 帖子剪出短片并抓取创作者头像（需要 ffmpeg）
 pnpm --filter @vibe-arcade/web icons    # 根据 public/favicon.svg 重新生成图标
 pnpm --filter @vibe-arcade/web banner   # 重新生成本文件顶部的 .github/assets/banner.png
+pnpm --filter @vibe-arcade/web readme   # 根据数据重新生成各 README 里的游戏列表
 ```
 
-`covers` 会保留已存在的封面，除非加上 `--force`；可以传入 slug 来限定范围；加上 `--likes` 还会刷新游戏文件里的点赞数；只要有点赞数变化，它就把 `packages/catalog/data/meta.json` 里的日期（站点上显示的“最近更新”）改成当天。添加游戏时，这个日期需要手动修改。`media` 从每款游戏帖子的视频里剪出六秒无声短片存入 `public/videos/`，为点赞最多的六款再剪一段更大的供首屏播放，并把亲自发帖的创作者的头像存入 `public/avatars/`。它把结果列在 `packages/catalog/data/media.json` 里，这个文件要和媒体文件一起提交。它同样会保留已存在的文件，除非加上 `--force`，也可以传入 slug。本周精选是 `meta.json` 里 `picks` 下的 slug，手动维护。
+`covers` 会保留已存在的封面，除非加上 `--force`；可以传入 slug 来限定范围；加上 `--likes` 还会刷新游戏文件里的点赞数；只要有点赞数变化，它就把 `packages/catalog/data/meta.json` 里的日期（站点上显示的“最近更新”）改成当天。添加游戏时，这个日期需要手动修改。`media` 从每款游戏帖子的视频里剪出六秒无声短片存入 `public/videos/`，为点赞最多的六款再剪一段更大的供首屏播放，并把亲自发帖的创作者的头像存入 `public/avatars/`。它把结果列在 `packages/catalog/data/media.json` 里，这个文件要和媒体文件一起提交。它同样会保留已存在的文件，除非加上 `--force`，也可以传入 slug。本周精选是 `meta.json` 里 `picks` 下的 slug，手动维护。`readme` 会重写本文件及其各语言版本里的游戏列表；添加、改名或删除游戏后要运行它，因为只要 README 落后于数据，测试就会失败。
 
 ## 部署
 
