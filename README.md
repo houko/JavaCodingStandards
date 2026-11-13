@@ -25,7 +25,7 @@ Vibe Arcade is the arcade for AI-made games: a curated index of browser games th
 Every game on the site, most liked first. The name leads to the game's page on Vibe Arcade and the last column to the game itself and to the creator's post. This list is drawn from the data in `packages/catalog/data/games/` and is redrawn by `pnpm --filter @vibe-arcade/web readme`.
 
 <!-- games:start -->
-**38** games listed · **31** creators credited · **2** AI models tracked
+**39** games listed · **32** creators credited · **3** AI models tracked
 
 | # | Games | Creators | Genre | Model | |
 | --- | --- | --- | --- | --- | --- |
@@ -67,6 +67,7 @@ Every game on the site, most liked first. The name leads to the game's page on V
 | 36 | [**Stonehenge Solstice**](https://vibe.wiz.games/games/stonehenge-solstice)<br>Stonehenge in one HTML file: grass, shadows and the solstice sun path. | [@MeltTheManual](https://x.com/MeltTheManual) | Puzzle & toys | Claude Fable 5.2 | [Play](https://meltthemanual.github.io/stonehenge-solstice/) · [Post](https://x.com/i/status/2119926820963532984) |
 | 37 | [**Fortnite in Three.js**](https://vibe.wiz.games/games/fortnite-in-three-js)<br>A battle-royale clone in Three.js. | [@aabyzov](https://x.com/aabyzov) | Action | Claude Fable 5.2 | [Play](https://anton-abyzov.github.io/fortnite-3js/) · [Post](https://x.com/i/status/2120702690845933702) |
 | 38 | [**Vippi**](https://vibe.wiz.games/games/vippi)<br>A fast, arcade-style first-person shooter. | [@Shrit1401](https://x.com/Shrit1401) | Shooter | Claude Fable 5.2 | [Play](https://vippi.vercel.app/) · [Post](https://x.com/i/status/2120060593763926314) |
+| 39 | [**Wave Rider Nusantara**](https://vibe.wiz.games/games/wave-rider-nusantara)<br>Arcade-style game inspired by the culture and visual identity of the Indonesian archipelago. | [@abusofianid](https://x.com/abusofianid) | Exploration | Gemini and chat gpt | [Source](https://github.com/abusofianid/game-wave-rider-nusantara) · [Post](https://x.com/i/status/2121088313658572857) |
 <!-- games:end -->
 
 ## How games get in

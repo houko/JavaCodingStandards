@@ -25,7 +25,7 @@ Vibe Arcade 是 AI 游戏的街机厅：一份人工整理的浏览器游戏索�
 网站上的全部游戏，按点赞数从高到低排列。游戏名链接到它在 Vibe Arcade 上的页面，最后一列链接到游戏本身和作者的原帖。这份列表由 `packages/catalog/data/games/` 里的数据生成，用 `pnpm --filter @vibe-arcade/web readme` 重新生成。
 
 <!-- games:start -->
-**38** 款游戏 · **31** 位作者 · **2** 个 AI 模型
+**39** 款游戏 · **32** 位作者 · **3** 个 AI 模型
 
 | # | 游戏 | 作者 | 类型 | 模型 | |
 | --- | --- | --- | --- | --- | --- |
@@ -67,6 +67,7 @@ Vibe Arcade 是 AI 游戏的街机厅：一份人工整理的浏览器游戏索�
 | 36 | [**Stonehenge Solstice**](https://vibe.wiz.games/games/stonehenge-solstice?lang=zh-CN)<br>一个 HTML 文件里的巨石阵：草地、阴影与夏至太阳轨迹。 | [@MeltTheManual](https://x.com/MeltTheManual) | 解谜与玩具 | Claude Fable 5.2 | [游玩](https://meltthemanual.github.io/stonehenge-solstice/) · [原帖](https://x.com/i/status/2119926820963532984) |
 | 37 | [**Fortnite in Three.js**](https://vibe.wiz.games/games/fortnite-in-three-js?lang=zh-CN)<br>用 Three.js 复刻的大逃杀。 | [@aabyzov](https://x.com/aabyzov) | 动作 | Claude Fable 5.2 | [游玩](https://anton-abyzov.github.io/fortnite-3js/) · [原帖](https://x.com/i/status/2120702690845933702) |
 | 38 | [**Vippi**](https://vibe.wiz.games/games/vippi?lang=zh-CN)<br>快节奏街机风格第一人称射击。 | [@Shrit1401](https://x.com/Shrit1401) | 射击 | Claude Fable 5.2 | [游玩](https://vippi.vercel.app/) · [原帖](https://x.com/i/status/2120060593763926314) |
+| 39 | [**Wave Rider Nusantara**](https://vibe.wiz.games/games/wave-rider-nusantara?lang=zh-CN)<br>Arcade-style game inspired by the culture and visual identity of the Indonesian archipelago. | [@abusofianid](https://x.com/abusofianid) | 探索 | Gemini and chat gpt | [源码](https://github.com/abusofianid/game-wave-rider-nusantara) · [原帖](https://x.com/i/status/2121088313658572857) |
 <!-- games:end -->
 
 ## 收录标准
