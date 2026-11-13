@@ -20,6 +20,14 @@
 		opacity: 0.9;
 	}
 }
+@keyframes avg-rise-solid {
+	from {
+		translate: 0 28px;
+	}
+	to {
+		translate: 0 0;
+	}
+}
 @keyframes avg-rise {
 	from {
 		opacity: 0;
@@ -177,6 +185,10 @@
 .avg-in {
 	opacity: 0;
 	animation: avg-rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+/* The hero screen rises without fading in. Browsers do not count an element painted fully transparent as the page's largest content, so a cover that faded in was never measured, and the first cover the rotation brought in seconds later was recorded instead, putting the page's LCP at about eight seconds. */
+.avg-in-solid {
+	animation: avg-rise-solid 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 .avg-d1 {
 	animation-delay: 0.05s;

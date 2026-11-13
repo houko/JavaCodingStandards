@@ -48,10 +48,10 @@ function Screen({ lang, onOpen }: { lang: LangCode; onOpen: (slug: string) => vo
 	}, [held, paused]);
 
 	return (
-		<div role='group' aria-label={tr.nowPlaying} onMouseEnter={() => setHeld(true)} onMouseLeave={() => setHeld(false)} onFocus={() => setHeld(true)} onBlur={() => setHeld(false)} className='avg-in avg-d5 avg-screen relative mt-3 w-full max-w-[1040px] rounded-[18px] border border-[#2f2f37] bg-[linear-gradient(180deg,#24242a,#141418)] p-1.5 sm:mt-8 sm:rounded-[26px] sm:p-2.5'>
+		<div role='group' aria-label={tr.nowPlaying} onMouseEnter={() => setHeld(true)} onMouseLeave={() => setHeld(false)} onFocus={() => setHeld(true)} onBlur={() => setHeld(false)} className='avg-in-solid avg-d5 avg-screen relative mt-3 w-full max-w-[1040px] rounded-[18px] border border-[#2f2f37] bg-[linear-gradient(180deg,#24242a,#141418)] p-1.5 sm:mt-8 sm:rounded-[26px] sm:p-2.5'>
 			<div className='relative aspect-[4/3] overflow-hidden rounded-xl bg-ink text-left sm:aspect-video sm:rounded-[18px]'>
 				<Cover game={game} alt={`${game.name} — ${tr.coverAlt}`} eager={index === 0} className='absolute inset-0 size-full text-[40px]' />
-				{game.heroVideo && <Clip src={game.heroVideo} className='avg-screen-vid' />}
+				{game.heroVideo && <Clip src={game.heroVideo} small={game.video} className='avg-screen-vid' />}
 				<div aria-hidden='true' className='avg-scan pointer-events-none absolute inset-0' />
 				<div aria-hidden='true' className='pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgb(10_10_12/0.6)_0%,transparent_22%,transparent_52%,rgb(10_10_12/0.94)_100%)]' />
 				<div className='absolute top-3 left-3 flex flex-wrap items-center gap-2 font-mono text-[12px] font-semibold uppercase sm:top-4 sm:left-4'>

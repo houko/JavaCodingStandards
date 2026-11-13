@@ -43,7 +43,7 @@ export function Picks({ lang, onOpen }: { lang: LangCode; onOpen: (slug: string)
 			<div key={game.slug} className='avg-pop-a flex flex-wrap overflow-hidden rounded-2xl border border-line bg-panel'>
 				<div className='relative min-h-[240px] flex-[3_1_520px] overflow-hidden bg-ink sm:min-h-[440px]'>
 					<Cover game={game} alt={`${game.name} — ${tr.coverAlt}`} className='avg-kb absolute inset-0 size-full text-[32px]' />
-					{(game.heroVideo ?? game.video) && <Clip src={(game.heroVideo ?? game.video) as string} />}
+					{(game.heroVideo ?? game.video) && <Clip src={(game.heroVideo ?? game.video) as string} small={game.video} />}
 					<div className='absolute top-4 left-4 flex flex-wrap gap-2 font-mono text-[12px] font-semibold tracking-[0.06em] uppercase'>
 						<span className='rounded-md px-2.5 py-1.5 text-bg' style={{ backgroundColor: GENRE_COLORS[game.genre] }}>
 							{tr[GENRE_KEYS[game.genre]]}
