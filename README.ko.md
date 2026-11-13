@@ -191,6 +191,7 @@ packages/catalog/          @vibe-arcade/catalog: 데이터와 거기서 파생�
   workflows/deploy.yml     main에서 CI가 통과하면 Cloudflare Workers에 배포
   workflows/links.yml      모든 게임 링크를 매일 검사하고, 계속 끊겨 있는 게임을 표시하는 풀 리퀘스트를 생성
   workflows/uptime.yml     30분마다 운영 사이트를 확인. 봇이나 확인이 실패하는 동안 알림 이슈를 열어 둠
+  workflows/deps.yml       매주 버전 범위 안에서 의존성 업데이트. GitHub Actions 버전은 Dependabot이 관리
 ```
 
 매일 실행되는 [링크 검사](.github/workflows/links.yml)는 각 게임의 플레이 또는 소스 링크에 요청을 보냅니다. 응답하지 않는 링크는 "Dead game links"라는 제목의 이슈 하나에 실리고, 몇 번 연속으로 끊겨 있었는지도 그곳에 기록됩니다. 세 번 연속이면 게임이 링크 끊김으로 표시되며(파일의 `down`), 호스트가 하루 내려간 정도로는 표시되지 않습니다. 표시된 게임의 링크가 다시 응답하면 표시가 지워집니다. 모든 변경은 풀 리퀘스트로 반영되며, CI가 통과하면 자동으로 병합되고 사이트가 배포됩니다. 게임이 주소만 옮겼다면 `link.url`을 고치면 다음 검사에서 표시가 지워집니다.

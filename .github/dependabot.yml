@@ -1,0 +1,11 @@
+# Dependabot keeps the GitHub Actions the workflows use up to date, in one grouped pull request a week; .github/workflows/dependabot-merge.yml merges it once CI passes. The npm dependencies are updated by .github/workflows/deps.yml instead, with the repository's own pnpm.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: wednesday
+    groups:
+      actions:
+        patterns: ['*']

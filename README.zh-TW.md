@@ -191,6 +191,7 @@ packages/catalog/          @vibe-arcade/catalog：資料以及由它衍生的一
   workflows/deploy.yml     main 上 CI 通過後部署到 Cloudflare Workers
   workflows/links.yml      每天檢查所有遊戲連結，連結持續失效的遊戲會收到一個標記用的 PR
   workflows/uptime.yml     每半小時檢查線上網站；機器人或檢查失敗時會保持一個提醒 issue 開著
+  workflows/deps.yml       每週在版本範圍內更新依賴；GitHub Actions 的版本由 Dependabot 維護
 ```
 
 每天的[連結檢查](.github/workflows/links.yml)會請求每款遊戲的遊玩或原始碼連結。不再回應的連結會列在一個標題為「Dead game links」的 issue 裡，issue 同時記錄它連續多少次檢查都失效。連續三次之後，遊戲會被標記為連結失效（遊戲檔案裡的 `down`），所以主機只當機一天不會觸發標記；被標記的遊戲連結恢復回應後，標記會被移除。每次變更都透過一個 PR 落地，CI 通過後自動合併並部署網站。如果遊戲只是換了位址，改正它的 `link.url` 即可，下次檢查時標記會自動移除。
