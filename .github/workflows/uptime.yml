@@ -1,0 +1,38 @@
+name: Uptime
+
+# Checks every half hour that the live site answers as it should (.github/scripts/check-site.mjs). While a check keeps failing, one issue titled "Site check failing" says what, and it closes by itself once everything answers again (.github/scripts/alert.sh).
+on:
+  schedule:
+    - cron: '7,37 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: uptime
+  cancel-in-progress: true
+
+env:
+  GH_TOKEN: ${{ github.token }}
+  GH_REPO: ${{ github.repository }}
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: node .github/scripts/check-site.mjs
+        env:
+          REPORT_FILE: ${{ runner.temp }}/report.md
+      - if: failure()
+        run: .github/scripts/alert.sh fail 'Site check failing' "$(cat "$RUNNER_TEMP/report.md" 2>/dev/null || echo 'The check itself failed to run.') [Run]($RUN_URL)"
+        env:
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+      - if: success()
+        run: .github/scripts/alert.sh ok 'Site check failing'
