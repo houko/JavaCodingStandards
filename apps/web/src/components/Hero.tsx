@@ -84,7 +84,7 @@ function Screen({ lang, onOpen }: { lang: LangCode; onOpen: (slug: string) => vo
 			</div>
 			<div className='flex items-center justify-center gap-0.5 pt-2'>
 				{HERO_GAMES.map((g, i) => (
-					<button key={g.slug} type='button' aria-label={g.name} aria-pressed={i === index} onClick={() => setIndex(i)} className='flex min-h-11 cursor-pointer items-center px-1'>
+					<button key={g.slug} type='button' aria-label={g.name} aria-pressed={i === index} onClick={() => setIndex(i)} className='flex min-h-11 min-w-6 cursor-pointer items-center justify-center px-2'>
 						<span className={`avg-dot block h-1.5 rounded-full ${i === index ? 'w-7 bg-lime' : 'w-2 bg-[#4a4952]'}`} />
 					</button>
 				))}
