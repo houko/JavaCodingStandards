@@ -1,4 +1,4 @@
-import { DEFAULT_LANG, GAMES, GENRE_KEYS, type Game, LANGS, type LangCode, SITE_NAME, SITE_URL, fill, pick, t } from '@vibe-arcade/catalog';
+import { CURATOR_HANDLE, DEFAULT_LANG, GAMES, GENRE_KEYS, type Game, LANGS, type LangCode, MAKER_NAME, MAKER_URL, SITE_NAME, SITE_URL, creatorByHandle, fill, pick, t } from '@vibe-arcade/catalog';
 import type { MetaDescriptor } from '@tanstack/react-router';
 import type { JSX } from 'react';
 import { SITE_CARD_PATH, gameCardPath } from '../../og/paths';
@@ -36,8 +36,13 @@ interface HeadTags {
 	image: string;
 	// Localized, for og:image:alt and twitter:image:alt.
 	imageAlt: string;
+	// The path of the page's clip, a 640×400 MP4, for the platforms that play one in a share.
+	video?: string;
 	jsonLd: LdJson[];
 }
+
+// The size and length scripts/fetch-media.ts cuts a game's clip to.
+const CLIP = { width: 640, height: 400, duration: 'PT6S' };
 
 function headTags(h: HeadTags) {
 	const url = pageUrl(h.path, h.lang);
@@ -58,7 +63,16 @@ function headTags(h: HeadTags) {
 			{ property: 'og:image:width', content: '1200' },
 			{ property: 'og:image:height', content: '630' },
 			{ property: 'og:image:alt', content: h.imageAlt },
+			...(h.video === undefined
+				? []
+				: [
+						{ property: 'og:video', content: `${SITE_URL}${h.video}` },
+						{ property: 'og:video:type', content: 'video/mp4' },
+						{ property: 'og:video:width', content: String(CLIP.width) },
+						{ property: 'og:video:height', content: String(CLIP.height) },
+					]),
 			{ name: 'twitter:card', content: 'summary_large_image' },
+			{ name: 'twitter:site', content: `@${CURATOR_HANDLE}` },
 			{ name: 'twitter:title', content: h.title },
 			{ name: 'twitter:description', content: h.desc },
 			{ name: 'twitter:image', content: image },
@@ -73,12 +87,18 @@ function headTags(h: HeadTags) {
 	};
 }
 
-// The home page's head: the site itself and the list of every game, each pointing at its own page, which carries the game's full data.
+// The home page's head: the site itself, with who publishes it and how to search it (the ?q= filter), and the list of every game, each pointing at its own page, which carries the game's full data.
 export function homeHead(langParam: LangCode | undefined) {
 	const lang = langParam ?? DEFAULT_LANG;
 	const tr = t(lang);
 	const jsonLd: LdJson[] = [
-		{ ...WEBSITE, inLanguage: lang, description: tr.siteDescription },
+		{
+			...WEBSITE,
+			inLanguage: lang,
+			description: tr.siteDescription,
+			publisher: { '@type': 'Organization', name: MAKER_NAME, url: MAKER_URL },
+			potentialAction: { '@type': 'SearchAction', target: { '@type': 'EntryPoint', urlTemplate: `${pageUrl('/', lang)}${lang === DEFAULT_LANG ? '?' : '&'}q={search_term_string}` }, 'query-input': 'required name=search_term_string' },
+		},
 		{ '@type': 'ItemList', name: tr.allH, numberOfItems: GAMES.length, itemListElement: GAMES.map((g, i) => ({ '@type': 'ListItem', position: i + 1, name: g.name, url: pageUrl(gamePath(g.slug), lang) })) },
 	];
 	return headTags({ lang, path: '/', title: tr.siteTitle, desc: tr.siteDescription, image: SITE_CARD_PATH, imageAlt: tr.ogAlt, jsonLd });
@@ -94,6 +114,7 @@ export function gameHead(game: Game, langParam: LangCode | undefined) {
 	const genre = tr[GENRE_KEYS[game.genre]];
 	const title = fill(tr.gameTitle, { name: game.name, creator: game.creator });
 	const desc = fill(tr.gameDescription, { summary, model: game.model, genre });
+	const avatar = creatorByHandle(game.creator)?.avatar;
 	const jsonLd: LdJson[] = [
 		{
 			'@type': 'VideoGame',
@@ -107,7 +128,9 @@ export function gameHead(game: Game, langParam: LangCode | undefined) {
 			applicationCategory: 'Game',
 			operatingSystem: 'Any',
 			datePublished: game.postedAt,
-			author: { '@type': 'Person', name: `@${game.creator}`, url: game.creatorUrl },
+			author: { '@type': 'Person', name: `@${game.creator}`, url: game.creatorUrl, ...(avatar && { image: `${SITE_URL}${avatar}` }) },
+			// The clip cut from the creator's post, dated as the post is.
+			...(game.video && { trailer: { '@type': 'VideoObject', name: game.name, description: summary, thumbnailUrl: `${SITE_URL}${game.cover}`, contentUrl: `${SITE_URL}${game.video}`, uploadDate: game.postedAt, duration: CLIP.duration, width: CLIP.width, height: CLIP.height } }),
 			sameAs: [...new Set([game.link.url, game.postUrl])],
 			interactionStatistic: { '@type': 'InteractionCounter', interactionType: { '@type': 'LikeAction' }, userInteractionCount: game.likes },
 			isPartOf: WEBSITE,
@@ -120,5 +143,5 @@ export function gameHead(game: Game, langParam: LangCode | undefined) {
 			],
 		},
 	];
-	return headTags({ lang, path, title, desc, image: gameCardPath(game.slug), imageAlt: `${game.name} — ${tr.coverAlt}`, jsonLd });
+	return headTags({ lang, path, title, desc, image: gameCardPath(game.slug), imageAlt: `${game.name} — ${tr.coverAlt}`, video: game.video, jsonLd });
 }

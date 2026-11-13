@@ -15,7 +15,8 @@
 		"covers": "node scripts/fetch-covers.ts",
 		"media": "node scripts/fetch-media.ts",
 		"icons": "node scripts/site-icons.ts",
-		"banner": "node scripts/banner.ts"
+		"banner": "node scripts/banner.ts",
+		"readme": "node scripts/readme-games.ts"
 	},
 	"dependencies": {
 		"@tanstack/react-router": "^1.170.46",

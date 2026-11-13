@@ -4,6 +4,8 @@
 	"private": true,
 	"type": "module",
 	"description": "Vibe Arcade: a curated index of games vibe-coded with AI and shared on X, served from Cloudflare Workers",
+	"keywords": ["vibe-coding", "ai-games", "browser-games", "awesome-list", "claude", "threejs", "tanstack-start", "cloudflare-workers"],
+	"author": "Wiz Games (https://wiz.games)",
 	"license": "MIT",
 	"homepage": "https://vibe.wiz.games",
 	"repository": {

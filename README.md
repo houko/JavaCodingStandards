@@ -2,9 +2,72 @@
 
 English · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [日本語](README.ja.md) · [한국어](README.ko.md)
 
+**[vibe.wiz.games](https://vibe.wiz.games)** · [Submit a game](https://github.com/yldm-tech/awesome-vibe-games/issues/new?template=submit-game.yml) · [The games](#games) · [How games get in](#how-games-get-in)
+
+[![CI](https://github.com/yldm-tech/awesome-vibe-games/actions/workflows/ci.yml/badge.svg)](https://github.com/yldm-tech/awesome-vibe-games/actions/workflows/ci.yml)
+
 ![Vibe Arcade](.github/assets/banner.png)
 
-Vibe Arcade is a curated index of games that people built mostly by prompting an AI model and then shared on X. Each entry records the model that built the game, its creator, the original post with its like count, and a link to play it. This repository holds the game data and the site that shows it; the games themselves stay with their creators, on their own hosts.
+Vibe Arcade is the arcade for AI-made games: a curated index of browser games that people built mostly by prompting an AI model and then shared on X. Each entry records the model that built the game, its creator, the original post with its like count, and a link to play it. This repository holds the game data and the site that shows it, [vibe.wiz.games](https://vibe.wiz.games); the games themselves stay with their creators, on their own hosts.
+
+## On the site
+
+- **One click to play.** Every card links straight to the game in a browser, and to the creator's post on X.
+- **See how it was made.** Each game names the model that built it, and where the creator shared them, the build time, cost, tokens and the prompt itself.
+- **Watch before you play.** Short silent clips from the creators' posts play on the home screen and on a card under the pointer.
+- **Find a game your way.** Filter by genre, model or creator, search by title, and order by likes or by date. Every view is an address you can share, and every game has a page of its own.
+- **Ten languages.** The interface and every game summary, with English at the bare address and the others at `?lang=<code>`.
+
+![The home page of Vibe Arcade](.github/assets/screenshot.png)
+
+## Games
+
+Every game on the site, most liked first. The name leads to the game's page on Vibe Arcade and the last column to the game itself and to the creator's post. This list is drawn from the data in `packages/catalog/data/games/` and is redrawn by `pnpm --filter @vibe-arcade/web readme`.
+
+<!-- games:start -->
+**38** games listed · **31** creators credited · **2** AI models tracked
+
+| # | Games | Creators | Genre | Model | |
+| --- | --- | --- | --- | --- | --- |
+| 1 | [**Saltline**](https://vibe.wiz.games/games/saltline)<br>One-shot FPS. Models, sounds and textures all generated in code, no human feedback. | [@felixrieseberg](https://x.com/felixrieseberg) | Shooter | Claude Fable 5.2 | [Play](https://claude.ai/artifact/BGY1SztrAYcJQHSsnHHGmp) · [Post](https://x.com/i/status/2119925633564463609) |
+| 2 | [**Starry Night Rider**](https://vibe.wiz.games/games/starry-night-rider)<br>Ride with Van Gogh through his own Starry Night. | [@ebbyamir](https://x.com/ebbyamir) | Exploration | Claude Fable 5.2 | [Play](https://starrynightrider.com) · [Post](https://x.com/i/status/2120284261089673376) |
+| 3 | [**What the Water Keeps**](https://vibe.wiz.games/games/what-the-water-keeps)<br>A calm boat ride through eight dreamlike worlds. | [@kevin_t_ngo](https://x.com/kevin_t_ngo) | Exploration | Claude Fable 5.2 | [Play](https://what-the-water-keeps.vercel.app/) · [Post](https://x.com/i/status/2119868968307695818) |
+| 4 | [**Mirror Earth**](https://vibe.wiz.games/games/mirror-earth)<br>A destructible game world of the whole planet, with weather that matches real Earth. | [@mattshumer_](https://x.com/mattshumer_) | Sandbox | Claude Fable 5.2 | [Play](https://www.spawn.co/@mattshumer/earth) · [Post](https://x.com/i/status/2119877065701036047) |
+| 5 | [**Portals: Endless Worlds**](https://vibe.wiz.games/games/portals-endless-worlds)<br>450+ code-only 3D worlds linked by portals, built by 25,000 agents. | [@emollick](https://x.com/emollick) | Exploration | Claude Fable 5.2 | [Play](https://portals-endless-worlds.netlify.app/) · [Post](https://x.com/i/status/2119918307457577163) |
+| 6 | [**Evensong**](https://vibe.wiz.games/games/evensong)<br>A dark-fantasy boss fight, playable in the browser. | [@kevin_t_ngo](https://x.com/kevin_t_ngo) | Action | Claude Fable 5.2 | [Watch](https://x.com/i/status/2120238844754923874) |
+| 7 | [**雾锁山门**](https://vibe.wiz.games/games/wu-suo-shan-men)<br>One afternoon, 4.5B tokens: models, scenes, moves and optimisation in a single 30 MB HTML file. | [@op7418](https://x.com/op7418) | Action | Claude Fable 5.2 | [Play](https://op7418.github.io/guizang-game-skill/) · [Post](https://x.com/i/status/2120694045299327187) |
+| 8 | [**Voxel Engine**](https://vibe.wiz.games/games/voxel-engine)<br>A voxel engine with sound, from a single prompt. | [@mattshumer_](https://x.com/mattshumer_) | Sandbox | Claude Fable 5.2 | [Play](https://www.spawn.co/@mattshumer/voxel-engine) · [Post](https://x.com/i/status/2119870965106483384) |
+| 9 | [**Siege Wing**](https://vibe.wiz.games/games/siege-wing)<br>Fly a helicopter into a medieval war. Cannons, rockets and missiles against ballistas and castles. | [@builderjaydub](https://x.com/builderjaydub) | Shooter | Claude Fable 5.2 | [Play](https://bannerfall.itch.io/siege-wing) · [Post](https://x.com/i/status/2120223731520040966) |
+| 10 | [**I Would Have Gotten Away With It**](https://vibe.wiz.games/games/i-would-have-gotten-away-with-it)<br>A reverse Scooby-Doo: you are the villain scaring off the meddling kids. | [@emollick](https://x.com/emollick) | Story & sim | Claude Fable 5.2 | [Play](https://i-would-have-gotten-away-with-it.netlify.app/) · [Post](https://x.com/i/status/2119876449494540554) |
+| 11 | [**Childhood Rug Racer**](https://vibe.wiz.games/games/childhood-rug-racer)<br>Race toy cars across a childhood play rug. | [@noclipepe](https://x.com/noclipepe) | Racing | GPT-6.2 Sol vs Fable | [Play](https://noclipepe.pages.dev/rug/) · [Post](https://x.com/i/status/2119728047754547326) |
+| 12 | [**Cloud Stunt 3D**](https://vibe.wiz.games/games/cloud-stunt-3d)<br>A stunt game generated in 30 minutes. | [@jev_chat](https://x.com/jev_chat) | Racing | Claude Fable 5.2 | [Play](https://finderchangchang.github.io/cloud-stunt-3d/) · [Post](https://x.com/i/status/2120015641151426838) |
+| 13 | [**Patchwork Quilt**](https://vibe.wiz.games/games/patchwork-quilt)<br>A quilted, stop-motion style toy world. | [@BlendiByl](https://x.com/BlendiByl) | Puzzle & toys | Claude Fable 5.2 | [Play](https://patch.gg/blendi/patchwork-quilt) · [Post](https://x.com/i/status/2120746541636047347) |
+| 14 | [**Hogwarts Royale**](https://vibe.wiz.games/games/hogwarts-royale)<br>A wizard-school battle royale from a one-line prompt. | [@mattshumer_](https://x.com/mattshumer_) | Action | Claude Fable 5.2 | [Play](https://www.spawn.co/@mattshumer/hogwarts-royale) · [Post](https://x.com/i/status/2119872098306810226) |
+| 15 | [**Dread and District**](https://vibe.wiz.games/games/dread-and-district)<br>A fantasy logistics sim where good supply chains defeat evil. Built with a swarm of agents. | [@emollick](https://x.com/emollick) | Story & sim | Claude Fable 5.2 | [Play](https://dread-and-district.netlify.app) · [Post](https://x.com/i/status/2120248525254742318) |
+| 16 | [**Worm Rider**](https://vibe.wiz.games/games/worm-rider)<br>An open-source 220 KB game built in Claude Code. | [@AmirMushich](https://x.com/AmirMushich) | Action | Claude Fable 5.2 | [Source](https://github.com/amirmushichge/worm-rider) · [Post](https://x.com/i/status/2119937977426338283) |
+| 17 | [**Maad Maxxing**](https://vibe.wiz.games/games/maad-maxxing)<br>100% code, no assets. Three.js + WebGPU, first 3 stages playable. | [@Andrew_Blumson](https://x.com/Andrew_Blumson) | Racing | Claude Fable 5.2 | [Play](https://maad-maxxing.vercel.app) · [Post](https://x.com/i/status/2120599812512833557) |
+| 18 | [**Frontline Warfare Deathmatch**](https://vibe.wiz.games/games/frontline-warfare-deathmatch)<br>A military shooter deathmatch in the browser. | [@alightinastorm](https://x.com/alightinastorm) | Shooter | Claude Fable 5.2 | [Play](https://spawn.co/@robot/frontline-warfare-deathmatch) · [Post](https://x.com/i/status/2120020469487440210) |
+| 19 | [**Lanternfall**](https://vibe.wiz.games/games/lanternfall)<br>Models, animation and effects all generated, down to the enemy death frames. | [@loktar00](https://github.com/loktar00) | Action | Claude Fable 5.2 | [Play](https://loktar00.github.io/lanternfall/) · [Post](https://x.com/i/status/2120279060303520034) |
+| 20 | [**Turbo Tails**](https://vibe.wiz.games/games/turbo-tails)<br>3D kart racer with six racers, drifting, ramps, items and multiplayer. | [@petergyang](https://x.com/petergyang) | Racing | Claude Fable 5.2 | [Play](https://turbo-tails.vercel.app) · [Post](https://x.com/i/status/2119901658394358005) |
+| 21 | [**Rambo Dino**](https://vibe.wiz.games/games/rambo-dino)<br>The Chrome T-Rex game, reworked as an action game. | [@noclipepe](https://x.com/noclipepe) | Action | Claude Fable 5.2 | [Play](https://noclipepe.pages.dev/dino) · [Post](https://x.com/i/status/2119927838321328577) |
+| 22 | [**Spud Smash**](https://vibe.wiz.games/games/spud-smash)<br>A potato that smashes and torches blue chairs. | [@argofowl](https://x.com/argofowl) | Action | Claude Fable 5.2 | [Play](https://fowllabs.com/fable-5-2/spud-smash) · [Post](https://x.com/i/status/2119913148929187960) |
+| 23 | [**Skyflare**](https://vibe.wiz.games/games/skyflare)<br>A fighter-jet game made in three hours. | [@AugustCastilIo](https://x.com/AugustCastilIo) | Shooter | Claude Fable 5.2 | [Play](https://skyflare-game.vercel.app) · [Post](https://x.com/i/status/2120290751502581879) |
+| 24 | [**Feed the Backrooms**](https://vibe.wiz.games/games/feed-the-backrooms)<br>Play the monster and catch people lost in the Backrooms. | [@LexnLin](https://x.com/LexnLin) | Story & sim | Claude Fable 5.2 | [Play](https://feed-backrooms.vercel.app) · [Post](https://x.com/i/status/2119966127149429093) |
+| 25 | [**Stray Cat**](https://vibe.wiz.games/games/stray-cat)<br>Rescue kittens, scare dogs, face the old tomcat. Sound synthesised in code. | [@aimikoda](https://x.com/aimikoda) | Story & sim | Claude Fable 5.2 | [Play](https://claude.ai/artifact/4nPXUKJjQWNsZEHVNmXXCt) · [Post](https://x.com/i/status/2120120133712593118) |
+| 26 | [**Tilt Labyrinth**](https://vibe.wiz.games/games/tilt-labyrinth)<br>A wooden ball maze in about 2,000 lines of Three.js. | [@mylifcc](https://x.com/mylifcc) | Puzzle & toys | Claude Fable 5.2 | [Play](https://blog.silencestar.com/posts/tilt-labyrinth/play/) · [Post](https://x.com/i/status/2120054646282870910) |
+| 27 | [**Tiny Planet**](https://vibe.wiz.games/games/tiny-planet)<br>A tiny planet you can walk around. Open source. | [@prasenx](https://x.com/prasenx) | Exploration | Claude Fable 5.2 | [Source](https://github.com/StarKnightt/tiny-planet) · [Post](https://x.com/i/status/2120188077855613174) |
+| 28 | [**The Vast Horizon**](https://vibe.wiz.games/games/the-vast-horizon)<br>Multiplayer surfing on one shared lake. Type a word and it changes the world. | [@OdinLovis](https://x.com/OdinLovis) | Exploration | Claude Fable 5.2 | [Play](https://the-vast-horizon.vercel.app) · [Post](https://x.com/i/status/2120198469755503091) |
+| 29 | [**Dead Headway**](https://vibe.wiz.games/games/dead-headway)<br>A short game built for speedrunning. | [@AugustCastilIo](https://x.com/AugustCastilIo) | Action | Claude Fable 5.2 | [Play](https://dead-headway.vercel.app) · [Post](https://x.com/i/status/2120628693420904489) |
+| 30 | [**Silicon Seduction**](https://vibe.wiz.games/games/silicon-seduction)<br>Escape without getting seduced. | [@ZryMiller](https://x.com/ZryMiller) | Story & sim | Claude Fable 5.2 | [Play](https://silicon-seduction.vercel.app/) · [Post](https://x.com/i/status/2119918766691954691) |
+| 31 | [**Reef Dive**](https://vibe.wiz.games/games/reef-dive)<br>Spear-fish, dodge sharks, pilot a sub and dive 140 m into the Blue Hole. | [@boona11](https://x.com/boona11) | Exploration | Claude Fable 5.2 | [Play](https://wavedash.com/games/reef-dive) · [Post](https://x.com/i/status/2120482516733702472) |
+| 32 | [**Bayhaven**](https://vibe.wiz.games/games/bayhaven)<br>Drive and drift 3.2 km of beachfront in 14 vehicles, from a city bus to a hopping lowrider. | [@FablestarGames](https://x.com/FablestarGames) | Sandbox | Claude Fable 5.2 | [Play](https://fablestar.games/play/) · [Post](https://x.com/i/status/2120641504951603394) |
+| 33 | [**Roost**](https://vibe.wiz.games/games/roost)<br>Dirt-bike racing with AI rivals, nitro and a handlebar camera. | [@tejas3732](https://x.com/tejas3732) | Racing | Claude Fable 5.2 | [Play](https://claude.ai/artifact/DLnFodkTwvawCNwurDmSZK) · [Post](https://x.com/i/status/2120091513657139549) |
+| 34 | [**Courtyard Kings**](https://vibe.wiz.games/games/courtyard-kings)<br>A four-character fighting game with 39 voice and sound clips. | [@promodenstudio](https://x.com/promodenstudio) | Action | Claude Fable 5.2 | [Play](https://claude.ai/artifact/1QGGhB68jMCjjjeeKtKNUo) · [Post](https://x.com/i/status/2120085977079107788) |
+| 35 | [**Tria Prima**](https://vibe.wiz.games/games/tria-prima)<br>Dark-fantasy alchemy: five missions on an open-world island. | [@winchxyz](https://x.com/winchxyz) | Story & sim | Claude Fable 5.2 | [Play](https://winchxyz.github.io/tria-prima/) · [Post](https://x.com/i/status/2120078399482020160) |
+| 36 | [**Stonehenge Solstice**](https://vibe.wiz.games/games/stonehenge-solstice)<br>Stonehenge in one HTML file: grass, shadows and the solstice sun path. | [@MeltTheManual](https://x.com/MeltTheManual) | Puzzle & toys | Claude Fable 5.2 | [Play](https://meltthemanual.github.io/stonehenge-solstice/) · [Post](https://x.com/i/status/2119926820963532984) |
+| 37 | [**Fortnite in Three.js**](https://vibe.wiz.games/games/fortnite-in-three-js)<br>A battle-royale clone in Three.js. | [@aabyzov](https://x.com/aabyzov) | Action | Claude Fable 5.2 | [Play](https://anton-abyzov.github.io/fortnite-3js/) · [Post](https://x.com/i/status/2120702690845933702) |
+| 38 | [**Vippi**](https://vibe.wiz.games/games/vippi)<br>A fast, arcade-style first-person shooter. | [@Shrit1401](https://x.com/Shrit1401) | Shooter | Claude Fable 5.2 | [Play](https://vippi.vercel.app/) · [Post](https://x.com/i/status/2120060593763926314) |
+<!-- games:end -->
 
 ## How games get in
 
@@ -26,6 +89,9 @@ A curator checks each submission, takes the cover from the post and writes the e
 ## Game file format
 
 Each game is one JSON file at `packages/catalog/data/games/<slug>.json`, checked against [`game.schema.json`](packages/catalog/data/schema/game.schema.json) and by the catalog's tests. This is [`saltline.json`](packages/catalog/data/games/saltline.json), the entry that uses every field except `creatorUrl` (see [`lanternfall.json`](packages/catalog/data/games/lanternfall.json) for that one):
+
+<details>
+<summary>The whole of <code>saltline.json</code></summary>
 
 ```json
 {
@@ -74,6 +140,8 @@ Each game is one JSON file at `packages/catalog/data/games/<slug>.json`, checked
 }
 ```
 
+</details>
+
 | Field | Required | Meaning |
 | --- | --- | --- |
 | `$schema` | yes | Always `../schema/game.schema.json`. |
@@ -108,7 +176,7 @@ apps/web/                  @vibe-arcade/web: the site, TanStack Start (React 19)
   public/avatars/          creators' avatars, <handle>.webp
   public/fonts/            self-hosted web fonts
   og/                      Vite plugin that draws the share images at build time
-  scripts/                 fetch-covers.ts, fetch-media.ts, site-icons.ts, banner.ts
+  scripts/                 fetch-covers.ts, fetch-media.ts, readme-games.ts, site-icons.ts, banner.ts
   wrangler.jsonc           Cloudflare Workers configuration
 packages/catalog/          @vibe-arcade/catalog: the data and everything derived from it
   data/games/              one JSON file per game
@@ -137,16 +205,17 @@ pnpm typecheck   # type-check both packages
 pnpm build       # build the site, including the share images
 ```
 
-Three scripts in `apps/web` write files that are committed:
+These scripts in `apps/web` write files that are committed:
 
 ```sh
 pnpm --filter @vibe-arcade/web covers   # fetch each game's cover from its X post into public/covers/
 pnpm --filter @vibe-arcade/web media    # cut each game's clip and fetch its creator's avatar from its X post (needs ffmpeg)
 pnpm --filter @vibe-arcade/web icons    # redraw the icons from public/favicon.svg
 pnpm --filter @vibe-arcade/web banner   # redraw .github/assets/banner.png, the image at the top of this file
+pnpm --filter @vibe-arcade/web readme   # redraw the list of games in the READMEs from the data
 ```
 
-`covers` keeps a cover that already exists unless `--force` is given, takes slugs to limit the run, and with `--likes` also refreshes the like counts in the game files; when a count changes it moves the day in `packages/catalog/data/meta.json`, which the site shows as "last updated", to today. Set that day by hand when you add a game. `media` cuts a six-second silent clip from the video of each game's post into `public/videos/`, a larger one for the six most liked games, which the hero screen plays, and saves the avatar of each creator who posted their game themselves into `public/avatars/`. It lists what it found in `packages/catalog/data/media.json`; commit that file with the media. It also keeps what exists unless `--force` is given, and takes slugs. The picks of the week are the slugs under `picks` in `meta.json`, edited by hand.
+`covers` keeps a cover that already exists unless `--force` is given, takes slugs to limit the run, and with `--likes` also refreshes the like counts in the game files; when a count changes it moves the day in `packages/catalog/data/meta.json`, which the site shows as "last updated", to today. Set that day by hand when you add a game. `media` cuts a six-second silent clip from the video of each game's post into `public/videos/`, a larger one for the six most liked games, which the hero screen plays, and saves the avatar of each creator who posted their game themselves into `public/avatars/`. It lists what it found in `packages/catalog/data/media.json`; commit that file with the media. It also keeps what exists unless `--force` is given, and takes slugs. The picks of the week are the slugs under `picks` in `meta.json`, edited by hand. `readme` rewrites the list of games in this file and its translations; run it after adding, renaming or removing a game, since the tests fail while a README is behind the data.
 
 ## Deployment
 

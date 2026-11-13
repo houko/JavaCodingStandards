@@ -55,6 +55,21 @@ describe('homeHead', () => {
 
 const FEATURED = GAMES.find((g) => g.slug === 'saltline')!;
 
+describe('the site in JSON-LD', () => {
+	it('names its publisher and how to search it, in the page language', () => {
+		const [site] = ldOf(homeHead('en'));
+		expect(site.publisher).toEqual({ '@type': 'Organization', name: 'Wiz Games', url: 'https://wiz.games' });
+		expect((site.potentialAction as { target: { urlTemplate: string } }).target.urlTemplate).toBe(`${SITE_URL}/?q={search_term_string}`);
+		const [ja] = ldOf(homeHead('ja'));
+		expect((ja.potentialAction as { target: { urlTemplate: string } }).target.urlTemplate).toBe(`${SITE_URL}/?lang=ja&q={search_term_string}`);
+	});
+
+	it('credits the curator on X in every share', () => {
+		expect(metaOf(homeHead('en'), 'name', 'twitter:site')).toBe('@suzukaze_haduki');
+		expect(metaOf(gameHead(FEATURED, 'de'), 'name', 'twitter:site')).toBe('@suzukaze_haduki');
+	});
+});
+
 describe('gameHead', () => {
 	it('builds a game page head in English', () => {
 		const head = gameHead(FEATURED, 'en');
@@ -86,6 +101,18 @@ describe('gameHead', () => {
 		});
 		expect(crumbs['@type']).toBe('BreadcrumbList');
 		expect((crumbs.itemListElement as { item: string }[]).map((c) => c.item)).toEqual([`${SITE_URL}/?lang=fr`, `${SITE_URL}/games/saltline?lang=fr`]);
+	});
+
+	it('offers the clip of a game that has one, and none otherwise', () => {
+		const head = gameHead(FEATURED, 'en');
+		expect(metaOf(head, 'property', 'og:video')).toBe(`${SITE_URL}/videos/saltline.mp4`);
+		expect(metaOf(head, 'property', 'og:video:type')).toBe('video/mp4');
+		expect(ldOf(head)[0].trailer).toMatchObject({ '@type': 'VideoObject', contentUrl: `${SITE_URL}/videos/saltline.mp4`, thumbnailUrl: `${SITE_URL}/covers/saltline.webp`, uploadDate: FEATURED.postedAt });
+		expect((ldOf(head)[0].author as { image?: string }).image).toBe(`${SITE_URL}/avatars/felixrieseberg.webp`);
+		const still = GAMES.find((g) => !g.video);
+		if (!still) return;
+		expect(metaOf(gameHead(still, 'en'), 'property', 'og:video')).toBeUndefined();
+		expect(ldOf(gameHead(still, 'en'))[0].trailer).toBeUndefined();
 	});
 
 	it('names a watch-only game once in sameAs, as its link is its post', () => {
