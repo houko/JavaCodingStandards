@@ -13,7 +13,16 @@
 	"model": "Gemini + ChatGPT",
 	"cover": "wave-rider-nusantara.webp",
 	"summary": {
-		"en": "Arcade-style game inspired by the culture and visual identity of the Indonesian archipelago."
+		"en": "Arcade-style game inspired by the culture and visual identity of the Indonesian archipelago.",
+		"zh-CN": "受印度尼西亚群岛的文化与视觉风格启发的街机风格游戏。",
+		"zh-TW": "受印尼群島的文化與視覺風格啟發的街機風格遊戲。",
+		"ja": "インドネシア群島の文化とビジュアルアイデンティティからインスピレーションを得た、アーケード風のゲーム。",
+		"ko": "인도네시아 군도의 문화와 시각적 정체성에서 영감을 받은 아케이드 스타일 게임.",
+		"es": "Juego de estilo arcade inspirado en la cultura y la identidad visual del archipiélago indonesio.",
+		"fr": "Jeu de style arcade inspiré par la culture et l’identité visuelle de l’archipel indonésien.",
+		"de": "Arcade-artiges Spiel, inspiriert von der Kultur und der visuellen Identität des indonesischen Archipels.",
+		"pt-BR": "Jogo de estilo arcade inspirado na cultura e na identidade visual do arquipélago indonésio.",
+		"ru": "Игра в стиле аркады, вдохновлённая культурой и визуальной идентичностью индонезийского архипелага."
 	},
 	"added": "2026-11-13"
 }

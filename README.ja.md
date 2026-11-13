@@ -65,7 +65,7 @@ Vibe Arcade は AI でつくったゲームのアーケードです。主に AI 
 | [**Stonehenge Solstice**](https://vibe.wiz.games/games/stonehenge-solstice?lang=ja)<br>HTML1枚のストーンヘンジ。草、影、夏至の太陽の軌道。 | [@MeltTheManual](https://x.com/MeltTheManual) | パズル・おもちゃ | Claude Fable 5.2 | [プレイ](https://meltthemanual.github.io/stonehenge-solstice/) · [投稿](https://x.com/i/status/2119926820963532984) |
 | [**Fortnite in Three.js**](https://vibe.wiz.games/games/fortnite-in-three-js?lang=ja)<br>Three.jsで作ったバトロワのクローン。 | [@aabyzov](https://x.com/aabyzov) | アクション | Claude Fable 5.2 | [プレイ](https://anton-abyzov.github.io/fortnite-3js/) · [投稿](https://x.com/i/status/2120702690845933702) |
 | [**Vippi**](https://vibe.wiz.games/games/vippi?lang=ja)<br>テンポの速いアーケード風FPS。 | [@Shrit1401](https://x.com/Shrit1401) | シューター | Claude Fable 5.2 | [プレイ](https://vippi.vercel.app/) · [投稿](https://x.com/i/status/2120060593763926314) |
-| [**Wave Rider Nusantara**](https://vibe.wiz.games/games/wave-rider-nusantara?lang=ja)<br>Arcade-style game inspired by the culture and visual identity of the Indonesian archipelago. | [@abusofianid](https://x.com/abusofianid) | 探索 | Gemini + ChatGPT | [ソース](https://github.com/abusofianid/game-wave-rider-nusantara) · [投稿](https://x.com/i/status/2121088313658572857) |
+| [**Wave Rider Nusantara**](https://vibe.wiz.games/games/wave-rider-nusantara?lang=ja)<br>インドネシア群島の文化とビジュアルアイデンティティからインスピレーションを得た、アーケード風のゲーム。 | [@abusofianid](https://x.com/abusofianid) | 探索 | Gemini + ChatGPT | [ソース](https://github.com/abusofianid/game-wave-rider-nusantara) · [投稿](https://x.com/i/status/2121088313658572857) |
 <!-- games:end -->
 
 ## 掲載の基準
